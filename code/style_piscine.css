@@ -304,3 +304,40 @@ body::-webkit-scrollbar-track{
 	height: 300px;
 }
 
+/**PISCINE**/
+/** Compte client **/
+.client-info{
+	
+	
+}
+
+.client-historique{
+	display: none;
+	
+
+}
+
+
+/** COMPTE VENDEUR**/
+
+.nav-vendeur{
+	background: #E52714;
+}
+
+.collapse-vendeur{
+	background: #E52714;
+}
+
+.vendeur-background{
+	background-image:url('images/sell.jpg');
+}
+
+/** ADMIN **/
+.navbar-admin{
+	background: #67E514;
+}
+
+.back-admin{
+	background-image: url("images/admin.png");
+	
+}
