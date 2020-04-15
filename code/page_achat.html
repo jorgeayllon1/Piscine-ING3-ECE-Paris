@@ -2,7 +2,7 @@
 	<head>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<title>Ferrailles</title>
+		<title>Page achat</title>
 
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
 	    <link rel="stylesheet" type="text/css" href="style_piscine.css">
@@ -65,8 +65,9 @@
         
         <div class="container my-4">
             <div class="row">  <!-- Non utilisation des radios mais des checkbox car on peut combiner deux type d'achats, 
-                faire javascript condition si enchère cochée alors disable meilleure offre-->
-                <h5>Filtrer selon le type d'achat :</h5>
+				faire javascript condition si enchère cochée alors disable meilleure offre-->
+				<!--La page va charger selon des conditions, qui va automatiquement cocher les checkbox-->
+                <h5>Filtrer selon le type d'achat et la catégorie:</h5>
                                 
                 <div class="custom-control custom-checkbox custom-control-inline ml-5">
                     <input type="checkbox" class="custom-control-input" id="enchere-check">
@@ -83,46 +84,80 @@
                 <div class="custom-control custom-checkbox custom-control-inline">
                     <input type="checkbox" class="custom-control-input" id="offre-check">
                     <label class="custom-control-label" for="offre-check">Meilleure offre</label>
+				</div>
+
+				<div class="custom-control custom-checkbox custom-control-inline ml-5">
+                    <input type="checkbox" class="custom-control-input" id="ferraille-check">
+                    <label class="custom-control-label" for="ferraille-check">Ferraille ou trésor</label>
+                </div>
+                
+                
+                <div class="custom-control custom-checkbox custom-control-inline">
+                    <input type="checkbox" class="custom-control-input" id="musee-check">
+                    <label class="custom-control-label" for="musee-check">Bon pour le musée</label>
+                </div>
+                
+                
+                <div class="custom-control custom-checkbox custom-control-inline">
+                    <input type="checkbox" class="custom-control-input" id="vip-check">
+                    <label class="custom-control-label" for="vip-check">Accessoire VIP</label>
                 </div>
                 
 
             </div>
         </div>
 
-        <div class="container">
+        <div class="container"> <!--Donner nom aux class pr PHP-->
             <div class="row">
                 <div class="table-responsive">
-                    <table class="table">
-                        <thead>
+                    <table class="table table-produit">
+                        <thead class="table-bordered font-weight-bold" style="background-color: aliceblue;">
                           <tr>
                             <th scope="col">Photo</th>
                             <th scope="col">Produit</th>
-                            <th scope="col">Description</th>
+							<th scope="col">Description</th>
+							<th scope="col">Catégorie</th>
                             <th scope="col">Type de vente</th>
-                            <th scope="col">Prix</th>
+							<th scope="col">Fin enchère dans</th>
+							<th scope="col">Prix</th>
                           </tr>
                         </thead>
                         <tbody>
                           <tr>
                             <th scope="row"><img src="images/item/item1.jpg" width="80px" height="80px"></th>
                             <td>Lampe</td>
-                            <td>Bon état</td>
+							<td><input type="textarea" value="bon état, vous ne regretterez pas cet acjat faites moi confiance"></td>
+							<td>Ferraille ou trésor</td>
                             <td>Achat immédiat</td>
-                            <td>56€</td>
+							<td>0h 0min 0s</td>
+							<td>
+								<h4>56€</h4>
+								Ajouter au panier<button class="btn ml-4" style="border-radius: 15px; background-color: #6AD51A;"> <i class="fa fa-shopping-basket"></i> </button>
+							</td>
                           </tr>
                           <tr>
                             <th scope="row"><img src="images/item/item2.jpg" width="80px" height="80px"></th>
                             <td>Lampe</td>
-                            <td>Bon état</td>
-                            <td>Achat immédiat</td>
-                            <td>56€</td>
+							<td><input type="textarea" value="bon état"></td>
+							<td>Ferraille ou trésor</td>
+                            <td>Enchère</td>
+							<td>0h 3min 14s</td>
+							<td>
+								<h4>56€</h4>
+								Ajouter au panier<button class="btn ml-4" style="border-radius: 15px; background-color: #6AD51A;"> <i class="fa fa-shopping-basket"></i> </button>
+							</td>
                           </tr>
                           <tr>
                             <th scope="row"><img src="images/item/item3.jpg" width="80px" height="80px"></th>
                             <td>Lampe</td>
-                            <td>Bon état</td>
-                            <td>Achat immédiat</td>
-                            <td>56€</td>
+							<td><input type="textarea" value="bon état"></td>							
+							<td>Ferraille ou trésor</td>
+							<td>Meilleure offre</td>
+							<td>0h 0min 0s</td>
+							<td>
+								<h4>56€</h4>
+								Ajouter au panier<button class="btn ml-4" style="border-radius: 15px; background-color: #6AD51A;"> <i class="fa fa-shopping-basket"></i> </button>
+							</td>
                           </tr>
                         </tbody>
                       </table>
@@ -141,21 +176,14 @@
 				<footer class="page-footer font-small blue-grey lighten-5">
 
 					<div style="background-color: #31405F;">
-					  <div class="container">
-	
-						
+					  <div class="container">								
 						<div class="row py-4 d-flex align-items-center">
-	
 						  
 						  <div class="col-md-6 col-lg-5 text-center text-md-left mb-4 mb-md-0">
 							<h6 >Restons en contact !</h6>
 						  </div>
-						 
-	
-						  
-						  <div class="col-md-6 col-lg-7 text-center text-md-right">
-	
-							
+														   
+						  <div class="col-md-6 col-lg-7 text-center text-md-right">									
 							<a class="fb-ic" style="color: #fff;">
 							  <i class="fa fa-facebook-f  ml-4"> </i>
 							</a>
@@ -167,35 +195,21 @@
 							<a class="ins-ic" style="color: #fff;">
 							  <i class="fa fa-instagram  ml-4"> </i>
 							</a>
-	
 						  </div>
-						  
-	
-						</div>
-						
-	
+						</div>								
 					  </div>
 					</div>
-	
+
 					
-					<div class="container text-center text-md-right mt-4">
-	
-					  
+					<div class="container text-center text-md-right mt-4">							  
 					  <div class="row mt-3 dark-grey-text">
-	
 						
-						<div class="col-md-3 col-lg-4 col-xl-3 mb-3">
-	
-						 
-						  <img src="images/logo-footer.png" alt="logo ece ebay" width="50%">
-						  
+						<div class="col-md-3 col-lg-4 col-xl-3 mb-3">							 
+						  <img src="images/logo-footer.png" alt="logo ece ebay" width="50%">								  
 						  <p>Enchérissez !</p>
-	
 						</div>
 					   
-						<div class="col-md-2 col-lg-2 col-xl-2 mx-auto mb-3" style="color: #000;">
-	
-						  
+						<div class="col-md-2 col-lg-2 col-xl-2 mx-auto mb-3" style="color: #000;">								  
 						  <h5 class="font-weight-bold">Acheter</h5>
 						  <hr class="teal accent-3 mb-4 mt-0 d-inline-block mx-auto" style="width: 60px;">
 						  <p>
@@ -206,14 +220,10 @@
 						  </p>
 						  <p>
 							<a  href="#!">Accessoire VIP</a>
-						  </p>
-						  
-	
+						  </p>								  
 						</div>
 						
-						<div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-3">
-	
-						 
+						<div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-3">							 
 						  <h5 class="font-weight-bold">Vendre</h5>
 						  <hr class="teal accent-3 mb-4 mt-0 d-inline-block mx-auto" style="width: 60px;">
 						  <p>
@@ -224,34 +234,26 @@
 						  </p>
 						  <p>
 							<a  href="#!">Vos ventes</a>
-						  </p>
-						  
-	
+						  </p>								  
 						</div>
 						
-						<div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-3">
-	
-						 
+						<div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-3">								 
 						  <h5 class="font-weight-bold">Contact</h5>
 						  <hr class="teal accent-3 mb-4 mt-0 d-inline-block mx-auto" style="width: 60px;">
 						  <p>
-							<i class="fa fa-cloud "></i> EBAY ECE</p>
+							<i class="fa fa-graduation-cap "></i> EBAY ECE</p>
 						  <p>
 							<i class="fa fa-envelope mr-3"></i> ebay-ece@mail.fr</p>
 						  <p>
-							<i class="fa fa-phone mr-3"></i> + 01 234 567 88</p>
-						  
+							<i class="fa fa-phone mr-3"></i> + 01 234 567 88</p>								  
 						</div>							    
-	
-					  </div>
-				  
+					  </div>						  
 					</div>
 												 
 					<div class="footer-copyright text-center text-black-50 py-3">© 2020 Copyright: All rights reserved
 					  <a class="dark-grey-text" href="accueil.html"> www.ebay-ece.fr</a>
 					</div>
 					
-	
 				</footer>
 
 			</div>
