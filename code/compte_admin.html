@@ -2,7 +2,7 @@
 	<head>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<title>Mon compte vendeur</title>
+		<title>Mon compte admin</title>
 
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
 	    <link rel="stylesheet" type="text/css" href="style_piscine.css">
@@ -25,8 +25,8 @@
 
 		<div class="container">
 			<div class="row d-flex justify-content-center">
-				<nav class="navbar navbar-expand-md col-lg-12 nav-vendeur">
-			        <a class="navbar-brand" href="accueil.html"><img src="images/logo-vendeur.png" width="30%"></a>
+				<nav class="navbar navbar-expand-md col-lg-12 navbar-admin">
+			        <a class="navbar-brand" href="accueil.html"><img src="images/logo-admin.png" width="40%"></a>
 			        <button class="navbar-toggler navbar-dark" type="button" data-toggle="collapse" data-target="#main-navigation">
 			            <span class="navbar-toggler-icon"></span>
 			        </button>
@@ -43,9 +43,7 @@
 
 	           
 
-			   <div class="col-lg-1 my-1 text-md-right">
-				<button class="btn" style="border-radius: 10px;"> <i class="fa fa-home"></i> Vendre</button>
-			</div>
+			   
 			   
 			   
 
@@ -63,26 +61,34 @@
 													
 							<ul class="nav" >
 								<li class="nav-item ">
-									<a class="nav-link active" style="background-color: #E52714;"  data-toggle="tab"
-									 href="#info-vendeur" role="tab"  aria-selected="true">Mes informations</a>
+									<a class="nav-link active" style="background-color: #67E514;"  data-toggle="tab"
+									 href="#info-admin" role="tab"  aria-selected="true">Mes informations</a>
 								</li>
 								<li class="nav-item">
-									<a class="nav-link" style="background-color: #E52714;height: 80px; width: 120px;"  data-toggle="tab" 
-									href="#historique-vendeur" role="tab" aria-selected="false">Historique des ventes</a>
+									<a class="nav-link" style="background-color: #67E514;height: 80px; width: 120px;"  data-toggle="tab" 
+									href="#historique-admin" role="tab" aria-selected="false">Historique des ventes</a>
 								</li>
 								<li class="nav-item">
-									<a class="nav-link" style="background-color: #E52714;height: 80px; width: 120px;"  data-toggle="tab" 
-									href="#publier-vendeur" role="tab" aria-selected="false">Publier une vente</a>
+									<a class="nav-link" style="background-color: #67E514;height: 80px; width: 120px;"  data-toggle="tab" 
+									href="#publier-admin" role="tab" aria-selected="false">Publier une vente</a>
 								</li>
 
 								<li class="nav-item ">
-									<a class="nav-link " style="background-color: #E52714; height: 80px; width: 120px;"  data-toggle="tab" 
-									href="#retirer-vendeur" role="tab" aria-selected="false">Retirer une vente</a>
+									<a class="nav-link " style="background-color: #67E514; height: 80px; width: 120px;"  data-toggle="tab" 
+									href="#retirer-admin" role="tab" aria-selected="false">Retirer une vente</a>
 								</li>
 
 								<li class="nav-item">
-									<a class="nav-link " style="background-color: #E52714;height: 80px; width: 120px;"  data-toggle="tab" 
-									href="#nego-vendeur" role="tab" aria-selected="false">Mes négociations</a>
+									<a class="nav-link " style="background-color: #67E514;height: 80px; width: 120px;"  data-toggle="tab" 
+									href="#nego-admin" role="tab" aria-selected="false">Mes négociations</a>
+                                </li>
+                                <li class="nav-item">
+									<a class="nav-link " style="background-color: #67E514;height: 80px; width: 120px;"  data-toggle="tab" 
+									href="#retirer-vendeur-admin" role="tab" aria-selected="false">Retirer un vendeur</a>
+                                </li>
+                                <li class="nav-item">
+									<a class="nav-link " style="background-color: #67E514;height: 80px; width: 120px;"  data-toggle="tab" 
+									href="#ajouter-vendeur-admin" role="tab" aria-selected="false">Ajouter un vendeur</a>
 								</li>
 							</ul>
 						
@@ -94,16 +100,14 @@
 				<div class="col-lg-10 d-flex justify-content-center">
 					<div class="tab-content">
 
-						<!--INFORMATIONS VENDEUR-->
+						<!--INFORMATIONS ADMIN-->
 
-						<div class="tab-pane fade show active " id="info-vendeur" >
+						<div class="tab-pane fade show active " id="info-admin" >
 							<form class="text-center border border-light " action="#!"> <!--PHP-->
 
 								<p class="h4 mb-4">Vos informations</p>
 	
-								<input type="image" id="img_vendeur" class="form-control"> (pdp)<br>
-
-								<input type="text" id="pseudo_vendeur" placeholder="Pseudo">
+								<input type="image" id="img_vendeur" class="form-control"> (pdp)
 											 
 					
 								<div class="form-row mb-4 mx-4 mt-4">
@@ -125,16 +129,16 @@
 								
 					
 								
-								<button class="btn my-4 nav-vendeur" style="background: #E52714; border:none; color:#fff;" 
+								<button class="btn my-4 nav-vendeur" style="background: #67E514; border:none; color:#fff;" 
 								type="submit">Modifier</button>
 		
 							</form>
 									
 						</div>
 
-						<!--HISTORIQUE VENTES-->
+						<!--HISTORIQUE ADMIN-->
 
-						<div class="tab-pane fade" id="historique-vendeur" >
+						<div class="tab-pane fade" id="historique-admin" >
 							<p class="h4 mb-4">Votre historique des ventes</p>
 							<div class="table">
 								
@@ -172,9 +176,9 @@
 							</div>
 							
 						
-							<!--NEGOCIATIONS VENDEUR-->
+						<!--NEGOCIATIONS ADMIN-->
 
-						<div class="tab-pane fade" id="nego-vendeur">
+						<div class="tab-pane fade" id="nego-admin">
 							<p class="h4 mb-4">Vos négociations</p>
 
 							<div class="table">
@@ -216,7 +220,7 @@
 
 
 						<!--AJOUTER UNE VENTE-->
-						<div class="tab-pane fade" id="publier-vendeur">
+						<div class="tab-pane fade" id="publier-admin">
 							<p class="h4 mb-4">Ajouter une vente</p>
 							<form >
 								<div class="form-group">
@@ -267,7 +271,7 @@
 								</div>
 
 								<div class="row d-flex justify-content-center">
-									<a href="#"><button class="btn btn-rounded my-2" style="background: #E52714; color: #fff;">Publier</button></a>
+									<a href="#"><button class="btn btn-rounded my-2" style="background: #67E514; color: #fff;">Publier</button></a>
 
 								</div>
 
@@ -280,7 +284,7 @@
 
 						<!--RETIRER UNE VENTE-->
 
-						<div class="tab-pane fade" id="retirer-vendeur">
+						<div class="tab-pane fade" id="retirer-admin">
 							<p class="h4 mb-4">Retirer une vente</p>
 
 							<div class="table">
@@ -289,7 +293,8 @@
 									<table class="table table-bordered">
 									  <thead>
 										<tr>
-										  <th>#</th>
+                                          <th>#</th>
+                                          <th>Pseudo vendeur</th>
 										  <th>Produit(nom)</th>
 										  <th>Photo</th>
 										  <th>Description</th>
@@ -303,7 +308,8 @@
 									  </thead>
 									  <tbody>
 										<tr>  <!-- mettre les classes pour PHP comme pr vendeur-->
-										  <td>1</td>
+                                          <td>1</td>
+                                          <td>hzfhfeuk</td>
 										  <td>Bijou</td>
 										  <td></td>
 										  <td>Bon état, pas de défaut</td>
@@ -323,7 +329,90 @@
 								  </div>
 								</div>
 
-						</div>
+                        </div>
+                        
+                        <!--RETIRER UN VENDEUR-->
+                        <div class="tab-pane fade" id="retirer-vendeur-admin">
+                            <p class="h4 mb-4">Liste complète des vendeurs</p>
+
+                            <div class="table">
+								<div class="table-responsive">
+									<table class="table table-bordered">
+									  <thead>
+										<tr>
+                                          <th>#</th>
+                                          <th>Pseudo vendeur</th>
+										  <th>Nom vendeur</th>
+										  <th>Email vendeur</th>
+										  
+										  
+										</tr>
+									  </thead>
+									  <tbody>
+										<tr>  <!-- mettre les classes pour PHP comme pr vendeur-->
+                                          <td>1</td>
+                                          <td>hzfhfeuk</td>
+										  <td>Ayllon</td>
+										  <td>ayllon@mail.fr</td>
+										  <td>
+											  <button class="btn btn-primary">Retirer</button>
+										  </td>
+										  
+										  
+										</tr>
+									  </tbody>
+									</table>
+								  </div>
+								</div>
+                            
+                        </div>
+
+                        <!--AJOUTER UN VENDEUR-->
+                        <div class="tab-pane fade" id="ajouter-vendeur-admin">
+                            <form class="text-center border border-light p-2 form-vendeur" action="#!" form="post"  style="background-color: #fff; " > <!--PHP-->
+
+                                <p class="h4 mb-4">Inscription d'un vendeur par admin</p>
+    
+                                
+    
+                                <div class="form-row mb-4">
+                                    <div class="col">
+                                        
+                                        <input type="text" id="prenom_admin_inscription" class="form-control" placeholder="Prénom">
+                                    </div>
+                                    <div class="col">
+                                        
+                                        <input type="text" id="nom_admin_inscriptione" class="form-control" placeholder="nom">
+                                    </div>
+                                </div>
+    
+                                
+                                <input type="email" id="email_admin_inscription" class="form-control mb-3" placeholder="E-mail">
+    
+                                
+                                <input type="text" id="pseudo_admin_inscription" class="form-control" placeholder="Pseudo" aria-describedby="defaultRegisterFormPasswordHelpBlock">
+                                <small id="pseudo_admin_inscription" class="form-text text-muted mb-4">
+                                   
+    
+                                </small>
+    
+                                
+                                
+                                <button class="btn my-3 " style="background: #67E514; border:none; color:#fff;" type="submit">Inscrire</button>
+    
+                                
+                                
+                                <hr>
+    
+                                
+                                <p>En cliquant sur
+                                    <em>S'inscrire</em> vous acceptez nos
+                                    <a href="" target="_blank">conditions de service</a></p>
+                                    
+                                    
+    
+                            </form>
+                        </div>
 
 						
 					</div>
@@ -341,7 +430,7 @@
 
 				<footer class="page-footer font-small blue-grey lighten-5">
 
-					<div style="background-color: #E52714;">
+					<div style="background-color: #67E514;">
 					  <div class="container">								
 						<div class="row py-4 d-flex align-items-center">
 						  

@@ -63,9 +63,6 @@
 				<a href="panier.html"><button class="btn" style="border-radius: 10px;"> <i class="fa fa-shopping-basket"></i> </button></a>
 			</div>
 			   
-			   
-
-			   
 			</div>
 		</div>
 
@@ -73,137 +70,226 @@
 
 		<div class="container mt-5">
 
-			<div class="row">
+			<div class="row d-flex justify-content-center">
 
-                <aside class="col-12 col-md-2 p-0 mt-5 ">
-                    <nav class="navbar navbar-expand  flex-md-column flex-row align-items-start">
-                      <div class="collapse navbar-collapse">
+                <div class="col-lg-2 " >
+					<aside class="col-12 col-md-2 p-0  " >
+													
+							<ul class="nav" >
+								<li class="nav-item ">
+									<a class="nav-link active" style="background-color: #31405F;"  data-toggle="tab"
+									 href="#info-client" role="tab"  aria-selected="true">Mes informations</a>
+								</li>
+								<li class="nav-item">
+									<a class="nav-link w-100" style="background-color: #31405F;"  data-toggle="tab" 
+									href="#historique-client" role="tab" aria-selected="false">Historique d'achats</a>
+								</li>
+								<li class="nav-item">
+									<a class="nav-link" style="background-color: #31405F;"  data-toggle="tab" 
+									href="#nego-client" role="tab" aria-selected="false">Mes négociations</a>
+								</li>
 
-                        <ul class="flex-md-column flex-row navbar-nav w-100 justify-content-between">
-                          <li class="nav-item mb-3">
-                             <a class="nav-link info-client li-client" href="#">Informations personnelles</a>                          
-                          </li>  
-                          <li class="nav-item mb-3 li-historique">
-                            <a class="nav-link historique-client" href="#">Historique des achats</a>                            
-                          </li> 
-                          <li class="nav-item mb-3">
-                            <a class="nav-link modif-client" href="#">Modifier vos infos</a>
-						  </li>   
-						  <li class="nav-item mb-3">
-                            <a class="nav-link nego-client" href="#">Mes négociations (meilleure offre)</a>
-                          </li>   
-                        </ul>
-                      </div>
-                    </nav>
-                  </aside>
+								<li class="nav-item">
+									<a class="nav-link w-100" style="background-color: #31405F;"  data-toggle="tab" 
+									href="#enchere-client" role="tab" aria-selected="false">Enchères en cours</a>
+								</li>
+							</ul>
+						
+					</aside>
+					
+				</div>
 
-                  
 
-                  <main class="col-md-8 text-center main-client">
+				<div class="col-lg-10 d-flex justify-content-center">
+					<div class="tab-content">
 
-                    <div class="container  client-info">
+						<div class="tab-pane fade show active " id="info-client" >
+							<form class="text-center border border-light " action="#!"> <!--PHP-->
 
-                        <form class="text-center border border-light " action="#!"> <!--PHP-->
+								<p class="h4 mb-4">Vos informations</p>
+											 
+					
+								<div class="form-row mb-4">
+									<div class="col">
+										
+										<input type="text" id="prenom_client" class="form-control" placeholder="David">
+									</div>
+									<div class="col">
+										
+										<input type="text" id="nom_client" class="form-control" placeholder="Wang">
+									</div>
+								</div>
+					
+								
+								<input type="email" id="email_client" class="form-control mb-3" placeholder="E-mail">
+					
+								
+								<input type="password" id="mdp_client" class="form-control" placeholder="**********" aria-describedby="defaultRegisterFormPasswordHelpBlock">
+								<small id="mdp_client" class="form-text text-muted mb-4">
+									Au moins 8 caractères et un chiffre
+					
+								</small>
+								<input type="text" id="ad1_client" class="form-control mb-3" placeholder="Adresse">
+								<input type="text" id="ad2_client" class="form-control mb-3" placeholder="Complément adresse">
+					
+								<div class="form-row mb-4">
+									<div class="col">
+										<input type="text" id="pays_client" class="form-control mb-3" placeholder="Pays">
+									</div>
+									<div class="col">
+										<input type="text" id="ville_client" class="form-control mb-3" placeholder="Ville">
+									</div>
+								</div>
+					
+								<input type="number" id="cp_client" class="form-control mb-3" placeholder="Code Postal">
+					
+					
+								<input type="text" id="pays_client" class="form-control mb-3" placeholder="Pays">
+					
+					
+					
+								
+								<input type="text" id="phone_client" class="form-control" placeholder="Téléphone" aria-describedby="defaultRegisterFormPhoneHelpBlock">
+								<small id="phone_client" class="form-text text-muted mb-3">
+									Numéro en France
+								</small>
+					
+								
+								<button class="btn my-4 " style="background: #31405F; border:none; color:#fff;" type="submit">Modifier</button>
+		
+							</form>
+									
+						</div>
 
-                            <p class="h4 mb-4">Vos informations</p>
-                                         
-                
-                            <div class="form-row mb-4">
-                                <div class="col">
-                                    
-                                    <input type="text" id="prenom_client" class="form-control" placeholder="David">
-                                </div>
-                                <div class="col">
-                                    
-                                    <input type="text" id="nom_client" class="form-control" placeholder="Wang">
-                                </div>
-                            </div>
-                
-                            
-                            <input type="email" id="email_client" class="form-control mb-3" placeholder="E-mail">
-                
-                            
-                            <input type="password" id="mdp_client" class="form-control" placeholder="**********" aria-describedby="defaultRegisterFormPasswordHelpBlock">
-                            <small id="mdp_client" class="form-text text-muted mb-4">
-                                Au moins 8 caractères et un chiffre
-                
-                            </small>
-                            <input type="text" id="ad1_client" class="form-control mb-3" placeholder="Adresse">
-                            <input type="text" id="ad2_client" class="form-control mb-3" placeholder="Complément adresse">
-                
-                            <div class="form-row mb-4">
-                                <div class="col">
-                                    <input type="text" id="pays_client" class="form-control mb-3" placeholder="Pays">
-                                </div>
-                                <div class="col">
-                                    <input type="text" id="ville_client" class="form-control mb-3" placeholder="Ville">
-                                </div>
-                            </div>
-                
-                            <input type="number" id="cp_client" class="form-control mb-3" placeholder="Code Postal">
-                
-                
-                            <input type="text" id="pays_client" class="form-control mb-3" placeholder="Pays">
-                
-                
-                
-                            <!-- Phone number -->
-                            <input type="text" id="phone_client" class="form-control" placeholder="Téléphone" aria-describedby="defaultRegisterFormPhoneHelpBlock">
-                            <small id="phone_client" class="form-text text-muted mb-3">
-                                Numéro en France
-                            </small>
-                
-                            
-                            <button class="btn my-4 " style="background: #31405F; border:none; color:#fff;" type="submit">Modifier</button>
-    
-                        </form>
+						<div class="tab-pane fade" id="historique-client" >
+							<p class="h4 mb-4">Votre historique d'achat</p>
+							<div class="table">
+								
+								<div class="table-responsive">
+									<table class="table table-bordered">
+									  <thead>
+										<tr>
+										  <th>#</th>
+										  <th>Produit</th>
+										  <th>Prix</th>
+										  <th>Quantité</th>
+										  <th>Moyen paiement</th>
+										  <th>Date achat</th>
+										  <th>Livraison</th>
+										  
+										</tr>
+									  </thead>
+									  <tbody>
+										<tr>  <!-- mettre les classes pour PHP comme pr vendeur-->
+										  <td>1</td>
+										  <td>photo</td>
+										  <td>56€</td>
+										  <td>2</td>
+										  <td>MasterCard</td>
+										  <td>2020-03-04</td>
+										  <td>Adresse</td>
+										  
+										  
+										</tr>
+									  </tbody>
+									</table>
+								  </div>
+								</div>
+						</div>
 
-                        
+						<div class="tab-pane fade" id="nego-client">
+							<p class="h4 mb-4">Vos Négociations</p>
 
-                    </div>
-                    <div class="container client-historique">
+							<div class="table">
+								
+								<div class="table-responsive">
+									<table class="table table-bordered">
+									  <thead>
+										<tr>
+										  <th>#</th>
+										  <th>Produit</th>
+										  <th>Vendeur</th>
+										  <th>Statut</th>
+										  <th>Catégorie</th>
+										  <th>Première offre</th>
+										  <th>Prix actuel</th>
+										  <th>Nombre offre restant</th>
+										  <th>Nouvelle offre</th>
+										  
+										</tr>
+									  </thead>
+									  <tbody>
+										<tr>  <!-- mettre les classes pour PHP comme pr vendeur-->
+										  <td>1</td>
+										  <td>photo</td>
+										  <td>Theo</td>
+										  <td>En cours</td>
+										  <td>Ferraille</td>
+										  <td>390<sup>€</sup></td>
+										  <td>560<sup>€</sup></td>
+										  <td>3</td>
+										  <td>
+											  <input type="number">
+											  <button class="btn btn-primary my-2">Envoyer</button>
+										  </td>
+										  
+										  
+										</tr>
+									  </tbody>
+									</table>
+								  </div>
+								</div>
 
-                        <div class="table">
-                            <div class="caption">Votre historique d'achats</div>
-                            <div class="table-responsive">
-                                <table class="table table-bordered">
-                                  <thead>
-                                    <tr>
-                                      <th>#</th>
-                                      <th>Produit</th>
-                                      <th>Prix</th>
-                                      <th>Quantité</th>
-                                      <th>Moyen paiement</th>
-                                      <th>Date achat</th>
-                                      <th>Livraison</th>
-                                      
-                                    </tr>
-                                  </thead>
-                                  <tbody>
-                                    <tr>  <!-- mettre les classes pour PHP comme pr vendeur-->
-                                      <td>1</td>
-                                      <td>photo</td>
-                                      <td>56€</td>
-                                      <td>2</td>
-                                      <td>MasterCard</td>
-                                      <td>2020-03-04</td>
-                                      <td>Adresse</td>
-                                      
-                                      
-                                    </tr>
-                                  </tbody>
-                                </table>
-                              </div>
-                            </div>
-                        </div>
-                        
+						</div>
 
-                    </div>
-                    <div class="container client-modif">
+						<div class="tab-pane fade" id="enchere-client">
+							<p class="h4 mb-4">Vos enchères </p>
 
-                    </div>
-                    
-                  </main>
+							<div class="table">
+								
+								<div class="table-responsive">
+									<table class="table table-bordered">
+									  <thead>
+										<tr>
+										  <th>#</th>
+										  <th>Produit</th>
+										  <th>Vendeur</th>
+										  <th>Statut</th>
+										  <th>Catégorie</th>
+										  <th>Prix initial</th>
+										  <th>Prix actuel</th>
+										  <th>Fin enchère dans</th>
+										  
+										</tr>
+									  </thead>
+									  <tbody>
+										<tr>  <!-- mettre les classes pour PHP comme pr vendeur-->
+										  <td>1</td>
+										  <td>photo</td>
+										  <td>Theo</td>
+										  <td>En cours</td>
+										  <td>VIP</td>
+										  <td>390<sup>€</sup></td>
+										  <td>560<sup>€</sup></td>
+										  <td>
+											  <input type="text" value="0:12min:33s">
+											  
+										  </td>
+										  
+										  
+										</tr>
+									  </tbody>
+									</table>
+								  </div>
+								</div>
+
+						</div>
+									
+							
+						
+					</div>
+				</div>
+				  
 				
 			</div>
 
