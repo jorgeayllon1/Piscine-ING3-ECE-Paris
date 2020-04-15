@@ -101,9 +101,12 @@
 
 								<p class="h4 mb-4">Vos informations</p>
 	
-								<input type="image" id="img_vendeur" class="form-control"> (pdp)<br>
+								<div class="form-group">
+									<label for="pdp_vendeur">Choisissez une photo pour votre profil :</label>
+									<input type="file" class="form-control-file" id="pdp_vendeur">
+								</div>
 
-								<input type="text" id="pseudo_vendeur" placeholder="Pseudo">
+								<input type="text" class="form-control mb-3"id="pseudo_vendeur" placeholder="Pseudo">
 											 
 					
 								<div class="form-row mb-4 mx-4 mt-4">
@@ -122,6 +125,11 @@
 					
 								
 								<input type="password" id="mdp_vendeur" class="form-control" placeholder="**********" aria-describedby="defaultRegisterFormPasswordHelpBlock">
+
+								<div class="form-group my-2">
+									<label for="back_vendeur">Choisissez une photo pour votre fond :</label>
+									<input type="file" class="form-control-file" id="back_vendeur">
+								</div>
 								
 					
 								

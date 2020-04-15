@@ -102,6 +102,7 @@
 
 				<div class="col-lg-10 d-flex justify-content-center">
 					<div class="tab-content">
+						
 
 						<div class="tab-pane fade show active " id="info-client" >
 							<form class="text-center border border-light " action="#!"> <!--PHP-->
@@ -153,6 +154,29 @@
 								<small id="phone_client" class="form-text text-muted mb-3">
 									Numéro en France
 								</small>
+
+								<p class="h5 mb-4">Vos informations bancaires</p>
+								<div class="form-row my-2">
+									<div class="col"> 
+										<label for="paiement_nom">Nom sur la carte</label>                        
+										<input type="text" id="paiement_nom" class="form-control" >
+									</div>
+									<div class="col">    
+										<label for="paiement_num_carte">Numéro carte</label>                       
+										<input type="text" id="paiement_num_carte" class="form-control">
+									</div>
+								</div>
+			
+								<div class="form-row my-2 ">
+									<div class="col"> 
+										<label for="paiement_date_expi">Date expiration</label>                        
+										<input type="month" id="paiement_date_expi" class="form-control" >
+									</div>
+									<div class="col">    
+										<label for="paiement_code">CVC</label>                       
+										<input type="number" id="paiement_code" class="form-control">
+									</div>
+								</div>
 					
 								
 								<button class="btn my-4 " style="background: #31405F; border:none; color:#fff;" type="submit">Modifier</button>
