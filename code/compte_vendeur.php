@@ -17,7 +17,7 @@
 		<title>Mon compte vendeur</title>
 
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
-	    <link rel="stylesheet" type="text/css" href="style_piscine.css">
+	    <link rel="stylesheet" type="text/css" href="piscine.css">
 	    
 	    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 	    <!--<link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Open+Sans" />-->
@@ -71,8 +71,8 @@
 		
 
 		<div class="container mt-5  ">
-
-			<div class="row d-flex justify-content-center ">
+		   <div class="fond-vendeur">
+		   <div class="row d-flex justify-content-center ">
 				<div class="col-lg-2 " >
 					<aside class="col-12 col-md-2 p-0  "  >
 													
@@ -111,8 +111,8 @@
 
 						<!--INFORMATIONS VENDEUR-->
 
-						<div class="tab-pane fade show active " id="info-vendeur" >
-							<form class="text-center border border-light " action="#!"> <!--PHP-->
+						<div class="tab-pane fade show active my-4 " id="info-vendeur" >
+							<form class="text-center px-3 py-3  " style ="background-color:#fff;" action="#!"> <!--PHP-->
 
 								<p class="h4 mb-4">Vos informations</p>
 	
@@ -158,7 +158,7 @@
 						<!--HISTORIQUE VENTES-->
 
 						<div class="tab-pane fade" id="historique-vendeur" >
-							<p class="h4 mb-4">Votre historique des ventes</p>
+							<p class="h4 mb-4" style="color:#fff;">Votre historique des ventes</p>
 							<div class="table">
 								
 								<div class="table-responsive">
@@ -198,7 +198,7 @@
 							<!--NEGOCIATIONS VENDEUR-->
 
 						<div class="tab-pane fade" id="nego-vendeur">
-							<p class="h4 mb-4">Vos négociations</p>
+							<p class="h4 mb-4" style="color:#fff;">Vos négociations</p>
 
 							<div class="table">
 								
@@ -240,8 +240,8 @@
 
 						<!--AJOUTER UNE VENTE-->
 						<div class="tab-pane fade" id="publier-vendeur">
-							<p class="h4 mb-4">Ajouter une vente</p>
-							<form >
+							<p class="h4 mb-4" style="color:#fff;">Ajouter une vente</p>
+							<form style="background-color:#fff;" class="py-3 px-3">
 								<div class="form-group">
 									<label for="ajout_nom">Nom du produit</label>
 								<input type="text" id="ajout_nom" placeholder="Nom du produit">
@@ -256,7 +256,7 @@
 
 								<div class="form-group">
 									<label for="ajout_description">Description du produit</label>
-									<textarea class="form-control rounded-0" style="border: solid black 1px ;" id="ajout_description" rows="3"></textarea>
+									<textarea class="form-control rounded-0" style="border: solid black 1px ;" id="ajout_description" rows="3" ></textarea>
 								</div>
 
 								<div class="form-group">
@@ -304,7 +304,7 @@
 						<!--RETIRER UNE VENTE-->
 
 						<div class="tab-pane fade" id="retirer-vendeur">
-							<p class="h4 mb-4">Retirer une vente</p>
+							<p class="h4 mb-4" style="color:#fff;">Retirer une vente</p>
 
 							<div class="table">
 								<div class="caption my-2">Vos articles en vente actuellement : </div>
@@ -355,6 +355,9 @@
                     
 				
 			</div>
+		   </div>
+
+
 
 		</div>
 
@@ -362,88 +365,7 @@
 
 			<div class="row-width-max">
 
-				<footer class="page-footer font-small blue-grey lighten-5">
-
-					<div style="background-color: #E52714;">
-					  <div class="container">								
-						<div class="row py-4 d-flex align-items-center">
-						  
-						  <div class="col-md-6 col-lg-5 text-center text-md-left mb-4 mb-md-0">
-							<h6 >Restons en contact !</h6>
-						  </div>
-														   
-						  <div class="col-md-6 col-lg-7 text-center text-md-right">									
-							<a class="fb-ic" style="color: #fff;">
-							  <i class="fa fa-facebook-f  ml-4"> </i>
-							</a>
-							
-							<a class="tw-ic" style="color: #fff;">
-							  <i class="fa fa-twitter  ml-4"> </i>
-							</a>
-							
-							<a class="ins-ic" style="color: #fff;">
-							  <i class="fa fa-instagram  ml-4"> </i>
-							</a>
-						  </div>
-						</div>								
-					  </div>
-					</div>
-
-					
-					<div class="container text-center text-md-right mt-4">							  
-					  <div class="row mt-3 dark-grey-text">
-						
-						<div class="col-md-3 col-lg-4 col-xl-3 mb-3">							 
-						  <img src="images/logo-footer.png" alt="logo ece ebay" width="50%">								  
-						  <p>Enchérissez !</p>
-						</div>
-					   
-						<div class="col-md-2 col-lg-2 col-xl-2 mx-auto mb-3" style="color: #000;">								  
-						  <h5 class="font-weight-bold">Acheter</h5>
-						  <hr class="teal accent-3 mb-4 mt-0 d-inline-block mx-auto" style="width: 60px;">
-						  <p>
-							<a  href="#!">Ferraille ou trésor</a>
-						  </p>
-						  <p>
-							<a  href="#!">Bon pour musée</a>
-						  </p>
-						  <p>
-							<a  href="#!">Accessoire VIP</a>
-						  </p>								  
-						</div>
-						
-						<div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-3">							 
-						  <h5 class="font-weight-bold">Vendre</h5>
-						  <hr class="teal accent-3 mb-4 mt-0 d-inline-block mx-auto" style="width: 60px;">
-						  <p>
-							<a  href="#!">S'inscrire</a>
-						  </p>
-						  <p>
-							<a  href="#!">Comment vendre ?</a>
-						  </p>
-						  <p>
-							<a  href="#!">Vos ventes</a>
-						  </p>								  
-						</div>
-						
-						<div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-3">								 
-						  <h5 class="font-weight-bold">Contact</h5>
-						  <hr class="teal accent-3 mb-4 mt-0 d-inline-block mx-auto" style="width: 60px;">
-						  <p>
-							<i class="fa fa-graduation-cap "></i> EBAY ECE</p>
-						  <p>
-							<i class="fa fa-envelope mr-3"></i> ebay-ece@mail.fr</p>
-						  <p>
-							<i class="fa fa-phone mr-3"></i> + 01 234 567 88</p>								  
-						</div>							    
-					  </div>						  
-					</div>
-												 
-					<div class="footer-copyright text-center text-black-50 py-3">© 2020 Copyright: All rights reserved
-					  <a class="dark-grey-text" href="accueil.php"> www.ebay-ece.fr</a>
-					</div>
-					
-				</footer>
+				<?php include('footer_vendeur.php'); ?>
 
 			</div>
 
