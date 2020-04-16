@@ -10,7 +10,7 @@
 			Nom :
 			<input type = "text" name ="nom"><br>
 			Mot de passe :
-			<input type="password" name="mdp"<br>
+			<input type="password" name="mdp"><br>
 			<input type = "submit" name = "submit" value = "Se connecter">
 		</form>
 	</body>

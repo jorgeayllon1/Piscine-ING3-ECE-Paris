@@ -256,7 +256,7 @@
 										  <td>560<sup>€</sup></td>
 										  <td>3</td>
 										  <td>
-											  <a href="negocier.php"><button class="btn btn-primary my-2">Négocier</button></a>
+											  <a href="negocier_client.php"><button class="btn btn-primary my-2">Négocier</button></a>
 								
 										  </td>
 										  
