@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le :  mer. 15 avr. 2020 à 22:16
+-- Généré le :  jeu. 16 avr. 2020 à 10:30
 -- Version du serveur :  8.0.18
 -- Version de PHP :  7.3.12
 
@@ -203,7 +203,7 @@ CREATE TABLE IF NOT EXISTS `user` (
   `email` varchar(255) NOT NULL,
   `mdp` varchar(255) NOT NULL,
   `pseudo` varchar(255) NOT NULL,
-  `rank` int(5) NOT NULL,
+  `rang` int(5) NOT NULL,
   `nom` varchar(255) NOT NULL,
   `prenom` varchar(255) NOT NULL,
   `photo_perso` varchar(255) DEFAULT NULL,
@@ -217,7 +217,7 @@ CREATE TABLE IF NOT EXISTS `user` (
 -- Déchargement des données de la table `user`
 --
 
-INSERT INTO `user` (`id`, `id_livraison`, `id_carte`, `id_collection`, `email`, `mdp`, `pseudo`, `rank`, `nom`, `prenom`, `photo_perso`, `photo_background`) VALUES
+INSERT INTO `user` (`id`, `id_livraison`, `id_carte`, `id_collection`, `email`, `mdp`, `pseudo`, `rang`, `nom`, `prenom`, `photo_perso`, `photo_background`) VALUES
 (1, NULL, NULL, NULL, 'admin@gmail.com', 'motdepasse', 'lebigboss', 3, 'ayllon', 'jorge', NULL, NULL),
 (2, 1, 1, 2, 'jjjjj@gmail.com', 'jebois', 'jjgold', 1, 'goldman', 'jean-jacques', NULL, NULL),
 (3, NULL, NULL, 3, 'jhonnn@gmail.com', 'jechante', 'holiday', 2, 'johnny', 'hallyday', 'images/acheteur/johnny-hallyday.png', 'images/acheteur/johnny-hallyday-back.png');
