@@ -1,6 +1,3 @@
-<?php
-session_start();
-?>
 <footer class="page-footer font-small blue-grey lighten-5">
 
 	<div style="background-color: #67E514;">
