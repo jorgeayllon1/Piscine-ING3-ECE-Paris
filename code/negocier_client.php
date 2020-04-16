@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 
 <head>
@@ -35,14 +38,14 @@
                 <nav class="navbar navbar-expand-md col-lg-12 ">
                     <a class="navbar-brand" href="accueil.php"><img src="images/logo.png" width="20%"></a>
                     <button class="navbar-toggler navbar-dark" type="button" data-toggle="collapse" data-target="#myNavbar">
-		            <span class="navbar-toggler-icon"></span>
-		        </button>
-		        <div class="collapse navbar-collapse" id="myNavbar">
-		            <ul class="navbar-nav">
-		                <li class="nav-item"><a class="nav-link" href="compte_client.php">Mon compte</a></li>
- 
-		            </ul>
-		        </div>
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="myNavbar">
+                        <ul class="navbar-nav">
+                            <li class="nav-item"><a class="nav-link" href="compte_client.php">Mon compte</a></li>
+
+                        </ul>
+                    </div>
 
                 </nav>
             </div>
@@ -52,77 +55,78 @@
 
     <!----------------------------------------->
 
-   <div class="container">
-       <div class="row">
-           <div class="col-lg-12">
-               <div class="row">
-                <p class="h4 mb-4 mx-3">Information sur la négociation</p>
-               </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="row">
+                    <p class="h4 mb-4 mx-3">Information sur la négociation</p>
+                </div>
 
-               
-                   <p>Mail client: david@mail.fr</p>
-                   <p>Pseudo vendeur: 677gdr6</p>
-               
-            
 
-            <div class="table">
-                
-                <div class="table-responsive">
-                    <table class="table table-bordered">
-                      <thead>
-                        <tr>
-                          <th>#</th>
-                          <th>Produit</th>
-                          <th>Vendeur</th>
-                          <th>Statut</th>
-                          <th>Catégorie</th>
-                          <th>Première offre</th>
-                          <th>Prix actuel</th>
-                          <th>Nombre offre restant</th>
-                          
-                          
-                        </tr>
-                      </thead>
-                      <tbody>
-                        <tr>  <!-- mettre les classes pour PHP comme pr vendeur-->
-                          <td>1</td>
-                          <td>photo</td>
-                          <td>Theo</td>
-                          <td>En cours</td>
-                          <td>Ferraille</td>
-                          <td>390<sup>€</sup></td>
-                          <td>560<sup>€</sup></td>
-                          <td>3</td>
-                          
-                          
-                          
-                        </tr>
-                      </tbody>
-                    </table>
-                  </div>
+                <p>Mail client: david@mail.fr</p>
+                <p>Pseudo vendeur: 677gdr6</p>
+
+
+
+                <div class="table">
+
+                    <div class="table-responsive">
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Produit</th>
+                                    <th>Vendeur</th>
+                                    <th>Statut</th>
+                                    <th>Catégorie</th>
+                                    <th>Première offre</th>
+                                    <th>Prix actuel</th>
+                                    <th>Nombre offre restant</th>
+
+
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <!-- mettre les classes pour PHP comme pr vendeur-->
+                                    <td>1</td>
+                                    <td>photo</td>
+                                    <td>Theo</td>
+                                    <td>En cours</td>
+                                    <td>Ferraille</td>
+                                    <td>390<sup>€</sup></td>
+                                    <td>560<sup>€</sup></td>
+                                    <td>3</td>
+
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+
             </div>
 
-           
-           </div>
-
-           <div class="col-lg-8">
-               <h5>Vous souhaitez proposer une nouvelle offre ? Il vous reste <span id="nb_offre_client">3 </span>offres(s).</h5>
-               <input type="number" placeholder="XX€">
-               <button class="btn btn-primary" style="background: #31405F; border:none;">Soumettre</button>
-               <p><em>Vous pourrez retrouver toutes vos négociations en cours dans votre compte dans le menu Mes négociations.</em></p>
-           </div>
-       </div>
-   </div>
+            <div class="col-lg-8">
+                <h5>Vous souhaitez proposer une nouvelle offre ? Il vous reste <span id="nb_offre_client">3 </span>offres(s).</h5>
+                <input type="number" placeholder="XX€">
+                <button class="btn btn-primary" style="background: #31405F; border:none;">Soumettre</button>
+                <p><em>Vous pourrez retrouver toutes vos négociations en cours dans votre compte dans le menu Mes négociations.</em></p>
+            </div>
+        </div>
+    </div>
 
 
 
-   
+
 
 
 
     <div class="container">
         <div class="row-width-max">
-          <?php include('footer_client.php'); ?>
+            <?php include('footer_client.php'); ?>
         </div>
     </div>
 
