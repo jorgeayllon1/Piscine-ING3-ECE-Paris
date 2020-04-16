@@ -19,6 +19,7 @@
 					echo "trouvé";
 					while ($data = mysqli_fetch_assoc($result)) {
 						$c_ID = $data['id'];
+						$c_rang = $data['rang'];
 						$fp = fopen('cookie.php', 'w');
 
 						/*fwrite($fp, "const C_ID = '$c_ID'
@@ -26,6 +27,7 @@
 							const C_PAYS = '$c_pays'"); JAVASCRIPT*/
 						fwrite($fp, "<?php 
 							define('C_ID', '$c_ID'); 
+							define('C_RANG', '$c_rang');
         	        	?>"); 
 						fclose($fp);
         	        	header("location: accueil.php");

@@ -9,7 +9,7 @@
             $mail = $_POST["mail"];
             $pseudo = $_POST["pseudo"];
             if ($db_found) {
-                $sql = "SELECT * FROM `user` WHERE rang LIKE '1' AND (email LIKE '$mail' OR pseudo LIKE '$pseudo') AND mdp LIKE '$mdp'" ;
+                $sql = "SELECT * FROM `user` WHERE rang LIKE '2' AND (email LIKE '$mail' OR pseudo LIKE '$pseudo') AND mdp LIKE '$mdp'" ;
                 $result = mysqli_query($db_handle, $sql);
                 if (mysqli_num_rows($result)==0)
                 {
@@ -20,6 +20,7 @@
                     echo "trouvé";
                     while ($data = mysqli_fetch_assoc($result)) {
                         $c_ID = $data['id'];
+                        $c_rang = $data['rang'];
                         $fp = fopen('cookie.php', 'w');
 
                         /*fwrite($fp, "const C_ID = '$c_ID'
@@ -27,6 +28,7 @@
                             const C_PAYS = '$c_pays'"); JAVASCRIPT*/
                         fwrite($fp, "<?php 
                             define('C_ID', '$c_ID'); 
+                            define('C_RANG', '$c_rang');
                         ?>"); 
                         fclose($fp);
                         header("location: accueil.php");

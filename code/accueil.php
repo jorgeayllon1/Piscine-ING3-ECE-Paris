@@ -92,11 +92,11 @@
 					</li>
 
 					<li class="nav-item">
-						<a class="nav-link link2" href="connexion.php"><i class="fa fa-user"></i> Mon compte</a>
+						<a class="nav-link link2" href="redirect_moncompte.php"><i class="fa fa-user"></i> Mon compte</a>
 					</li>
 
 					<li class="nav-item active">
-						<a class="nav-link link2" href="admin_connexion.php"><i class="fa fa-user-cog"></i> Admin</a>
+						<a class="nav-link link2" href="redirect_admin.php"><i class="fa fa-user-cog"></i> Admin</a>
 					</li>
 
 					<li class="nav-item border rounded-circle basket-icon mx-2 panier">

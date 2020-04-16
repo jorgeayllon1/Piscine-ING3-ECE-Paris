@@ -34,7 +34,10 @@
 			        <div class="collapse navbar-collapse" id="main-navigation">
 			            <ul class="navbar-nav">
 			                <li class="nav-item"><a class="nav-link" href="compte_client.php">WANG David</a></li>
-                            <li class="nav-item"><a class="nav-link" href="accueil.php">Se déconnecter</a></li>
+                            <!--<li class="nav-item"><a class="nav-link" href="accueil.php">Se déconnecter</a></li>-->
+                            <form name ="form" method ="POST" action = "compte_vendeur.php">
+                            	<input type = "submit" name = "deco" value = "Déconnexion">
+                            </form>
                             <li><i class="fa fa-power-off mt-3" style="color: #fff;"></i></li>
 			                
 			            </ul>
