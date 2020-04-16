@@ -34,7 +34,7 @@
 		<div class="row ">
 				<div class="col-lg-1">
 					<div class="sidenav">
-					  <a href="accueil.html">Accueil</a>
+					  <a href="accueil.php">Accueil</a>
 					  <hr class="navside-hr">
 					  <a href="#">Selection</a>
 					  <hr class="navside-hr">
@@ -53,14 +53,14 @@
 	<div class="row">			
 
 			<nav class="navbar navbar-expand-md col-lg-12">
-		        <a class="navbar-brand" href="accueil.html"><img src="images/logo.png" width="20%"></a>
+		        <a class="navbar-brand" href="accueil.php"><img src="images/logo.png" width="20%"></a>
 		        <button class="navbar-toggler navbar-dark" type="button" data-toggle="collapse" data-target="#myNavbar">
 		            <span class="navbar-toggler-icon"></span>
 		        </button>
 		        <div class="collapse navbar-collapse" id="myNavbar">
 		            <ul class="navbar-nav">
-		                <li class="nav-item"><a class="nav-link" href="inscription.html">S'inscrire</a></li>
-		                <li class="nav-item"><a class="nav-link" href="connexion.html">Se connecter</a></li>
+		                <li class="nav-item"><a class="nav-link" href="inscription.php">S'inscrire</a></li>
+		                <li class="nav-item"><a class="nav-link" href="connexion.php">Se connecter</a></li>
 		                
 		            </ul>
 		        </div>
@@ -80,27 +80,27 @@
 	        <div class="collapse navbar-collapse collapse2" id="myNavbar2">
 	            <ul class="navbar-nav">
 	                <li class="nav-item">
-						<a class="nav-link link2" href="categories.html"> <i class="fa fa-ellipsis-v"></i> Categories</a> <!--Classe font awesome pour icone-->
+						<a class="nav-link link2" href="categories.php"> <i class="fa fa-ellipsis-v"></i> Categories</a> <!--Classe font awesome pour icone-->
 					</li>
 
 					<li class="nav-item">
-						<a class="nav-link link2" href="achat.html"><i class="fa fa-shopping-cart"></i> Achat</a>
+						<a class="nav-link link2" href="achat.php"><i class="fa fa-shopping-cart"></i> Achat</a>
 					</li>
 
 					<li class="nav-item">
-						<a class="nav-link link2" href="connexion_vendeur.html"><i class="fa fa-store"> </i> Vendre</a>
+						<a class="nav-link link2" href="connexion_vendeur.php"><i class="fa fa-store"> </i> Vendre</a>
 					</li>
 
 					<li class="nav-item">
-						<a class="nav-link link2" href="connexion.html"><i class="fa fa-user"></i> Mon compte</a>
+						<a class="nav-link link2" href="connexion.php"><i class="fa fa-user"></i> Mon compte</a>
 					</li>
 
 					<li class="nav-item active">
-						<a class="nav-link link2" href="admin_connexion.html"><i class="fa fa-user-cog"></i> Admin</a>
+						<a class="nav-link link2" href="admin_connexion.php"><i class="fa fa-user-cog"></i> Admin</a>
 					</li>
 
 					<li class="nav-item border rounded-circle basket-icon mx-2 panier">
-						<a href="panier.html"><button class="btn" style="border-radius: 10px;"> <i class="fa fa-shopping-basket"></i> </button></a>
+						<a href="panier.php"><button class="btn" style="border-radius: 10px;"> <i class="fa fa-shopping-basket"></i> </button></a>
 					    panier
 				    </li>	
 	                
@@ -335,8 +335,8 @@
 							            <img class="d-block opa8 w-100" src="images/sell.jpg" alt="First slide">
 							            <div class="carousel-caption d-none d-md-block">
 											<h1>VENDEZ EN TOUTE SIMPLICITE</h1>
-											<a href="inscription_vendeur.html"><button class="btn ">S'INSCRIRE</button></a>
-											<a href="connexion_vendeur.html"><button class="btn blue-gradient">SE CONNECTER</button></a>
+											<a href="inscription_vendeur.php"><button class="btn ">S'INSCRIRE</button></a>
+											<a href="connexion_vendeur.php"><button class="btn blue-gradient">SE CONNECTER</button></a>
 							                
 							                
 							            </div>
@@ -443,7 +443,7 @@
 							</div>
 														 
 							<div class="footer-copyright text-center text-black-50 py-3">© 2020 Copyright: All rights reserved
-							  <a class="dark-grey-text" href="accueil.html"> www.ebay-ece.fr</a>
+							  <a class="dark-grey-text" href="accueil.php"> www.ebay-ece.fr</a>
 							</div>
 							
 	                    </footer>

@@ -1,4 +1,51 @@
-<!DOCTYPE html>
+<?php
+	$database = "ebayece";
+	$db_handle = mysqli_connect('localhost', 'root', '');
+	$db_found = mysqli_select_db($db_handle, $database);
+	if(isset($_POST['submit']))
+	{
+		if ($_POST['submit']) {
+			$mdp = $_POST["mdp"];
+			$mail = $_POST["mail"];
+			if ($db_found) {
+				$sql = "SELECT * FROM `user` WHERE rang LIKE '3' AND email LIKE '$mail' AND mdp LIKE '$mdp'" ;
+				$result = mysqli_query($db_handle, $sql);
+				if (mysqli_num_rows($result)==0)
+				{
+					//echo "Erreur, veuillez vérifier vos informations de connexion.";
+				}
+				else
+				{
+					echo "trouvé";
+					while ($data = mysqli_fetch_assoc($result)) {
+						$c_ID = $data['id'];
+						$fp = fopen('cookie.php', 'w');
+
+						/*fwrite($fp, "const C_ID = '$c_ID'
+							const C_NOM = '$c_nom'
+							const C_PAYS = '$c_pays'"); JAVASCRIPT*/
+						fwrite($fp, "<?php 
+							define('C_ID', '$c_ID'); 
+        	        	?>"); 
+						fclose($fp);
+        	        	header("location: accueil.php");
+        	        	
+					}
+				}
+				
+			}
+		}
+	}
+	
+	mysqli_close($db_handle);
+?>
+
+
+
+
+
+
+<html>
 	<head>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -30,7 +77,7 @@
 
 
 			<nav class="navbar d-flex justify-content-center items-align-center navbar-admin ">
-		        <a class="navbar-brand" href="accueil.html"><img src="images/logo-admin.png" width="40%"></a>
+		        <a class="navbar-brand" href="accueil.php"><img src="images/logo-admin.png" width="40%"></a>
 		       
 	        </nav>
 	        </div>
@@ -51,7 +98,7 @@
 
 				<div class="col-md-5 ">
 						  
-						<form class="text-center border border-light p-2 form-vendeur" action="#!" form="post"  style="background-color: #fff; " > <!--PHP-->
+						<form class="text-center border border-light p-2 form-vendeur" action="admin_connexion.php" form="post"  style="background-color: #fff; " method="POST" > <!--PHP-->
 
 						    <p class="h4 mb-4">Se connecter</p>
 
@@ -60,10 +107,10 @@
 						  
 
 						    
-						    <input type="email" id="email_admin_connexion" class="form-control mb-3" placeholder="E-mail">
+						    <input type="email" id="email_admin_connexion" class="form-control mb-3" placeholder="E-mail" name="mail">
 
 						    <!-- Password -->
-						    <input type="password" id="mdp_admin_connexion" class="form-control" placeholder="Mot De Passe" aria-describedby="defaultRegisterFormPasswordHelpBlock">
+						    <input type="password" id="mdp_admin_connexion" class="form-control" placeholder="Mot De Passe" aria-describedby="defaultRegisterFormPasswordHelpBlock" name="mdp">
 						    <small id="mdp_admin_connexion" class="form-text text-muted mb-4">
 						        Au moins 8 caractères et un chiffre
 
@@ -79,7 +126,7 @@
 						   
 
 						    <!-- Sign up button -->
-						    <button class="btn my-3 " style="background: #67E514; border:none; color:#fff;" type="submit">Se connecter</button>
+						    <input name="submit" class="btn my-3 " style="background: #67E514; border:none; color:#fff;" type="submit" value="Se connecter">
 
 						    <!-- Social register -->
 						    <p>ou avec:</p>
@@ -91,7 +138,7 @@
 							<hr>
 							
 							<p>Pas encore inscrit ? Inscrivez-vous</p>
-							<a href="inscription_client.html">S'inscrire</a>
+							<a href="inscription_client.php">S'inscrire</a>
 
 						   
 
@@ -194,7 +241,7 @@
 			</div>
 										 
 			<div class="footer-copyright text-center text-black-50 py-3">© 2020 Copyright: All rights reserved
-			  <a class="dark-grey-text" href="accueil.html"> www.ebay-ece.fr</a>
+			  <a class="dark-grey-text" href="accueil.php"> www.ebay-ece.fr</a>
 			</div>
 			
 		</footer>

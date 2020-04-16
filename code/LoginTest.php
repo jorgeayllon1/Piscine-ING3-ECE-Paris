@@ -43,10 +43,13 @@
 						$c_rang = $data['rang'];
 						$fp = fopen('cookie.php', 'w');
 
+						/*fwrite($fp, "const C_ID = '$c_ID'
+							const C_NOM = '$c_nom'
+							const C_PAYS = '$c_pays'"); JAVASCRIPT*/
 						fwrite($fp, "<?php 
 							define('C_ID', '$c_ID'); 
         	        		define('C_PAYS', '$c_pays');
-        	        	?>");
+        	        	?>"); 
 						fclose($fp);
         	        	header("location: PageTestCookie.php");
         	        	

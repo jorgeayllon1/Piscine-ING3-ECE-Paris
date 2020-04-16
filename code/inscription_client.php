@@ -30,7 +30,7 @@
 
 
 			<nav class="navbar d-flex justify-content-center items-align-center ">
-		        <a class="navbar-brand" href="accueil.html"><img src="images/logo.png" width="20%"></a>
+		        <a class="navbar-brand" href="accueil.php"><img src="images/logo.png" width="20%"></a>
 		       
 	        </nav>
 	        </div>
@@ -121,7 +121,7 @@
 				<a href="" target="_blank">conditions de service</a></p>
 				
 			<p>Déjà un compte ? Connectez-vous</p>
-			<a href="connexion_client.html">Se connecter</a>
+			<a href="connexion_client.php">Se connecter</a>
 
 
 		</form>
@@ -210,7 +210,7 @@
 			</div>
 										 
 			<div class="footer-copyright text-center text-black-50 py-3">© 2020 Copyright: All rights reserved
-			  <a class="dark-grey-text" href="accueil.html"> www.ebay-ece.fr</a>
+			  <a class="dark-grey-text" href="accueil.php"> www.ebay-ece.fr</a>
 			</div>
 			
 		</footer>

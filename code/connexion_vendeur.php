@@ -1,4 +1,51 @@
-<!DOCTYPE html>
+<?php
+    $database = "ebayece";
+    $db_handle = mysqli_connect('localhost', 'root', '');
+    $db_found = mysqli_select_db($db_handle, $database);
+    if(isset($_POST['submit']))
+    {
+        if ($_POST['submit']) {
+            $mdp = $_POST["mdp"];
+            $mail = $_POST["mail"];
+            $pseudo = $_POST["pseudo"];
+            if ($db_found) {
+                $sql = "SELECT * FROM `user` WHERE rang LIKE '1' AND (email LIKE '$mail' OR pseudo LIKE '$pseudo') AND mdp LIKE '$mdp'" ;
+                $result = mysqli_query($db_handle, $sql);
+                if (mysqli_num_rows($result)==0)
+                {
+                    echo "Erreur, veuillez vérifier vos informations de connexion.";
+                }
+                else
+                {
+                    echo "trouvé";
+                    while ($data = mysqli_fetch_assoc($result)) {
+                        $c_ID = $data['id'];
+                        $fp = fopen('cookie.php', 'w');
+
+                        /*fwrite($fp, "const C_ID = '$c_ID'
+                            const C_NOM = '$c_nom'
+                            const C_PAYS = '$c_pays'"); JAVASCRIPT*/
+                        fwrite($fp, "<?php 
+                            define('C_ID', '$c_ID'); 
+                        ?>"); 
+                        fclose($fp);
+                        header("location: accueil.php");
+                        
+                    }
+                }
+                
+            }
+        }
+    }
+    
+    mysqli_close($db_handle);
+?>
+
+
+
+
+
+<html>
 	<head>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -30,7 +77,7 @@
 
 
 			<nav class="navbar d-flex justify-content-center items-align-center nav-vendeur">
-		        <a class="navbar-brand" href="accueil.html"><img src="images/logo-vendeur.png" width="30%"></a>
+		        <a class="navbar-brand" href="accueil.php"><img src="images/logo-vendeur.png" width="30%"></a>
 		       
 	        </nav>
 	        </div>
@@ -51,7 +98,7 @@
 
 				<div class="col-md-5 ">
 						  
-						<form class="text-center border border-light p-2 form-vendeur" action="#!" form="post"  style="background-color: #fff; " > <!--PHP-->
+						<form class="text-center border border-light p-2 form-vendeur" method="POST" action="connexion_vendeur.php" form="post"  style="background-color: #fff; " > <!--PHP-->
 
 						    <p class="h4 mb-4">Se connecter</p>
 
@@ -60,12 +107,12 @@
 						  
 
 						    
-							<input type="email" id="email_vendeur_connexion" class="form-control mb-3" placeholder="E-mail">
+							<input type="email" id="email_vendeur_connexion" class="form-control mb-3" placeholder="E-mail" name="mail">
 							<p>ou</p>
-							<input type="text" id="pseudo_vendeur_connexion" class="form-control mb-3" placeholder="Pseudo">
+							<input type="text" id="pseudo_vendeur_connexion" class="form-control mb-3" placeholder="Pseudo" name="pseudo">
 
 						    
-						    <input type="password" id="mdp_vendeur_connexion" class="form-control" placeholder="Mot De Passe" aria-describedby="defaultRegisterFormPasswordHelpBlock">
+						    <input type="password" id="mdp_vendeur_connexion" class="form-control" placeholder="Mot De Passe" aria-describedby="defaultRegisterFormPasswordHelpBlock" name="mdp">
 						    <small id="mdp_vendeur_connexion" class="form-text text-muted mb-4">
 						        Au moins 8 caractères et un chiffre
 
@@ -74,7 +121,7 @@
 						   
 
 						    
-						    <button class="btn my-3 " style="background: #E52714; border:none; color:#fff;" type="submit">Se connecter</button>
+						    <input name="submit" class="btn my-3 " style="background: #E52714; border:none; color:#fff;" type="submit" value="Se connecter">
 
 						    
 						    <p>ou avec:</p>
@@ -86,7 +133,7 @@
 							<hr>
 							
 							<p>Pas encore inscrit ? Inscrivez-vous</p>
-							<a href="inscription_vendeur.html">S'inscrire</a>
+							<a href="inscription_vendeur.php">S'inscrire</a>
 
 						   
 
@@ -194,7 +241,7 @@
 			</div>
 										 
 			<div class="footer-copyright text-center text-black-50 py-3">© 2020 Copyright: All rights reserved
-			  <a class="dark-grey-text" href="accueil.html"> www.ebay-ece.fr</a>
+			  <a class="dark-grey-text" href="accueil.php"> www.ebay-ece.fr</a>
 			</div>
 			
 		</footer>

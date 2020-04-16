@@ -26,15 +26,15 @@
 		<div class="container">
 			<div class="row d-flex justify-content-center">
 				<nav class="navbar navbar-expand-md col-lg-12">
-			        <a class="navbar-brand" href="accueil.html"><img src="images/logo.png" width="20%"></a>
+			        <a class="navbar-brand" href="accueil.php"><img src="images/logo.png" width="20%"></a>
 			        <button class="navbar-toggler navbar-dark" type="button" data-toggle="collapse" data-target="#main-navigation">
 			            <span class="navbar-toggler-icon"></span>
 			        </button>
 
 			        <div class="collapse navbar-collapse" id="main-navigation">
 			            <ul class="navbar-nav">
-			                <li class="nav-item"><a class="nav-link" href="compte_client.html">WANG David</a></li>
-                            <li class="nav-item"><a class="nav-link" href="accueil.html">Se déconnecter</a></li>
+			                <li class="nav-item"><a class="nav-link" href="compte_client.php">WANG David</a></li>
+                            <li class="nav-item"><a class="nav-link" href="accueil.php">Se déconnecter</a></li>
                             <li><i class="fa fa-power-off mt-3" style="color: #fff;"></i></li>
 			                
 			            </ul>
@@ -210,8 +210,8 @@
                             168<sup>€</sup>
                         </dd>
                         </dl>
-                        <a href="paiement.html"><button class="btn btn-primary my-2">Paiement</button></a>                     
-                        <a href="achat.html"><button class="btn" style="background-color: darkgrey;">Continuer vos achats</button></a>
+                        <a href="paiement.php"><button class="btn btn-primary my-2">Paiement</button></a>                     
+                        <a href="achat.php"><button class="btn" style="background-color: darkgrey;">Continuer vos achats</button></a>
                     </div>
 
                     </div>
@@ -306,7 +306,7 @@
                     </div>
                                                  
                     <div class="footer-copyright text-center text-black-50 py-3">© 2020 Copyright: All rights reserved
-                      <a class="dark-grey-text" href="accueil.html"> www.ebay-ece.fr</a>
+                      <a class="dark-grey-text" href="accueil.php"> www.ebay-ece.fr</a>
                     </div>
                     
                 </footer>

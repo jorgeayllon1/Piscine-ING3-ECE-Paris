@@ -26,15 +26,15 @@
 		<div class="container">
 			<div class="row d-flex justify-content-center">
 				<nav class="navbar navbar-expand-md col-lg-12">
-			        <a class="navbar-brand" href="accueil.html"><img src="images/logo.png" width="20%"></a>
+			        <a class="navbar-brand" href="accueil.php"><img src="images/logo.png" width="20%"></a>
 			        <button class="navbar-toggler navbar-dark" type="button" data-toggle="collapse" data-target="#main-navigation">
 			            <span class="navbar-toggler-icon"></span>
 			        </button>
 
 			        <div class="collapse navbar-collapse" id="main-navigation">
 			            <ul class="navbar-nav">
-			                <li class="nav-item"><a class="nav-link" href="inscription.html">S'inscrire</a></li>
-			                <li class="nav-item"><a class="nav-link" href="connexion.html">Se connecter</a></li>
+			                <li class="nav-item"><a class="nav-link" href="inscription.php">S'inscrire</a></li>
+			                <li class="nav-item"><a class="nav-link" href="connexion.php">Se connecter</a></li>
 			                
 			            </ul>
 			        </div>
@@ -59,7 +59,7 @@
 			   </div>
 
 			   <div class="col-lg-1 my-1 text-md-right">
-				<a href="panier.html"><button class="btn" style="border-radius: 10px;"> <i class="fa fa-shopping-basket"></i> </button></a>
+				<a href="panier.php"><button class="btn" style="border-radius: 10px;"> <i class="fa fa-shopping-basket"></i> </button></a>
 				
 			</div>
 			   
@@ -123,7 +123,7 @@
 					<h2>Ferrailles ou trésor</h2>
 					<div class="card shadow mb-5 mx-2">
 						
-						<a href="page_achat.html"> <img class="card-img-top d-block w-100" src="images/item/item3.jpg" alt=""></a>
+						<a href="page_achat.php"> <img class="card-img-top d-block w-100" src="images/item/item3.jpg" alt=""></a>
 						
 					</div>
 				</div>
@@ -133,7 +133,7 @@
 					<div class="card  shadow mb-5 mx-2">
 						
 						
-						<a href="page_achat.html"><img class="card-img-top d-block" src="images/item/item2.jpg" alt=""></a>
+						<a href="page_achat.php"><img class="card-img-top d-block" src="images/item/item2.jpg" alt=""></a>
 						
 					</div>
 				</div>
@@ -143,7 +143,7 @@
 					<div class="card shadow mb-5 mx-2">
 						
 						
-						<a href="page_achat.html"><img class="card-img-top d-block" src="images/item/item1.jpg" alt=""></a>
+						<a href="page_achat.php"><img class="card-img-top d-block" src="images/item/item1.jpg" alt=""></a>
 						
 					</div>
 				</div>
@@ -233,7 +233,7 @@
 					</div>
 												 
 					<div class="footer-copyright text-center text-black-50 py-3">© 2020 Copyright: All rights reserved
-					  <a class="dark-grey-text" href="accueil.html"> www.ebay-ece.fr</a>
+					  <a class="dark-grey-text" href="accueil.php"> www.ebay-ece.fr</a>
 					</div>
 					
 				</footer>

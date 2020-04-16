@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!DOCTYPE htmls>
 	<head>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -26,15 +26,15 @@
 		<div class="container">
 			<div class="row d-flex justify-content-center">
 				<nav class="navbar navbar-expand-md col-lg-12 navbar-admin">
-			        <a class="navbar-brand" href="accueil.html"><img src="images/logo-admin.png" width="40%"></a>
+			        <a class="navbar-brand" href="accueil.php"><img src="images/logo-admin.png" width="40%"></a>
 			        <button class="navbar-toggler navbar-dark" type="button" data-toggle="collapse" data-target="#main-navigation">
 			            <span class="navbar-toggler-icon"></span>
 			        </button>
 
 			        <div class="collapse navbar-collapse" id="main-navigation">
 			            <ul class="navbar-nav">
-			                <li class="nav-item"><a class="nav-link" href="compte_client.html">WANG David</a></li>
-                            <li class="nav-item"><a class="nav-link" href="accueil.html">Se déconnecter</a></li>
+			                <li class="nav-item"><a class="nav-link" href="compte_client.php">WANG David</a></li>
+                            <li class="nav-item"><a class="nav-link" href="accueil.php">Se déconnecter</a></li>
                             <li><i class="fa fa-power-off mt-3" style="color: #fff;"></i></li>
 			                
 			            </ul>
@@ -206,7 +206,7 @@
 										  <td>Bon musée</td>
 										  <td>560<sup>€</sup></td>
 										  <td>
-											<a href="negocier.html"><button class="btn btn-primary">Négocier</button></a>
+											<a href="negocier.php"><button class="btn btn-primary">Négocier</button></a>
 										</td>
 										  
 										  
@@ -506,7 +506,7 @@
 					</div>
 												 
 					<div class="footer-copyright text-center text-black-50 py-3">© 2020 Copyright: All rights reserved
-					  <a class="dark-grey-text" href="accueil.html"> www.ebay-ece.fr</a>
+					  <a class="dark-grey-text" href="accueil.php"> www.ebay-ece.fr</a>
 					</div>
 					
 				</footer>

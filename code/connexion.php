@@ -31,7 +31,7 @@
 
 
 			<nav class="navbar d-flex justify-content-center items-align-center ">
-		        <a class="navbar-brand" href="accueil.html"><img src="images/logo.png" width="20%"></a>
+		        <a class="navbar-brand" href="accueil.php"><img src="images/logo.png" width="20%"></a>
 		       
 	        </nav>
 	        </div>
@@ -90,8 +90,8 @@
 			
 				<div class="row d-flex justify-content-center items-align-center">		
 				  
-			<a href="connexion_client.html"><button class="btn my-4 mx-4" style="background: #31405F; border:none; color:#fff;" type="submit">En tant qu'acheteur</button></a>
-			<a href="connexion_vendeur.html"><button class="btn my-4 mx-4 " style="background: #31405F; border:none; color:#fff;" type="submit">En tant que vendeur</button></a>
+			<a href="connexion_client.php"><button class="btn my-4 mx-4" style="background: #31405F; border:none; color:#fff;" type="submit">En tant qu'acheteur</button></a>
+			<a href="connexion_vendeur.php"><button class="btn my-4 mx-4 " style="background: #31405F; border:none; color:#fff;" type="submit">En tant que vendeur</button></a>
 	       
        </div>
 			
@@ -180,7 +180,7 @@
 			</div>
 										 
 			<div class="footer-copyright text-center text-black-50 py-3">© 2020 Copyright: All rights reserved
-			  <a class="dark-grey-text" href="accueil.html"> www.ebay-ece.fr</a>
+			  <a class="dark-grey-text" href="accueil.php"> www.ebay-ece.fr</a>
 			</div>
 			
 		</footer>
