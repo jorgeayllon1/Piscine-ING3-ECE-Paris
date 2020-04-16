@@ -9,7 +9,7 @@ if (isset($_POST["rechercher"])) {
     $db_found = mysqli_select_db($db_handle, $database);
 
     if ($db_found) {
-        $sql = "SELECT * FROM user where email like '$email' and mdp like '$mdp' and rank like '3'";
+        $sql = "SELECT * FROM user where email like '$email' and mdp like '$mdp' and rang like '1'";
         $result = mysqli_query($db_handle, $sql);
 
         if (mysqli_num_rows($result)) {
@@ -19,8 +19,9 @@ if (isset($_POST["rechercher"])) {
                 echo "mail:" . $data['email'] . '<br>';
                 echo "Mot de passe: " . $data['mdp'] . '<br>';
                 echo "Pseudo: " . $data['pseudo'] . '<br>';
-                echo "Rank: " . $data['rank'] . '<br>';
+                echo "Rank: " . $data['rang'] . '<br>';
             }
+            header("Location :LoginTest.php ");
         } else {
             echo "Donnée non trouvée";
         }
@@ -28,5 +29,5 @@ if (isset($_POST["rechercher"])) {
 
     mysqli_close($db_handle);
 } else {
-    echo "fuuuuuuuuuuuuuuck";
+    echo "ERROR pas trouvé la reponse page html isset";
 }
