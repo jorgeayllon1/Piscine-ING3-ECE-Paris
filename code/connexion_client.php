@@ -1,45 +1,40 @@
 <?php
-    $database = "ebayece";
-    $db_handle = mysqli_connect('localhost', 'root', '');
-    $db_found = mysqli_select_db($db_handle, $database);
-    if(isset($_POST['submit']))
-    {
-        if ($_POST['submit']) {
-            $mdp = $_POST["mdp"];
-            $mail = $_POST["mail"];
-            if ($db_found) {
-                $sql = "SELECT * FROM `user` WHERE rang LIKE '1' AND email LIKE '$mail' AND mdp LIKE '$mdp'" ;
-                $result = mysqli_query($db_handle, $sql);
-                if (mysqli_num_rows($result)==0)
-                {
-                    //echo "Erreur, veuillez vérifier vos informations de connexion.";
-                }
-                else
-                {
-                    echo "trouvé";
-                    while ($data = mysqli_fetch_assoc($result)) {
-                        $c_ID = $data['id'];
-                        $c_rang = $data['rang'];
-                        $fp = fopen('cookie.php', 'w');
-
-                        /*fwrite($fp, "const C_ID = '$c_ID'
-                            const C_NOM = '$c_nom'
-                            const C_PAYS = '$c_pays'"); JAVASCRIPT*/
-                        fwrite($fp, "<?php 
+$database = "ebayece";
+$db_handle = mysqli_connect('localhost', 'root', '');
+$db_found = mysqli_select_db($db_handle, $database);
+if (isset($_POST['submit'])) {
+    if ($_POST['submit']) {
+        $mdp = $_POST["mdp"];
+        $mail = $_POST["mail"];
+        if ($db_found) {
+            $sql = "SELECT * FROM `user` WHERE rang LIKE '1' AND email LIKE '$mail' AND mdp LIKE '$mdp'";
+            $result = mysqli_query($db_handle, $sql);
+            if (mysqli_num_rows($result) == 0) {
+                //echo "Erreur, veuillez vérifier vos informations de connexion.";
+            } else {
+                echo "trouvé";
+                while ($data = mysqli_fetch_assoc($result)) {
+                    $c_ID = $data['id'];
+                    $c_rang = $data['rang'];
+                    $fp = fopen('cookie.php', 'w');
+                    /*
+                    Cette ligne va ecrire dans le cookies la valeur qu'on veut
+                    setcookie('id_user', $c_ID, time() + 365 * 24 * 3600);
+                    setcookie('rang', $c_rang, time() + 365 * 24 * 3600);
+                    */
+                    fwrite($fp, "<?php 
                             define('C_ID', '$c_ID');
                             define('C_RANG', '$c_rang'); 
-                        ?>"); 
-                        fclose($fp);
-                        header("location: accueil.php");
-                        
-                    }
+                        ?>");
+                    fclose($fp);
+                    header("location: accueil.php");
                 }
-                
             }
         }
     }
-    
-    mysqli_close($db_handle);
+}
+
+mysqli_close($db_handle);
 ?>
 
 
@@ -114,12 +109,12 @@
                         <!-- Password -->
                         <input type="password" id="mdp_client_connexion" name="mdp" class="form-control" placeholder="Mot De Passe" aria-describedby="defaultRegisterFormPasswordHelpBlock">
                         <small id="mdp_client_connexion" class="form-text text-muted mb-4">
-						        Au moins 8 caractères et un chiffre
+                            Au moins 8 caractères et un chiffre
 
-						    </small>
+                        </small>
 
                         <!-- Sign up button -->
-                        
+
                         <input name="submit" class="btn my-3 " style="background: #31405F; border:none; color:#fff;" type="submit" value="Se connecter">
 
                         <!-- Social register -->
