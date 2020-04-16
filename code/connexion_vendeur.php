@@ -96,17 +96,11 @@
 			<div class="back-vendeur">
 			<div class="row">
 
-				
-
-				<div class="col-md-5 ">
+				<div class="col-lg-5 ">
 						  
 						<form class="text-center border border-light p-2 form-vendeur" method="POST" action="connexion_vendeur.php" form="post"  style="background-color: #fff; " > <!--PHP-->
 
 						    <p class="h4 mb-4">Se connecter</p>
-
-						    
-
-						  
 
 						    
 							<input type="email" id="email_vendeur_connexion" class="form-control mb-3" placeholder="E-mail" name="mail">
@@ -119,12 +113,8 @@
 						        Au moins 8 caractères et un chiffre
 
 						    </small>
-
-						   
-
 						    
 						    <input name="submit" class="btn my-3 " style="background: #E52714; border:none; color:#fff;" type="submit" value="Se connecter">
-
 						    
 						    <p>ou avec:</p>
 
@@ -137,17 +127,15 @@
 							<p>Pas encore inscrit ? Inscrivez-vous</p>
 							<a href="inscription_vendeur.php">S'inscrire</a>
 
-						   
-
+						
 						</form>
 					
-			
-		
+				
                 </div>
 
-                <div class="col-md-5">
+                <div class="col-lg-5 d-flex align-items-center">
                 	<div class="jumbotron jumbo-vendeur">
-						  <h2 class="display-6 join ">Rejoignez-nous !</h2>
+						  <h2 >Rejoignez-nous !</h2>
 						  <p class="lead">Deja des milliers de vendeurs sur notre plateforme.</p>
 						  <hr class="my">
 						  <p>Décrivez, choisissez le moyen d'achat et vendez !</p>

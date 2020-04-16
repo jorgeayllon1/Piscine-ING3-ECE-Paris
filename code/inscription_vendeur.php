@@ -45,23 +45,15 @@
 		<div class="container">
 
 			<div class="back-vendeur">
-			<div class="row">
+			<div class="row d-flex align-items-center">
 
 				
 
-				<div class="col-md-5 ">
+				<div class="col-lg-5 col-md-5 col-xm-5 col-xs-5">
 						  
 						<form class="text-center border border-light p-2 form-vendeur" action="#!" form="post"  style="background-color: #fff; " > <!--PHP-->
 
 						    <p class="h4 mb-4">S'inscrire</p>
-
-						    <div class="form-check form-check-inline">
-						      <p>Civilité :
-				       			
-				       			<input type="radio" name="civilite" value="femme" id="femme" /> <label for="femme">Madame</label>
-				       			<input type="radio" name="civilite" value="homme" id="homme" /> <label for="homme">Monsieur</label>
-
-							</div>
 
 						    <div class="form-row mb-4">
 						        <div class="col">
@@ -144,13 +136,14 @@
 		
                 </div>
 
-                <div class="col-md-5">
-                	<div class="jumbotron jumbo-vendeur">
-						  <h2 class="display-6 join ">Rejoignez-nous !</h2>
-						  <p class="lead">Deja des milliers de vendeurs sur notre plateforme.</p>
-						  <hr class="my">
-						  <p>Décrivez, choisissez le moyen d'achat et vendez !</p>
+                <div class="col-lg-5  col-md-5 col-xm-5 col-xs-5 mt-5">			   
+					<div class="jumbotron jumbo-vendeur  ">
+							<h2 class="display-6 join ">Rejoignez-nous !</h2>
+							<p class="lead">Deja des milliers de vendeurs sur notre plateforme.</p>
+							<hr class="my">
+							<p>Décrivez, choisissez le moyen d'achat et vendez !</p>
 						</div>
+	
                 </div>
 
                

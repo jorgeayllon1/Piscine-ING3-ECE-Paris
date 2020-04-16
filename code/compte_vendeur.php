@@ -71,8 +71,8 @@
 		
 
 		<div class="container mt-5  ">
-
-			<div class="row d-flex justify-content-center ">
+		   <div class="back-vendeur">
+		   <div class="row d-flex justify-content-center ">
 				<div class="col-lg-2 " >
 					<aside class="col-12 col-md-2 p-0  "  >
 													
@@ -111,8 +111,8 @@
 
 						<!--INFORMATIONS VENDEUR-->
 
-						<div class="tab-pane fade show active " id="info-vendeur" >
-							<form class="text-center border border-light " action="#!"> <!--PHP-->
+						<div class="tab-pane fade show active my-4 " id="info-vendeur" >
+							<form class="text-center px-3 py-3  " style ="background-color:#fff;" action="#!"> <!--PHP-->
 
 								<p class="h4 mb-4">Vos informations</p>
 	
@@ -158,7 +158,7 @@
 						<!--HISTORIQUE VENTES-->
 
 						<div class="tab-pane fade" id="historique-vendeur" >
-							<p class="h4 mb-4">Votre historique des ventes</p>
+							<p class="h4 mb-4" style="color:#fff;">Votre historique des ventes</p>
 							<div class="table">
 								
 								<div class="table-responsive">
@@ -198,7 +198,7 @@
 							<!--NEGOCIATIONS VENDEUR-->
 
 						<div class="tab-pane fade" id="nego-vendeur">
-							<p class="h4 mb-4">Vos négociations</p>
+							<p class="h4 mb-4" style="color:#fff;">Vos négociations</p>
 
 							<div class="table">
 								
@@ -240,8 +240,8 @@
 
 						<!--AJOUTER UNE VENTE-->
 						<div class="tab-pane fade" id="publier-vendeur">
-							<p class="h4 mb-4">Ajouter une vente</p>
-							<form >
+							<p class="h4 mb-4" style="color:#fff;">Ajouter une vente</p>
+							<form style="background-color:#fff;" class="py-3 px-3">
 								<div class="form-group">
 									<label for="ajout_nom">Nom du produit</label>
 								<input type="text" id="ajout_nom" placeholder="Nom du produit">
@@ -256,7 +256,7 @@
 
 								<div class="form-group">
 									<label for="ajout_description">Description du produit</label>
-									<textarea class="form-control rounded-0" style="border: solid black 1px ;" id="ajout_description" rows="3"></textarea>
+									<textarea class="form-control rounded-0" style="border: solid black 1px ;" id="ajout_description" rows="3" ></textarea>
 								</div>
 
 								<div class="form-group">
@@ -304,7 +304,7 @@
 						<!--RETIRER UNE VENTE-->
 
 						<div class="tab-pane fade" id="retirer-vendeur">
-							<p class="h4 mb-4">Retirer une vente</p>
+							<p class="h4 mb-4" style="color:#fff;">Retirer une vente</p>
 
 							<div class="table">
 								<div class="caption my-2">Vos articles en vente actuellement : </div>
@@ -355,6 +355,9 @@
                     
 				
 			</div>
+		   </div>
+
+
 
 		</div>
 

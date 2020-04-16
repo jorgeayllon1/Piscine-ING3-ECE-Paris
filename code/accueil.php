@@ -2,7 +2,7 @@
 	<head>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<title>ECE Ebay</title>
+		<title>Ebay ECE</title>
 
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
 	    <link rel="stylesheet" type="text/css" href="style_piscine.css">
@@ -32,7 +32,7 @@
 	<!-- Navigation SIDEBAR --> <!--Reste encore un pb quand on réduit la fenetre, son width prend 100% de la fenêtre-->
 	<div class="container-fluid">
 		<div class="row ">
-				<div class="col-lg-1">
+				<div class="col-lg-1 col-md-1 col-xs-1 col-xm-1">
 					<div class="sidenav">
 					  <a href="accueil.php">Accueil</a>
 					  <hr class="navside-hr">
@@ -45,414 +45,417 @@
 					</div>
 				</div>
 
-	<div class="col-lg-11">
+	      <div class="col-lg-11">
 
 	<!----------------------------------------------------------------------------------------------------------------------->
 	<!-- First NAVBAR-->
 
-	<div class="row">			
+		    <div class="row">			
 
-			<nav class="navbar navbar-expand-md col-lg-12">
-		        <a class="navbar-brand" href="accueil.php"><img src="images/logo.png" width="20%"></a>
-		        <button class="navbar-toggler navbar-dark" type="button" data-toggle="collapse" data-target="#myNavbar">
-		            <span class="navbar-toggler-icon"></span>
-		        </button>
-		        <div class="collapse navbar-collapse" id="myNavbar">
-		            <ul class="navbar-nav">
-		                <li class="nav-item"><a class="nav-link" href="inscription.php">S'inscrire</a></li>
-		                <li class="nav-item"><a class="nav-link" href="connexion.php">Se connecter</a></li>
-		                
-		            </ul>
-		        </div>
-	        </nav>
-   </div>
+				<nav class="navbar navbar-expand-md col-lg-12">
+					<a class="navbar-brand" href="accueil.php"><img src="images/logo.png" width="20%"></a>
+					<button class="navbar-toggler navbar-dark" type="button" data-toggle="collapse" data-target="#myNavbar">
+						<span class="navbar-toggler-icon"></span>
+					</button>
+					<div class="collapse navbar-collapse" id="myNavbar">
+						<ul class="navbar-nav">
+							<li class="nav-item"><a class="nav-link" href="inscription.php">S'inscrire</a></li>
+							<li class="nav-item"><a class="nav-link" href="connexion.php">Se connecter</a></li>
+							
+						</ul>
+					</div>
+				</nav>
+            </div>
 
     <!----------------------------------------------------------------------------------------------------------------------->
 
-     <!-- Second NAVBAR-->
+            <!-- Second NAVBAR-->
 
-	     <nav class="navbar navbar-expand-md col-md-12 nav2">
-	        
-	        <button class="navbar-toggler navbar-dark" type="button" data-toggle="collapse" data-target="#myNavbar2">
-	            <span class="navbar-toggler-icon"></span>
-	        </button>
+			<div class="row">
+				<nav class="navbar navbar-expand-md col-md-12 nav2">
+						
+						<button class="navbar-toggler navbar-dark" type="button" data-toggle="collapse" data-target="#myNavbar2">
+							<span class="navbar-toggler-icon"></span>
+						</button>
 
-	        <div class="collapse navbar-collapse collapse2" id="myNavbar2">
-	            <ul class="navbar-nav">
-	                <li class="nav-item">
-						<a class="nav-link link2" href="categories.php"> <i class="fa fa-ellipsis-v"></i> Categories</a> <!--Classe font awesome pour icone-->
-					</li>
+						<div class="collapse navbar-collapse collapse2" id="myNavbar2">
+							<ul class="navbar-nav">
+								<li class="nav-item">
+									<a class="nav-link link2" href="categories.php"> <i class="fa fa-ellipsis-v"></i> Categories</a> <!--Classe font awesome pour icone-->
+								</li>
 
-					<li class="nav-item">
-						<a class="nav-link link2" href="achat.php"><i class="fa fa-shopping-cart"></i> Achat</a>
-					</li>
+								<li class="nav-item">
+									<a class="nav-link link2" href="achat.php"><i class="fa fa-shopping-cart"></i> Achat</a>
+								</li>
 
-					<li class="nav-item">
-						<a class="nav-link link2" href="connexion_vendeur.php"><i class="fa fa-store"> </i> Vendre</a>
-					</li>
+								<li class="nav-item">
+									<a class="nav-link link2" href="connexion_vendeur.php"><i class="fa fa-store"> </i> Vendre</a>
+								</li>
 
-					<li class="nav-item">
-						<a class="nav-link link2" href="redirect_moncompte.php"><i class="fa fa-user"></i> Mon compte</a>
-					</li>
+								<li class="nav-item">
+									<a class="nav-link link2" href="redirect_moncompte.php"><i class="fa fa-user"></i> Mon compte</a>
+								</li>
 
-					<li class="nav-item active">
-						<a class="nav-link link2" href="redirect_admin.php"><i class="fa fa-user-cog"></i> Admin</a>
-					</li>
+								<li class="nav-item active">
+									<a class="nav-link link2" href="redirect_admin.php"><i class="fa fa-user-cog"></i> Admin</a>
+								</li>
 
-					<li class="nav-item border rounded-circle basket-icon mx-2 panier">
-						<a href="panier.php"><button class="btn" style="border-radius: 10px;"> <i class="fa fa-shopping-basket"></i> </button></a>
-					    panier
-				    </li>	
-	                
-	            </ul>
-	        </div>
-	    </nav>
-
-    
-
-    <!-- RECHERCHE -->
-
-		    <div class="container container-search">
-		    	<div class="row justify-content-center" >
-		    		<div class="col-md-8" >
-
-						  <div class="input-group-prepend">
-						  	<img src="images/logo-footer.png" width="20%">
-						    <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-						    	Catégories
-						    </button>
-						    <div class="dropdown-menu">
-						      <a class="dropdown-item" href="#">Ferraille ou Trésor</a>
-						      <a class="dropdown-item" href="#">Bon pour le musée</a>
-						      <a class="dropdown-item" href="#">Accessoire VIP</a>
-						      <div role="separator" class="dropdown-divider"></div>
-						      <a class="dropdown-item" href="#">Filtrer</a>
-						    </div>
-
-						    <input type="text" class="form-control" aria-label="Text input with dropdown button" placeholder="Rechercher..."><button> <i class="fa fa-search"></i></button>
-						  </div>
-
-						  
-					</div>
-				</div>
-			</div>
-
-	
-    <!----------------------------------------------------------------------------------------------------------------------->
-
-
-	<!--- Image Slider -->
-			<div class="container slider">
-				<div class="row row-slider">
-					<div class="col-lg-12 col-slider">
-						<div id="carouselIndicators" class="carousel slide carousel-fade" data-ride="carousel">
-							    <ol class="carousel-indicators">
-							        <li data-target="#carouselIndicators" data-slide-to="0" class="active"></li>
-							        <li data-target="#carouselIndicators" data-slide-to="1"></li>
-							        <li data-target="#carouselIndicators" data-slide-to="2"></li>
-							    </ol>
-							    <div class="carousel-inner">
-							        <div class="carousel-item active">
-							            <img class="d-block " src="images/fond1.jpg" alt="un">
-							            <div class="carousel-caption d-none d-md-block">
-							                <h1>BIENVENUE CHEZ ECE EBAY</h1>
-							                <button class="btn blue-gradient">Acheter</button>
-		                                    <button class="btn aqua-gradient">Vendre</button>
-							                
-							            </div>
-							        </div>
-							        <div class="carousel-item">
-							            <img class="d-block opa8 w-100" src="images/fond2.jpg" alt="deux">
-							        </div>
-							        <div class="carousel-item">
-							            <img class="d-block opa8 w-100" src="images/fond3.jpg" alt="trois">
-							        </div>
-							    </div>
-							    <a class="carousel-control-prev" href="#carouselIndicators" role="button" data-slide="prev">
-							        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-							        <span class="sr-only">Previous</span>
-							    </a>
-							    <a class="carousel-control-next" href="#carouselIndicators" role="button" data-slide="next">
-							        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-							        <span class="sr-only">Next</span>
-							    </a>
+								<li class="nav-item border rounded-circle basket-icon mx-2 panier">
+									<a href="panier.php"><button class="btn" style="border-radius: 10px;"> <i class="fa fa-shopping-basket"></i> </button></a>
+									panier
+								</li>	
+								
+							</ul>
 						</div>
-
-					</div>
-				</div>
+					</nav>
 			</div>
 
-	<!----------------------------------------------------------------------------------------------------------------------->
 
+				
 
-	<!-- Second Image Slider -->
-	<div class="container second-slider ">
-
-		<h3 class="horizontal-text-center" style="text-align: center ;"><span id="selection">Notre sélection de la semaine</span></h3>	
-
-	    
-	    <div id="multi" class="carousel slide carousel-multi-item justify-content-center align-items-center" data-ride="carousel">
-
-	      
-	      <div class="controls justify-content-center align-items-center">
-	        <a class="btn-floating" href="#multi" data-slide="prev"><i class="fa fa-chevron-left"></i></a>
-	        <a class="btn-floating" href="#multi" data-slide="next"><i class="fa fa-chevron-right"></i></a>
-	      </div>
-	      
-
-	      
-	      <ol class="carousel-indicators">
-	        <li data-target="#multi" data-slide-to="0" class="active"></li>
-	        <li data-target="#multi" data-slide-to="1"></li>
-	        <li data-target="#multi" data-slide-to="2"></li>
-	      </ol>
-	      
-
-	      
-	      <div class="carousel-inner" role="listbox">
-
-	        <!--First slide-->
-	        <div class="carousel-item active">
-
-	          <div class="row">
-	            <div class="col-md-4">
-	              <div class="card mb-2">
-	                <img class="card-img-top" src="images/item/item1.jpg"
-	                  alt="Card image cap" width="150px" height="300px">
-	                <div class="card-body">
-	                  <h4 class="card-title">Lampe</h4>
-	                  <p class="card-text">25<sup>€</sup>.</p>
-	                  <a class="btn btn-primary buy-buton"><i class="fa fa-shopping-basket"></i></a>
-	                  <p class="ajout-panier">Ajouter au panier</p>
-	                </div>
-	              </div>
-	            </div>
-
-	            <div class="col-md-4 clearfix d-none d-md-block">
-	              <div class="card mb-2">
-	                <img class="card-img-top" src="images/item/item2.jpg"
-	                  alt="Card image cap" width="150px" height="300px">
-	                <div class="card-body">
-	                  <h4 class="card-title">Pièce</h4>
-	                  <p class="card-text">15<sup>€</sup>.</p>
-	                  <a class="btn btn-primary buy-buton"><i class="fa fa-shopping-basket"></i></a>
-	                  <p class="ajout-panier">Ajouter au panier</p>
-	                </div>
-	              </div>
-	            </div>
-
-	            <div class="col-md-4 clearfix d-none d-md-block">
-	              <div class="card mb-2">
-	                <img class="card-img-top" src="images/item/item3.jpg"
-	                  alt="Card image cap" width="150px" height="300px">
-	                <div class="card-body">
-	                  <h4 class="card-title">Bague</h4>
-	                  <p class="card-text">355<sup>€</sup>.</p>
-	                  <a class="btn btn-primary buy-buton"><i class="fa fa-shopping-basket"></i></a>
-	                  <p class="ajout-panier">Ajouter au panier</p>
-	                </div>
-	              </div>
-	            </div>
-	          </div>
-
-	        </div>
-	        <!--/.First slide-->
-
-	        <!--Second slide-->  <!--On ajoute une carte à partir de la base de donnée avec random()-->
-	        <div class="carousel-item">
-
-	          <div class="row">
-	            <div class="col-md-4">
-	              <div class="card mb-2">
-	                <img class="card-img-top" src="images/item/item4.jpg"
-	                  alt="Card image cap" width="150px" height="300px">
-	                <div class="card-body">
-	                  <h4 class="card-title">Bague</h4>
-	                  <p class="card-text">355<sup>€</sup>.</p>
-
-	                  <a class="btn btn-primary buy-buton"><i class="fa fa-shopping-basket"></i></a>
-	                  <p class="ajout-panier">Ajouter au panier</p>
-	                </div>
-	              </div>
-	            </div>
-
-	            <div class="col-md-4 clearfix d-none d-md-block">
-	              <div class="card mb-2">
-	                <img class="card-img-top" src="images/item/item5.jpg"
-	                  alt="Card image cap" width="150px" height="300px">
-	                <div class="card-body">
-	                  <h4 class="card-title">Bague</h4>
-	                  <p class="card-text">355<sup>€</sup>.</p>
-	                  <a class="btn btn-primary buy-buton"><i class="fa fa-shopping-basket"></i></a>
-	                  <p class="ajout-panier">Ajouter au panier</p>
-
-	                </div>
-	              </div>
-	            </div>
-
-	            <div class="col-md-4 clearfix d-none d-md-block">
-	              <div class="card mb-2">
-	                <img class="card-img-top" src="https://mdbootstrap.com/img/Photos/Horizontal/City/4-col/img%20(48).jpg"
-	                  alt="Card image cap" width="150px" height="300px">
-	                <div class="card-body">
-	                  <h4 class="card-title">Card title</h4>
-	                  <p class="card-text">355<sup>€</sup>.</p>
-	                  <a class="btn btn-primary buy-buton"><i class="fa fa-shopping-basket"></i></a>
-	                  <p class="ajout-panier">Ajouter au panier</p>
-	                </div>
-	              </div>
-	            </div>
-	          </div>
-
-	        </div>
-        
-
-       </div>
-     
-     </div>
-    
-    </div>
-
-
-  <h3 class="horizontal-text-center" style="text-align: center ;"><span id="selection">La vente n'a jamais été aussi simple</span></h3>	
-  <br>
-
-
-   <!-- Third Image Slider -->
-
-		   <div class="container container-sell">
-				<div class="row row-slider">
-					<div class="col-lg-12 col-slider">
-						<div id="carouselIndicators" class="carousel slide carousel-fade" data-ride="carousel">
-							    <ol class="carousel-indicators">
-							        <li data-target="#carouselIndicators" data-slide-to="0" class="active"></li>
-							        <li data-target="#carouselIndicators" data-slide-to="1"></li>
-							        <li data-target="#carouselIndicators" data-slide-to="2"></li>
-							    </ol>
-							    <div class="carousel-inner">
-							        <div class="carousel-item active header">
-							        	<div class="overlay">
-							            <img class="d-block opa8 w-100" src="images/sell.jpg" alt="First slide">
-							            <div class="carousel-caption d-none d-md-block">
-											<h1>VENDEZ EN TOUTE SIMPLICITE</h1>
-											<a href="inscription_vendeur.php"><button class="btn ">S'INSCRIRE</button></a>
-											<a href="connexion_vendeur.php"><button class="btn blue-gradient">SE CONNECTER</button></a>
-							                
-							                
-							            </div>
-							        </div>
-							        
-								</div>
-								<!--Bouton précédent et suivant-->
-							    <a class="carousel-control-prev" href="#carouselIndicators" role="button" data-slide="prev">
-							        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-							        <span class="sr-only">Previous</span>
-							    </a>
-							    <a class="carousel-control-next" href="#carouselIndicators" role="button" data-slide="next">
-							        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-							        <span class="sr-only">Next</span>
-							    </a>
-						</div>
-
-					</div>
-				</div>
-			</div>
-		</div>
-			<br>
-
-
-	<!--- Footer --> <!--à modifier car template issu d'internet-->
 			
-					<div class="col-lg-12">
 
-						<footer class="page-footer font-small blue-grey lighten-5">
+			<!-- RECHERCHE -->
 
-							<div style="background-color: #31405F;">
-							  <div class="container">								
-								<div class="row py-4 d-flex align-items-center">
-								  
-								  <div class="col-md-6 col-lg-5 text-center text-md-left mb-4 mb-md-0">
-									<h6 >Restons en contact !</h6>
-								  </div>
-								 								  
-								  <div class="col-md-6 col-lg-7 text-center text-md-right">									
-									<a class="fb-ic" style="color: #fff;">
-									  <i class="fa fa-facebook-f  ml-4"> </i>
-									</a>
-									
-									<a class="tw-ic" style="color: #fff;">
-									  <i class="fa fa-twitter  ml-4"> </i>
-									</a>
-									
-									<a class="ins-ic" style="color: #fff;">
-									  <i class="fa fa-instagram  ml-4"> </i>
-									</a>
-								  </div>
-								</div>								
-							  </div>
-							</div>
+					<div class="container container-search">
+						<div class="row justify-content-center" >
+							<div class="col-md-8" >
 
-							
-							<div class="container text-center text-md-right mt-4">							  
-							  <div class="row mt-3 dark-grey-text">
-								
-								<div class="col-md-3 col-lg-4 col-xl-3 mb-3">							 
-								  <img src="images/logo-footer.png" alt="logo ece ebay" width="50%">								  
-								  <p>Enchérissez !</p>
+								<div class="input-group-prepend">
+									<img src="images/logo-footer.png" width="20%">
+									<button class="btn btn-outline-secondary dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+										Catégories
+									</button>
+									<div class="dropdown-menu">
+									<a class="dropdown-item" href="#">Ferraille ou Trésor</a>
+									<a class="dropdown-item" href="#">Bon pour le musée</a>
+									<a class="dropdown-item" href="#">Accessoire VIP</a>
+									<div role="separator" class="dropdown-divider"></div>
+									<a class="dropdown-item" href="#">Filtrer</a>
+									</div>
+
+									<input type="text" class="form-control" aria-label="Text input with dropdown button" placeholder="Rechercher..."><button> <i class="fa fa-search"></i></button>
 								</div>
-							   
-								<div class="col-md-2 col-lg-2 col-xl-2 mx-auto mb-3" style="color: #000;">								  
-								  <h5 class="font-weight-bold">Acheter</h5>
-								  <hr class="teal accent-3 mb-4 mt-0 d-inline-block mx-auto" style="width: 60px;">
-								  <p>
-									<a  href="#!">Ferraille ou trésor</a>
-								  </p>
-								  <p>
-									<a  href="#!">Bon pour musée</a>
-								  </p>
-								  <p>
-									<a  href="#!">Accessoire VIP</a>
-								  </p>								  
-								</div>
+
 								
-								<div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-3">							 
-								  <h5 class="font-weight-bold">Vendre</h5>
-								  <hr class="teal accent-3 mb-4 mt-0 d-inline-block mx-auto" style="width: 60px;">
-								  <p>
-									<a  href="#!">S'inscrire</a>
-								  </p>
-								  <p>
-									<a  href="#!">Comment vendre ?</a>
-								  </p>
-								  <p>
-									<a  href="#!">Vos ventes</a>
-								  </p>								  
-								</div>
-								
-								<div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-3">								 
-								  <h5 class="font-weight-bold">Contact</h5>
-								  <hr class="teal accent-3 mb-4 mt-0 d-inline-block mx-auto" style="width: 60px;">
-								  <p>
-									<i class="fa fa-graduation-cap "></i> EBAY ECE</p>
-								  <p>
-									<i class="fa fa-envelope mr-3"></i> ebay-ece@mail.fr</p>
-								  <p>
-									<i class="fa fa-phone mr-3"></i> + 01 234 567 88</p>								  
-								</div>							    
-							  </div>						  
 							</div>
-														 
-							<div class="footer-copyright text-center text-black-50 py-3">© 2020 Copyright: All rights reserved
-							  <a class="dark-grey-text" href="accueil.php"> www.ebay-ece.fr</a>
+						</div>
+					</div>
+
+			
+			<!----------------------------------------------------------------------------------------------------------------------->
+
+
+			<!--- Image Slider -->
+					<div class="container slider">
+						<div class="row row-slider">
+							<div class="col-lg-12 col-slider">
+								<div id="carouselIndicators" class="carousel slide carousel-fade" data-ride="carousel">
+										<ol class="carousel-indicators">
+											<li data-target="#carouselIndicators" data-slide-to="0" class="active"></li>
+											<li data-target="#carouselIndicators" data-slide-to="1"></li>
+											<li data-target="#carouselIndicators" data-slide-to="2"></li>
+										</ol>
+										<div class="carousel-inner">
+											<div class="carousel-item active">
+												<img class="d-block " src="images/fond1.jpg" alt="un">
+												<div class="carousel-caption d-none d-md-block">
+													<h1>BIENVENUE CHEZ EBAY ECE</h1>
+													<button class="btn blue-gradient">Acheter</button>
+													<button class="btn aqua-gradient">Vendre</button>
+													
+												</div>
+											</div>
+											<div class="carousel-item">
+												<img class="d-block opa8 w-100" src="images/fond2.jpg" alt="deux">
+											</div>
+											<div class="carousel-item">
+												<img class="d-block opa8 w-100" src="images/fond3.jpg" alt="trois">
+											</div>
+										</div>
+										<a class="carousel-control-prev" href="#carouselIndicators" role="button" data-slide="prev">
+											<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+											<span class="sr-only">Previous</span>
+										</a>
+										<a class="carousel-control-next" href="#carouselIndicators" role="button" data-slide="next">
+											<span class="carousel-control-next-icon" aria-hidden="true"></span>
+											<span class="sr-only">Next</span>
+										</a>
+								</div>
+
 							</div>
-							
-	                    </footer>
-				    </div>
+						</div>
+					</div>
+
+			<!----------------------------------------------------------------------------------------------------------------------->
+
+
+			<!-- Second Image Slider -->
+			<div class="container second-slider ">
+
+				<h3 class="horizontal-text-center" style="text-align: center ;"><span id="selection">Notre sélection de la semaine</span></h3>	
+
+				
+				<div id="multi" class="carousel slide carousel-multi-item justify-content-center align-items-center" data-ride="carousel">
+
+				
+				<div class="controls justify-content-center align-items-center">
+					<a class="btn-floating" href="#multi" data-slide="prev"><i class="fa fa-chevron-left"></i></a>
+					<a class="btn-floating" href="#multi" data-slide="next"><i class="fa fa-chevron-right"></i></a>
+				</div>
+				
+
+				
+				<ol class="carousel-indicators">
+					<li data-target="#multi" data-slide-to="0" class="active"></li>
+					<li data-target="#multi" data-slide-to="1"></li>
+					<li data-target="#multi" data-slide-to="2"></li>
+				</ol>
+				
+
+				
+				<div class="carousel-inner" role="listbox">
+
+					<!--First slide-->
+					<div class="carousel-item active">
+
+					<div class="row">
+						<div class="col-md-4">
+						<div class="card mb-2">
+							<img class="card-img-top" src="images/item/item1.jpg"
+							alt="Card image cap" width="150px" height="300px">
+							<div class="card-body">
+							<h4 class="card-title">Lampe</h4>
+							<p class="card-text">25<sup>€</sup>.</p>
+							<a class="btn btn-primary buy-buton"><i class="fa fa-shopping-basket"></i></a>
+							<p class="ajout-panier">Ajouter au panier</p>
+							</div>
+						</div>
+						</div>
+
+						<div class="col-md-4 clearfix d-none d-md-block">
+						<div class="card mb-2">
+							<img class="card-img-top" src="images/item/item2.jpg"
+							alt="Card image cap" width="150px" height="300px">
+							<div class="card-body">
+							<h4 class="card-title">Pièce</h4>
+							<p class="card-text">15<sup>€</sup>.</p>
+							<a class="btn btn-primary buy-buton"><i class="fa fa-shopping-basket"></i></a>
+							<p class="ajout-panier">Ajouter au panier</p>
+							</div>
+						</div>
+						</div>
+
+						<div class="col-md-4 clearfix d-none d-md-block">
+						<div class="card mb-2">
+							<img class="card-img-top" src="images/item/item3.jpg"
+							alt="Card image cap" width="150px" height="300px">
+							<div class="card-body">
+							<h4 class="card-title">Bague</h4>
+							<p class="card-text">355<sup>€</sup>.</p>
+							<a class="btn btn-primary buy-buton"><i class="fa fa-shopping-basket"></i></a>
+							<p class="ajout-panier">Ajouter au panier</p>
+							</div>
+						</div>
+						</div>
+					</div>
+
+					</div>
+					<!--/.First slide-->
+
+					<!--Second slide-->  <!--On ajoute une carte à partir de la base de donnée avec random()-->
+					<div class="carousel-item">
+
+					<div class="row">
+						<div class="col-md-4">
+						<div class="card mb-2">
+							<img class="card-img-top" src="images/item/item4.jpg"
+							alt="Card image cap" width="150px" height="300px">
+							<div class="card-body">
+							<h4 class="card-title">Bague</h4>
+							<p class="card-text">355<sup>€</sup>.</p>
+
+							<a class="btn btn-primary buy-buton"><i class="fa fa-shopping-basket"></i></a>
+							<p class="ajout-panier">Ajouter au panier</p>
+							</div>
+						</div>
+						</div>
+
+						<div class="col-md-4 clearfix d-none d-md-block">
+						<div class="card mb-2">
+							<img class="card-img-top" src="images/item/item5.jpg"
+							alt="Card image cap" width="150px" height="300px">
+							<div class="card-body">
+							<h4 class="card-title">Bague</h4>
+							<p class="card-text">355<sup>€</sup>.</p>
+							<a class="btn btn-primary buy-buton"><i class="fa fa-shopping-basket"></i></a>
+							<p class="ajout-panier">Ajouter au panier</p>
+
+							</div>
+						</div>
+						</div>
+
+						<div class="col-md-4 clearfix d-none d-md-block">
+						<div class="card mb-2">
+							<img class="card-img-top" src="https://mdbootstrap.com/img/Photos/Horizontal/City/4-col/img%20(48).jpg"
+							alt="Card image cap" width="150px" height="300px">
+							<div class="card-body">
+							<h4 class="card-title">Card title</h4>
+							<p class="card-text">355<sup>€</sup>.</p>
+							<a class="btn btn-primary buy-buton"><i class="fa fa-shopping-basket"></i></a>
+							<p class="ajout-panier">Ajouter au panier</p>
+							</div>
+						</div>
+						</div>
+					</div>
+
+					</div>
+				
+
 			</div>
+			
+			</div>
+			
+			</div>
+
+
+		<h3 class="horizontal-text-center" style="text-align: center ;"><span id="selection">La vente n'a jamais été aussi simple</span></h3>	
+		<br>
+
+
+		<!-- Third Image Slider -->
+
+				<div class="container container-sell">
+						<div class="row row-slider">
+							<div class="col-lg-12 col-slider">
+								<div id="carouselIndicators" class="carousel slide carousel-fade" data-ride="carousel">
+										<ol class="carousel-indicators">
+											<li data-target="#carouselIndicators" data-slide-to="0" class="active"></li>
+											<li data-target="#carouselIndicators" data-slide-to="1"></li>
+											<li data-target="#carouselIndicators" data-slide-to="2"></li>
+										</ol>
+										<div class="carousel-inner">
+											<div class="carousel-item active header">
+												<div class="overlay">
+												<img class="d-block opa8 w-100" src="images/sell.jpg" alt="First slide">
+												<div class="carousel-caption d-none d-md-block">
+													<h1>VENDEZ EN TOUTE SIMPLICITE</h1>
+													<a href="inscription_vendeur.php"><button class="btn ">S'INSCRIRE</button></a>
+													<a href="connexion_vendeur.php"><button class="btn blue-gradient">SE CONNECTER</button></a>
+													
+													
+												</div>
+											</div>
+											
+										</div>
+										<!--Bouton précédent et suivant-->
+										<a class="carousel-control-prev" href="#carouselIndicators" role="button" data-slide="prev">
+											<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+											<span class="sr-only">Previous</span>
+										</a>
+										<a class="carousel-control-next" href="#carouselIndicators" role="button" data-slide="next">
+											<span class="carousel-control-next-icon" aria-hidden="true"></span>
+											<span class="sr-only">Next</span>
+										</a>
+								</div>
+
+							</div>
+						</div>
+					</div>
+				</div>
+					<br>
+
+
+			<!--- Footer --> <!--à modifier car template issu d'internet-->
+					
+							<div class="col-lg-12">
+
+								<footer class="page-footer font-small blue-grey lighten-5">
+
+									<div style="background-color: #31405F;">
+									<div class="container">								
+										<div class="row py-4 d-flex align-items-center">
+										
+										<div class="col-md-6 col-lg-5 text-center text-md-left mb-4 mb-md-0">
+											<h6 >Restons en contact !</h6>
+										</div>
+																		
+										<div class="col-md-6 col-lg-7 text-center text-md-right">									
+											<a class="fb-ic" style="color: #fff;">
+											<i class="fa fa-facebook-f  ml-4"> </i>
+											</a>
+											
+											<a class="tw-ic" style="color: #fff;">
+											<i class="fa fa-twitter  ml-4"> </i>
+											</a>
+											
+											<a class="ins-ic" style="color: #fff;">
+											<i class="fa fa-instagram  ml-4"> </i>
+											</a>
+										</div>
+										</div>								
+									</div>
+									</div>
+
+									
+									<div class="container text-center text-md-right mt-4">							  
+									<div class="row mt-3 dark-grey-text">
+										
+										<div class="col-md-3 col-lg-4 col-xl-3 mb-3">							 
+										<img src="images/logo-footer.png" alt="logo ece ebay" width="50%">								  
+										<p>Enchérissez !</p>
+										</div>
+									
+										<div class="col-md-2 col-lg-2 col-xl-2 mx-auto mb-3" style="color: #000;">								  
+										<h5 class="font-weight-bold">Acheter</h5>
+										<hr class="teal accent-3 mb-4 mt-0 d-inline-block mx-auto" style="width: 60px;">
+										<p>
+											<a  href="#!">Ferraille ou trésor</a>
+										</p>
+										<p>
+											<a  href="#!">Bon pour musée</a>
+										</p>
+										<p>
+											<a  href="#!">Accessoire VIP</a>
+										</p>								  
+										</div>
+										
+										<div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-3">							 
+										<h5 class="font-weight-bold">Vendre</h5>
+										<hr class="teal accent-3 mb-4 mt-0 d-inline-block mx-auto" style="width: 60px;">
+										<p>
+											<a  href="#!">S'inscrire</a>
+										</p>
+										<p>
+											<a  href="#!">Comment vendre ?</a>
+										</p>
+										<p>
+											<a  href="#!">Vos ventes</a>
+										</p>								  
+										</div>
+										
+										<div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-3">								 
+										<h5 class="font-weight-bold">Contact</h5>
+										<hr class="teal accent-3 mb-4 mt-0 d-inline-block mx-auto" style="width: 60px;">
+										<p>
+											<i class="fa fa-graduation-cap "></i> EBAY ECE</p>
+										<p>
+											<i class="fa fa-envelope mr-3"></i> ebay-ece@mail.fr</p>
+										<p>
+											<i class="fa fa-phone mr-3"></i> + 01 234 567 88</p>								  
+										</div>							    
+									</div>						  
+									</div>
+																
+									<div class="footer-copyright text-center text-black-50 py-3">© 2020 Copyright: All rights reserved
+									<a class="dark-grey-text" href="accueil.php"> www.ebay-ece.fr</a>
+									</div>
+									
+								</footer>
+							</div>
+			
             
-     </div>
-   </div>
-</div>
+    
 
 
 
