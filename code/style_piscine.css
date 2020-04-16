@@ -1,7 +1,4 @@
 /** Body  **/
-body{
-	/*background: linear-gradient(#dae6ff,#5a6276 );*/
-}
 
 h6{
 
@@ -55,11 +52,7 @@ body::-webkit-scrollbar-track{
 	
 }
 
-.navbar-brand{
 
-
-	
-}
 
 .navbar-collapse {
     justify-content: flex-end;
@@ -306,10 +299,7 @@ body::-webkit-scrollbar-track{
 
 /**PISCINE**/
 /** Compte client **/
-.client-info{
-	
-	
-}
+
 
 .client-historique{
 	display: none;
