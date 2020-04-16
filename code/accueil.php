@@ -76,7 +76,7 @@ if(isset($_SESSION["id_user"])){
 									echo '<li class="nav-item"><a class="nav-link" href="inscription.php">S\'inscrire</a></li>';
 									echo '<li class="nav-item"><a class="nav-link" href="connexion.php">Se connecter</a></li>';
 								} else {
-									echo '<li class="nav-item"><a class="nav-link" href="compte_client.php">' . $_SESSION["prenom"] . ' ' . $_SESSION["nom"] . '</a></li>';
+									echo '<li class="nav-item"><a class="nav-link" href="redirect_moncompte.php">' . $_SESSION["nom"] . ' ' . $_SESSION["prenom"] . '</a></li>';
 								}
 								?>
 							</ul>

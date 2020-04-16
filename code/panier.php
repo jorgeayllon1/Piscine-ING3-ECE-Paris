@@ -39,7 +39,7 @@ session_start();
 
                 <div class="collapse navbar-collapse" id="main-navigation">
                     <ul class="navbar-nav">
-                        <li class="nav-item"><a class="nav-link" href="compte_client.php">WANG David</a></li>
+                        <li class="nav-item"><a class="nav-link" href="compte_client.php"><?php echo $_SESSION["nom"] . ' ' . $_SESSION["prenom"] ?></a></li>
                         <li class="nav-item"><a class="nav-link" href="accueil.php">Se déconnecter</a></li>
                         <li><i class="fa fa-power-off mt-3" style="color: #fff;"></i></li>
 
