@@ -9,11 +9,4 @@ $(function () {
 
 
 
-/*$(document).ready(function(){
-  $('.li-historique').click(function(){
 
-    $('.client-info').css.("display",'none');
-
-  });
-});
-*/
