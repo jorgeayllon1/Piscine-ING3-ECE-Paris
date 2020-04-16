@@ -1,4 +1,11 @@
 <?php
+
+#Code de demarage de session, a mettre en première ligne de chaque page
+# C'est OBLIGATOIRE, sinon cookie marche pas
+session_start();
+setcookie('id_user','' , time() + 365 * 24 * 3600);
+setcookie('rang', '', time() + 365 * 24 * 3600);
+
 $database = "ebayece";
 $db_handle = mysqli_connect('localhost', 'root', '');
 $db_found = mysqli_select_db($db_handle, $database);
@@ -16,17 +23,21 @@ if (isset($_POST['submit'])) {
                 while ($data = mysqli_fetch_assoc($result)) {
                     $c_ID = $data['id'];
                     $c_rang = $data['rang'];
-                    $fp = fopen('cookie.php', 'w');
+                    #$fp = fopen('cookie.php', 'w');
+
+                    #Cette ligne va ecrire dans le cookies la valeur qu'on veut
+                    $_SESSION["id_user"] = $data['id'];
+                    $_SESSION["rang"] = $data['rang'];
+                    $_SESSION["nom"]=$data['nom'];
+                    $_SESSION["prenom"]=$data['prenom'];
+
                     /*
-                    Cette ligne va ecrire dans le cookies la valeur qu'on veut
-                    setcookie('id_user', $c_ID, time() + 365 * 24 * 3600);
-                    setcookie('rang', $c_rang, time() + 365 * 24 * 3600);
-                    */
                     fwrite($fp, "<?php 
                             define('C_ID', '$c_ID');
                             define('C_RANG', '$c_rang'); 
                         ?>");
                     fclose($fp);
+                    */
                     header("location: accueil.php");
                 }
             }

@@ -1,6 +1,13 @@
 <?php
 #Cette ligne va demarrer le cookie pour une session, dès que l'utilisateur quitte la page, ça efface le cookie
-#session_start(); // On démarre la session AVANT toute chose
+session_start(); // On démarre la session AVANT toute chose
+
+/*
+if(isset($_SESSION["id_user"])){
+
+}
+*/
+
 ?>
 
 <!DOCTYPE html>
@@ -67,9 +74,14 @@
 						</button>
 						<div class="collapse navbar-collapse" id="myNavbar">
 							<ul class="navbar-nav">
-								<li class="nav-item"><a class="nav-link" href="inscription.php">S'inscrire</a></li>
-								<li class="nav-item"><a class="nav-link" href="connexion.php">Se connecter</a></li>
-
+								<?php
+								if (!isset($_SESSION["id_user"])) {
+									echo '<li class="nav-item"><a class="nav-link" href="inscription.php">S\'inscrire</a></li>';
+									echo '<li class="nav-item"><a class="nav-link" href="connexion.php">Se connecter</a></li>';
+								} else {
+									echo '<li class="nav-item"><a class="nav-link" href="compte_client.php">' . $_SESSION["prenom"] . ' ' . $_SESSION["nom"] . '</a></li>';
+								}
+								?>
 							</ul>
 						</div>
 					</nav>
