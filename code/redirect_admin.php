@@ -1,6 +1,6 @@
 <?php
 
-echo "Error redirection";
+echo "Error redirection, mauvais fichier de redirection";
 
 	require "cookie.php";
 	if (filesize("cookie.php") != 0)

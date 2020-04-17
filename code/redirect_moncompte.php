@@ -1,6 +1,8 @@
 <?php
 session_start();
 
+#Si le la valeur id_user existe dans le cookie, l'utilisateur s'est connecter
+#Et si il s'est connecter, on peut le rediriger quelque part
 if (isset($_SESSION["id_user"])) {
 
 	if ($_SESSION["rang"] == 1) {
@@ -12,7 +14,9 @@ if (isset($_SESSION["id_user"])) {
 	} else {
 		echo "Error, pas compris le rang";
 	}
-} else {
+}
+#Sinon, on le renvoit à la page principale
+else {
 	header("location: accueil.php");
 }
 
