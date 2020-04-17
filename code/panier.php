@@ -27,205 +27,194 @@ session_start();
 
 </head>
 
-<body>
+<body style="background-color:#FBFBFB  ;">
 
-    <div class="container">
-        <div class="row d-flex justify-content-center">
-            <nav class="navbar navbar-expand-md col-lg-12">
-                <a class="navbar-brand" href="accueil.php"><img src="images/logo.png" width="20%"></a>
-                <button class="navbar-toggler navbar-dark" type="button" data-toggle="collapse" data-target="#main-navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-
-                <div class="collapse navbar-collapse" id="main-navigation">
-                    <ul class="navbar-nav">
-                        <li class="nav-item"><a class="nav-link" href="compte_client.php"><?php echo $_SESSION["nom"] . ' ' . $_SESSION["prenom"] ?></a></li>
-                        <li class="nav-item"><a class="nav-link" href="accueil.php">Se déconnecter</a></li>
-                        <li><i class="fa fa-power-off mt-3" style="color: #fff;"></i></li>
-
-                    </ul>
-                </div>
-            </nav>
-
-            <div class="col-lg-8 my-1">
-                <div class="input-group-prepend">
-                    <img src="images/logo-footer.png" width="20%">
-                    <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Catégories
+    <div style="font-family: Arial, Helvetica, sans-serif;">
+    <div class="container-fluid">
+            <div class="row d-flex justify-content-center">
+                <nav class="navbar navbar-expand-md col-lg-12" style="border-bottom:solid #E7E7E7" >
+                    <a class="navbar-brand" href="accueil.php"><img src="images/logo.png" width="20%"></a>
+                    <button class="navbar-toggler navbar-dark" type="button" data-toggle="collapse" data-target="#main-navigation">
+                        <span class="navbar-toggler-icon"></span>
                     </button>
-                    <div class="dropdown-menu">
-                        <a class="dropdown-item" href="#">Ferraille ou Trésor</a>
-                        <a class="dropdown-item" href="#">Bon pour le musée</a>
-                        <a class="dropdown-item" href="#">Accessoire VIP</a>
-                        <div role="separator" class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="#">Filtrer</a>
+
+                    <div class="collapse navbar-collapse" id="main-navigation">
+                        <ul class="navbar-nav">
+                            <li class="nav-item"><a class="nav-link" href="compte_client.php"><?php echo $_SESSION["nom"] . ' ' . $_SESSION["prenom"] ?></a></li>
+                            <li class="nav-item"><a class="nav-link" href="accueil.php">Se déconnecter</a></li>
+                            <li><i class="fa fa-power-off mt-3" style="color: #fff;"></i></li>
+
+                        </ul>
                     </div>
+                </nav>
 
-                    <input type="text" class="form-control" aria-label="Text input with dropdown button" placeholder="Rechercher..."><button> <i class="fa fa-search"></i></button>
-                </div>
-            </div>
-
-
-
-
-
-
-        </div>
-    </div>
-
-    <!-- Main Panier-->
-    <div class="container">
-        <div class="row">
-            <!--Affichage produit, quantite, prix total-->
-            <div class="col-lg-9 my-3" style="border: solid black 1px">
-
-                <div class="table-responsive">
-                    <div class="caption text-center font-weight-bold" style="font-size: larger;">Votre panier<i class="fa fa-shopping-basket ml-2"></i></div>
-                    <table class="table">
-                        <thead>
-                            <tr>
-                                <th scope="col">Produit</th>
-                                <th scope="col">Nom</th>
-                                <th scope="col">Qté</th>
-                                <th scope="col">Moyen achat</th>
-                                <th scope="col">Catégorie</th>
-                                <th scope="col">Fin enchère dans</th>
-                                <!--If fin enchère != 0min alors paiement bloqué-->
-                                <th scope="col">Négociation</th>
-                                <!--If négociation!=finie alors paiement bloqué-->
-                                <th scope="col">Prix</th>
-                                <th> </th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr class="text-center">
-                                <td><img src="images/item/item1.jpg" width="90px" height="90px" /> </td>
-                                <td>Lampe</td>
-                                <td>(1)</td>
-                                <td>Achat immédiat</td>
-                                <td>Ferraille</td>
-                                <td>0min0s</td>
-                                <td></td>
-                                <td class="prix-article-1">56€</td>
-                                <td class="text-right"><button class="btn btn-sm btn-danger"><i class="fa fa-trash"></i> </button> </td>
-                            </tr>
-                            <tr class="text-center">
-                                <td><img src="images/item/item2.jpg" width="90px" height="90px" /> </td>
-                                <td>Lampe</td>
-                                <td>(1)</td>
-                                <td>Enchère</td>
-                                <td>Ferraille</td>
-                                <td>0min30s</td>
-                                <td></td>
-                                <td prix-article-2>56€</td>
-                                <!--Si on clique sur la poubelle, on remove l'article du panier-->
-                                <td class="text-right"><button class="btn btn-sm btn-danger"><i class="fa fa-trash"></i> </button> </td>
-                            </tr>
-                            <tr class="text-center">
-                                <td><img src="images/item/item3.jpg" width="90px" height="90px" /> </td>
-                                <td>Lampe</td>
-                                <td>(1)</td>
-                                <td>Meilleure offre</td>
-                                <td>Ferraille</td>
-                                <td>0min0s</td>
-                                <td>En cours</td>
-                                <td prix-article-3>56€</td>
-                                <td class="text-right"><button class="btn btn-sm btn-danger"><i class="fa fa-trash"></i> </button> </td>
-                            </tr>
-                            <tr>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td>Sous-Total</td>
-                                <td class="text-right">168 €</td>
-                            </tr>
-                            <tr>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td><em>Livraison</em></td>
-                                <td class="text-right">Gartuite</td>
-                            </tr>
-                            <tr style="background-color: lightgrey; font-size:larger;">
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td><strong>Total</strong></td>
-                                <td class="text-right "><strong>168 €</strong></td>
-                            </tr>
-                        </tbody>
-                    </table>
+                <div class="col-lg-8 my-1 d-flex justify-content-center">
+                    <img src="images/logo-footer.png" width="80%">
                 </div>
 
-            </div>
-            <!--Affichage miniaturisée sur le côté avec prix total avec option de continuer à faire shopping-->
-            <div class="col-lg-3 my-3">
 
-                <div class="card" style="border:solid black 1px">
 
-                    <div class="card-body text-center">
-                        <p><em>Vous avez un code promo?</em></p>
-                        <input type="text" placeholder="CODE" class="text-center">
-                        <button class="btn mt-2">Appliquer</button>
-                    </div>
 
-                </div>
 
-                <div class="card mt-2" style="border:solid black 1px">
-
-                    <div class="card-body text-center">
-                        <h4 class="mb-3  text-center font-weight-bold">Récapitulatif</h4>
-                        <hr style="border-top: dotted 1px;" />
-                        <dl class="row">
-                            <dd class="col-sm-8">
-                                Sous-total
-                            </dd>
-                            <dd class="col-sm-4">
-                                168<sup>€</sup>
-                            </dd>
-                        </dl>
-
-                        <hr style="border-top: dotted 1px;" />
-
-                        <dl class="row">
-                            <dd class="col-sm-8">
-                                Livraison
-                            </dd>
-                            <dd class="col-sm-4">
-                                0€
-                            </dd>
-                        </dl>
-
-                        <hr style="border-top: dotted 1px;" />
-
-                        <dl class="row">
-                            <dd class="col-sm-8 font-weight-bold">
-                                Total
-                            </dd>
-                            <dd class="col-sm-4">
-                                168<sup>€</sup>
-                            </dd>
-                        </dl>
-                        <a href="paiement.php"><button class="btn btn-primary my-2">Paiement</button></a>
-                        <a href="achat.php"><button class="btn" style="background-color: darkgrey;">Continuer vos achats</button></a>
-                    </div>
-
-                </div>
 
             </div>
         </div>
+
+        <!-- Main Panier-->
+        <div class="container-fluid">
+            <div class="row d-flex justify-content-center">
+                <!--Affichage produit, quantite, prix total-->
+                <div class="col-lg-7 my-3 shadow p-3 mb-5" style="border: solid black 1px">
+
+                    <div class="table-responsive ">
+                        <div class="caption text-center font-weight-bold my-2" style="font-size: 30px;">Votre panier<i class="fa fa-shopping-basket ml-2"></i></div>
+                        <table class="table">
+                            <thead>
+                                <tr class="text-center">
+                                    <th scope="col">Produit</th>
+                                    <th scope="col">Nom</th>
+                                    <th scope="col">Qté</th>
+                                    <th scope="col">Moyen achat</th>
+                                    <th scope="col">Catégorie</th>
+                                    <th scope="col">Fin enchère dans</th>
+                                    <!--If fin enchère != 0min alors paiement bloqué-->
+                                    <th scope="col">Négociation</th>
+                                    <!--If négociation!=finie alors paiement bloqué-->
+                                    <th scope="col">Prix</th>
+                                    <th> </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="text-center">
+                                    <td><img src="images/item/item1.jpg" width="90px" height="90px" /> </td>
+                                    <td>Lampe</td>
+                                    <td>(1)</td>
+                                    <td>Achat immédiat</td>
+                                    <td>Ferraille</td>
+                                    <td>0min0s</td>
+                                    <td></td>
+                                    <td class="prix-article-1">56€</td>
+                                    <td class="text-right"><button class="btn btn-sm btn-danger"><i class="fa fa-trash"></i> </button> </td>
+                                </tr>
+                                <tr class="text-center">
+                                    <td><img src="images/item/item2.jpg" width="90px" height="90px" /> </td>
+                                    <td>Lampe</td>
+                                    <td>(1)</td>
+                                    <td>Enchère</td>
+                                    <td>Ferraille</td>
+                                    <td>0min30s</td>
+                                    <td></td>
+                                    <td prix-article-2>56€</td>
+                                    <!--Si on clique sur la poubelle, on remove l'article du panier-->
+                                    <td class="text-right"><button class="btn btn-sm btn-danger"><i class="fa fa-trash"></i> </button> </td>
+                                </tr>
+                                <tr class="text-center">
+                                    <td><img src="images/item/item3.jpg" width="90px" height="90px" /> </td>
+                                    <td>Lampe</td>
+                                    <td>(1)</td>
+                                    <td>Meilleure offre</td>
+                                    <td>Ferraille</td>
+                                    <td>0min0s</td>
+                                    <td><em>En cours</em></td>
+                                    <td prix-article-3>56€</td>
+                                    <td class="text-right"><button class="btn btn-sm btn-danger"><i class="fa fa-trash"></i> </button> </td>
+                                </tr>
+                                <tr class="text-center">
+                                    <td></td>
+                                    <td></td>
+                                    <td id="total_item_panier">(3)</td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td>Sous-Total</td>
+                                    <td class="text-right">168 €</td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td><em>Livraison</em></td>
+                                    <td class="text-right light-grey-text">Gratuite</td>
+                                </tr>
+                                <tr style="background-color: #D0D0D0; font-size:larger;">
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td><strong>Total</strong></td>
+                                    <td class="text-right "><strong>168 €</strong></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                </div>
+                <!--Affichage miniaturisée sur le côté avec prix total avec option de continuer à faire shopping-->
+                <div class="col-lg-3 my-3 ">
+
+                    <div class="card shadow p-3 mb-5" style="border:solid black 1px">
+
+                        <div class="card-body text-center">
+                            <p ><em>Vous avez un code promo?</em></p>
+                            <input type="text" placeholder="CODE" class="text-center" id="champ_code">
+                            <button class="btn mt-2" id="code_promo">Appliquer</button>
+                        </div>
+
+                    </div>
+
+                    <div class="card mt-2 shadow p-3 mb-5" style="border:solid black 1px">
+
+                        <div class="card-body text-center">
+                            <h4 class="mb-3  text-center font-weight-bold">Récapitulatif</h4>
+                            <hr style="border-top: dotted 1px;" />
+                            <dl class="row">
+                                <dd class="col-sm-8">
+                                    Sous-total
+                                </dd>
+                                <dd class="col-sm-4">
+                                    168<sup>€</sup>
+                                </dd>
+                            </dl>
+
+                            <hr style="border-top: dotted 1px;" />
+
+                            <dl class="row">
+                                <dd class="col-sm-8">
+                                    <em>Livraison</em>
+                                </dd>
+                                <dd class="col-sm-4">
+                                    0€
+                                </dd>
+                            </dl>
+
+                            <hr style="border-top: dotted 1px;" />
+
+                            <dl class="row">
+                                <dd class="col-sm-8 font-weight-bold">
+                                    Total €
+                                </dd>
+                                <dd class="col-sm-4">
+                                    168<sup>€</sup>
+                                </dd>
+                            </dl>
+                            <a href="paiement.php"><button class="btn btn-primary my-2">Paiement</button></a>
+                            <a href="achat.php"><button class="btn" style="background-color: darkgrey;">Continuer vos achats</button></a>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        
     </div>
 
 
@@ -241,6 +230,28 @@ session_start();
         </div>
 
     </div>
+
+    <!--JAVASCRIPT-->
+
+    <script>
+
+    $(document).ready(function(){
+
+        $('#code_promo').click(function(){
+            if($('#champ_code').val() == '')
+            {
+                alert("champ vide");
+            }
+            else {
+                alert("code faux");
+                $('#champ_code').val(''); /* Le champ redevient vide*/
+                
+            }
+            
+        });
+    });
+
+    </script>
 
 
 
