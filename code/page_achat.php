@@ -1,5 +1,8 @@
 <?php
 session_start();
+
+$database = "ebayece"
+
 ?>
 <!DOCTYPE html>
 <!--FICHIER TEST-->

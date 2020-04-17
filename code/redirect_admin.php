@@ -1,4 +1,7 @@
 <?php
+
+echo "Error redirection";
+
 	require "cookie.php";
 	if (filesize("cookie.php") != 0)
 	{
