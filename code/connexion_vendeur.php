@@ -118,7 +118,7 @@ mysqli_close($db_handle);
 
 						<input type="password" id="mdp_vendeur_connexion" class="form-control" placeholder="Mot De Passe" aria-describedby="defaultRegisterFormPasswordHelpBlock" name="mdp">
 						<small id="mdp_vendeur_connexion" class="form-text text-muted mb-4">
-							Au moins 8 caractères et un chiffre
+						<em>Au moins 8 caractères et un chiffre</em>
 
 						</small>
 
@@ -126,13 +126,13 @@ mysqli_close($db_handle);
 
 						<p>ou avec:</p>
 
-						<a href="#" class="mx-2" role="button"><i class="fa fa-facebook-f light-blue-text"></i></a>
-						<a href="#" class="mx-2" role="button"><i class="fa fa-linkedin-in light-blue-text"></i></a>
-						<a href="#" class="mx-2" role="button"><i class="fa fa-github light-blue-text"></i></a>
+						<a href="#" class="mx-2" role="button"><i class="fa fa-facebook-f "></i></a>
+						<a href="#" class="mx-2" role="button"><i class="fa fa-linkedin"></i></a>
+						<a href="#" class="mx-2" role="button"><i class="fa fa-google-plus "></i></a>
 
 						<hr>
 
-						<p>Pas encore inscrit ? Inscrivez-vous</p>
+						<p><em>Pas encore inscrit ? Inscrivez-vous</em></p>
 						<a href="inscription_vendeur.php">S'inscrire</a>
 
 

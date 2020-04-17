@@ -81,7 +81,7 @@ session_start();
 
 						<input type="password" id="mdp_vendeur_inscription" class="form-control" placeholder="Mot De Passe" aria-describedby="defaultRegisterFormPasswordHelpBlock">
 						<small id="mdp_vendeur_inscription" class="form-text text-muted mb-4">
-							Au moins 8 caractères et un chiffre
+							<em>Au moins 8 caractères et un chiffre</em>
 
 						</small>
 
@@ -123,9 +123,9 @@ session_start();
 
 						<p>ou avec:</p>
 
-						<a href="#" class="mx-2" role="button"><i class="fa fa-facebook-f light-blue-text"></i></a>
-						<a href="#" class="mx-2" role="button"><i class="fa fa-linkedin-in light-blue-text"></i></a>
-						<a href="#" class="mx-2" role="button"><i class="fa fa-github light-blue-text"></i></a>
+						<a href="#" class="mx-2" role="button"><i class="fa fa-facebook-f t"></i></a>
+						<a href="#" class="mx-2" role="button"><i class="fa fa-linkedin"></i></a>
+						<a href="#" class="mx-2" role="button"><i class="fa fa-google-plus "></i></a>
 
 						<hr>
 
@@ -134,8 +134,8 @@ session_start();
 							<em>S'inscrire</em> vous acceptez nos
 							<a href="" target="_blank">conditions de service</a></p>
 
-						<p>Déjà un compte ? Connectez-vous</p>
-						<a href="connexion_vendeur.php">Se connecter</a>
+						<p><em>Déjà un compte ? Connectez-vous</em></p>
+						<a href="connexion_vendeur.php" style="color:#fff;"><button class="btn" style="background: #E52714; border:none; color:#fff;">Se connecter</a>
 
 					</form>
 
