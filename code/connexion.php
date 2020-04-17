@@ -68,7 +68,7 @@ session_start();
 									</div>
 								</div>
 								<div class="carousel-item">
-									<img class="d-block w-100 " src="images/fond2.jpg" alt="Second slide">
+									<img class="d-block opa8 w-100 " src="images/fond2.jpg" alt="Second slide">
 								</div>
 
 							</div>
@@ -97,7 +97,8 @@ session_start();
 		<div class="row d-flex justify-content-center items-align-center">
 
 			<a href="connexion_client.php"><button class="btn my-4 mx-4" style="background: #31405F; border:none; color:#fff;" type="submit">En tant qu'acheteur</button></a>
-			<a href="connexion_vendeur.php"><button class="btn my-4 mx-4 " style="background: #31405F; border:none; color:#fff;" type="submit">En tant que vendeur</button></a>
+			<a href="connexion_vendeur.php"><button class="btn my-4 mx-4 " style="background: #E52714; border:none; color:#fff;" type="submit">En tant que vendeur</button></a>
+			<a href="admin_connexion.php"><button class="btn my-4 mx-4 " style="background: #67E514; border:none; color:#fff;" type="submit">En tant qu'admin</button></a>
 
 		</div>
 

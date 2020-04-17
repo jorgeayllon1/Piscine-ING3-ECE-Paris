@@ -3,6 +3,10 @@ h6{
 	color:#fff;
 }
 
+h1{
+	font-family:Arial, Helvetica, sans-serif;
+}
+
 /** ScrollBar 
 body::-webkit-scrollbar{
 
@@ -38,6 +42,10 @@ body::-webkit-scrollbar-track{
   
   .opa8{
 	  opacity: 0.8;
+  }
+
+  .opa7{
+	  opacity:0.7;
   }
 
 /************************************************** Navigation bar ****************************************/
@@ -93,7 +101,7 @@ body::-webkit-scrollbar-track{
 	margin-top:15px;
 }
 
-/**Image SLIDER**/
+/** FIRST IMAGE SLIDER CAROUSEL**/
 .slider{
 	justify-content: center;
 	padding: 10px;
@@ -105,19 +113,12 @@ body::-webkit-scrollbar-track{
 	height: 500px;
 }
 
-/** Slider**/
-
-
 
 /** Selection de la semaine **/
 .horizontal-text-center {
    
     align-items: center;
-
-    
     display: flex;
-
-    
     text-align: center;
 
 

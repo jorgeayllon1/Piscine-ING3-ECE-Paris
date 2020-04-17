@@ -99,7 +99,7 @@ session_start();
 
 
 			<a href="inscription_client.php"><button class="btn my-4 mx-4" style="background: #31405F; border:none; color:#fff;" type="submit">En tant qu'acheteur</button></a>
-			<a href="inscription_vendeur.php"><button class="btn my-4 mx-4 " style="background: #31405F; border:none; color:#fff;" type="submit">En tant que vendeur</button></a>
+			<a href="inscription_vendeur.php"><button class="btn my-4 mx-4 " style="background: #E52714; border:none; color:#fff;" type="submit">En tant que vendeur</button></a>
 
 		</div>
 
