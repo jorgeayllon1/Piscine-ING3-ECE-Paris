@@ -27,6 +27,8 @@ session_start();
 
 </head>
 
+
+
 <body>
 
     <div class="container">
@@ -89,24 +91,27 @@ session_start();
 
                 <p>Votre type de paiement  <i class="fa fa-credit-card"></i> :</p>
 
-
-                <input type="radio"  name="type-carte" value="visa" id="visa">
-                <label for="visa">Visa</label>
-                <i class="fa fa-cc-visa"></i>
-
-                <input type="radio" name="type-carte" value="master" id="master">
-                <label for="master">MatserCard</label>
-                <i class="fa fa-cc-mastercard"></i>
-
-                <br>
-
-                <input type="radio" name="type-carte" value="express" id="express">
-                <label for="express" class="">American Express</label>
-                <i class="fa fa-cc-amex"></i>
-
-                <input type="radio" name="type-carte" value="paypal" id="paypal">
-                <label for="paypal">Paypal</label>
-                <i class="fa fa-cc-paypal"></i>
+                <div class="custom-control custom-radio">
+                  <input  type="radio" id="visa" name="type_carte"  class="custom-control-input" checked required>
+                  <label class="custom-control-label" for="visa">Visa</label>
+                  <i class="fa fa-cc-visa"></i>
+                </div>
+                <div class="custom-control custom-radio">
+                  <input  type="radio" id="master" name="type_carte"  class="custom-control-input" required>
+                  <label class="custom-control-label" for="master">MasterCard</label>
+                  <i class="fa fa-cc-mastercard"></i>
+                </div>
+                <div class="custom-control custom-radio">
+                  <input  type="radio"  id="express" name="type_carte" class="custom-control-input" required>
+                  <label class="custom-control-label" for="express">American express</label>
+                  <i class="fa fa-cc-amex"></i>
+                </div>
+                <div class="custom-control custom-radio">
+                  <input  type="radio" id="paypal" name="type_carte"  class="custom-control-input" required>
+                  <label class="custom-control-label" for="paypal">Paypal</label>
+                  <i class="fa fa-cc-paypal"></i>
+                </div>
+              
 
                 <div class="form-row my-2">
                     <div class="col">
@@ -135,7 +140,7 @@ session_start();
                 <input type="checkbox" name="souvenir_cb" id="souvenir_cb"> Sauvegarder mes coordonnées pour la prochaine fois
 
                 <div class="row">
-                    <button class="btn btn-primary my-2 " style="margin: 0 auto; font-size: larger;">Finalisez mon paiment</button>
+                    <button class="btn btn-primary my-2 " type="submit" style="margin: 0 auto; font-size: larger;">Finalisez mon paiment</button>
                     <!--CREATION PUIS VERIFICATION DES DONNEES DANS LA BDD PUIS AFFICHAGE MESSAGE PAIEMENT REUSSI-->
                 </div>
 
@@ -147,6 +152,21 @@ session_start();
 
             <!--Affichage miniaturisée sur le côté avec prix total avec option de continuer à faire shopping-->
             <div class="col-lg-3 my-3  info-paiement ">
+
+            <div class="card shadow p-3 mb-5" style="border:solid black 1px">
+
+            <div class="card-body text-center">
+                <p ><em>Vous avez un code promo?</em></p>
+                
+                    <div class="input-group">
+                        <input type="text" id="champ_code" class="form-control" placeholder="Code"  >
+                        <div class="input-group-append">
+                            <button class="btn btn-primary m-0" id="code_promo" type="button">Appliquer</button>
+                        </div>
+                    </div>
+            </div>
+
+            </div>
 
                 <div class="card mt-2 shadow p-3 mb-5" style="border:solid black 1px">
 
@@ -226,6 +246,30 @@ session_start();
         </div>
 
     </div>
+
+        <!--JAVASCRIPT-->
+
+        <script>
+
+            $(document).ready(function(){
+
+                $('#code_promo').click(function(){
+                    if($('#champ_code').val() == '')
+                    {
+                        alert("champ vide");
+                    }
+                    else {
+                        alert("code faux");
+                        $('#champ_code').val(''); /* Le champ redevient vide*/
+                        
+                    }
+                    
+                });
+            });
+
+        </script>
+
+        
 
 </body>
 

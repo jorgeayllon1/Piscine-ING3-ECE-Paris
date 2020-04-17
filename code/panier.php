@@ -160,17 +160,15 @@ session_start();
                 <!--Affichage miniaturisée sur le côté avec prix total avec option de continuer à faire shopping-->
                 <div class="col-lg-3 my-3 ">
 
-                    <div class="card shadow p-3 mb-5" style="border:solid black 1px">
+                
 
-                        <div class="card-body text-center">
-                            <p ><em>Vous avez un code promo?</em></p>
-                            <input type="text" placeholder="CODE" class="text-center" id="champ_code">
-                            <button class="btn mt-2" id="code_promo">Appliquer</button>
-                        </div>
 
-                    </div>
 
-                    <div class="card mt-2 shadow p-3 mb-5" style="border:solid black 1px">
+
+
+                    
+
+                    <div class="card  shadow p-3 mb-5" style="border:solid black 1px">
 
                         <div class="card-body text-center">
                             <h4 class="mb-3  text-center font-weight-bold">Récapitulatif</h4>
@@ -230,28 +228,9 @@ session_start();
         </div>
 
     </div>
+    
 
-    <!--JAVASCRIPT-->
 
-    <script>
-
-    $(document).ready(function(){
-
-        $('#code_promo').click(function(){
-            if($('#champ_code').val() == '')
-            {
-                alert("champ vide");
-            }
-            else {
-                alert("code faux");
-                $('#champ_code').val(''); /* Le champ redevient vide*/
-                
-            }
-            
-        });
-    });
-
-    </script>
 
 
 

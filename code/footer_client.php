@@ -42,13 +42,13 @@
 				<h5 class="font-weight-bold">Acheter</h5>
 				<hr class="mb-4 mt-0 d-inline-block mx-auto" style="width: 60px; background-color: #31405F; border: solid #31405F 1px;">
 				<p>
-					<a href="#!" style="color:black;">Ferraille ou trésor</a>
+					<a href="page_achat.php" style="color:black;">Ferraille ou trésor</a>
 				</p>
 				<p>
-					<a href="#!" style="color:black;">Bon pour musée</a>
+					<a href="page_achat.php" style="color:black;">Bon pour musée</a>
 				</p>
 				<p>
-					<a href="#!" style="color:black;">Accessoire VIP</a>
+					<a href="page_achat.php" style="color:black;">Accessoire VIP</a>
 				</p>
 			</div>
 
@@ -56,13 +56,13 @@
 				<h5 class="font-weight-bold">Vendre</h5>
 				<hr class="mb-4 mt-0 d-inline-block mx-auto " style="width: 60px;  background-color: #31405F; border: solid #31405F 1px;">
 				<p>
-					<a href="#!" style="color:black;">S'inscrire</a>
+					<a href="inscription_vendeur.php" style="color:black;">S'inscrire</a>
 				</p>
 				<p>
 					<a href="#!" style="color:black;">Comment vendre ?</a>
 				</p>
 				<p>
-					<a href="#!" style="color:black;">Vos ventes</a>
+					<a href="redirect_moncompte.php" style="color:black;">Vos ventes</a>
 				</p>
 			</div>
 

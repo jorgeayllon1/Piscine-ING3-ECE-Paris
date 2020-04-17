@@ -49,14 +49,14 @@ if(isset($_SESSION["id_user"])){
 
 	<div style="font-family: Arial, Helvetica, sans-serif;">
 	<div class="container-fluid">
-		<div class="row ">
+		<div class="row d-flex justify-content-center">
 			<div class="col-lg-1 col-md-1 col-xs-1 col-xm-1 sticky-top">
 				<div class="sidenav">
 					<a href="accueil.php">Accueil</a>
 					<hr class="navside-hr">
-					<a href="#">Selection</a>
+					<a href="page_achat.php">Acheter</a>
 					<hr class="navside-hr">
-					<a href="#">Vendre</a>
+					<a href="connexion_vendeur.php">Vendre</a>
 					<hr class="navside-hr">
 					<a href="#">A propos</a>
 					<hr class="navside-hr">
@@ -70,7 +70,7 @@ if(isset($_SESSION["id_user"])){
 
 				<div class="row">
 
-					<nav class="navbar navbar-expand-md col-lg-12" style="border-bottom:solid #E7E7E7 ;">
+					<nav class="navbar navbar-expand-md col-lg-12 " style="border-bottom:solid #E7E7E7 ;">
 						<a class="navbar-brand" href="accueil.php"><img src="images/logo.png" width="20%"></a>
 						<button class="navbar-toggler navbar-dark" type="button" data-toggle="collapse" data-target="#myNavbar">
 							<span class="navbar-toggler-icon"></span>
@@ -129,6 +129,7 @@ if(isset($_SESSION["id_user"])){
 					</nav>
 					
 					<a href="panier.php" class="mx-4 my-2"><button class="btn btn-lg" style="border-radius: 10px;"> <i class="fa fa-shopping-basket"></i> </button></a>
+					<!--Notification nb_item-->
 					
 								
 				</div>
@@ -150,9 +151,9 @@ if(isset($_SESSION["id_user"])){
 									Catégories
 								</button>
 								<div class="dropdown-menu">
-									<a class="dropdown-item" href="#">Ferraille ou Trésor</a>
-									<a class="dropdown-item" href="#">Bon pour le musée</a>
-									<a class="dropdown-item" href="#">Accessoire VIP</a>
+									<a class="dropdown-item" href="page_achat.php">Ferraille ou Trésor</a>
+									<a class="dropdown-item" href="page_achat.php">Bon pour le musée</a>
+									<a class="dropdown-item" href="page_achat.php">Accessoire VIP</a>
 									<div role="separator" class="dropdown-divider"></div>
 									<a class="dropdown-item" href="#">Filtrer</a>
 								</div>
@@ -366,7 +367,7 @@ if(isset($_SESSION["id_user"])){
 
 				<!-- Third Image Slider -->
 
-				<div class="container ">
+				<div class="container">
 					<div class="row ">
 						<div class="col-lg-12 col-slider">
 							<div id="carouselPos" class="carousel slide carousel-fade shadow p-3 mb-5 " data-ride="carousel">
@@ -411,23 +412,21 @@ if(isset($_SESSION["id_user"])){
 				<!--- Footer -->
 				<!--à modifier car template issu d'internet-->
 
-				<div class="col-lg-12">
-
-					<?php include('footer_client.php'); ?>
-				</div>
+				
 		</div>
 
+	
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-lg-12">
+
+				<?php include('footer_client.php'); ?>
+				</div>
+
+			</div>
 	</div>
-    </div>
 	
 	
-
-
-
-
-
-
-
 
 </body>
 
