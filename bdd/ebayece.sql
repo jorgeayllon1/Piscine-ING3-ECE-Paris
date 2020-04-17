@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le :  ven. 17 avr. 2020 à 08:30
+-- Généré le :  ven. 17 avr. 2020 à 10:42
 -- Version du serveur :  8.0.18
 -- Version de PHP :  7.3.12
 
@@ -139,7 +139,7 @@ CREATE TABLE IF NOT EXISTS `lacollection` (
 
 INSERT INTO `lacollection` (`id`, `id_item_1`, `id_item_2`, `id_item_3`, `id_item_4`, `id_item_5`, `id_item_6`, `id_item_7`, `id_item_8`, `id_item_9`, `id_item_10`, `id_item_11`, `id_item_12`, `id_item_13`, `id_item_14`, `id_item_15`, `id_item_16`, `id_item_17`, `id_item_18`, `id_item_19`, `id_item_20`, `id_item_21`, `id_item_22`, `id_item_23`, `id_item_24`, `id_item_25`, `id_item_26`, `id_item_27`, `id_item_28`, `id_item_29`, `id_item_30`, `id_item_31`, `id_item_32`, `id_item_33`, `id_item_34`, `id_item_35`, `id_item_36`, `id_item_37`, `id_item_38`, `id_item_39`, `id_item_40`, `id_item_41`, `id_item_42`, `id_item_43`, `id_item_44`, `id_item_45`, `id_item_46`, `id_item_47`, `id_item_48`, `id_item_49`, `id_item_50`) VALUES
 (2, 1, 2, 4, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(3, 1, 4, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
+(3, 1, 4, 3, 2, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -150,26 +150,29 @@ INSERT INTO `lacollection` (`id`, `id_item_1`, `id_item_2`, `id_item_3`, `id_ite
 DROP TABLE IF EXISTS `les_items`;
 CREATE TABLE IF NOT EXISTS `les_items` (
   `id` int(50) NOT NULL AUTO_INCREMENT,
+  `id_prop` int(50) NOT NULL,
   `nom` varchar(255) NOT NULL,
   `description` varchar(255) NOT NULL,
   `prix` float NOT NULL,
   `prix_souh` float DEFAULT NULL,
   `video` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
   `categorie` int(5) NOT NULL,
+  `type` int(50) NOT NULL,
   `date_debut` date NOT NULL,
   `date_fin` date NOT NULL,
-  PRIMARY KEY (`id`)
+  PRIMARY KEY (`id`),
+  KEY `id_prop` (`id_prop`)
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Déchargement des données de la table `les_items`
 --
 
-INSERT INTO `les_items` (`id`, `nom`, `description`, `prix`, `prix_souh`, `video`, `categorie`, `date_debut`, `date_fin`) VALUES
-(1, 'Cheval', 'Le cheval, le cheval, le cheval c\'est trop génial', 5.5, NULL, 'video-item/cheval.mp4', 3, '0000-00-00', '0000-00-00'),
-(2, 'Disque Dur', 'un disque tout dur', 15, NULL, 'video-item/disque-dur.mp4', 2, '0000-00-00', '0000-00-00'),
-(3, 'Caftière', 'Une machine pour faire du café', 35, NULL, NULL, 1, '2020-05-19', '2020-05-22'),
-(4, 'clavier', 'Un truc pour écrire', 5.3, NULL, NULL, 2, '2020-04-23', '2020-04-25');
+INSERT INTO `les_items` (`id`, `id_prop`, `nom`, `description`, `prix`, `prix_souh`, `video`, `categorie`, `type`, `date_debut`, `date_fin`) VALUES
+(1, 3, 'Cheval', 'Le cheval, le cheval, le cheval c\'est trop génial', 5.5, NULL, 'video-item/cheval.mp4', 3, 1, '2020-05-21', '2020-05-28'),
+(2, 3, 'Disque Dur', 'un disque tout dur', 15, NULL, 'video-item/disque-dur.mp4', 2, 2, '2020-06-05', '2020-06-29'),
+(3, 3, 'Caftière', 'Une machine pour faire du café', 35, NULL, NULL, 1, 3, '2020-05-19', '2020-05-22'),
+(4, 3, 'clavier', 'Un truc pour écrire', 5.3, NULL, NULL, 2, 1, '2020-04-23', '2020-04-25');
 
 -- --------------------------------------------------------
 
@@ -255,6 +258,12 @@ INSERT INTO `user` (`id`, `id_livraison`, `id_carte`, `id_collection`, `email`, 
 --
 -- Contraintes pour les tables déchargées
 --
+
+--
+-- Contraintes pour la table `les_items`
+--
+ALTER TABLE `les_items`
+  ADD CONSTRAINT `les_items_ibfk_1` FOREIGN KEY (`id_prop`) REFERENCES `user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Contraintes pour la table `photo`

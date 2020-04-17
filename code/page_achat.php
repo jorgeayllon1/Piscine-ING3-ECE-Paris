@@ -2,12 +2,38 @@
 session_start();
 
 $database = "ebayece";
-$db_handle = mysqli_connect('localhost','root','');
-$db_found = mysqli_select_db($db_handle,$database);
+$db_handle = mysqli_connect('localhost', 'root', '');
+$db_found = mysqli_select_db($db_handle, $database);
 
-#$sql = "SELECT * FROM "
+$sql = "SELECT * FROM les_items";
+$result = mysqli_query($db_handle, $sql);
 
+/*
+$rechercherphoto =
+	"SELECT chemin from photo 
+	inner join les_items
+		on les_items.id = photo.id_item
+		where les_items.nom = 'cheval'";
+*/
+$rechercherphoto =
+	"SELECT chemin from photo 
+	inner join les_items
+		on les_items.id = photo.id_item";
 
+$result_photo = mysqli_query($db_handle, $rechercherphoto);
+
+#print_r($result);
+print_r($result_photo);
+
+#$lesitems = array('0','rien');
+/*
+while ($data = mysqli_fetch_assoc($result)) {
+
+	$lesitems[$data['id']] = $data['nom'];
+}
+*/
+#echo print_r($result);
+#mysqli_close($db_handle);
 ?>
 <!DOCTYPE html>
 <!--FICHIER TEST-->
@@ -139,7 +165,49 @@ $db_found = mysqli_select_db($db_handle,$database);
 							<th scope="col">Prix</th>
 						</tr>
 					</thead>
+
 					<tbody>
+						<!-- CODE POUR AFFICHER N ITEMS -->
+						<!-- NON OPTI : problem d'accée au donnée, ne que ce faire une seule fois dans le code (ICI)-->
+						<?php
+
+						while ($elements = mysqli_fetch_assoc($result)) {
+							echo '<tr>';
+							echo '<th scope="row"><img src="images/item/item1.jpg" width="80px" height="80px"></th>';
+							echo '<td>' . $elements["nom"] . '</td>';
+							echo '<td><input type="textarea" value=' . $elements["description"] . '></td>';
+							switch ($elements["categorie"]) {
+								case 1:
+									echo '<td>Ferraille ou trésor</td>';
+									break;
+								case 2:
+									echo '<td>Bon pour le Musée</td>';
+									break;
+								case 3:
+									echo '<td>Accessoire VIP</td>';
+									break;
+							}
+							switch ($elements["type"]) {
+								case 1:
+									echo '<td>Enchères</td>';
+									break;
+								case 2:
+									echo '<td>Achetez-le Maintenant</td>';
+									break;
+								case 3:
+									echo '<td>Meilleure Offre</td>';
+									break;
+							}
+
+							echo '<td>' . $elements["date_fin"] . '</td>';
+							echo '<td>';
+							echo '<h4>' . $elements["prix"] . '€</h4>';
+							echo 'Ajouter au panier<button class="btn ml-4" style="border-radius: 15px; background-color: #6AD51A;"> <i class="fa fa-shopping-basket"></i> </button>';
+							echo '</td>';
+							echo '</tr>';
+						}
+						?>
+						<!--
 						<tr>
 							<th scope="row"><img src="images/item/item1.jpg" width="80px" height="80px"></th>
 							<td>Lampe</td>
@@ -152,9 +220,10 @@ $db_found = mysqli_select_db($db_handle,$database);
 								Ajouter au panier<button class="btn ml-4" style="border-radius: 15px; background-color: #6AD51A;"> <i class="fa fa-shopping-basket"></i> </button>
 							</td>
 						</tr>
+			-->
 						<tr>
 							<th scope="row"><img src="images/item/item2.jpg" width="80px" height="80px"></th>
-							<td>Lampe</td>
+							<td>Pièce</td>
 							<td><input type="textarea" value="bon état"></td>
 							<td>Ferraille ou trésor</td>
 							<td>Enchère</td>
@@ -166,7 +235,7 @@ $db_found = mysqli_select_db($db_handle,$database);
 						</tr>
 						<tr>
 							<th scope="row"><img src="images/item/item3.jpg" width="80px" height="80px"></th>
-							<td>Lampe</td>
+							<td>Bague</td>
 							<td><input type="textarea" value="bon état"></td>
 							<td>Ferraille ou trésor</td>
 							<td>Meilleure offre</td>
