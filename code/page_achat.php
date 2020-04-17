@@ -57,9 +57,9 @@ $result = mysqli_query($db_handle, $sql);
 
 <body>
 
-	<div class="container">
+	<div class="container-fluid">
 		<div class="row d-flex justify-content-center">
-			<nav class="navbar navbar-expand-md col-lg-12">
+			<nav class="navbar navbar-expand-md col-lg-12" style="border-bottom:solid #E7E7E7 ;">
 				<a class="navbar-brand" href="accueil.php"><img src="images/logo.png" width="20%"></a>
 				<button class="navbar-toggler navbar-dark" type="button" data-toggle="collapse" data-target="#main-navigation">
 					<span class="navbar-toggler-icon"></span>
@@ -74,7 +74,7 @@ $result = mysqli_query($db_handle, $sql);
 				</div>
 			</nav>
 
-			<div class="col-lg-8 my-1">
+			<div class="col-lg-6 my-1">
 				<div class="input-group-prepend">
 					<img src="images/logo-footer.png" width="20%">
 					<button class="btn btn-outline-secondary dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

@@ -70,7 +70,7 @@ if(isset($_SESSION["id_user"])){
 
 				<div class="row">
 
-					<nav class="navbar navbar-expand-md col-lg-12">
+					<nav class="navbar navbar-expand-md col-lg-12" style="border-bottom:solid #E7E7E7 ;">
 						<a class="navbar-brand" href="accueil.php"><img src="images/logo.png" width="20%"></a>
 						<button class="navbar-toggler navbar-dark" type="button" data-toggle="collapse" data-target="#myNavbar">
 							<span class="navbar-toggler-icon"></span>
