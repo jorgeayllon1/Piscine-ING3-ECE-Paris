@@ -3,6 +3,7 @@
 #Code de demarage de session, a mettre en première ligne de chaque page
 # C'est OBLIGATOIRE, sinon cookie marche pas
 session_start();
+#On met des valeurs, pour eviter les erreurs
 setcookie('id_user','' , time() + 365 * 24 * 3600);
 setcookie('rang', '', time() + 365 * 24 * 3600);
 

@@ -1,8 +1,12 @@
 <?php
 
+#Code de demarage de session, a mettre en première ligne de chaque page
+# C'est OBLIGATOIRE, sinon cookie marche pas
 session_start();
+#On met des valeurs, pour eviter les erreurs
 setcookie('id_user', '', time() + 365 * 24 * 3600);
 setcookie('rang', '', time() + 365 * 24 * 3600);
+
 $database = "ebayece";
 $db_handle = mysqli_connect('localhost', 'root', '');
 $db_found = mysqli_select_db($db_handle, $database);

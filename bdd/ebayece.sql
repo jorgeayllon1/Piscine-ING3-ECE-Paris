@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le :  jeu. 16 avr. 2020 à 15:34
+-- Généré le :  ven. 17 avr. 2020 à 08:30
 -- Version du serveur :  8.0.18
 -- Version de PHP :  7.3.12
 
@@ -25,11 +25,60 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Structure de la table `collection`
+-- Structure de la table `coord_livraison`
 --
 
-DROP TABLE IF EXISTS `collection`;
-CREATE TABLE IF NOT EXISTS `collection` (
+DROP TABLE IF EXISTS `coord_livraison`;
+CREATE TABLE IF NOT EXISTS `coord_livraison` (
+  `id` int(50) NOT NULL AUTO_INCREMENT,
+  `num_tel` varchar(255) NOT NULL,
+  `adresse1` varchar(255) NOT NULL,
+  `adresse2` varchar(255) NOT NULL,
+  `ville` varchar(255) NOT NULL,
+  `code_postal` int(255) NOT NULL,
+  `pays` varchar(255) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Déchargement des données de la table `coord_livraison`
+--
+
+INSERT INTO `coord_livraison` (`id`, `num_tel`, `adresse1`, `adresse2`, `ville`, `code_postal`, `pays`) VALUES
+(1, '0607080910', '1 rue de victor hugo', '2 rue de je sais pas ou', 'Paris', 75000, 'France');
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `info_bancaire`
+--
+
+DROP TABLE IF EXISTS `info_bancaire`;
+CREATE TABLE IF NOT EXISTS `info_bancaire` (
+  `id` int(50) NOT NULL AUTO_INCREMENT,
+  `num_carte` varchar(255) NOT NULL,
+  `type` varchar(255) NOT NULL,
+  `nom_sur_carte` varchar(255) NOT NULL,
+  `date_expi` varchar(255) NOT NULL,
+  `code` varchar(255) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Déchargement des données de la table `info_bancaire`
+--
+
+INSERT INTO `info_bancaire` (`id`, `num_carte`, `type`, `nom_sur_carte`, `date_expi`, `code`) VALUES
+(1, '68540654106', 'Visa', 'claude', '02/24', '165');
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `lacollection`
+--
+
+DROP TABLE IF EXISTS `lacollection`;
+CREATE TABLE IF NOT EXISTS `lacollection` (
   `id` int(50) NOT NULL AUTO_INCREMENT,
   `id_item_1` int(50) DEFAULT NULL,
   `id_item_2` int(50) DEFAULT NULL,
@@ -85,61 +134,12 @@ CREATE TABLE IF NOT EXISTS `collection` (
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
--- Déchargement des données de la table `collection`
+-- Déchargement des données de la table `lacollection`
 --
 
-INSERT INTO `collection` (`id`, `id_item_1`, `id_item_2`, `id_item_3`, `id_item_4`, `id_item_5`, `id_item_6`, `id_item_7`, `id_item_8`, `id_item_9`, `id_item_10`, `id_item_11`, `id_item_12`, `id_item_13`, `id_item_14`, `id_item_15`, `id_item_16`, `id_item_17`, `id_item_18`, `id_item_19`, `id_item_20`, `id_item_21`, `id_item_22`, `id_item_23`, `id_item_24`, `id_item_25`, `id_item_26`, `id_item_27`, `id_item_28`, `id_item_29`, `id_item_30`, `id_item_31`, `id_item_32`, `id_item_33`, `id_item_34`, `id_item_35`, `id_item_36`, `id_item_37`, `id_item_38`, `id_item_39`, `id_item_40`, `id_item_41`, `id_item_42`, `id_item_43`, `id_item_44`, `id_item_45`, `id_item_46`, `id_item_47`, `id_item_48`, `id_item_49`, `id_item_50`) VALUES
+INSERT INTO `lacollection` (`id`, `id_item_1`, `id_item_2`, `id_item_3`, `id_item_4`, `id_item_5`, `id_item_6`, `id_item_7`, `id_item_8`, `id_item_9`, `id_item_10`, `id_item_11`, `id_item_12`, `id_item_13`, `id_item_14`, `id_item_15`, `id_item_16`, `id_item_17`, `id_item_18`, `id_item_19`, `id_item_20`, `id_item_21`, `id_item_22`, `id_item_23`, `id_item_24`, `id_item_25`, `id_item_26`, `id_item_27`, `id_item_28`, `id_item_29`, `id_item_30`, `id_item_31`, `id_item_32`, `id_item_33`, `id_item_34`, `id_item_35`, `id_item_36`, `id_item_37`, `id_item_38`, `id_item_39`, `id_item_40`, `id_item_41`, `id_item_42`, `id_item_43`, `id_item_44`, `id_item_45`, `id_item_46`, `id_item_47`, `id_item_48`, `id_item_49`, `id_item_50`) VALUES
 (2, 1, 2, 4, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
 (3, 1, 4, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
-
--- --------------------------------------------------------
-
---
--- Structure de la table `coord_livraison`
---
-
-DROP TABLE IF EXISTS `coord_livraison`;
-CREATE TABLE IF NOT EXISTS `coord_livraison` (
-  `id` int(50) NOT NULL AUTO_INCREMENT,
-  `num_tel` varchar(255) NOT NULL,
-  `adresse1` varchar(255) NOT NULL,
-  `adresse2` varchar(255) NOT NULL,
-  `ville` varchar(255) NOT NULL,
-  `code_postal` int(255) NOT NULL,
-  `pays` varchar(255) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-
---
--- Déchargement des données de la table `coord_livraison`
---
-
-INSERT INTO `coord_livraison` (`id`, `num_tel`, `adresse1`, `adresse2`, `ville`, `code_postal`, `pays`) VALUES
-(1, '0607080910', '1 rue de victor hugo', '2 rue de je sais pas ou', 'Paris', 75000, 'France');
-
--- --------------------------------------------------------
-
---
--- Structure de la table `info_bancaire`
---
-
-DROP TABLE IF EXISTS `info_bancaire`;
-CREATE TABLE IF NOT EXISTS `info_bancaire` (
-  `id` int(50) NOT NULL AUTO_INCREMENT,
-  `num_carte` varchar(255) NOT NULL,
-  `type` varchar(255) NOT NULL,
-  `nom_sur_carte` varchar(255) NOT NULL,
-  `date_expi` varchar(255) NOT NULL,
-  `code` varchar(255) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-
---
--- Déchargement des données de la table `info_bancaire`
---
-
-INSERT INTO `info_bancaire` (`id`, `num_carte`, `type`, `nom_sur_carte`, `date_expi`, `code`) VALUES
-(1, '68540654106', 'Visa', 'claude', '02/24', '165');
 
 -- --------------------------------------------------------
 
@@ -250,7 +250,7 @@ CREATE TABLE IF NOT EXISTS `user` (
 INSERT INTO `user` (`id`, `id_livraison`, `id_carte`, `id_collection`, `email`, `mdp`, `pseudo`, `rang`, `nom`, `prenom`, `photo_perso`, `photo_background`) VALUES
 (1, NULL, NULL, NULL, 'admin@gmail.com', 'motdepasse', 'lebigboss', 3, 'ayllon', 'jorge', NULL, NULL),
 (2, 1, 1, 2, 'jjjjj@gmail.com', 'jebois', 'jjgold', 1, 'goldman', 'jean-jacques', NULL, NULL),
-(3, NULL, NULL, 3, 'jhonnn@gmail.com', 'jechante', 'holiday', 2, 'johnny', 'hallyday', 'images/vendeur/johnny-hallyday.png', 'images/vendeur/johnny-hallyday-back.png');
+(3, NULL, NULL, 3, 'jhonnn@gmail.com', 'jechante', 'holiday', 2, 'hallyday', 'johnny', 'images/vendeur/johnny-hallyday.png', 'images/vendeur/johnny-hallyday-back.png');
 
 --
 -- Contraintes pour les tables déchargées
@@ -276,7 +276,7 @@ ALTER TABLE `transaction`
 ALTER TABLE `user`
   ADD CONSTRAINT `user_ibfk_2` FOREIGN KEY (`id_carte`) REFERENCES `info_bancaire` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `user_ibfk_4` FOREIGN KEY (`id_livraison`) REFERENCES `coord_livraison` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `user_ibfk_5` FOREIGN KEY (`id_collection`) REFERENCES `collection` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `user_ibfk_5` FOREIGN KEY (`id_collection`) REFERENCES `lacollection` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
