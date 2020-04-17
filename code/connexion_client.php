@@ -31,6 +31,7 @@ if (isset($_POST['submit'])) {
                     $_SESSION["rang"] = $data['rang'];
                     $_SESSION["nom"]=$data['nom'];
                     $_SESSION["prenom"]=$data['prenom'];
+                    $_SESSION["id_collection"]=$data["id_collection"];
 
                     /*
                     fwrite($fp, "<?php 
