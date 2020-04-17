@@ -54,14 +54,7 @@ session_start();
 
 				<p class="h4 mb-4">S'inscrire</p>
 
-				<div class="form-check form-check-inline">
-					<p>Civilité :
-
-						<input type="radio" name="civilite" value="femme" id="femme" /> <label for="femme">Madame</label>
-						<input type="radio" name="civilite" value="homme" id="homme" /> <label for="homme">Monsieur</label>
-
-				</div>
-
+				
 				<div class="form-row mb-4">
 					<div class="col">
 
@@ -79,7 +72,7 @@ session_start();
 
 				<input type="password" id="mdp_client_inscription" class="form-control" placeholder="Mot De Passe" aria-describedby="defaultRegisterFormPasswordHelpBlock">
 				<small id="mdp_client_inscription" class="form-text text-muted mb-4">
-					Au moins 8 caractères et un chiffre
+					<em>Au moins 8 caractères et un chiffre</em>
 
 				</small>
 				<input type="text" id="ad1_client_inscription" class="form-control mb-3" placeholder="Adresse">
@@ -115,8 +108,8 @@ session_start();
 				<p>ou avec:</p>
 
 				<a href="#" class="mx-2" role="button"><i class="fa fa-facebook-f "></i></a>
-				<a href="#" class="mx-2" role="button"><i class="fa fa-linkedin-in "></i></a>
-				<a href="#" class="mx-2" role="button"><i class="fa fa-github "></i></a>
+				<a href="#" class="mx-2" role="button"><i class="fa fa-linkedin"></i></a>
+				<a href="#" class="mx-2" role="button"><i class="fa fa-google-plus "></i></a>
 
 				<p><em>Les informations de paiement seront à saisir lors de votre premier achat sur notre site</em></p>
 
@@ -127,8 +120,8 @@ session_start();
 					<em>S'inscrire</em> vous acceptez nos
 					<a href="" target="_blank">conditions de service</a></p>
 
-				<p>Déjà un compte ? Connectez-vous</p>
-				<a href="connexion_client.php">Se connecter</a>
+				<p><em>Déjà un compte ? Connectez-vous</em></p>
+				<a href="connexion_client.php" style="color:#fff;"><button class="btn" style="background: #31405F; border:none; color:#fff;">Se connecter</a>
 
 
 			</form>
