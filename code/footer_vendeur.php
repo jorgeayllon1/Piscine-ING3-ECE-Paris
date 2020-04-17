@@ -1,3 +1,4 @@
+
 <footer class="page-footer font-small blue-grey lighten-5">
 
 	<div style="background-color: #E52714;">
@@ -5,20 +6,24 @@
 			<div class="row py-4 d-flex align-items-center">
 
 				<div class="col-md-6 col-lg-5 text-center text-md-left mb-4 mb-md-0">
-					<h6>Restons en contact !</h6>
+					<h5 style="color:#fff;">Restons en contact !</h5>
 				</div>
 
 				<div class="col-md-6 col-lg-7 text-center text-md-right">
-					<a class="fb-ic" style="color: #fff;">
+					<a  style="color: #fff;">
 						<i class="fa fa-facebook-f  ml-4"> </i>
 					</a>
 
-					<a class="tw-ic" style="color: #fff;">
+					<a  style="color: #fff;">
 						<i class="fa fa-twitter  ml-4"> </i>
 					</a>
 
-					<a class="ins-ic" style="color: #fff;">
+					<a  style="color: #fff;">
 						<i class="fa fa-instagram  ml-4"> </i>
+                    </a>
+                    
+                    <a  style="color: #fff;">
+						<i class="fa fa-google-plus  ml-4"> </i>
 					</a>
 				</div>
 			</div>
@@ -26,45 +31,45 @@
 	</div>
 
 
-	<div class="container text-center text-md-right mt-4">
+	<div class="container text-center  mt-4">
 		<div class="row mt-3 dark-grey-text">
 
 			<div class="col-md-3 col-lg-4 col-xl-3 mb-3">
-				<img src="images/logo-footer.png" alt="logo ece ebay" width="50%">
+				<img src="images/logo-footer.png" alt="logo ece ebay" width="80%">
 				<p>Enchérissez !</p>
 			</div>
 
 			<div class="col-md-2 col-lg-2 col-xl-2 mx-auto mb-3" style="color: #000;">
 				<h5 class="font-weight-bold">Acheter</h5>
-				<hr class="teal accent-3 mb-4 mt-0 d-inline-block mx-auto" style="width: 60px;">
+				<hr class="mb-4 mt-0 d-inline-block mx-auto" style="width: 60px; background-color: #E52714; border: solid #E52714 1px;">
 				<p>
-					<a href="#!">Ferraille ou trésor</a>
+					<a href="#!" style="color:black;">Ferraille ou trésor</a>
 				</p>
 				<p>
-					<a href="#!">Bon pour musée</a>
+					<a href="#!" style="color:black;">Bon pour musée</a>
 				</p>
 				<p>
-					<a href="#!">Accessoire VIP</a>
+					<a href="#!" style="color:black;">Accessoire VIP</a>
 				</p>
 			</div>
 
 			<div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-3">
 				<h5 class="font-weight-bold">Vendre</h5>
-				<hr class="teal accent-3 mb-4 mt-0 d-inline-block mx-auto" style="width: 60px;">
+				<hr class="mb-4 mt-0 d-inline-block mx-auto " style="width: 60px;  background-color: #E52714; border: solid #E52714 1px;">
 				<p>
-					<a href="#!">S'inscrire</a>
+					<a href="#!" style="color:black;">S'inscrire</a>
 				</p>
 				<p>
-					<a href="#!">Comment vendre ?</a>
+					<a href="#!" style="color:black;">Comment vendre ?</a>
 				</p>
 				<p>
-					<a href="#!">Vos ventes</a>
+					<a href="#!" style="color:black;">Vos ventes</a>
 				</p>
 			</div>
 
 			<div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-3">
 				<h5 class="font-weight-bold">Contact</h5>
-				<hr class="teal accent-3 mb-4 mt-0 d-inline-block mx-auto" style="width: 60px;">
+				<hr class=" mb-4 mt-0 d-inline-block mx-auto" style="width: 60px; background-color: #E52714; border: solid #E52714 1px;">
 				<p>
 					<i class="fa fa-graduation-cap "></i> EBAY ECE</p>
 				<p>
@@ -75,7 +80,7 @@
 		</div>
 	</div>
 
-	<div class="footer-copyright text-center text-black-50 py-3">© 2020 Copyright: All rights reserved
+	<div class="footer-copyright text-center text-black-50 py-3" style="background-color:#F9F9F9  ;"><em>© 2020 Copyright: All rights reserved</em>
 		<a class="dark-grey-text" href="accueil.php"> www.ebay-ece.fr</a>
 	</div>
 
