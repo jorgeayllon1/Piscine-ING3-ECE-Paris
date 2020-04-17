@@ -47,29 +47,7 @@ session_start();
                 </div>
             </nav>
 
-            <div class="col-lg-8 my-1">
-                <div class="input-group-prepend">
-                    <img src="images/logo-footer.png" width="20%">
-                    <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Catégories
-                    </button>
-                    <div class="dropdown-menu">
-                        <a class="dropdown-item" href="#">Ferraille ou Trésor</a>
-                        <a class="dropdown-item" href="#">Bon pour le musée</a>
-                        <a class="dropdown-item" href="#">Accessoire VIP</a>
-                        <div role="separator" class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="#">Filtrer</a>
-                    </div>
-
-                    <input type="text" class="form-control" aria-label="Text input with dropdown button" placeholder="Rechercher..."><button> <i class="fa fa-search"></i></button>
-                </div>
-            </div>
-
-
-
-
-
-
+        
         </div>
     </div>
 
@@ -77,10 +55,9 @@ session_start();
     <div class="container">
         <div class="row col-lg-12">
 
-            <div class="col-lg-7 my-3" style="border:solid black 1px">
+            <div class="col-lg-7 my-3 shadow p-3 mb-5" style="border:solid black 1px">
 
-                <h4 class="horizontal-text-center  my-2" style="text-align: center ;"><span id="selection">Livraison</span></h4><br>
-
+                <h4 class="horizontal-text-center  my-2" style="text-align: center ; "><span id="selection" style="border-radius:5px; ">Livraison  <i class="fa fa-truck" style="font-size:20px;"></i></span></h4><br>
 
                 <div class="form-row ">
                     <div class="col">
@@ -108,71 +85,89 @@ session_start();
                 </div>
                 <input type="number" id="cp_client-inscription" class="form-control mb-3" placeholder="Code Postal">
 
-                <h4 class="horizontal-text-center" style="text-align: center ;"><span id="selection">Paiement</span></h4><br>
+                <h4 class="horizontal-text-center" style="text-align: center ;"><span id="selection" style="border-radius:5px;">Paiement  <i class="fa fa-credit-card" style="font-size:20px;"></i></span></h4><br>
 
-                <p>Votre type de paiement <i class="fa fa-credit-card"></i> :</p>
+                <p>Votre type de paiement  <i class="fa fa-credit-card"></i> :</p>
 
 
-                <input type="radio" name="type-carte" value="visa" id="visa">
+                <input type="radio"  name="type-carte" value="visa" id="visa">
                 <label for="visa">Visa</label>
+                <i class="fa fa-cc-visa"></i>
 
                 <input type="radio" name="type-carte" value="master" id="master">
-                <label for="master">MatserCard</label><br>
+                <label for="master">MatserCard</label>
+                <i class="fa fa-cc-mastercard"></i>
 
-
+                <br>
 
                 <input type="radio" name="type-carte" value="express" id="express">
                 <label for="express" class="">American Express</label>
+                <i class="fa fa-cc-amex"></i>
 
                 <input type="radio" name="type-carte" value="paypal" id="paypal">
                 <label for="paypal">Paypal</label>
+                <i class="fa fa-cc-paypal"></i>
 
                 <div class="form-row my-2">
                     <div class="col">
-                        <label for="paiement_nom">Nom sur la carte</label>
+                        <label for="paiement_nom">Nom sur la carte :</label>
                         <input type="text" id="paiement_nom" class="form-control">
                     </div>
                     <div class="col">
-                        <label for="paiement_num_carte">Numéro carte</label>
+                        <label for="paiement_num_carte">Numéro carte :</label>
                         <input type="text" id="paiement_num_carte" class="form-control">
                     </div>
                 </div>
 
                 <div class="form-row my-2 ">
                     <div class="col">
-                        <label for="paiement_date_expi">Date expiration</label>
+                        <label for="paiement_date_expi">Date expiration :</label>
                         <input type="month" id="paiement_date_expi" class="form-control">
                     </div>
                     <div class="col">
-                        <label for="paiement_code">CVC</label>
+                        <label for="paiement_code">CVC :</label>
                         <input type="number" id="paiement_code" class="form-control">
                     </div>
                 </div>
 
-                <input type="checkbox" name="souvenir_cb" id="souvenir_cb">Sauvegarder mes coordonnées pour la prochaine fois
+                <p class="light-grey-text"><em>Paiement 100% sécurisé</em></p>
+
+                <input type="checkbox" name="souvenir_cb" id="souvenir_cb"> Sauvegarder mes coordonnées pour la prochaine fois
 
                 <div class="row">
                     <button class="btn btn-primary my-2 " style="margin: 0 auto; font-size: larger;">Finalisez mon paiment</button>
-
+                    <!--CREATION PUIS VERIFICATION DES DONNEES DANS LA BDD PUIS AFFICHAGE MESSAGE PAIEMENT REUSSI-->
                 </div>
-
-
 
             </div>
 
-            <div class="col-lg-1">
+            <div class="col-lg-1 ">
 
             </div>
 
             <!--Affichage miniaturisée sur le côté avec prix total avec option de continuer à faire shopping-->
-            <div class="col-lg-3 my-3 info-paiement">
+            <div class="col-lg-3 my-3  info-paiement ">
 
-
-                <div class="card mt-2" style="border:solid black 1px">
+                <div class="card mt-2 shadow p-3 mb-5" style="border:solid black 1px">
 
                     <div class="card-body text-center">
                         <h4 class="mb-3  text-center font-weight-bold">Récapitulatif</h4>
                         <hr style="border-top: dotted 1px;" />
+
+                        <dl class="row">
+                            <dd class="col-sm-8">
+                                 <p >Panier (<span id="nb_item">2</span>)</p>
+                            </dd>
+                        </dl>
+                        <hr style="border-top: dotted 1px;"/>
+
+                        <dl class="row">
+                            <dd class="col-sm-8">
+                                 <p class="nom_item">Lampe     <span class="prix_item">16<sup>€</sup></span><p>
+                                 <p class="nom_item">Bijou     <span class="prix_item">152<sup>€</sup></span><p>
+                            </dd>
+                        </dl>
+
                         <dl class="row">
                             <dd class="col-sm-8">
                                 Sous-total
@@ -186,10 +181,10 @@ session_start();
 
                         <dl class="row">
                             <dd class="col-sm-8">
-                                Livraison
+                                <em>Livraison</em>
                             </dd>
                             <dd class="col-sm-4">
-                                0€
+                                <em>0€</em>
                             </dd>
                         </dl>
 
@@ -197,7 +192,9 @@ session_start();
 
                         <dl class="row">
                             <dd class="col-sm-8 font-weight-bold">
+
                                 Total
+                                <i class="fa fa-euro"></i>
                             </dd>
                             <dd class="col-sm-4">
                                 168<sup>€</sup>
@@ -211,15 +208,15 @@ session_start();
                     <button class="btn btn-primary my-2 " style="margin: 0 auto; font-size: larger;">Finalisez mon paiment</button>
 
                 </div>
+                <div class="row">
+                    <img src="images/logo-footer.png" width="80%" class="ml-4 mt-4">
+                </div>
 
             </div>
         </div>
     </div>
 
-
-
-
-
+    <!--FOOTER-->
     <div class="container">
 
         <div class="row-width-max">
@@ -229,8 +226,6 @@ session_start();
         </div>
 
     </div>
-
-
 
 </body>
 
