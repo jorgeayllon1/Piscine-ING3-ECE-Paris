@@ -9,13 +9,13 @@ $sql = "SELECT * FROM les_items";
 
 #Cette fonction prend en paramètre l'id d'une image et le msqli_connect (db_handle)
 #Cette fonction va renvoyer toutes les images d'un items sous forme d'un tableau (array)
-function chemins_dune_image($id_image, $db_handle)
+function chemins_dune_image($id_item, $db_handle)
 {
 	$sql =
 		"SELECT chemin from photo 
 	inner join les_items
 		on les_items.id = photo.id_item
-		where les_items.id=$id_image";
+		where les_items.id=$id_item";
 
 	$result = mysqli_query($db_handle, $sql);
 
@@ -165,6 +165,7 @@ $result = mysqli_query($db_handle, $sql);
 						<?php
 
 						while ($elements = mysqli_fetch_assoc($result)) {
+							echo '<tr>';
 							echo '<th scope="row"><img src="' . chemins_dune_image($elements["id"], $db_handle)[0] . '" width="80px" height="80px" ></th>';
 							echo '<td>' . $elements["nom"] . '</td>';
 							echo '<td>' . $elements["description"] . '</td>';

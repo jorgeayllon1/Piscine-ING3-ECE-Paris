@@ -1,5 +1,81 @@
 <?php
 session_start();
+
+$database = "ebayece";
+$db_handle = mysqli_connect('localhost', 'root', '');
+$db_found = mysqli_select_db($db_handle, $database);
+
+# Retourne un tableau 2 dimension avec les items qui appartienne à la collection
+# On met aussi le id de l'utilisateur pour gagner un peu de temps dans le code
+
+# Cherche pas a comprendre le code, j'ai déjà oublié
+# pour utiliser le tableau, il faut faire un foreach et la variable de parcours sera l'item
+function id_items_dans_panier($id_collection, $db_handle)
+{
+    #Variable tempon
+    $recip = "id_item_";
+
+    #On cherche les id des items dans la collection
+    $sql = "SELECT * from lacollection where lacollection.id=$id_collection";
+
+    $result = mysqli_query($db_handle, $sql);
+
+    while ($data = mysqli_fetch_assoc($result)) {
+
+        for ($indice = 1; $indice <= 50; $indice++) {
+            #On evite les indice NULL
+            if ($data[$recip . strval($indice)]) {
+                #echo $data[$recip . strval($indice)];
+                $lesbonindices[] = $data[$recip . strval($indice)];
+            }
+        }
+    }
+
+    #Pour chaque indice d'item, on retrouve l'item en question
+    foreach ($lesbonindices as $var) {
+
+        $autresql = "SELECT * from les_items where les_items.id=$var";
+        $autreresult = mysqli_query($db_handle, $autresql);
+
+        while ($autredata = mysqli_fetch_assoc($autreresult)) {
+            #On met l'item dans le tableau
+            #Comme il y a N item, on utilise un tableau deux dimension
+            $lesitems[$var]["id"] = $autredata["id"];
+            $lesitems[$var]["id_prop"] = $autredata["id_prop"];
+            $lesitems[$var]["nom"] = $autredata["nom"];
+            $lesitems[$var]["description"] = $autredata["description"];
+            $lesitems[$var]["prix"] = $autredata["prix"];
+            $lesitems[$var]["prix_souh"] = $autredata["prix_souh"];
+            $lesitems[$var]["video"] = $autredata["video"];
+            $lesitems[$var]["categorie"] = $autredata["categorie"];
+            $lesitems[$var]["type"] = $autredata["type"];
+            $lesitems[$var]["date_debut"] = $autredata["date_debut"];
+            $lesitems[$var]["date_fin"] = $autredata["date_fin"];
+        }
+    }
+    return $lesitems;
+}
+
+#$lesitems = id_items_dans_panier("2", "2", $db_handle);
+
+#print_r($lesitems);
+
+function chemins_dune_image($id_item, $db_handle)
+{
+    $sql =
+        "SELECT chemin from photo 
+	inner join les_items
+		on les_items.id = photo.id_item
+		where les_items.id=$id_item";
+
+    $result = mysqli_query($db_handle, $sql);
+
+    while ($data = mysqli_fetch_assoc($result)) {
+        $leschemins[] = $data["chemin"];
+    }
+    return $leschemins;
+}
+
 ?>
 <!DOCTYPE html>
 
@@ -98,6 +174,48 @@ session_start();
                             </tr>
                         </thead>
                         <tbody>
+                            <?php
+
+                            $lesitems = id_items_dans_panier($_SESSION["id_user"], $db_handle);
+
+                            foreach ($lesitems as $unitem) {
+
+                                echo '<tr class="text-center">';
+                                echo '<td><img src=' . chemins_dune_image($unitem["id"], $db_handle)[0] . ' width="90px" height="90px" /> </td>';
+                                echo '<td>' . $unitem["nom"] . '</td>';
+                                echo '<td>(1)</td>';
+
+                                switch ($unitem["type"]) {
+                                    case 1:
+                                        echo '<td>Enchères</td>';
+                                        break;
+                                    case 2:
+                                        echo '<td>Achetez-le Maintenant</td>';
+                                        break;
+                                    case 3:
+                                        echo '<td>Meilleure Offre</td>';
+                                        break;
+                                }
+
+                                switch ($unitem["categorie"]) {
+                                    case 1:
+                                        echo '<td>Ferraille ou trésor</td>';
+                                        break;
+                                    case 2:
+                                        echo '<td>Bon pour le Musée</td>';
+                                        break;
+                                    case 3:
+                                        echo '<td>Accessoire VIP</td>';
+                                        break;
+                                }
+
+                                echo '<td>' . $unitem["date_fin"] . '</td>';
+                                echo '<td>' . $unitem["prix_souh"] . '</td>';
+                                echo '<td class="prix-article-1">' . $unitem["prix"] . '€</td>';
+                                echo '<td class="text-right"><button class="btn btn-sm btn-danger"><i class="fa fa-trash"></i> </button> </td>';
+                                echo '</tr>';
+                            }
+                            ?>
                             <tr class="text-center">
                                 <td><img src="images/item/item1.jpg" width="90px" height="90px" /> </td>
                                 <td>Lampe</td>
