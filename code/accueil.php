@@ -46,7 +46,8 @@ if(isset($_SESSION["id_user"])){
 
 
 	<!-- Navigation SIDEBAR -->
-	
+
+	<div style="font-family: Arial, Helvetica, sans-serif;">
 	<div class="container-fluid">
 		<div class="row ">
 			<div class="col-lg-1 col-md-1 col-xs-1 col-xm-1 sticky-top">
@@ -414,6 +415,12 @@ if(isset($_SESSION["id_user"])){
 
 					<?php include('footer_client.php'); ?>
 				</div>
+		</div>
+
+	</div>
+    </div>
+	
+	
 
 
 
