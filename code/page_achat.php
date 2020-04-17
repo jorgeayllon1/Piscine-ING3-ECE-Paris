@@ -6,34 +6,27 @@ $db_handle = mysqli_connect('localhost', 'root', '');
 $db_found = mysqli_select_db($db_handle, $database);
 
 $sql = "SELECT * FROM les_items";
-$result = mysqli_query($db_handle, $sql);
 
-/*
-$rechercherphoto =
-	"SELECT chemin from photo 
+#Cette fonction prend en paramètre l'id d'une image et le msqli_connect (db_handle)
+#Cette fonction va renvoyer toutes les images d'un items sous forme d'un tableau (array)
+function chemins_dune_image($id_image, $db_handle)
+{
+	$sql =
+		"SELECT chemin from photo 
 	inner join les_items
 		on les_items.id = photo.id_item
-		where les_items.nom = 'cheval'";
-*/
-$rechercherphoto =
-	"SELECT chemin from photo 
-	inner join les_items
-		on les_items.id = photo.id_item";
+		where les_items.id=$id_image";
 
-$result_photo = mysqli_query($db_handle, $rechercherphoto);
+	$result = mysqli_query($db_handle, $sql);
 
-#print_r($result);
-print_r($result_photo);
-
-#$lesitems = array('0','rien');
-/*
-while ($data = mysqli_fetch_assoc($result)) {
-
-	$lesitems[$data['id']] = $data['nom'];
+	while ($data = mysqli_fetch_assoc($result)) {
+		$leschemins[] = $data["chemin"];
+	}
+	return $leschemins;
 }
-*/
-#echo print_r($result);
-#mysqli_close($db_handle);
+
+
+$result = mysqli_query($db_handle, $sql);
 ?>
 <!DOCTYPE html>
 <!--FICHIER TEST-->
@@ -168,14 +161,13 @@ while ($data = mysqli_fetch_assoc($result)) {
 
 					<tbody>
 						<!-- CODE POUR AFFICHER N ITEMS -->
-						<!-- NON OPTI : problem d'accée au donnée, ne que ce faire une seule fois dans le code (ICI)-->
+						<!-- NON OPTI : problem d'accée au donnée, ne peut se faire une seule fois dans le code (ICI)-->
 						<?php
 
 						while ($elements = mysqli_fetch_assoc($result)) {
-							echo '<tr>';
-							echo '<th scope="row"><img src="images/item/item1.jpg" width="80px" height="80px"></th>';
+							echo '<th scope="row"><img src="' . chemins_dune_image($elements["id"], $db_handle)[0] . '" width="80px" height="80px" ></th>';
 							echo '<td>' . $elements["nom"] . '</td>';
-							echo '<td><input type="textarea" value=' . $elements["description"] . '></td>';
+							echo '<td>' . $elements["description"] . '</td>';
 							switch ($elements["categorie"]) {
 								case 1:
 									echo '<td>Ferraille ou trésor</td>';
@@ -207,20 +199,6 @@ while ($data = mysqli_fetch_assoc($result)) {
 							echo '</tr>';
 						}
 						?>
-						<!--
-						<tr>
-							<th scope="row"><img src="images/item/item1.jpg" width="80px" height="80px"></th>
-							<td>Lampe</td>
-							<td><input type="textarea" value="bon état, vous ne regretterez pas cet acjat faites moi confiance"></td>
-							<td>Ferraille ou trésor</td>
-							<td>Achat immédiat</td>
-							<td>0h 0min 0s</td>
-							<td>
-								<h4>56€</h4>
-								Ajouter au panier<button class="btn ml-4" style="border-radius: 15px; background-color: #6AD51A;"> <i class="fa fa-shopping-basket"></i> </button>
-							</td>
-						</tr>
-			-->
 						<tr>
 							<th scope="row"><img src="images/item/item2.jpg" width="80px" height="80px"></th>
 							<td>Pièce</td>
