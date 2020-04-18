@@ -72,7 +72,7 @@ session_start();
                   <th>Statut</th>
                   <th>Catégorie</th>
                   <th>Prix initial</th>
-                  <th>Prix actuel</th>
+                  <th>Prix proposé</th>
                   <th>Fin enchère dans</th>
 
 

@@ -78,7 +78,7 @@ session_start();
 
 
 
-	<div class="container mt-5">
+	<div class="container-fluid d-flex justify-content-center mt-5">
 
 		<div class="row d-flex justify-content-center">
 
@@ -238,7 +238,7 @@ session_start();
 										<tr>
 											<!-- mettre les classes pour PHP comme pr vendeur-->
 											<td>1</td>
-											<td>photo</td>
+											<td><input type="file"></td>
 											<td>56€</td>
 											<td>2</td>
 											<td>MasterCard</td>
@@ -268,7 +268,7 @@ session_start();
 											<th>Statut</th>
 											<th>Catégorie</th>
 											<th>Première offre</th>
-											<th>Prix actuel</th>
+											<th>Offre actuelle</th>
 											<th>Nombre offre restant</th>
 											<th>Nouvelle offre</th>
 
@@ -278,7 +278,7 @@ session_start();
 										<tr>
 											<!-- mettre les classes pour PHP comme pr vendeur-->
 											<td>1</td>
-											<td>photo</td>
+											<td><input type="file"></td>
 											<td>Theo</td>
 											<td>En cours</td>
 											<td>Ferraille</td>
@@ -307,14 +307,14 @@ session_start();
 							<div class="table-responsive">
 								<table class="table table-bordered">
 									<thead>
-										<tr>
+										<tr class="text-center">
 											<th>#</th>
 											<th>Produit</th>
 											<th>Vendeur</th>
 											<th>Statut</th>
 											<th>Catégorie</th>
 											<th>Prix initial</th>
-											<th>Prix actuel</th>
+											<th>Prix proposé</th>
 											<th>Fin enchère dans</th>
 											<th>Nouvelle offre</th>
 
@@ -324,14 +324,16 @@ session_start();
 										<tr>
 											<!-- mettre les classes pour PHP comme pr vendeur-->
 											<td>1</td>
-											<td>photo</td>
+											<td>
+												<input type="file">
+											</td>
 											<td>Theo</td>
 											<td>En cours</td>
 											<td>VIP</td>
 											<td>390<sup>€</sup></td>
 											<td>560<sup>€</sup></td>
 											<td>
-												<input type="text" value="0:12min:33s">
+												<input type="text" value="12min:33s">
 
 											</td>
 											<td>

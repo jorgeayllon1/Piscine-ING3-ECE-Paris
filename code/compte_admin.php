@@ -62,7 +62,7 @@ session_start();
 
 
 
-	<div class="container mt-5  ">
+	<div class="container-fluid d-flex justify-content-center mt-5  ">
 
 		<div class="row d-flex justify-content-center ">
 			<div class="col-lg-2 ">
@@ -154,7 +154,8 @@ session_start();
 											<th>Prix</th>
 											<th>Catégorie</th>
 											<th>Description</th>
-											<th>moyen achat</th>
+											<th>Moyen vente</th>
+											<th>Client</th>
 
 
 										</tr>
@@ -163,11 +164,12 @@ session_start();
 										<tr>
 											<td class="id-vente">1</td>
 											<td class="produit-vente">bijou</td>
-											<td class="photo-vente"></td>
+											<td class="photo-vente"><input type="file"></td>
 											<td class="prix-vente">56€</td>
 											<td class="categorie-vente">Ferraille</td>
 											<td class="description-vente">Neuf</td>
 											<td class="moyen-vente">Enchère</td>
+											<td>Theo</td>
 
 
 										</tr>
@@ -203,13 +205,13 @@ session_start();
 										<tr>
 											<!-- mettre les classes pour PHP comme pr vendeur-->
 											<td>1</td>
-											<td>photo</td>
+											<td><input type="file"></td>
 											<td>Theo</td>
 											<td>En cours</td>
 											<td>Bon musée</td>
 											<td>560<sup>€</sup></td>
 											<td>
-												<a href="negocier.php"><button class="btn btn-primary">Négocier</button></a>
+												<a href="negocier_vendeur.php"><button class="btn btn-primary">Négocier</button></a>
 											</td>
 
 
@@ -297,7 +299,6 @@ session_start();
 									<thead>
 										<tr>
 											<th>#</th>
-											<th>Pseudo vendeur</th>
 											<th>Produit(nom)</th>
 											<th>Photo</th>
 											<th>Description</th>
@@ -313,9 +314,8 @@ session_start();
 										<tr>
 											<!-- mettre les classes pour PHP comme pr vendeur-->
 											<td>1</td>
-											<td>hzfhfeuk</td>
 											<td>Bijou</td>
-											<td></td>
+											<td><input type="file"></td>
 											<td>Bon état, pas de défaut</td>
 											<td></td>
 											<td>Bon musée</td>

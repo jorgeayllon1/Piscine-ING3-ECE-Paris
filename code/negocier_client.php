@@ -80,7 +80,7 @@ session_start();
                                     <th>Statut</th>
                                     <th>Catégorie</th>
                                     <th>Première offre</th>
-                                    <th>Prix actuel</th>
+                                    <th>Offre actuelle</th>
                                     <th>Nombre offre restant</th>
 
 
@@ -90,7 +90,7 @@ session_start();
                                 <tr>
                                     <!-- mettre les classes pour PHP comme pr vendeur-->
                                     <td>1</td>
-                                    <td>photo</td>
+                                    <td><input type="file"></td>
                                     <td>Theo</td>
                                     <td>En cours</td>
                                     <td>Ferraille</td>
