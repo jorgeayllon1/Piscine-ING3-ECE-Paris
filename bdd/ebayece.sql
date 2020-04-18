@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le :  sam. 18 avr. 2020 à 13:17
+-- Généré le :  sam. 18 avr. 2020 à 13:39
 -- Version du serveur :  8.0.18
 -- Version de PHP :  7.3.12
 
@@ -31,14 +31,14 @@ SET time_zone = "+00:00";
 DROP TABLE IF EXISTS `coord_livraison`;
 CREATE TABLE IF NOT EXISTS `coord_livraison` (
   `id` int(50) NOT NULL AUTO_INCREMENT,
-  `num_tel` varchar(255) NOT NULL,
-  `adresse1` varchar(255) NOT NULL,
-  `adresse2` varchar(255) NOT NULL,
-  `ville` varchar(255) NOT NULL,
+  `num_tel` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `adresse1` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `adresse2` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `ville` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
   `code_postal` int(255) NOT NULL,
-  `pays` varchar(255) NOT NULL,
+  `pays` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
 
 --
 -- Déchargement des données de la table `coord_livraison`
@@ -56,13 +56,13 @@ INSERT INTO `coord_livraison` (`id`, `num_tel`, `adresse1`, `adresse2`, `ville`,
 DROP TABLE IF EXISTS `info_bancaire`;
 CREATE TABLE IF NOT EXISTS `info_bancaire` (
   `id` int(50) NOT NULL AUTO_INCREMENT,
-  `num_carte` varchar(255) NOT NULL,
-  `type` varchar(255) NOT NULL,
-  `nom_sur_carte` varchar(255) NOT NULL,
-  `date_expi` varchar(255) NOT NULL,
-  `code` varchar(255) NOT NULL,
+  `num_carte` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `type` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `nom_sur_carte` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `date_expi` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `code` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 
 --
 -- Déchargement des données de la table `info_bancaire`
@@ -131,7 +131,7 @@ CREATE TABLE IF NOT EXISTS `lacollection` (
   `id_item_49` int(50) DEFAULT NULL,
   `id_item_50` int(50) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
 
 --
 -- Déchargement des données de la table `lacollection`
@@ -151,8 +151,8 @@ DROP TABLE IF EXISTS `les_items`;
 CREATE TABLE IF NOT EXISTS `les_items` (
   `id` int(50) NOT NULL AUTO_INCREMENT,
   `id_prop` int(50) NOT NULL,
-  `nom` varchar(255) NOT NULL,
-  `description` varchar(255) NOT NULL,
+  `nom` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `description` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
   `prix` float NOT NULL,
   `prix_souh` float DEFAULT NULL,
   `video` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
@@ -162,7 +162,7 @@ CREATE TABLE IF NOT EXISTS `les_items` (
   `date_fin` date NOT NULL,
   PRIMARY KEY (`id`),
   KEY `id_prop` (`id_prop`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
 
 --
 -- Déchargement des données de la table `les_items`
@@ -184,10 +184,10 @@ DROP TABLE IF EXISTS `photo`;
 CREATE TABLE IF NOT EXISTS `photo` (
   `id` int(50) NOT NULL AUTO_INCREMENT,
   `id_item` int(50) NOT NULL,
-  `chemin` varchar(255) NOT NULL,
+  `chemin` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
   PRIMARY KEY (`id`),
   KEY `id_item` (`id_item`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
 
 --
 -- Déchargement des données de la table `photo`
@@ -218,7 +218,7 @@ CREATE TABLE IF NOT EXISTS `transaction` (
   KEY `id_acheteur` (`id_acheteur`,`id_vendeur`,`id_item`),
   KEY `id_vendeur` (`id_vendeur`),
   KEY `id_item` (`id_item`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -232,19 +232,19 @@ CREATE TABLE IF NOT EXISTS `user` (
   `id_livraison` int(50) DEFAULT NULL,
   `id_carte` int(50) DEFAULT NULL,
   `id_collection` int(50) DEFAULT NULL,
-  `email` varchar(255) NOT NULL,
-  `mdp` varchar(255) NOT NULL,
-  `pseudo` varchar(255) NOT NULL,
+  `email` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `mdp` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `pseudo` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
   `rang` int(5) NOT NULL,
-  `nom` varchar(255) NOT NULL,
-  `prenom` varchar(255) NOT NULL,
-  `photo_perso` varchar(255) DEFAULT NULL,
-  `photo_background` varchar(255) DEFAULT NULL,
+  `nom` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `prenom` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `photo_perso` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
+  `photo_background` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `id_carte` (`id_carte`),
   KEY `id_livraison` (`id_livraison`),
   KEY `id_collection` (`id_collection`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 
 --
 -- Déchargement des données de la table `user`
