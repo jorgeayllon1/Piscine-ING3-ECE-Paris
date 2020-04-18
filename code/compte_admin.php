@@ -110,29 +110,29 @@ session_start();
 
 							<p class="h4 mb-4">Vos informations</p>
 
-							<input type="file" id="img_vendeur" class="form-control"> (pdp)
+							<input type="file" name="img_admin" id="img_admin" class="form-control"> (pdp)
 
 
 							<div class="form-row mb-4 mx-4 mt-4">
 								<div class="col">
 
-									<input type="text" id="prenom_vendeur" class="form-control" placeholder="David">
+									<input type="text" name="prenom_admin" id="prenom_admin" class="form-control" placeholder="David">
 								</div>
 								<div class="col">
 
-									<input type="text" id="nom_vendeur" class="form-control" placeholder="Wang">
+									<input type="text" name="nom_admin" id="nom_admin" class="form-control" placeholder="Wang">
 								</div>
 							</div>
 
 
-							<input type="email" id="email_vendeur" class="form-control mb-3" placeholder="E-mail">
+							<input type="email" name="email_admin" id="email_admin" class="form-control mb-3" placeholder="E-mail">
 
 
-							<input type="password" id="mdp_vendeur" class="form-control" placeholder="**********" aria-describedby="defaultRegisterFormPasswordHelpBlock">
+							<input type="password" name="mdp_admin" id="mdp_admin" class="form-control" placeholder="**********" aria-describedby="defaultRegisterFormPasswordHelpBlock">
 
 
 
-							<button class="btn my-4 nav-vendeur" style="background: #67E514; border:none; color:#fff;" type="submit">Modifier</button>
+							<button class="btn my-4 " style="background: #67E514; border:none; color:#fff;" name="modifier_admin" type="submit">Modifier</button>
 
 						</form>
 

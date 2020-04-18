@@ -120,73 +120,97 @@ session_start();
 							<div class="form-row mb-4">
 								<div class="col">
 
-									<input type="text" id="prenom_client" class="form-control" placeholder="David">
+									<input type="text" name="prenom_client" id="prenom_client" class="form-control" placeholder="David">
 								</div>
 								<div class="col">
 
-									<input type="text" id="nom_client" class="form-control" placeholder="Wang">
+									<input type="text" name="nom_client" id="nom_client" class="form-control" placeholder="Wang">
 								</div>
 							</div>
 
+							<input type="text" name="pseudo_client" id="pseudo_client" class="form-control mb-3" placeholder="Pseudo">
 
-							<input type="email" id="email_client" class="form-control mb-3" placeholder="E-mail">
+
+							<input type="email" name="email_client" id="email_client" class="form-control mb-3" placeholder="E-mail">
 
 
-							<input type="password" id="mdp_client" class="form-control" placeholder="**********" aria-describedby="defaultRegisterFormPasswordHelpBlock">
+							<input type="password" name="mdp_client" id="mdp_client" class="form-control" placeholder="**********" aria-describedby="defaultRegisterFormPasswordHelpBlock">
 							<small id="mdp_client" class="form-text text-muted mb-4">
 								Au moins 8 caractères et un chiffre
 
 							</small>
-							<input type="text" id="ad1_client" class="form-control mb-3" placeholder="Adresse">
-							<input type="text" id="ad2_client" class="form-control mb-3" placeholder="Complément adresse">
+							<input type="text"  name="ad1_client" id="ad1_client" class="form-control mb-3" placeholder="Adresse">
+							<input type="text" name="ad2_client"  id="ad2_client" class="form-control mb-3" placeholder="Complément adresse">
 
 							<div class="form-row mb-4">
 								<div class="col">
-									<input type="text" id="pays_client" class="form-control mb-3" placeholder="Pays">
+									<input type="text" name="pays_client" id="pays_client" class="form-control mb-3" placeholder="Pays">
 								</div>
 								<div class="col">
-									<input type="text" id="ville_client" class="form-control mb-3" placeholder="Ville">
+									<input type="text" name="ville_client" id="ville_client" class="form-control mb-3" placeholder="Ville">
 								</div>
 							</div>
 
-							<input type="number" id="cp_client" class="form-control mb-3" placeholder="Code Postal">
+							<input type="number" name="cp_client" id="cp_client" class="form-control mb-3" placeholder="Code Postal">
 
 
-							<input type="text" id="pays_client" class="form-control mb-3" placeholder="Pays">
+							<input type="text"  name="pays_client" id="pays_client" class="form-control mb-3" placeholder="Pays">
 
 
 
 
-							<input type="text" id="phone_client" class="form-control" placeholder="Téléphone" aria-describedby="defaultRegisterFormPhoneHelpBlock">
+							<input type="text" name="phone_client" id="phone_client" class="form-control" placeholder="Téléphone" aria-describedby="defaultRegisterFormPhoneHelpBlock">
 							<small id="phone_client" class="form-text text-muted mb-3">
 								Numéro en France
 							</small>
 
 							<p class="h5 mb-4">Vos informations bancaires</p>
+
+							<div class="custom-control custom-radio">
+								<input  type="radio" id="visa" name="type_carte"  class="custom-control-input" checked required>
+								<label class="custom-control-label" for="visa">Visa</label>
+								<i class="fa fa-cc-visa"></i>
+								</div>
+								<div class="custom-control custom-radio">
+								<input  type="radio" id="master" name="type_carte"  class="custom-control-input" required>
+								<label class="custom-control-label" for="master">MasterCard</label>
+								<i class="fa fa-cc-mastercard"></i>
+								</div>
+								<div class="custom-control custom-radio">
+								<input  type="radio"  id="express" name="type_carte" class="custom-control-input" required>
+								<label class="custom-control-label" for="express">American express</label>
+								<i class="fa fa-cc-amex"></i>
+								</div>
+								<div class="custom-control custom-radio">
+								<input  type="radio" id="paypal" name="type_carte"  class="custom-control-input" required>
+								<label class="custom-control-label" for="paypal">Paypal</label>
+								<i class="fa fa-cc-paypal"></i>
+							</div>
+
 							<div class="form-row my-2">
 								<div class="col">
 									<label for="paiement_nom">Nom sur la carte</label>
-									<input type="text" id="paiement_nom" class="form-control">
+									<input type="text" name="paiement_nom" id="paiement_nom" class="form-control">
 								</div>
 								<div class="col">
 									<label for="paiement_num_carte">Numéro carte</label>
-									<input type="text" id="paiement_num_carte" class="form-control">
+									<input type="text" name="paiement_num_cart" id="paiement_num_carte" class="form-control">
 								</div>
 							</div>
 
 							<div class="form-row my-2 ">
 								<div class="col">
 									<label for="paiement_date_expi">Date expiration</label>
-									<input type="month" id="paiement_date_expi" class="form-control">
+									<input type="month"  name="paiement_date_expi" id="paiement_date_expi" class="form-control">
 								</div>
 								<div class="col">
 									<label for="paiement_code">CVC</label>
-									<input type="number" id="paiement_code" class="form-control">
+									<input type="number"  name="paiement_code" id="paiement_code" class="form-control">
 								</div>
 							</div>
 
 
-							<button class="btn my-4 " style="background: #31405F; border:none; color:#fff;" type="submit">Modifier</button>
+							<button class="btn my-4 " style="background: #31405F; border:none; color:#fff;" name="modifier_client" type="submit">Modifier</button>
 
 						</form>
 

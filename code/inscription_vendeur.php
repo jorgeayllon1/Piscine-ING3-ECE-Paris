@@ -65,21 +65,21 @@ session_start();
 						<div class="form-row mb-4">
 							<div class="col">
 
-								<input type="text" id="prenom_vendeur_inscription" class="form-control" placeholder="Prénom">
+								<input type="text" name="prenom_vendeur_inscription" id="prenom_vendeur_inscription" class="form-control" placeholder="Prénom">
 							</div>
 							<div class="col">
 
-								<input type="text" id="nom_vendeur_inscriptione" class="form-control" placeholder="nom">
+								<input type="text" name="nom_vendeur_inscription" id="nom_vendeur_inscription" class="form-control" placeholder="nom">
 							</div>
 						</div>
 
-						<input type="text" id="pseudo_vendeur_inscription" class="form-control mb-3" placeholder="Pseudo">
+						<input type="text" name="pseudo_vendeur_inscription" id="pseudo_vendeur_inscription" class="form-control mb-3" placeholder="Pseudo">
 
 
-						<input type="email" id="email_vendeur_inscription" class="form-control mb-3" placeholder="E-mail">
+						<input type="email" name="email_vendeur_inscription" id="email_vendeur_inscription" class="form-control mb-3" placeholder="E-mail">
 
 
-						<input type="password" id="mdp_vendeur_inscription" class="form-control" placeholder="Mot De Passe" aria-describedby="defaultRegisterFormPasswordHelpBlock">
+						<input type="password" name="mdp_vendeur_inscription" id="mdp_vendeur_inscription" class="form-control" placeholder="Mot De Passe" aria-describedby="defaultRegisterFormPasswordHelpBlock">
 						<small id="mdp_vendeur_inscription" class="form-text text-muted mb-4">
 							<em>Au moins 8 caractères et un chiffre</em>
 
@@ -93,7 +93,7 @@ session_start();
 								<span class="input-group-text" id="ajout-photo">Ajouter</span>
 							</div>
 							<div class="custom-file">
-								<input type="file" class="custom-file-input" id="file_pdp" lang="fr">
+								<input type="file" name="file_pdp" class="custom-file-input" id="file_pdp" lang="fr">
 								<label class="custom-file-label" for="file_pdp"> fichier </label>
 							</div>
 						</div>
@@ -103,22 +103,22 @@ session_start();
 						<div class="input-group">
 
 							<div class="input-group-prepend">
-								<span class="input-group-text" id="ajout-photo">Ajouter</span>
+								<span class="input-group-text"  id="ajout-photo">Ajouter</span>
 							</div>
 							<div class="custom-file">
-								<input type="file" class="custom-file-input" id="file_back" lang="fr">
+								<input type="file" class="custom-file-input" name="file_back" id="file_back" lang="fr">
 								<label class="custom-file-label" for="file_back"> fichier </label>
 							</div>
 						</div>
 
 
 						<div class="custom-control custom-checkbox">
-							<input type="checkbox" class="custom-control-input" id="news_client_inscription">
+							<input type="checkbox" name="news_vendeur_inscription" class="custom-control-input" id="news_vendeur_inscription">
 							<label class="custom-control-label" for="news_client_inscription">Souscrivez à notre newsletter</label>
 						</div>
 
 
-						<button class="btn my-3 " style="background: #E52714; border:none; color:#fff;" type="submit">S'inscrire</button>
+						<button class="btn my-3 " style="background: #E52714; border:none; color:#fff;" name="submit_vendeur_inscription" type="submit">S'inscrire</button>
 
 
 						<p>ou avec:</p>

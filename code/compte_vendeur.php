@@ -119,37 +119,37 @@ if (isset($_POST['deco'])) {
 
 								<div class="form-group">
 									<label for="pdp_vendeur">Choisissez une photo pour votre profil :</label>
-									<input type="file" class="form-control-file" id="pdp_vendeur">
+									<input type="file" name="pdp_vendeur" class="form-control-file" id="pdp_vendeur">
 								</div>
 
-								<input type="text" class="form-control mb-3" id="pseudo_vendeur" placeholder="Pseudo">
+								<input type="text" name="pseudo_vendeur" class="form-control mb-3" id="pseudo_vendeur" placeholder="Pseudo">
 
 
 								<div class="form-row mb-4 mx-4 mt-4">
 									<div class="col">
 
-										<input type="text" id="prenom_vendeur" class="form-control" placeholder="David">
+										<input type="text" name="prenom_vendeur" id="prenom_vendeur" class="form-control" placeholder="David">
 									</div>
 									<div class="col">
 
-										<input type="text" id="nom_vendeur" class="form-control" placeholder="Wang">
+										<input type="text" name="nom_vendeur" id="nom_vendeur" class="form-control" placeholder="Wang">
 									</div>
 								</div>
 
 
-								<input type="email" id="email_vendeur" class="form-control mb-3" placeholder="E-mail">
+								<input type="email" name="email_vendeur" id="email_vendeur" class="form-control mb-3" placeholder="E-mail">
 
 
-								<input type="password" id="mdp_vendeur" class="form-control" placeholder="**********" aria-describedby="defaultRegisterFormPasswordHelpBlock">
+								<input type="password" name="mdp_vendeur" id="mdp_vendeur" class="form-control" placeholder="**********" aria-describedby="defaultRegisterFormPasswordHelpBlock">
 
 								<div class="form-group my-2">
 									<label for="back_vendeur">Choisissez une photo pour votre fond :</label>
-									<input type="file" class="form-control-file" id="back_vendeur">
+									<input type="file"  name="back_vendeur" class="form-control-file" id="back_vendeur">
 								</div>
 
 
 
-								<button class="btn my-4 nav-vendeur" style="background: #E52714; border:none; color:#fff;" type="submit">Modifier</button>
+								<button class="btn my-4 nav-vendeur" style="background: #E52714; border:none; color:#fff;" name="modifier_vendeur" type="submit">Modifier</button>
 
 							</form>
 
