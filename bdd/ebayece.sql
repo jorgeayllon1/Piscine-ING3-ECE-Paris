@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le :  sam. 18 avr. 2020 à 13:39
+-- Généré le :  sam. 18 avr. 2020 à 14:50
 -- Version du serveur :  8.0.18
 -- Version de PHP :  7.3.12
 
@@ -31,12 +31,12 @@ SET time_zone = "+00:00";
 DROP TABLE IF EXISTS `coord_livraison`;
 CREATE TABLE IF NOT EXISTS `coord_livraison` (
   `id` int(50) NOT NULL AUTO_INCREMENT,
-  `num_tel` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
-  `adresse1` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
-  `adresse2` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
-  `ville` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `num_tel` varchar(255) NOT NULL,
+  `adresse1` varchar(255) NOT NULL,
+  `adresse2` varchar(255) NOT NULL,
+  `ville` varchar(255) NOT NULL,
   `code_postal` int(255) NOT NULL,
-  `pays` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `pays` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
 
@@ -45,7 +45,8 @@ CREATE TABLE IF NOT EXISTS `coord_livraison` (
 --
 
 INSERT INTO `coord_livraison` (`id`, `num_tel`, `adresse1`, `adresse2`, `ville`, `code_postal`, `pays`) VALUES
-(2, '0754369465', '25 rue de la droite', 'rien', 'Marseille', 13000, 'France');
+(2, '0754369465', '25 rue de la droite', 'rien', 'Marseille', 13000, 'France'),
+(4, '5095612976', '45 rue de la patisserie', 'a droite', 'Grenoble', 38000, 'France');
 
 -- --------------------------------------------------------
 
@@ -56,20 +57,21 @@ INSERT INTO `coord_livraison` (`id`, `num_tel`, `adresse1`, `adresse2`, `ville`,
 DROP TABLE IF EXISTS `info_bancaire`;
 CREATE TABLE IF NOT EXISTS `info_bancaire` (
   `id` int(50) NOT NULL AUTO_INCREMENT,
-  `num_carte` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
-  `type` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
-  `nom_sur_carte` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
-  `date_expi` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
-  `code` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `num_carte` varchar(255) NOT NULL,
+  `type` varchar(255) NOT NULL,
+  `nom_sur_carte` varchar(255) NOT NULL,
+  `date_expi` varchar(255) NOT NULL,
+  `code` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
 
 --
 -- Déchargement des données de la table `info_bancaire`
 --
 
 INSERT INTO `info_bancaire` (`id`, `num_carte`, `type`, `nom_sur_carte`, `date_expi`, `code`) VALUES
-(2, '68540654106', 'Visa', 'claude', '02/24', '165');
+(2, '68540654106', 'Visa', 'claude', '02/24', '165'),
+(4, '468053213', 'on', 'Sardouu', '2020-06', '684');
 
 -- --------------------------------------------------------
 
@@ -139,7 +141,8 @@ CREATE TABLE IF NOT EXISTS `lacollection` (
 
 INSERT INTO `lacollection` (`id`, `id_item_1`, `id_item_2`, `id_item_3`, `id_item_4`, `id_item_5`, `id_item_6`, `id_item_7`, `id_item_8`, `id_item_9`, `id_item_10`, `id_item_11`, `id_item_12`, `id_item_13`, `id_item_14`, `id_item_15`, `id_item_16`, `id_item_17`, `id_item_18`, `id_item_19`, `id_item_20`, `id_item_21`, `id_item_22`, `id_item_23`, `id_item_24`, `id_item_25`, `id_item_26`, `id_item_27`, `id_item_28`, `id_item_29`, `id_item_30`, `id_item_31`, `id_item_32`, `id_item_33`, `id_item_34`, `id_item_35`, `id_item_36`, `id_item_37`, `id_item_38`, `id_item_39`, `id_item_40`, `id_item_41`, `id_item_42`, `id_item_43`, `id_item_44`, `id_item_45`, `id_item_46`, `id_item_47`, `id_item_48`, `id_item_49`, `id_item_50`) VALUES
 (2, 1, 2, 4, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(3, 1, 4, 3, 2, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
+(3, 1, 4, 3, 2, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(4, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -151,11 +154,11 @@ DROP TABLE IF EXISTS `les_items`;
 CREATE TABLE IF NOT EXISTS `les_items` (
   `id` int(50) NOT NULL AUTO_INCREMENT,
   `id_prop` int(50) NOT NULL,
-  `nom` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
-  `description` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `nom` varchar(255) NOT NULL,
+  `description` varchar(255) NOT NULL,
   `prix` float NOT NULL,
   `prix_souh` float DEFAULT NULL,
-  `video` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
+  `video` varchar(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci DEFAULT NULL,
   `categorie` int(5) NOT NULL,
   `type` int(50) NOT NULL,
   `date_debut` date NOT NULL,
@@ -172,7 +175,7 @@ INSERT INTO `les_items` (`id`, `id_prop`, `nom`, `description`, `prix`, `prix_so
 (1, 3, 'Cheval', 'Le cheval, le cheval, le cheval c\'est trop génial', 5.5, NULL, 'video-item/cheval.mp4', 3, 1, '2020-05-21', '2020-05-28'),
 (2, 3, 'Disque Dur', 'un disque tout dur', 15, NULL, 'video-item/disque-dur.mp4', 2, 2, '2020-06-05', '2020-06-29'),
 (3, 3, 'Caftière', 'Une machine pour faire du café', 35, NULL, NULL, 1, 3, '2020-05-19', '2020-05-22'),
-(4, 3, 'clavier', 'Un truc pour écrire', 5.3, NULL, NULL, 2, 1, '2020-04-23', '2020-04-25');
+(4, 3, 'Clavier', 'un truc pour ecrire', 12, NULL, NULL, 2, 1, '2020-05-22', '2020-07-09');
 
 -- --------------------------------------------------------
 
@@ -184,7 +187,7 @@ DROP TABLE IF EXISTS `photo`;
 CREATE TABLE IF NOT EXISTS `photo` (
   `id` int(50) NOT NULL AUTO_INCREMENT,
   `id_item` int(50) NOT NULL,
-  `chemin` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `chemin` varchar(255) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `id_item` (`id_item`)
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
@@ -232,19 +235,19 @@ CREATE TABLE IF NOT EXISTS `user` (
   `id_livraison` int(50) DEFAULT NULL,
   `id_carte` int(50) DEFAULT NULL,
   `id_collection` int(50) DEFAULT NULL,
-  `email` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
-  `mdp` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
-  `pseudo` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `email` varchar(255) NOT NULL,
+  `mdp` varchar(255) NOT NULL,
+  `pseudo` varchar(255) NOT NULL,
   `rang` int(5) NOT NULL,
-  `nom` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
-  `prenom` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
-  `photo_perso` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
-  `photo_background` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
+  `nom` varchar(255) NOT NULL,
+  `prenom` varchar(255) NOT NULL,
+  `photo_perso` varchar(255) DEFAULT NULL,
+  `photo_background` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `id_carte` (`id_carte`),
   KEY `id_livraison` (`id_livraison`),
   KEY `id_collection` (`id_collection`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
 
 --
 -- Déchargement des données de la table `user`
@@ -253,7 +256,8 @@ CREATE TABLE IF NOT EXISTS `user` (
 INSERT INTO `user` (`id`, `id_livraison`, `id_carte`, `id_collection`, `email`, `mdp`, `pseudo`, `rang`, `nom`, `prenom`, `photo_perso`, `photo_background`) VALUES
 (1, NULL, NULL, NULL, 'admin@gmail.com', 'motdepasse', 'lebigboss', 3, 'ayllon', 'jorge', NULL, NULL),
 (2, 2, 2, 2, 'jjjjj@gmail.com', 'jebois', 'jjgold', 1, 'goldman', 'jean-jacques', NULL, NULL),
-(3, NULL, NULL, 3, 'jhonnn@gmail.com', 'jechante', 'holiday', 2, 'hallyday', 'johnny', 'images/vendeur/johnny-hallyday.png', 'images/vendeur/johnny-hallyday-back.png');
+(3, NULL, NULL, 3, 'jhonnn@gmail.com', 'jechante', 'holiday', 2, 'hallyday', 'johnny', 'images/vendeur/johnny-hallyday.png', 'images/vendeur/johnny-hallyday-back.png'),
+(4, 4, 4, 4, 'michel@gmail.com', 'jesaute', 'SarSar', 1, 'Sardou', 'Michel', NULL, NULL);
 
 --
 -- Contraintes pour les tables déchargées
