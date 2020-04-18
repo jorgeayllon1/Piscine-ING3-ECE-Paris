@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.9.2
+-- version 4.8.5
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le :  sam. 18 avr. 2020 à 14:55
--- Version du serveur :  8.0.18
--- Version de PHP :  7.3.12
+-- Généré le :  sam. 18 avr. 2020 à 19:00
+-- Version du serveur :  5.7.26
+-- Version de PHP :  7.2.18
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -60,7 +60,7 @@ CREATE TABLE IF NOT EXISTS `info_bancaire` (
   `num_carte` varchar(255) NOT NULL,
   `type` varchar(255) NOT NULL,
   `nom_sur_carte` varchar(255) NOT NULL,
-  `date_expi` varchar(255) NOT NULL,
+  `date_expi` date NOT NULL,
   `code` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
@@ -70,8 +70,8 @@ CREATE TABLE IF NOT EXISTS `info_bancaire` (
 --
 
 INSERT INTO `info_bancaire` (`id`, `num_carte`, `type`, `nom_sur_carte`, `date_expi`, `code`) VALUES
-(2, '68540654106', 'Visa', 'claude', '02/24', '165'),
-(4, '468053213', 'on', 'Sardouu', '2020-06', '684');
+(2, '68540654106', 'Visa', 'claude', '2024-12-12', '165'),
+(4, '468053210', 'Paypal', 'Sardouu', '2023-06-15', '684');
 
 -- --------------------------------------------------------
 
@@ -158,7 +158,7 @@ CREATE TABLE IF NOT EXISTS `les_items` (
   `description` varchar(255) NOT NULL,
   `prix` float NOT NULL,
   `prix_souh` float DEFAULT NULL,
-  `video` varchar(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci DEFAULT NULL,
+  `video` varchar(255) DEFAULT NULL,
   `categorie` int(5) NOT NULL,
   `type` int(50) NOT NULL,
   `date_debut` date NOT NULL,
@@ -257,7 +257,7 @@ INSERT INTO `user` (`id`, `id_livraison`, `id_carte`, `id_collection`, `email`, 
 (1, NULL, NULL, NULL, 'admin@gmail.com', 'motdepasse', 'lebigboss', 3, 'ayllon', 'jorge', NULL, NULL),
 (2, 2, 2, 2, 'jjjjj@gmail.com', 'jebois', 'jjgold', 1, 'goldman', 'jean-jacques', NULL, NULL),
 (3, NULL, NULL, 3, 'jhonnn@gmail.com', 'jechante', 'holiday', 2, 'hallyday', 'johnny', 'images/vendeur/johnny-hallyday.png', 'images/vendeur/johnny-hallyday-back.png'),
-(4, 4, 4, 4, 'michel@gmail.com', 'jesaute', 'SarSar', 1, 'Sardou', 'Michel', NULL, NULL);
+(4, 4, 4, 4, 'michel@gmail.com', 'jesaute', 'dd', 1, 'wang', 'Michel', NULL, NULL);
 
 --
 -- Contraintes pour les tables déchargées
