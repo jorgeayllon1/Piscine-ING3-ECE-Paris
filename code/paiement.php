@@ -64,28 +64,28 @@ session_start();
                 <div class="form-row ">
                     <div class="col">
 
-                        <input type="text" id="prenom_paiement" class="form-control" placeholder="Prénom">
+                        <input type="text" name="prenom_paiement" id="prenom_paiement" class="form-control" placeholder="Prénom">
                     </div>
                     <div class="col">
 
-                        <input type="text" id="nom_paiement" class="form-control" placeholder="nom">
+                        <input type="text" name="nom_paiement" id="nom_paiement" class="form-control" placeholder="nom">
                     </div>
                 </div>
 
                 <label for="adresse_paiement" class="">Adresse</label>
-                <input type="text" id="adresse_paiement" class="form-control " placeholder="5 rue...">
+                <input type="text" name="adresse_paiement" id="adresse_paiement" class="form-control " placeholder="5 rue...">
 
                 <label for="adresse2_paiement" class="">Complément d'adresse</label>
-                <input type="text" id="adresse2_paiement" class="form-control mb-4 " placeholder="Numéro étage, porte...">
+                <input type="text" name="adresse2_paiement" id="adresse2_paiement" class="form-control mb-4 " placeholder="Numéro étage, porte...">
                 <div class="form-row mb-4">
                     <div class="col">
-                        <input type="text" id="pays_paiement" class="form-control " placeholder="Pays">
+                        <input type="text" name="pays_paiement" id="pays_paiement" class="form-control " placeholder="Pays">
                     </div>
                     <div class="col">
-                        <input type="text" id="ville_paiement" class="form-control" placeholder="Ville">
+                        <input type="text" name="ville_paiement" id="ville_paiement" class="form-control" placeholder="Ville">
                     </div>
                 </div>
-                <input type="number" id="cp_client-inscription" class="form-control mb-3" placeholder="Code Postal">
+                <input type="number" name="cp_client-inscription" id="cp_client-inscription" class="form-control mb-3" placeholder="Code Postal">
 
                 <h4 class="horizontal-text-center" style="text-align: center ;"><span id="selection" style="border-radius:5px;">Paiement  <i class="fa fa-credit-card" style="font-size:20px;"></i></span></h4><br>
 
@@ -116,22 +116,22 @@ session_start();
                 <div class="form-row my-2">
                     <div class="col">
                         <label for="paiement_nom">Nom sur la carte :</label>
-                        <input type="text" id="paiement_nom" class="form-control">
+                        <input type="text" name="paiement_nom" id="paiement_nom" class="form-control">
                     </div>
                     <div class="col">
                         <label for="paiement_num_carte">Numéro carte :</label>
-                        <input type="text" id="paiement_num_carte" class="form-control">
+                        <input type="text" name="paiement_num_carte" id="paiement_num_carte" class="form-control">
                     </div>
                 </div>
 
                 <div class="form-row my-2 ">
                     <div class="col">
                         <label for="paiement_date_expi">Date expiration :</label>
-                        <input type="month" id="paiement_date_expi" class="form-control">
+                        <input type="month" name="paiement_date_expi" id="paiement_date_expi" class="form-control">
                     </div>
                     <div class="col">
                         <label for="paiement_code">CVC :</label>
-                        <input type="number" id="paiement_code" class="form-control">
+                        <input type="number" name="paiement_code" id="paiement_code" class="form-control">
                     </div>
                 </div>
 
@@ -140,7 +140,7 @@ session_start();
                 <input type="checkbox" name="souvenir_cb" id="souvenir_cb"> Sauvegarder mes coordonnées pour la prochaine fois
 
                 <div class="row">
-                    <button class="btn btn-primary my-2 " type="submit" style="margin: 0 auto; font-size: larger;">Finalisez mon paiment</button>
+                    <button class="btn btn-primary my-2 " name="payer" type="submit" style="margin: 0 auto; font-size: larger;">Finalisez mon paiment</button>
                     <!--CREATION PUIS VERIFICATION DES DONNEES DANS LA BDD PUIS AFFICHAGE MESSAGE PAIEMENT REUSSI-->
                 </div>
 

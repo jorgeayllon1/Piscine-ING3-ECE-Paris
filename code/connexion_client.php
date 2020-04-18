@@ -112,9 +112,7 @@ mysqli_close($db_handle);
 
                         <p class="h4 mb-4">Se connecter</p>
 
-
-
-
+                        <input type="text" name="pseudo_client_connexion" id="pseudo_client_connexion" class="form-control mb-3" placeholder="Pseudo">
 
 
                         <input type="email" id="email_client_connexion" name="mail" class="form-control mb-3" placeholder="E-mail">
