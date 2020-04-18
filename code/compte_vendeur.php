@@ -245,29 +245,29 @@ if (isset($_POST['deco'])) {
 							<form style="background-color:#fff;" class="py-3 px-3">
 								<div class="form-group">
 									<label for="ajout_nom">Nom du produit</label>
-									<input type="text" id="ajout_nom" placeholder="Nom du produit">
+									<input type="text" name="ajout_nom" id="ajout_nom" placeholder="Nom du produit">
 
 								</div>
 
 
 								<div class="form-group">
 									<label for="ajout_image">Choisissez une photo pour le produit</label>
-									<input type="file" class="form-control-file" id="ajout_image">
+									<input type="file" name="ajout_image" class="form-control-file" id="ajout_image">
 								</div>
 
 								<div class="form-group">
 									<label for="ajout_description">Description du produit</label>
-									<textarea class="form-control rounded-0" style="border: solid black 1px ;" id="ajout_description" rows="3"></textarea>
+									<textarea class="form-control rounded-0" name="ajout_description" style="border: solid black 1px ;" id="ajout_description" rows="3"></textarea>
 								</div>
 
 								<div class="form-group">
 									<label for="ajout_video">Choisissez une vidéo pour le produit</label>
-									<input type="file" class="form-control-file" id="ajout_video">
+									<input type="file" name="ajout_video" class="form-control-file" id="ajout_video">
 								</div>
 
 								<div class="form-group">
 									<label for="ajout_categorie">Choisissez une catégorie</label>
-									<select class="form-control" id="ajout_catégorie">
+									<select class="form-control" name="ajout_catégorie" id="ajout_catégorie">
 										<option>Choisir</option>
 										<option>Ferraille ou trésor</option>
 										<option>Bon pour le musée</option>
@@ -277,7 +277,7 @@ if (isset($_POST['deco'])) {
 
 								<div class="form-group">
 									<label for="ajout_prix">Prix</label>
-									<input type="number">
+									<input type="number" name="ajout_prix">
 								</div>
 
 								<div class="custom-control">

@@ -228,29 +228,29 @@ session_start();
 						<form>
 							<div class="form-group">
 								<label for="ajout_nom">Nom du produit</label>
-								<input type="text" id="ajout_nom" placeholder="Nom du produit">
+								<input type="text" name="ajout_nom" id="ajout_nom" placeholder="Nom du produit">
 
 							</div>
 
 
 							<div class="form-group">
 								<label for="ajout_image">Choisissez une photo pour le produit</label>
-								<input type="file" class="form-control-file" id="ajout_image">
+								<input type="file" name="ajout_image" class="form-control-file" id="ajout_image">
 							</div>
 
 							<div class="form-group">
 								<label for="ajout_description">Description du produit</label>
-								<textarea class="form-control rounded-0" style="border: solid black 1px ;" id="ajout_description" rows="3"></textarea>
+								<textarea class="form-control rounded-0" name="ajout_description" style="border: solid black 1px ;" id="ajout_description" rows="3"></textarea>
 							</div>
 
 							<div class="form-group">
 								<label for="ajout_video">Choisissez une vidéo pour le produit</label>
-								<input type="file" class="form-control-file" id="ajout_video">
+								<input type="file" name="ajout_video" class="form-control-file" id="ajout_video">
 							</div>
 
 							<div class="form-group">
 								<label for="ajout_categorie">Choisissez une catégorie</label>
-								<select class="form-control" id="ajout_catégorie">
+								<select class="form-control" name="ajout_catégorie" id="ajout_catégorie">
 									<option>Choisir</option>
 									<option>Ferraille ou trésor</option>
 									<option>Bon pour le musée</option>
@@ -260,7 +260,7 @@ session_start();
 
 							<div class="form-group">
 								<label for="ajout_prix">Prix</label>
-								<input type="number">
+								<input type="number" name="ajout-prix">
 							</div>
 
 							<div class="custom-control">
@@ -384,19 +384,19 @@ session_start();
 							<div class="form-row mb-4">
 								<div class="col">
 
-									<input type="text" id="prenom_admin_inscription" class="form-control" placeholder="Prénom">
+									<input type="text" name="prenom_admin_inscription" id="prenom_admin_inscription" class="form-control" placeholder="Prénom">
 								</div>
 								<div class="col">
 
-									<input type="text" id="nom_admin_inscriptione" class="form-control" placeholder="nom">
+									<input type="text" name="nom_admin_inscriptio" id="nom_admin_inscription" class="form-control" placeholder="nom">
 								</div>
 							</div>
 
 
-							<input type="email" id="email_admin_inscription" class="form-control mb-3" placeholder="E-mail">
+							<input type="email" name="email_admin_inscription" id="email_admin_inscription" class="form-control mb-3" placeholder="E-mail">
 
 
-							<input type="text" id="pseudo_admin_inscription" class="form-control" placeholder="Pseudo" aria-describedby="defaultRegisterFormPasswordHelpBlock">
+							<input type="text" name="pseudo_admin_inscription" id="pseudo_admin_inscription" class="form-control" placeholder="Pseudo" aria-describedby="defaultRegisterFormPasswordHelpBlock">
 							<small id="pseudo_admin_inscription" class="form-text text-muted mb-4">
 
 
@@ -404,7 +404,7 @@ session_start();
 
 
 
-							<button class="btn my-3 " style="background: #67E514; border:none; color:#fff;" type="submit">Inscrire</button>
+							<button class="btn my-3 " style="background: #67E514; border:none; color:#fff;" name="ajout_vendeur" type="submit">Inscrire</button>
 
 
 
