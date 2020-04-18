@@ -3,7 +3,7 @@
 
 		ini_set('display_error',1); /*Affichage erreur*/
 
-		$type_carte=$_SESSION["type"]; /*Pour savoir cohé quel button radio lorsque le client accède à son compte*/
+		$type_carte=$_SESSION["type"]; /*Pour savoir cocher quel button radio lorsque le client accède à son compte*/
 		$session_pseudo=$_SESSION["pseudo"];
 
 
@@ -27,7 +27,7 @@
 		$date_carte = isset($_POST["paiement_date_expi"])?$_POST["paiement_date_expi"]:"";
 		$code_carte = isset($_POST["paiement_code"])?$_POST["paiement_code"]:"";
 
-
+		/**Connexion à la bdd */
 		$database = "ebayece";
 		$db_handle = mysqli_connect('localhost', 'root', '');
 		$db_found = mysqli_select_db($db_handle, $database);
@@ -36,6 +36,8 @@
 		{
 			/*Pour pseudo on la compare avec SESSION càd le cookie car dans ses infos on n'a pas le id*/
 			if($db_found){
+
+				/**User */
 				$sql = " UPDATE user SET nom='$nom', prenom='$prenom', email='$email', /**On met à jour la donnée */
 				mdp='$mdp' WHERE pseudo = '$pseudo'  ";
 				$result = mysqli_query($db_handle,$sql);
@@ -43,9 +45,42 @@
 				$sql= " UPDATE user SET pseudo='$pseudo' WHERE pseudo= '$session_pseudo'";
 				$result = mysqli_query($db_handle,$sql);
 
-				
+				/**Livraison */
 
-				
+				$sql = "UPDATE  coord_livraison
+				INNER JOIN user  ON coord_livraison.id='$id'
+				SET adresse1='$adresse1', adresse2='$adresse2', pays='$pays',
+				ville='$ville', code_postal='$cp', num_tel='$phone'";
+				$result = mysqli_query($db_handle,$sql);
+
+				/**Transaction marche pas, comprend pas pk*/ 
+
+				$sql = "UPDATE  info_bancaire
+				INNER JOIN user  ON info_bancaire.id='$id'
+				SET num_carte='$num_carte', nom_sur_carte='$nom_carte', 
+				date_expi = '$date_carte', code='$code_carte'";
+				$result = mysqli_query($db_handle,$sql);
+
+
+
+				/*On met à jour le cookie*/
+
+				$_SESSION["nom"] = $nom;
+				$_SESSION["prenom"] = $prenom;
+				$_SESSION["pseudo"] = $pseudo;
+				$_SESSION["email"] = $email;
+				$_SESSION["mdp"] = $mdp;
+				$_SESSION["adresse1"] = $adresse1;
+				$_SESSION["adresse2"] = $adresse2;
+				$_SESSION["ville"] = $ville;
+				$_SESSION["code_postal"] = $cp;
+				$_SESSION["pays"] = $pays;
+				$_SESSION["num_tel"] = $phone;
+				$_SESSION["num_carte"] = $num_carte;
+				$_SESSION["type"] = $carte_type;
+				$_SESSION["nom_sur_carte"] = $nom_carte;
+				$_SESSION["date_expi"] = $date_carte;
+				$_SESSION["code"] = $code_carte;
 
 			}
 			else{
