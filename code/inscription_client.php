@@ -54,23 +54,25 @@ session_start();
 
 				<p class="h4 mb-4">S'inscrire</p>
 
+				<!--J'ai rajouté un _client dans les name pour se distinguer du vendeur-->
+
 				
 				<div class="form-row mb-4">
 					<div class="col">
 
-						<input type="text" name="prenom_inscription" id="prenom_client_inscription" class="form-control" placeholder="Prénom">
+						<input type="text" name="prenom_client_inscription" id="prenom_client_inscription" class="form-control" placeholder="Prénom">
 					</div>
 					<div class="col">
 
-						<input type="text" name="nom_inscription" id="nom_client_inscriptione" class="form-control" placeholder="nom">
+						<input type="text" name="nom_client_inscription" id="nom_client_inscription" class="form-control" placeholder="nom">
 					</div>
 				</div>
 
 
-				<input type="email" name="email_inscription" id="email_client_inscription" class="form-control mb-3" placeholder="E-mail">
+				<input type="email" name="email_client_inscription" id="email_client_inscription" class="form-control mb-3" placeholder="E-mail">
 
 
-				<input type="password" name="mdp_inscription" id="mdp_client_inscription" class="form-control" placeholder="Mot De Passe" aria-describedby="defaultRegisterFormPasswordHelpBlock">
+				<input type="password" name="mdp_client_inscription" id="mdp_client_inscription" class="form-control" placeholder="Mot De Passe" aria-describedby="defaultRegisterFormPasswordHelpBlock">
 				<small id="mdp_client_inscription" class="form-text text-muted mb-4">
 					<em>Au moins 8 caractères et un chiffre</em>
 
@@ -95,14 +97,64 @@ session_start();
 					Numéro en France
 				</small>
 
+				<!--Coordonnées bancaires-->
+
+				<p>Vos coordonnées bancaires:</p>
+
+				<div class="custom-control custom-radio">
+				<input  type="radio" id="visa" name="type_carte"  class="custom-control-input" checked required>
+				<label class="custom-control-label" for="visa">Visa</label>
+				<i class="fa fa-cc-visa"></i>
+				</div>
+				<div class="custom-control custom-radio">
+				<input  type="radio" id="master" name="type_carte"  class="custom-control-input" required>
+				<label class="custom-control-label" for="master">MasterCard</label>
+				<i class="fa fa-cc-mastercard"></i>
+				</div>
+				<div class="custom-control custom-radio">
+				<input  type="radio"  id="express" name="type_carte" class="custom-control-input" required>
+				<label class="custom-control-label" for="express">American express</label>
+				<i class="fa fa-cc-amex"></i>
+				</div>
+				<div class="custom-control custom-radio">
+				<input  type="radio" id="paypal" name="type_carte"  class="custom-control-input" required>
+				<label class="custom-control-label" for="paypal">Paypal</label>
+				<i class="fa fa-cc-paypal"></i>
+				</div>
+
+
+				<div class="form-row my-2">
+					<div class="col">
+						<label for="paiement_nom">Nom sur la carte :</label>
+						<input type="text" name="paiement_nom" id="paiement_nom" class="form-control">
+					</div>
+					<div class="col">
+						<label for="paiement_num_carte">Numéro carte :</label>
+						<input type="text" name="paiement_num_carte" id="paiement_num_carte" class="form-control">
+					</div>
+				</div>
+
+				<div class="form-row my-2 ">
+					<div class="col">
+						<label for="paiement_date_expi">Date expiration :</label>
+						<input type="month" name="paiement_date_expi" id="paiement_date_expi" class="form-control">
+					</div>
+					<div class="col">
+						<label for="paiement_code">CVC :</label>
+						<input type="number" name="paiement_code" id="paiement_code" class="form-control">
+					</div>
+				</div>
+
+				<p class="light-grey-text"><em>Paiement 100% sécurisé</em></p>
+
 
 				<div class="custom-control custom-checkbox">
-					<input type="checkbox" class="custom-control-input" id="news_client_inscription">
+					<input type="checkbox" class="custom-control-input" id="news_client_inscription" name="new_client_inscription">
 					<label class="custom-control-label" for="news_client_inscription">Souscrivez à notre newsletter</label>
 				</div>
 
 				<!-- Mettre name="submit" -->
-				<button class="btn my-4 " style="background: #31405F; border:none; color:#fff;" name="submit" type="submit">S'inscrire</button>
+				<button class="btn my-4 " style="background: #31405F; border:none; color:#fff;" name="submit_client_inscription" type="submit">S'inscrire</button>
 
 
 				<p>ou avec:</p>
@@ -111,7 +163,7 @@ session_start();
 				<a href="#" class="mx-2" role="button"><i class="fa fa-linkedin"></i></a>
 				<a href="#" class="mx-2" role="button"><i class="fa fa-google-plus "></i></a>
 
-				<p><em>Les informations de paiement seront à saisir lors de votre premier achat sur notre site</em></p>
+
 
 				<hr>
 
