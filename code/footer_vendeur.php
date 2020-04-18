@@ -1,7 +1,7 @@
 
 <footer class="page-footer font-small blue-grey lighten-5">
 
-	<div style="background-color: #E52714;">
+	<div style="background-color: #E52714;  ">
 		<div class="container">
 			<div class="row py-4 d-flex align-items-center">
 
