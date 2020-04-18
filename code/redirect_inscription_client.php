@@ -68,6 +68,10 @@ if (isset($_POST['submit_client_inscription'])) {
 
     $mail = $_POST["email_client_inscription"];
 
+    /*if ($mail = "") {
+        header("location: inscription_client");
+    }*/
+
     if ($db_found) {
         $sql = "SELECT * FROM `user` WHERE email LIKE '$mail'";
         $result = mysqli_query($db_handle, $sql);
@@ -79,7 +83,7 @@ if (isset($_POST['submit_client_inscription'])) {
             $info_client["nom"] = $_POST["nom_client_inscription"];
             $info_client["pseudo"] = $_POST["pseudo_client_inscription"];
             $info_client["email"] = $mail;
-            $info_client["rang"]=1;
+            $info_client["rang"] = 1;
             $info_client["mdp"] = $_POST["mdp_client_inscription"];
             $info_client["ad1"] = $_POST["ad1_client_inscription"];
             $info_client["ad2"] = $_POST["ad2_client_inscription"];
@@ -96,7 +100,7 @@ if (isset($_POST['submit_client_inscription'])) {
             foreach ($info_client as $elements) {
                 if ($elements == "") {
                     echo "error";
-                    #header("location: inscription_client.php");
+                    header("location: inscription_client.php");
                 } else {
                     #echo $elements;
                 }
@@ -147,11 +151,10 @@ if (isset($_POST['submit_client_inscription'])) {
             $_SESSION["prenom"] = $info_client['prenom'];
             $_SESSION["id_collection"] = $info_client["id_collection"];
             header("location: accueil.php");
-
         } else {
             echo "Vous êtes deja dans la bdd";
 
-            #header("location: accueil.php");
+            header("location: connexion_client");
         }
     }
 }

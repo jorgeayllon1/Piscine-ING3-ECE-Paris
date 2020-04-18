@@ -57,7 +57,7 @@ session_start();
 
 				<div class="col-lg-5 col-md-5 col-xm-5 col-xs-5">
 
-					<form class="text-center border border-light p-2 form-vendeur" action="#!" form="post" style="background-color: #fff; ">
+					<form class="text-center border border-light p-2 form-vendeur" method="post" action="redirect_inscription_vendeur.php" style="background-color: #fff; ">
 						<!--PHP-->
 
 						<p class="h4 mb-4">S'inscrire</p>
