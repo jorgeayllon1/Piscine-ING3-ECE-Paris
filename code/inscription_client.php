@@ -68,6 +68,8 @@ session_start();
 					</div>
 				</div>
 
+				<input type="text" name="pseudo_client_inscription" id="pseudo_client_inscription" class="form-control mb-3" placeholder="Pseudo">
+
 
 				<input type="email" name="email_client_inscription" id="email_client_inscription" class="form-control mb-3" placeholder="E-mail">
 
