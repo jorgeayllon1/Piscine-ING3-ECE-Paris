@@ -2,13 +2,6 @@
 
 session_start();
 
-if (isset($_POST['deco'])) {
-	if ($_POST['deco']) {
-		$fp = fopen('cookie.php', 'w');
-		fclose($fp);
-		header("location: accueil.php");
-	}
-}
 ?>
 
 
@@ -144,7 +137,7 @@ if (isset($_POST['deco'])) {
 
 								<div class="form-group my-2">
 									<label for="back_vendeur">Choisissez une photo pour votre fond :</label>
-									<input type="file"  name="back_vendeur" class="form-control-file" id="back_vendeur">
+									<input type="file" name="back_vendeur" class="form-control-file" id="back_vendeur">
 								</div>
 
 
@@ -244,7 +237,7 @@ if (isset($_POST['deco'])) {
 						<!--AJOUTER UNE VENTE-->
 						<div class="tab-pane fade" id="publier-vendeur">
 							<p class="h4 mb-4" style="color:#fff;">Ajouter une vente</p>
-							<form style="background-color:#fff;" class="py-3 px-3">
+							<form style="background-color:#fff;" class="py-3 px-3" method="POST" action="ajouter_vente_vendeur.php">
 								<div class="form-group">
 									<label for="ajout_nom">Nom du produit</label>
 									<input type="text" name="ajout_nom" id="ajout_nom" placeholder="Nom du produit">
@@ -269,7 +262,7 @@ if (isset($_POST['deco'])) {
 
 								<div class="form-group">
 									<label for="ajout_categorie">Choisissez une catégorie</label>
-									<select class="form-control" name="ajout_catégorie" id="ajout_catégorie">
+									<select class="form-control" name="ajout_categorie" id="ajout_categorie">
 										<option>Choisir</option>
 										<option>Ferraille ou trésor</option>
 										<option>Bon pour le musée</option>
@@ -281,7 +274,18 @@ if (isset($_POST['deco'])) {
 									<label for="ajout_prix">Prix</label>
 									<input type="number" name="ajout_prix">
 								</div>
+								<!-- J'ai changé le type de div pour pouvoir retourner un ajout_type-->
+								<div class="form-group">
+									<label for="ajout_categorie">Choisissez un type d'achat</label>
+									<select class="form-control" name="ajout_type" id="ajout_type">
+										<option>Choisir</option>
+										<option>Enchère</option>
+										<option>Achat immédiat</option>
+										<option>Meilleure offre</option>
+									</select>
+								</div>
 
+								<!--
 								<div class="custom-control">
 									<label for="ajout_moyen">Moyen de vente :</label><br>
 									<input type="checkbox" name="ajout_moyen" id="ajout_enchere">
@@ -290,10 +294,10 @@ if (isset($_POST['deco'])) {
 									<label for="ajout_immediat">Achat immédiat</label>
 									<input type="checkbox" name="ajout_moyen" id="ajout_meilleure">
 									<label for="ajout_meilleure">Meilleure offre</label>
-								</div>
+								</div> -->
 
 								<div class="row d-flex justify-content-center">
-									<a href="#"><button class="btn btn-rounded my-2" style="background: #E52714; color: #fff;">Publier</button></a>
+									<a href="#"><button class="btn btn-rounded my-2" style="background: #E52714; color: #fff;" name="ajouter_item_vendeur" type="submit">Publier</button></a>
 
 								</div>
 
