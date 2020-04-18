@@ -1,5 +1,60 @@
 <?php
-session_start();
+		session_start();
+
+		ini_set('display_error',1); /*Affichage erreur*/
+
+		$type_carte=$_SESSION["type"]; /*Pour savoir cohé quel button radio lorsque le client accède à son compte*/
+		$session_pseudo=$_SESSION["pseudo"];
+
+
+        /*Dans le form, l'id est caché avec display none*/
+		$id = isset($_POST["id_client"])?$_POST["id_client"]:"";
+		
+		$nom = isset($_POST["nom_client"])?$_POST["nom_client"]:"";
+		$prenom = isset($_POST["prenom_client"])?$_POST["prenom_client"]:"";
+		$pseudo = isset($_POST["pseudo_client"])?$_POST["pseudo_client"]:"";
+		$email = isset($_POST["email_client"])?$_POST["email_client"]:"";
+		$mdp = isset($_POST["mdp_client"])?$_POST["mdp_client"]:"";
+		$adresse1 = isset($_POST["ad1_client"])?$_POST["ad1_client"]:"";
+		$adresse2 = isset($_POST["ad2_client"])?$_POST["ad2_client"]:"";
+		$pays = isset($_POST["pays_client"])?$_POST["pays_client"]:"";
+		$ville = isset($_POST["ville_client"])?$_POST["ville_client"]:"";
+		$cp = isset($_POST["cp_client"])?$_POST["cp_client"]:"";
+		$phone = isset($_POST["phone_client"])?$_POST["phone_client"]:"";
+		$carte_type = isset($_POST["type_carte"])?$_POST["type_carte"]:""; /*ne pas confondre avec $type_carte qui permet de get la carte enregistrée dans le cookie*/
+		$nom_carte = isset($_POST["paiement_nom"])?$_POST["paiement_nom"]:"";
+		$num_carte = isset($_POST["paiement_num_carte"])?$_POST["paiement_num_carte"]:"";
+		$date_carte = isset($_POST["paiement_date_expi"])?$_POST["paiement_date_expi"]:"";
+		$code_carte = isset($_POST["paiement_code"])?$_POST["paiement_code"]:"";
+
+
+		$database = "ebayece";
+		$db_handle = mysqli_connect('localhost', 'root', '');
+		$db_found = mysqli_select_db($db_handle, $database);
+
+		if(isset($_POST['modifier_client']))
+		{
+			/*Pour pseudo on la compare avec SESSION càd le cookie car dans ses infos on n'a pas le id*/
+			if($db_found){
+				$sql = " UPDATE user SET nom='$nom', prenom='$prenom', email='$email', /**On met à jour la donnée */
+				mdp='$mdp' WHERE pseudo = '$pseudo'  ";
+				$result = mysqli_query($db_handle,$sql);
+
+				$sql= " UPDATE user SET pseudo='$pseudo' WHERE pseudo= '$session_pseudo'";
+				$result = mysqli_query($db_handle,$sql);
+
+				
+
+				
+
+			}
+			else{
+				echo "BDD non trouvé";
+			}
+		}
+		
+
+
 ?>
 
 <!DOCTYPE html>
@@ -111,7 +166,7 @@ session_start();
 
 
 					<div class="tab-pane fade show active " id="info-client">
-						<form class="text-center border border-light " action="#!">
+						<form class="text-center border border-light " action="compte_client.php" method="post">
 							<!--PHP-->
 
 							<p class="h4 mb-4">Vos informations</p>
@@ -120,46 +175,54 @@ session_start();
 							<div class="form-row mb-4">
 								<div class="col">
 
-									<input type="text" name="prenom_client" id="prenom_client" class="form-control" placeholder="David">
+								    <input type="text" name="id_client" style="display:none;" value="<?php echo $_SESSION["id_user"]?>">
+
+									<input type="text" name="prenom_client" id="prenom_client" class="form-control" 
+									value="<?php echo $_SESSION["prenom"]?>">
 								</div>
 								<div class="col">
 
-									<input type="text" name="nom_client" id="nom_client" class="form-control" placeholder="Wang">
+									<input type="text" name="nom_client" id="nom_client" class="form-control"
+									value="<?php echo $_SESSION["nom"]?>">
 								</div>
 							</div>
 
-							<input type="text" name="pseudo_client" id="pseudo_client" class="form-control mb-3" placeholder="Pseudo">
+							<input type="text" name="pseudo_client" id="pseudo_client" class="form-control mb-3" 
+							value="<?php echo $_SESSION["pseudo"]?>">
 
 
-							<input type="email" name="email_client" id="email_client" class="form-control mb-3" placeholder="E-mail">
+							<input type="email" name="email_client" id="email_client" class="form-control mb-3" 
+							value="<?php echo $_SESSION["email"]?>">
 
 
-							<input type="password" name="mdp_client" id="mdp_client" class="form-control" placeholder="**********" aria-describedby="defaultRegisterFormPasswordHelpBlock">
+							<input type="password" name="mdp_client" id="mdp_client" class="form-control" 
+							value="<?php echo $_SESSION["mdp"]?>" aria-describedby="defaultRegisterFormPasswordHelpBlock">
 							<small id="mdp_client" class="form-text text-muted mb-4">
 								Au moins 8 caractères et un chiffre
 
 							</small>
-							<input type="text"  name="ad1_client" id="ad1_client" class="form-control mb-3" placeholder="Adresse">
-							<input type="text" name="ad2_client"  id="ad2_client" class="form-control mb-3" placeholder="Complément adresse">
+							<input type="text"  name="ad1_client" id="ad1_client" class="form-control mb-3"
+							value="<?php echo $_SESSION["adresse1"]?>">
+							<input type="text" name="ad2_client"  id="ad2_client" class="form-control mb-3" 
+							value="<?php echo $_SESSION["adresse2"]?>">
 
 							<div class="form-row mb-4">
 								<div class="col">
-									<input type="text" name="pays_client" id="pays_client" class="form-control mb-3" placeholder="Pays">
+									<input type="text" name="pays_client" id="pays_client" class="form-control mb-3"
+									value="<?php echo $_SESSION["pays"]?>">
 								</div>
 								<div class="col">
-									<input type="text" name="ville_client" id="ville_client" class="form-control mb-3" placeholder="Ville">
+									<input type="text" name="ville_client" id="ville_client" class="form-control mb-3"
+									value="<?php echo $_SESSION["ville"]?>">
 								</div>
 							</div>
 
-							<input type="number" name="cp_client" id="cp_client" class="form-control mb-3" placeholder="Code Postal">
+							<input type="number" name="cp_client" id="cp_client" class="form-control mb-3" 
+							value="<?php echo $_SESSION["code_postal"]?>">
 
 
-							<input type="text"  name="pays_client" id="pays_client" class="form-control mb-3" placeholder="Pays">
-
-
-
-
-							<input type="text" name="phone_client" id="phone_client" class="form-control" placeholder="Téléphone" aria-describedby="defaultRegisterFormPhoneHelpBlock">
+							<input type="text" name="phone_client" id="phone_client" class="form-control" 
+							value="<?php echo $_SESSION["num_tel"]?>" aria-describedby="defaultRegisterFormPhoneHelpBlock">
 							<small id="phone_client" class="form-text text-muted mb-3">
 								Numéro en France
 							</small>
@@ -167,22 +230,26 @@ session_start();
 							<p class="h5 mb-4">Vos informations bancaires</p>
 
 							<div class="custom-control custom-radio">
-								<input  type="radio" id="visa" name="type_carte"  class="custom-control-input" checked required>
+								<input  type="radio" id="visa" name="type_carte"  class="custom-control-input" 
+								<?php if($type_carte === 'Visa') echo 'checked="checked"';?> >
 								<label class="custom-control-label" for="visa">Visa</label>
 								<i class="fa fa-cc-visa"></i>
 								</div>
 								<div class="custom-control custom-radio">
-								<input  type="radio" id="master" name="type_carte"  class="custom-control-input" required>
+								<input  type="radio" id="master" name="type_carte"  class="custom-control-input"
+								<?php if($type_carte === 'MatserCard') echo 'checked="checked"';?>>
 								<label class="custom-control-label" for="master">MasterCard</label>
 								<i class="fa fa-cc-mastercard"></i>
 								</div>
 								<div class="custom-control custom-radio">
-								<input  type="radio"  id="express" name="type_carte" class="custom-control-input" required>
+								<input  type="radio"  id="express" name="type_carte" class="custom-control-input"
+								<?php if($type_carte === 'American Express') echo 'checked="checked"';?>>
 								<label class="custom-control-label" for="express">American express</label>
 								<i class="fa fa-cc-amex"></i>
 								</div>
 								<div class="custom-control custom-radio">
-								<input  type="radio" id="paypal" name="type_carte"  class="custom-control-input" required>
+								<input  type="radio" id="paypal" name="type_carte"  class="custom-control-input" 
+								<?php if($type_carte === 'Paypal') echo 'checked="checked"';?>>
 								<label class="custom-control-label" for="paypal">Paypal</label>
 								<i class="fa fa-cc-paypal"></i>
 							</div>
@@ -190,22 +257,26 @@ session_start();
 							<div class="form-row my-2">
 								<div class="col">
 									<label for="paiement_nom">Nom sur la carte</label>
-									<input type="text" name="paiement_nom" id="paiement_nom" class="form-control">
+									<input type="text" name="paiement_nom" id="paiement_nom" class="form-control"
+									value="<?php echo $_SESSION["nom_sur_carte"]?>">
 								</div>
 								<div class="col">
 									<label for="paiement_num_carte">Numéro carte</label>
-									<input type="text" name="paiement_num_cart" id="paiement_num_carte" class="form-control">
+									<input type="text" name="paiement_num_carte" id="paiement_num_carte" class="form-control"
+									value="<?php echo $_SESSION["num_carte"]?>">
 								</div>
 							</div>
 
 							<div class="form-row my-2 ">
 								<div class="col">
 									<label for="paiement_date_expi">Date expiration</label>
-									<input type="month"  name="paiement_date_expi" id="paiement_date_expi" class="form-control">
+									<input type="month"  name="paiement_date_expi" id="paiement_date_expi" class="form-control"
+									value="<?php echo $_SESSION["date_expi"]?>">
 								</div>
 								<div class="col">
 									<label for="paiement_code">CVC</label>
-									<input type="number"  name="paiement_code" id="paiement_code" class="form-control">
+									<input type="number"  name="paiement_code" id="paiement_code" class="form-control"
+									value="<?php echo $_SESSION["code"]?>">
 								</div>
 							</div>
 

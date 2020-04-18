@@ -26,12 +26,18 @@ if (isset($_POST['submit'])) {
                     $c_rang = $data['rang'];
                     #$fp = fopen('cookie.php', 'w');
 
+                    
+
                     #Cette ligne va ecrire dans le cookies la valeur qu'on veut
                     $_SESSION["id_user"] = $data['id'];
                     $_SESSION["rang"] = $data['rang'];
                     $_SESSION["nom"] = $data['nom'];
                     $_SESSION["prenom"] = $data['prenom'];
                     $_SESSION["id_collection"] = $data["id_collection"];
+                    /*Ajout des infos pseudo et mail*/
+                    $_SESSION["pseudo"] = $data["pseudo"];
+                    $_SESSION["email"] = $data["email"];
+                    $_SESSION["mdp"] = $data["mdp"];
 
                     /*
                     fwrite($fp, "<?php 
@@ -43,7 +49,48 @@ if (isset($_POST['submit'])) {
                     header("location: accueil.php");
                 }
             }
+
+            /*Récupération des infos de livraison pour les insérer dans le cookie*/
+
+            $sql = "SELECT * FROM coord_livraison INNER JOIN user ON coord_livraison.id = user.id"; 
+            $result = mysqli_query($db_handle, $sql);
+            if (mysqli_num_rows($result) == 0) {
+                //echo "Erreur, veuillez vérifier vos informations de connexion.";
+            } else {
+                echo "trouvé";
+                while ($data = mysqli_fetch_assoc($result)) {
+
+                    $_SESSION["adresse1"] = $data["adresse1"];
+                    $_SESSION["adresse2"] = $data["adresse2"];
+                    $_SESSION["ville"] = $data["ville"];
+                    $_SESSION["code_postal"] = $data["code_postal"];
+                    $_SESSION["pays"] = $data["pays"];
+                    $_SESSION["num_tel"] = $data["num_tel"];
+                    
+                }
+            }
+
+            $sql = "SELECT * FROM info_bancaire INNER JOIN user ON info_bancaire.id = user.id"; 
+            $result = mysqli_query($db_handle, $sql);
+            if (mysqli_num_rows($result) == 0) {
+                //echo "Erreur, veuillez vérifier vos informations de connexion.";
+            } else {
+                echo "trouvé";
+                while ($data = mysqli_fetch_assoc($result)) {
+
+                    $_SESSION["num_carte"] = $data["num_carte"];
+                    $_SESSION["type"] = $data["type"];
+                    $_SESSION["nom_sur_carte"] = $data["nom_sur_carte"];
+                    $_SESSION["date_expi"] = $data["date_expi"];
+                    $_SESSION["code"] = $data["code"];
+
+                 }
+            }
+
+
         }
+
+
     }
 }
 

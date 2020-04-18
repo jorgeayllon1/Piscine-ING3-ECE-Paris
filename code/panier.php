@@ -278,14 +278,6 @@ function chemins_dune_image($id_item, $db_handle)
                 <!--Affichage miniaturisée sur le côté avec prix total avec option de continuer à faire shopping-->
                 <div class="col-lg-3 my-3 ">
 
-                
-
-
-
-
-
-                    
-
                     <div class="card  shadow p-3 mb-5" style="border:solid black 1px">
 
                         <div class="card-body text-center">
