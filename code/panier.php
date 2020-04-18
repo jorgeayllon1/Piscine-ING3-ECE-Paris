@@ -56,9 +56,22 @@ function id_items_dans_panier($id_collection, $db_handle)
     return $lesitems;
 }
 
-#$lesitems = id_items_dans_panier("2", "2", $db_handle);
+function collection_vide($id_user, $db_handle)
+{
+    $sql =
+        "SELECT * from lacollection
+    where lacollection.id=$id_user";
 
-#print_r($lesitems);
+    $result = mysqli_query($db_handle, $sql);
+
+    while ($data = mysqli_fetch_assoc($result)) {
+        if ($data["id_item_1"]) {
+            return true;
+        }
+    }
+
+    return false;
+}
 
 function chemins_dune_image($id_item, $db_handle)
 {
@@ -106,9 +119,9 @@ function chemins_dune_image($id_item, $db_handle)
 <body style="background-color:#FBFBFB  ;">
 
     <div style="font-family: Arial, Helvetica, sans-serif;">
-    <div class="container-fluid">
+        <div class="container-fluid">
             <div class="row d-flex justify-content-center">
-                <nav class="navbar navbar-expand-md col-lg-12" style="border-bottom:solid #E7E7E7" >
+                <nav class="navbar navbar-expand-md col-lg-12" style="border-bottom:solid #E7E7E7">
                     <a class="navbar-brand" href="accueil.php"><img src="images/logo.png" width="20%"></a>
                     <button class="navbar-toggler navbar-dark" type="button" data-toggle="collapse" data-target="#main-navigation">
                         <span class="navbar-toggler-icon"></span>
@@ -161,48 +174,51 @@ function chemins_dune_image($id_item, $db_handle)
                                 </tr>
                             </thead>
                             <tbody>
-                            <?php
+                                <?php
 
-                            $lesitems = id_items_dans_panier($_SESSION["id_user"], $db_handle);
+                                if (collection_vide($_SESSION["id_user"], $db_handle)) {
 
-                            foreach ($lesitems as $unitem) {
+                                    $lesitems = id_items_dans_panier($_SESSION["id_user"], $db_handle);
 
-                                echo '<tr class="text-center">';
-                                echo '<td><img src=' . chemins_dune_image($unitem["id"], $db_handle)[0] . ' width="90px" height="90px" /> </td>';
-                                echo '<td>' . $unitem["nom"] . '</td>';
-                                echo '<td>(1)</td>';
+                                    foreach ($lesitems as $unitem) {
 
-                                switch ($unitem["type"]) {
-                                    case 1:
-                                        echo '<td>Enchères</td>';
-                                        break;
-                                    case 2:
-                                        echo '<td>Achetez-le Maintenant</td>';
-                                        break;
-                                    case 3:
-                                        echo '<td>Meilleure Offre</td>';
-                                        break;
+                                        echo '<tr class="text-center">';
+                                        echo '<td><img src=' . chemins_dune_image($unitem["id"], $db_handle)[0] . ' width="90px" height="90px" /> </td>';
+                                        echo '<td>' . $unitem["nom"] . '</td>';
+                                        echo '<td>(1)</td>';
+
+                                        switch ($unitem["type"]) {
+                                            case 1:
+                                                echo '<td>Enchères</td>';
+                                                break;
+                                            case 2:
+                                                echo '<td>Achetez-le Maintenant</td>';
+                                                break;
+                                            case 3:
+                                                echo '<td>Meilleure Offre</td>';
+                                                break;
+                                        }
+
+                                        switch ($unitem["categorie"]) {
+                                            case 1:
+                                                echo '<td>Ferraille ou trésor</td>';
+                                                break;
+                                            case 2:
+                                                echo '<td>Bon pour le Musée</td>';
+                                                break;
+                                            case 3:
+                                                echo '<td>Accessoire VIP</td>';
+                                                break;
+                                        }
+
+                                        echo '<td>' . $unitem["date_fin"] . '</td>';
+                                        echo '<td>' . $unitem["prix_souh"] . '</td>';
+                                        echo '<td class="prix-article-1">' . $unitem["prix"] . '€</td>';
+                                        echo '<td class="text-right"><button class="btn btn-sm btn-danger"><i class="fa fa-trash"></i> </button> </td>';
+                                        echo '</tr>';
+                                    }
                                 }
-
-                                switch ($unitem["categorie"]) {
-                                    case 1:
-                                        echo '<td>Ferraille ou trésor</td>';
-                                        break;
-                                    case 2:
-                                        echo '<td>Bon pour le Musée</td>';
-                                        break;
-                                    case 3:
-                                        echo '<td>Accessoire VIP</td>';
-                                        break;
-                                }
-
-                                echo '<td>' . $unitem["date_fin"] . '</td>';
-                                echo '<td>' . $unitem["prix_souh"] . '</td>';
-                                echo '<td class="prix-article-1">' . $unitem["prix"] . '€</td>';
-                                echo '<td class="text-right"><button class="btn btn-sm btn-danger"><i class="fa fa-trash"></i> </button> </td>';
-                                echo '</tr>';
-                            }
-                            ?>
+                                ?>
                                 <tr class="text-center">
                                     <td><img src="images/item/item1.jpg" width="90px" height="90px" /> </td>
                                     <td>Lampe</td>
@@ -278,13 +294,13 @@ function chemins_dune_image($id_item, $db_handle)
                 <!--Affichage miniaturisée sur le côté avec prix total avec option de continuer à faire shopping-->
                 <div class="col-lg-3 my-3 ">
 
-                
 
 
 
 
 
-                    
+
+
 
                     <div class="card  shadow p-3 mb-5" style="border:solid black 1px">
 
@@ -330,7 +346,7 @@ function chemins_dune_image($id_item, $db_handle)
                 </div>
             </div>
         </div>
-        
+
     </div>
 
 
@@ -346,7 +362,7 @@ function chemins_dune_image($id_item, $db_handle)
         </div>
 
     </div>
-    
+
 
 
 
