@@ -49,7 +49,7 @@ session_start();
 		<div class="row w-100 d-flex justify-content-center items-align-center">
 
 
-			<form class="text-center border border-light p-5" action="#!" form="POST">
+			<form class="text-center border border-light p-5" method="post" action="redirect_inscription_client.php">
 				<!--PHP-->
 
 				<p class="h4 mb-4">S'inscrire</p>
@@ -58,39 +58,39 @@ session_start();
 				<div class="form-row mb-4">
 					<div class="col">
 
-						<input type="text" id="prenom_client_inscription" class="form-control" placeholder="Prénom">
+						<input type="text" name="prenom_inscription" id="prenom_client_inscription" class="form-control" placeholder="Prénom">
 					</div>
 					<div class="col">
 
-						<input type="text" id="nom_client_inscriptione" class="form-control" placeholder="nom">
+						<input type="text" name="nom_inscription" id="nom_client_inscriptione" class="form-control" placeholder="nom">
 					</div>
 				</div>
 
 
-				<input type="email" id="email_client_inscription" class="form-control mb-3" placeholder="E-mail">
+				<input type="email" name="email_inscription" id="email_client_inscription" class="form-control mb-3" placeholder="E-mail">
 
 
-				<input type="password" id="mdp_client_inscription" class="form-control" placeholder="Mot De Passe" aria-describedby="defaultRegisterFormPasswordHelpBlock">
+				<input type="password" name="mdp_inscription" id="mdp_client_inscription" class="form-control" placeholder="Mot De Passe" aria-describedby="defaultRegisterFormPasswordHelpBlock">
 				<small id="mdp_client_inscription" class="form-text text-muted mb-4">
 					<em>Au moins 8 caractères et un chiffre</em>
 
 				</small>
-				<input type="text" id="ad1_client_inscription" class="form-control mb-3" placeholder="Adresse">
-				<input type="text" id="ad2_client_inscription" class="form-control mb-3" placeholder="Complément adresse">
+				<input type="text" name="ad1_client_inscription" id="ad1_client_inscription" class="form-control mb-3" placeholder="Adresse">
+				<input type="text" name="ad2_client_inscription" id="ad2_client_inscription" class="form-control mb-3" placeholder="Complément adresse">
 
 				<div class="form-row mb-4">
 					<div class="col">
-						<input type="text" id="pays_client_inscription" class="form-control mb-3" placeholder="Pays">
+						<input type="text" name="pays_client_inscription" id="pays_client_inscription" class="form-control mb-3" placeholder="Pays">
 					</div>
 					<div class="col">
-						<input type="text" id="ville_client_inscription" class="form-control mb-3" placeholder="Ville">
+						<input type="text" name="ville_client_inscription" id="ville_client_inscription" class="form-control mb-3" placeholder="Ville">
 					</div>
 				</div>
 
-				<input type="number" id="cp_client-inscription" class="form-control mb-3" placeholder="Code Postal">
+				<input type="number" name="cp_client_inscription" id="cp_client-inscription" class="form-control mb-3" placeholder="Code Postal">
 
 
-				<input type="text" id="phone_client_inscription" class="form-control" placeholder="Téléphone" aria-describedby="defaultRegisterFormPhoneHelpBlock">
+				<input type="text" name="phone_client_inscription" id="phone_client_inscription" class="form-control" placeholder="Téléphone" aria-describedby="defaultRegisterFormPhoneHelpBlock">
 				<small id="phone_client_inscription" class="form-text text-muted mb-3">
 					Numéro en France
 				</small>
@@ -101,8 +101,8 @@ session_start();
 					<label class="custom-control-label" for="news_client_inscription">Souscrivez à notre newsletter</label>
 				</div>
 
-
-				<button class="btn my-4 " style="background: #31405F; border:none; color:#fff;" type="submit">S'inscrire</button>
+				<!-- Mettre name="submit" -->
+				<button class="btn my-4 " style="background: #31405F; border:none; color:#fff;" name="submit" type="submit">S'inscrire</button>
 
 
 				<p>ou avec:</p>

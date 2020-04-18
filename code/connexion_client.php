@@ -4,7 +4,7 @@
 # C'est OBLIGATOIRE, sinon cookie marche pas
 session_start();
 #On met des valeurs, pour eviter les erreurs
-setcookie('id_user','' , time() + 365 * 24 * 3600);
+setcookie('id_user', '', time() + 365 * 24 * 3600);
 setcookie('rang', '', time() + 365 * 24 * 3600);
 
 $database = "ebayece";
@@ -29,9 +29,9 @@ if (isset($_POST['submit'])) {
                     #Cette ligne va ecrire dans le cookies la valeur qu'on veut
                     $_SESSION["id_user"] = $data['id'];
                     $_SESSION["rang"] = $data['rang'];
-                    $_SESSION["nom"]=$data['nom'];
-                    $_SESSION["prenom"]=$data['prenom'];
-                    $_SESSION["id_collection"]=$data["id_collection"];
+                    $_SESSION["nom"] = $data['nom'];
+                    $_SESSION["prenom"] = $data['prenom'];
+                    $_SESSION["id_collection"] = $data["id_collection"];
 
                     /*
                     fwrite($fp, "<?php 
@@ -119,21 +119,21 @@ mysqli_close($db_handle);
 
                         <input type="email" id="email_client_connexion" name="mail" class="form-control mb-3" placeholder="E-mail">
 
-                        
+
                         <input type="password" id="mdp_client_connexion" name="mdp" class="form-control" placeholder="Mot De Passe" aria-describedby="defaultRegisterFormPasswordHelpBlock">
                         <small id="mdp_client_connexion" class="form-text text-muted mb-4">
-                        <em>Au moins 8 caractères et un chiffre</em>
+                            <em>Au moins 8 caractères et un chiffre</em>
 
                         </small>
 
-                       
+
 
                         <input name="submit" class="btn my-3 " style="background: #31405F; border:none; color:#fff;" type="submit" value="Se connecter">
 
-                       
+
                         <p>ou avec:</p>
 
-                        <a href="#" class="mx-2" role="button"><i class="fa fa-facebook-f" ></i></a>
+                        <a href="#" class="mx-2" role="button"><i class="fa fa-facebook-f"></i></a>
                         <a href="#" class="mx-2" role="button"><i class="fa fa-linkedin"></i></a>
                         <a href="#" class="mx-2" role="button"><i class="fa fa-google-plus "></i></a>
 
@@ -172,7 +172,7 @@ mysqli_close($db_handle);
 
     <div class="container">
         <div class="row-width-max">
-        <?php include('footer_client.php'); ?>
+            <?php include('footer_client.php'); ?>
         </div>
     </div>
 
