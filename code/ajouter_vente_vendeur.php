@@ -17,12 +17,52 @@ function ajouter_item($id, $id_prop, $nom, $description, $prix, $video, $categor
     mysqli_query($db_handle, $sql);
 }
 
+function trouver_id_panier_dispo($id_panier, $db_handle)
+{
+    $sql =
+        "SELECT * from lacollection
+        WHERE lacollection.id=$id_panier";
+
+    $recip = "id_item_";
+
+    $result = mysqli_query($db_handle, $sql);
+
+    while ($data = mysqli_fetch_assoc($result)) {
+        for ($indice = 1; $indice <= 50; $indice++) {
+            if (!$data[$recip . strval($indice)]) {
+                return $indice;
+            }
+        }
+    }
+    return false;
+}
+
+#Envoyer $_SESSION dans le $_id
+function ajouter_item_dans_panier($id_user, $id_dispo, $id_item, $db_handle)
+{
+    #On rajoute les bonnes valeurs aux bonnes colonnes
+    #On evite toutes les colonnes qui auront la valeur = NULL
+
+    $temp = "id_item_" . $id_dispo;
+
+    $sql =
+        "UPDATE lacollection
+        SET " . $temp . " = '" . $id_item . "'
+        WHERE lacollection.id = '" . $id_user . "'";
+
+    #echo "\n" . $sql . "\n";
+
+    mysqli_query($db_handle, $sql);
+}
+
 
 function ajouter_photo($chemin, $db_handle, $id_item)
 {
     $sql =
         "INSERT INTO photo
     VALUES(NULL,'" . $id_item . "','" . $chemin . "')";
+
+    echo "\n" . $sql . "\n";
 
     mysqli_query($db_handle, $sql);
 }
@@ -50,7 +90,8 @@ if (isset($_POST['ajouter_item_vendeur'])) {
         $litem["description"] = $_POST["ajout_description"];
         $litem["prix"] = $_POST["ajout_prix"];
         #$litem["prix_souh"]=NULL;
-        $litem["video"]=$_POST["ajout_video"];
+        $litem["image"] = $_POST["ajout_image"];
+        $litem["video"] = $_POST["ajout_video"];
         $litem["categorie"] = $_POST["ajout_categorie"];
         #changer le type de l'item
         $litem["type"] = $_POST["ajout_type"];
@@ -60,16 +101,24 @@ if (isset($_POST['ajouter_item_vendeur'])) {
         foreach ($litem as $elements) {
             if ($elements == "") {
                 echo "erreur";
-                #header("location: compte_vendeur");
+                header("location: compte_vendeur");
             } else {
                 echo $elements;
             }
         }
         $litem["id"] = id_item_max($db_handle);
 
+        $litem["id_dans_collection"] = trouver_id_panier_dispo($_SESSION["id_user"], $db_handle);
+
         #Ajouter item dans collection
-        
-        /*
+        ajouter_item_dans_panier(
+            $_SESSION["id_user"],
+            $litem["id_dans_collection"],
+            $litem["id"],
+            $db_handle
+        );
+
+        #Ajouter l'item dans la table item
         ajouter_item(
             $litem["id"],
             $litem["id_prop"],
@@ -83,7 +132,11 @@ if (isset($_POST['ajouter_item_vendeur'])) {
             $litem["date_fin"],
             $db_handle
         );
-        */
+
+        #Ajouter la photo de l'item
+        ajouter_photo($litem["image"], $db_handle, $litem["id"]);
+
+        header("location: compte_vendeur.php");
     }
 } else {
     echo "ERROR";
