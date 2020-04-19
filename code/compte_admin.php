@@ -65,8 +65,21 @@
 			echo "BDD non trouvé";
 		}
 	}
+	
+	/**ON AFFICHE TOUT LES VENDEURS */
+	if($db_found)
+	{
+		$sql1 = "SELECT * FROM user WHERE rang like '2'";
+		$result1 = mysqli_query($db_handle,$sql1);
+
+		if (mysqli_num_rows($result1) == 0) {
+			#echo "Erreur";
+		} 
+	}
 
 
+
+	
 
 ?>
 
@@ -417,38 +430,51 @@
 
 					<!--RETIRER UN VENDEUR-->
 					<div class="tab-pane fade" id="retirer-vendeur-admin">
-						<p class="h4 mb-4">Liste complète des vendeurs</p>
+						<form action="compte_admin.php" method="post">
+							<p class="h4 mb-4">Liste complète des vendeurs</p>
 
-						<div class="table">
-							<div class="table-responsive">
-								<table class="table table-bordered">
-									<thead>
-										<tr>
-											<th>#</th>
-											<th>Pseudo vendeur</th>
-											<th>Nom vendeur</th>
-											<th>Email vendeur</th>
+							
+
+							<div class="table">
+								<div class="table-responsive">
+									<table class="table table-bordered">
+										<thead>
+											<tr>
+												<th>#</th>
+												<th>Pseudo vendeur</th>
+												<th>Nom vendeur</th>
+												<th>Email vendeur</th>
+											</tr>
+										</thead>
+										<tbody>
+											<?php
+											
+											while($data=mysqli_fetch_assoc($result1))
+											{
+
+													echo '<tr>';
+													echo '<td value="'.$data['id'].'">'.$data['id'].'</td>';
+													echo '<td>' .$data['pseudo']. '</td>';
+													echo '<td>' .$data['nom']. '</td>';
+													echo '<td>' .$data['email']. '</td>';
+													echo  '<td>
+													<button class="btn btn-primary"';
+													echo 'id="retirer_vendeur'.$data['id'].'">Retirer</button> </td> </tr>';
+
+											}
+
+											
+
+											?>
+
+										
 
 
-										</tr>
-									</thead>
-									<tbody>
-										<tr>
-											<!-- mettre les classes pour PHP comme pr vendeur-->
-											<td>1</td>
-											<td>hzfhfeuk</td>
-											<td>Ayllon</td>
-											<td>ayllon@mail.fr</td>
-											<td>
-												<button class="btn btn-primary">Retirer</button>
-											</td>
-
-
-										</tr>
-									</tbody>
-								</table>
+										</tbody>
+									</table>
+								</div>
 							</div>
-						</div>
+						</form>
 
 					</div>
 
