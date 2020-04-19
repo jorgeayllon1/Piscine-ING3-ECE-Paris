@@ -1,14 +1,13 @@
 <?php
 
 	session_start();
-
 	if (isset($_SESSION["id_user"])) {
 
 		if ($_SESSION["rang"] != 2) {
 			header("location: connexion_vendeur.php");
 		}
 	}
-	#Sinon, on le renvoit à la page principale
+	#Sinon, on le renvoit à la page principaleo
 	else {
 		header("location: connexion_vendeur.php");
 	}

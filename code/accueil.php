@@ -56,7 +56,7 @@ if(isset($_SESSION["id_user"])){
 					<hr class="navside-hr">
 					<a href="page_achat.php">Acheter</a>
 					<hr class="navside-hr">
-					<a href="connexion_vendeur.php">Vendre</a>
+					<a href="compte_vendeur.php">Vendre</a>
 					<hr class="navside-hr">
 					<a href="#">A propos</a>
 					<hr class="navside-hr">
@@ -116,7 +116,7 @@ if(isset($_SESSION["id_user"])){
 								</li>
 
 								<li class="nav-item">
-									<a class="nav-link link2" href="connexion_vendeur.php"><i class="fa fa-shopping-bag"></i> Vendre</a>
+									<a class="nav-link link2" href="compte_vendeur.php"><i class="fa fa-shopping-bag"></i> Vendre</a>
 								</li>
 
 								<li class="nav-item">
@@ -186,7 +186,7 @@ if(isset($_SESSION["id_user"])){
 										<div class="carousel-caption d-md-block mb-5">
 											<h1 class="h1-responsive" style="font-size:80px;">BIENVENUE CHEZ EBAY ECE</h1>
 											<a href="achat.php"><button class="btn btn-lg mx-1" style="background:#31405F; color:#fff;">Acheter</button></a>
-											<a href="connexion_vendeur.php"><button class="btn btn-lg mx-1" style="background:#31405F; color:#fff;">Vendre</button></a>
+											<a href="compte_vendeur.php"><button class="btn btn-lg mx-1" style="background:#31405F; color:#fff;">Vendre</button></a>
 											
 										</div>
 									</div>
@@ -384,7 +384,7 @@ if(isset($_SESSION["id_user"])){
 											<div class="carousel-caption d-none d-md-block">
 												<h1>VENDEZ EN TOUTE SIMPLICITE</h1>
 												<a href="inscription_vendeur.php"><button class="btn btn-lg" style="background:#31405F; color:#fff;">S'INSCRIRE</button></a>
-												<a href="connexion_vendeur.php"><button class="btn btn-lg" style="background:#31405F; color:#fff;">SE CONNECTER</button></a>
+												<a href="compte_vendeur.php"><button class="btn btn-lg" style="background:#31405F; color:#fff;">SE CONNECTER</button></a>
 
 
 											</div>
