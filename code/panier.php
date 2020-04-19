@@ -10,7 +10,7 @@ $db_found = mysqli_select_db($db_handle, $database);
 
 # Cherche pas a comprendre le code, j'ai déjà oublié
 # pour utiliser le tableau, il faut faire un foreach et la variable de parcours sera l'item
-function id_items_dans_panier($id_collection, $db_handle)
+function items_dans_panier($id_collection, $db_handle)
 {
     #Variable tempon
     $recip = "id_item_";
@@ -178,7 +178,7 @@ function chemins_dune_image($id_item, $db_handle)
 
                                 if (collection_vide($_SESSION["id_user"], $db_handle)) {
 
-                                    $lesitems = id_items_dans_panier($_SESSION["id_user"], $db_handle);
+                                    $lesitems = items_dans_panier($_SESSION["id_user"], $db_handle);
 
                                     foreach ($lesitems as $unitem) {
 

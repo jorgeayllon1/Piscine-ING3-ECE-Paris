@@ -82,6 +82,11 @@ function id_item_max($db_handle)
     return $lemax;
 }
 
+date_default_timezone_set('UTC');
+
+$date = date("d/m/Y");
+$date_apre = strtotime(date("d-m-Y", strtotime($date)) . " +1 day");
+
 if (isset($_POST['ajouter_item_vendeur'])) {
     if ($db_found) {
         #$litem["id"]=NULL;
@@ -95,8 +100,8 @@ if (isset($_POST['ajouter_item_vendeur'])) {
         $litem["categorie"] = $_POST["ajout_categorie"];
         #changer le type de l'item
         $litem["type"] = $_POST["ajout_type"];
-        $litem["date_debut"] = "2020-05-21";
-        $litem["date_fin"] = "2020-05-28";
+        $litem["date_debut"] = $date;
+        $litem["date_fin"] = $date_apre;
 
         foreach ($litem as $elements) {
             if ($elements == "") {
@@ -128,8 +133,8 @@ if (isset($_POST['ajouter_item_vendeur'])) {
             $litem["video"],
             $litem["categorie"],
             $litem["type"],
-            $litem["date_debut"],
-            $litem["date_fin"],
+            $date,
+            $date_apre,
             $db_handle
         );
 

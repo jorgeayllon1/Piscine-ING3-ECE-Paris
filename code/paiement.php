@@ -1,5 +1,94 @@
 <?php
 session_start();
+
+
+$database = "ebayece";
+$db_handle = mysqli_connect('localhost', 'root', '');
+$db_found = mysqli_select_db($db_handle, $database);
+
+function taille_panier($id_user, $db_handle)
+{
+    $sql =
+        "SELECT * from lacollection
+    WHERE id = '" . $id_user . "'";
+
+    $result = mysqli_query($db_handle, $sql);
+
+    $compter = -1;
+
+    while ($data = mysqli_fetch_assoc($result)) {
+        foreach ($data as $elements) {
+            if ($elements)
+                $compter++;
+        }
+    }
+
+    if ($compter == 0) {
+        return false;
+    } else {
+        return $compter;
+    }
+}
+
+function items_dans_panier($id_collection, $db_handle)
+{
+    #Variable tempon
+    $recip = "id_item_";
+
+    #On cherche les id des items dans la collection
+    $sql = "SELECT * from lacollection where lacollection.id=$id_collection";
+
+    $result = mysqli_query($db_handle, $sql);
+
+    while ($data = mysqli_fetch_assoc($result)) {
+
+        for ($indice = 1; $indice <= 50; $indice++) {
+            #On evite les indice NULL
+            if ($data[$recip . strval($indice)]) {
+                #echo $data[$recip . strval($indice)];
+                $lesbonindices[] = $data[$recip . strval($indice)];
+            }
+        }
+    }
+
+    #Pour chaque indice d'item, on retrouve l'item en question
+    foreach ($lesbonindices as $var) {
+
+        $autresql = "SELECT * from les_items where les_items.id=$var";
+        $autreresult = mysqli_query($db_handle, $autresql);
+
+        while ($autredata = mysqli_fetch_assoc($autreresult)) {
+            #On met l'item dans le tableau
+            #Comme il y a N item, on utilise un tableau deux dimension
+            $lesitems[$var]["id"] = $autredata["id"];
+            $lesitems[$var]["id_prop"] = $autredata["id_prop"];
+            $lesitems[$var]["nom"] = $autredata["nom"];
+            $lesitems[$var]["description"] = $autredata["description"];
+            $lesitems[$var]["prix"] = $autredata["prix"];
+            $lesitems[$var]["prix_souh"] = $autredata["prix_souh"];
+            $lesitems[$var]["video"] = $autredata["video"];
+            $lesitems[$var]["categorie"] = $autredata["categorie"];
+            $lesitems[$var]["type"] = $autredata["type"];
+            $lesitems[$var]["date_debut"] = $autredata["date_debut"];
+            $lesitems[$var]["date_fin"] = $autredata["date_fin"];
+        }
+    }
+    return $lesitems;
+}
+
+function somme_tot_achat_immediat($id_user, $db_handle)
+{
+    $somme_tot = 0;
+
+    foreach (items_dans_panier($id_user, $db_handle) as $elements) {
+        if ($elements["type"] == 2) {
+            $somme_tot += $elements["prix"];
+        }
+    }
+
+    return $somme_tot;
+}
+
 ?>
 <!DOCTYPE html>
 
@@ -49,7 +138,7 @@ session_start();
                 </div>
             </nav>
 
-        
+
         </div>
     </div>
 
@@ -59,7 +148,7 @@ session_start();
 
             <div class="col-lg-7 my-3 shadow p-3 mb-5" style="border:solid black 1px">
 
-                <h4 class="horizontal-text-center  my-2" style="text-align: center ; "><span id="selection" style="border-radius:5px; ">Livraison  <i class="fa fa-truck" style="font-size:20px;"></i></span></h4><br>
+                <h4 class="horizontal-text-center  my-2" style="text-align: center ; "><span id="selection" style="border-radius:5px; ">Livraison <i class="fa fa-truck" style="font-size:20px;"></i></span></h4><br>
 
                 <div class="form-row ">
                     <div class="col">
@@ -87,31 +176,31 @@ session_start();
                 </div>
                 <input type="number" name="cp_client-inscription" id="cp_client-inscription" class="form-control mb-3" placeholder="Code Postal">
 
-                <h4 class="horizontal-text-center" style="text-align: center ;"><span id="selection" style="border-radius:5px;">Paiement  <i class="fa fa-credit-card" style="font-size:20px;"></i></span></h4><br>
+                <h4 class="horizontal-text-center" style="text-align: center ;"><span id="selection" style="border-radius:5px;">Paiement <i class="fa fa-credit-card" style="font-size:20px;"></i></span></h4><br>
 
-                <p>Votre type de paiement  <i class="fa fa-credit-card"></i> :</p>
+                <p>Votre type de paiement <i class="fa fa-credit-card"></i> :</p>
 
                 <div class="custom-control custom-radio">
-                  <input  type="radio" id="visa" name="type_carte"  class="custom-control-input" checked required>
-                  <label class="custom-control-label" for="visa">Visa</label>
-                  <i class="fa fa-cc-visa"></i>
+                    <input type="radio" id="visa" name="type_carte" class="custom-control-input" checked required>
+                    <label class="custom-control-label" for="visa">Visa</label>
+                    <i class="fa fa-cc-visa"></i>
                 </div>
                 <div class="custom-control custom-radio">
-                  <input  type="radio" id="master" name="type_carte"  class="custom-control-input" required>
-                  <label class="custom-control-label" for="master">MasterCard</label>
-                  <i class="fa fa-cc-mastercard"></i>
+                    <input type="radio" id="master" name="type_carte" class="custom-control-input" required>
+                    <label class="custom-control-label" for="master">MasterCard</label>
+                    <i class="fa fa-cc-mastercard"></i>
                 </div>
                 <div class="custom-control custom-radio">
-                  <input  type="radio"  id="express" name="type_carte" class="custom-control-input" required>
-                  <label class="custom-control-label" for="express">American express</label>
-                  <i class="fa fa-cc-amex"></i>
+                    <input type="radio" id="express" name="type_carte" class="custom-control-input" required>
+                    <label class="custom-control-label" for="express">American express</label>
+                    <i class="fa fa-cc-amex"></i>
                 </div>
                 <div class="custom-control custom-radio">
-                  <input  type="radio" id="paypal" name="type_carte"  class="custom-control-input" required>
-                  <label class="custom-control-label" for="paypal">Paypal</label>
-                  <i class="fa fa-cc-paypal"></i>
+                    <input type="radio" id="paypal" name="type_carte" class="custom-control-input" required>
+                    <label class="custom-control-label" for="paypal">Paypal</label>
+                    <i class="fa fa-cc-paypal"></i>
                 </div>
-              
+
 
                 <div class="form-row my-2">
                     <div class="col">
@@ -153,20 +242,20 @@ session_start();
             <!--Affichage miniaturisée sur le côté avec prix total avec option de continuer à faire shopping-->
             <div class="col-lg-3 my-3  info-paiement ">
 
-            <div class="card shadow p-3 mb-5" style="border:solid black 1px">
+                <div class="card shadow p-3 mb-5" style="border:solid black 1px">
 
-            <div class="card-body text-center">
-                <p ><em>Vous avez un code promo?</em></p>
-                
-                    <div class="input-group">
-                        <input type="text" id="champ_code" class="form-control" placeholder="Code"  >
-                        <div class="input-group-append">
-                            <button class="btn btn-primary m-0" id="code_promo" type="button">Appliquer</button>
+                    <div class="card-body text-center">
+                        <p><em>Vous avez un code promo?</em></p>
+
+                        <div class="input-group">
+                            <input type="text" id="champ_code" class="form-control" placeholder="Code">
+                            <div class="input-group-append">
+                                <button class="btn btn-primary m-0" id="code_promo" type="button">Appliquer</button>
+                            </div>
                         </div>
                     </div>
-            </div>
 
-            </div>
+                </div>
 
                 <div class="card mt-2 shadow p-3 mb-5" style="border:solid black 1px">
 
@@ -176,15 +265,23 @@ session_start();
 
                         <dl class="row">
                             <dd class="col-sm-8">
-                                 <p >Panier (<span id="nb_item">2</span>)</p>
+                                <!--<p>Panier (<span id="nb_item">2</span>)</p>-->
+                                <p>Panier (<?php echo taille_panier($_SESSION["id_user"], $db_handle) ?>)</p>
                             </dd>
                         </dl>
-                        <hr style="border-top: dotted 1px;"/>
+                        <hr style="border-top: dotted 1px;" />
 
                         <dl class="row">
                             <dd class="col-sm-8">
-                                 <p class="nom_item">Lampe     <span class="prix_item">16<sup>€</sup></span><p>
-                                 <p class="nom_item">Bijou     <span class="prix_item">152<sup>€</sup></span><p>
+
+                                <?php if (taille_panier($_SESSION["id_user"], $db_handle)) {
+
+                                    foreach (items_dans_panier($_SESSION["id_user"], $db_handle) as $elements) {
+                                        if ($elements["type"] == 2)
+                                            echo '<p class="nom_item">' . $elements["nom"] . '<span class="prix_item"> ' . $elements["prix"] . '<sup>€</sup></span></p>';
+                                    }
+                                } ?>
+
                             </dd>
                         </dl>
 
@@ -192,9 +289,11 @@ session_start();
                             <dd class="col-sm-8">
                                 Sous-total
                             </dd>
+
                             <dd class="col-sm-4">
-                                168<sup>€</sup>
+                                <?php echo somme_tot_achat_immediat($_SESSION["id_user"], $db_handle) ?><sup>€</sup>
                             </dd>
+
                         </dl>
 
                         <hr style="border-top: dotted 1px;" />
@@ -217,7 +316,7 @@ session_start();
                                 <i class="fa fa-euro"></i>
                             </dd>
                             <dd class="col-sm-4">
-                                168<sup>€</sup>
+                                <?php echo somme_tot_achat_immediat($_SESSION["id_user"], $db_handle) ?><sup>€</sup>
                             </dd>
                         </dl>
 
@@ -247,29 +346,25 @@ session_start();
 
     </div>
 
-        <!--JAVASCRIPT-->
+    <!--JAVASCRIPT-->
 
-        <script>
+    <script>
+        $(document).ready(function() {
 
-            $(document).ready(function(){
+            $('#code_promo').click(function() {
+                if ($('#champ_code').val() == '') {
+                    alert("champ vide");
+                } else {
+                    alert("code faux");
+                    $('#champ_code').val(''); /* Le champ redevient vide*/
 
-                $('#code_promo').click(function(){
-                    if($('#champ_code').val() == '')
-                    {
-                        alert("champ vide");
-                    }
-                    else {
-                        alert("code faux");
-                        $('#champ_code').val(''); /* Le champ redevient vide*/
-                        
-                    }
-                    
-                });
+                }
+
             });
+        });
+    </script>
 
-        </script>
 
-        
 
 </body>
 
