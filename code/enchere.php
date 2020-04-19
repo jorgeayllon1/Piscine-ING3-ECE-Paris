@@ -1,16 +1,95 @@
 <?php
-  session_start();
-  if (isset($_SESSION["id_user"])) {
+session_start();
+if (isset($_SESSION["id_user"])) {
+}
+#Sinon, on le renvoit à la page principale
+else {
+  header("location: connexion.php");
+}
 
-      
+
+$database = "ebayece";
+$db_handle = mysqli_connect('localhost', 'root', '');
+$db_found = mysqli_select_db($db_handle, $database);
+
+function items_dans_panier($id_collection, $db_handle)
+{
+  #Variable tempon
+  $recip = "id_item_";
+
+  #On cherche les id des items dans la collection
+  $sql = "SELECT * from lacollection where lacollection.id=$id_collection";
+
+  $result = mysqli_query($db_handle, $sql);
+
+  while ($data = mysqli_fetch_assoc($result)) {
+
+    for ($indice = 1; $indice <= 50; $indice++) {
+      #On evite les indice NULL
+      if ($data[$recip . strval($indice)]) {
+        #echo $data[$recip . strval($indice)];
+        $lesbonindices[] = $data[$recip . strval($indice)];
+      }
+    }
   }
-  #Sinon, on le renvoit à la page principale
-  else {
-    header("location: connexion.php");
+
+  #Pour chaque indice d'item, on retrouve l'item en question
+  foreach ($lesbonindices as $var) {
+
+    $autresql = "SELECT * from les_items where les_items.id=$var";
+    $autreresult = mysqli_query($db_handle, $autresql);
+
+    while ($autredata = mysqli_fetch_assoc($autreresult)) {
+      #On met l'item dans le tableau
+      #Comme il y a N item, on utilise un tableau deux dimension
+      $lesitems[$var]["id"] = $autredata["id"];
+      $lesitems[$var]["id_prop"] = $autredata["id_prop"];
+      $lesitems[$var]["nom"] = $autredata["nom"];
+      $lesitems[$var]["description"] = $autredata["description"];
+      $lesitems[$var]["prix"] = $autredata["prix"];
+      $lesitems[$var]["prix_souh"] = $autredata["prix_souh"];
+      $lesitems[$var]["video"] = $autredata["video"];
+      $lesitems[$var]["categorie"] = $autredata["categorie"];
+      $lesitems[$var]["type"] = $autredata["type"];
+      $lesitems[$var]["date_debut"] = $autredata["date_debut"];
+      $lesitems[$var]["date_fin"] = $autredata["date_fin"];
+    }
+  }
+  return $lesitems;
+}
+
+function chemins_dune_image($id_item, $db_handle)
+{
+  $sql =
+    "SELECT chemin from photo 
+    inner join les_items
+      on les_items.id = photo.id_item
+      where les_items.id=$id_item";
+
+  $result = mysqli_query($db_handle, $sql);
+
+  while ($data = mysqli_fetch_assoc($result)) {
+    $leschemins[] = $data["chemin"];
+  }
+  return $leschemins;
+}
+function nom_du_vendeur($id_item, $db_handle)
+{
+  $sql =
+    "SELECT pseudo FROM user
+	INNER JOIN les_items
+	ON les_items.id='" . $id_item . "'
+	WHERE les_items.id_prop = user.id
+	";
+
+  $result = mysqli_query($db_handle, $sql);
+
+  while ($data = mysqli_fetch_assoc($result)) {
+    return $data["pseudo"];
   }
 
-
-
+  return false;
+}
 ?>
 <!DOCTYPE html>
 
@@ -99,25 +178,45 @@
                 </tr>
               </thead>
               <tbody>
-                <tr>
-                  <!-- mettre les classes pour PHP comme pr vendeur-->
-                  <td>1</td>
-                  <td>
-                    <input type="file">image
-                  </td>
-                  <td>Theo</td>
-                  <td>En cours</td>
-                  <td>VIP</td>
-                  <td>390<sup>€</sup></td>
-                  <td>560<sup>€</sup></td>
-                  <td>
-                    <input type="text" value="0:12min:33s">
 
-                  </td>
-
-
-
-                </tr>
+                <?php
+                foreach (items_dans_panier($_SESSION["id_user"], $db_handle) as $item) {
+                  if ($item["type"] == 1) {
+                    echo '<tr>';
+                    echo '<td>' . $item["id"] . '</td>';
+                    echo '<td><img src=' . chemins_dune_image($item["id"], $db_handle)[0] . ' width="90px" height="90px" /> </td>';
+                    echo '</td>';
+                    echo '<td>' . nom_du_vendeur($item["id"], $db_handle) . '</td>'; #Mettre vendeur
+                    echo '<td>En cours</td>';
+                    echo '<td>';
+                    switch ($item["categorie"]) {
+                      case 1:
+                        echo "Ferraille ou Trésor";
+                        break;
+                      case 2:
+                        echo "Bon pour le Musée";
+                        break;
+                      case 3:
+                        echo "VIP";
+                        break;
+                    }
+                    echo '</td>';
+                    echo '<td>' . $item["prix"] . '<sup>€</sup></td>';
+                    if ($item["prix_souh"]) {
+                      echo '<td>' . $item["prix_souh"] . '<sup>€</sup></td>';
+                    } else {
+                      echo '<td>' . $item["prix"] . '<sup>€</sup></td>';
+                    }
+                    echo '<td>' . $item["date_fin"] . '</td>';
+                    echo '<td>';
+                    echo '<a href="enchere.php"><button class="btn btn-primary">Enchérir</button></a>';
+                    echo '</td>';
+                    echo '';
+                    echo '';
+                    echo '</tr>';
+                  }
+                }
+                ?>
               </tbody>
             </table>
           </div>
@@ -127,9 +226,13 @@
     </div>
 
     <div class="col-lg-8">
-      <h5>Vous souhaitez enchérir? Veuillez saisir le montant ci-dessous :</h5>
-      <input type="number" placeholder="XX€">
-      <button class="btn btn-primary" style="background: #31405F; border:none;">Soumettre</button>
+      <!-- Check cette div, elle fait le café -->
+      <form method="post" action="payer.php">
+        <h5>Vous souhaitez enchérir? Veuillez saisir le produit et le montant ci-dessous :</h5>
+        <input type="number" placeholder="ID" name="id_item">
+        <input type="number" placeholder="XX€" name="prix_souh">
+        <button class="btn btn-primary" name="payer" type="submit" value="1" style="background: #31405F; border:none;">Soumettre</button>
+      </form>
       <p><em>Vous pourrez retrouver toutes vos enchères en cours dans votre compte dans le menu Enchères en cours.</em></p>
 
     </div>

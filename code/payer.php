@@ -1,7 +1,6 @@
 <?php
 
 session_start();
-
 $database = "ebayece";
 $db_handle = mysqli_connect('localhost', 'root', '');
 $db_found = mysqli_select_db($db_handle, $database);
@@ -109,6 +108,7 @@ function enlever_item_dans_collection($id_item, $db_handle)
         }
     }
 }
+
 /*
 function ordonner_collection($id_user, $db_handle)
 {
@@ -129,6 +129,7 @@ function ordonner_collection($id_user, $db_handle)
 }
 */
 
+#Elle crée une transaction pour chaque achat imediat
 function payer_achat_immediat($id_user, $db_handle)
 {
 
@@ -160,6 +161,30 @@ function payer_achat_immediat($id_user, $db_handle)
     }
 }
 
+function find_item($id_item, $db_handle)
+{
+    $sql =
+        "SELECT * from les_items
+    WHERE id = " . $id_item . "";
+
+    $result = mysqli_query($db_handle, $sql);
+
+    while ($data = mysqli_fetch_assoc($result)) {
+        $leitem["id"] = $data["id"];
+        $leitem["id_prop"] = $data["id_prop"];
+        $leitem["nom"] = $data["nom"];
+        $leitem["description"] = $data["description"];
+        $leitem["prix"] = $data["prix"];
+        $leitem["prix_souh"] = $data["prix_souh"];
+        $leitem["video"] = $data["video"];
+        $leitem["categorie"] = $data["categorie"];
+        $leitem["type"] = $data["type"];
+        $leitem["date_debut"] = $data["date_debut"];
+        $leitem["date_fin"] = $data["date_fin"];
+    }
+    return $leitem;
+}
+
 if (isset($_POST['payer'])) {
 
     if ($db_found) {
@@ -179,7 +204,40 @@ if (isset($_POST['payer'])) {
             #detruire photo
             #detruire item
             #detruire item dans collection
+            header("location:paiement.php");
+        } else if ($_POST["payer"] == 1) {
+
+            $leitem = find_item($_POST["id_item"], $db_handle);
+
+            /*
+            if ($leitem["type"] != 1) {
+                header("location:enchere.php");
+            }
+            */
+
+            if ($leitem["prix_souh"] == NULL) {
+                if ($leitem["prix"] < $_POST["prix_souh"]) {
+
+                    echo "1: je dis que " . $leitem["prix"] . " est plus petit que " . $_POST["prix_souh"];
+
+                    $sql =
+                        "UPDATE les_items
+                SET prix_souh= '" . $_POST["prix_souh"] . "'
+                WHERE id='" . $_POST["id_item"] . "'";
+
+                    mysqli_query($db_handle, $sql);
+                }
+            } elseif ($leitem["prix_souh"] < $_POST["prix_souh"]) {
+                echo "2: je dis que " . $leitem["prix_souh"] . " est plus petit que " . $_POST["prix_souh"];
+                #faire le changement de prix
+                $sql =
+                    "UPDATE les_items
+                SET prix_souh= '" . $_POST["prix_souh"] . "'
+                WHERE id='" . $_POST["id_item"] . "'";
+
+                mysqli_query($db_handle, $sql);
+            }
+            header("location:enchere.php");
         }
-        header("location:paiement.php");
     }
 }

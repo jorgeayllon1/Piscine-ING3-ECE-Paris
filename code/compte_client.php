@@ -1,111 +1,190 @@
 <?php
-		session_start();
+session_start();
 
 
-		if (isset($_SESSION["id_user"])) {
+if (isset($_SESSION["id_user"])) {
 
-			if ($_SESSION["rang"] != 1) {
-				header("location: connexion_client.php");
+	if ($_SESSION["rang"] != 1) {
+		header("location: connexion_client.php");
+	}
+}
+#Sinon, on le renvoit à la page principale
+else {
+	header("location: connexion_client.php");
+}
+
+ini_set('display_error', 1); /*Affichage erreur*/
+
+$type_carte = $_SESSION["type"]; /*Pour savoir cocher quel button radio lorsque le client accède à son compte*/
+$session_pseudo = $_SESSION["pseudo"];
+$temp = "type";
+
+
+
+/*Dans le form, l'id est caché avec display none*/
+/*Manque modif date*/
+$id = isset($_POST["id_client"]) ? $_POST["id_client"] : "";
+
+$nom = isset($_POST["nom_client"]) ? $_POST["nom_client"] : "";
+$prenom = isset($_POST["prenom_client"]) ? $_POST["prenom_client"] : "";
+$pseudo = isset($_POST["pseudo_client"]) ? $_POST["pseudo_client"] : "";
+$email = isset($_POST["email_client"]) ? $_POST["email_client"] : "";
+$mdp = isset($_POST["mdp_client"]) ? $_POST["mdp_client"] : "";
+$adresse1 = isset($_POST["ad1_client"]) ? $_POST["ad1_client"] : "";
+$adresse2 = isset($_POST["ad2_client"]) ? $_POST["ad2_client"] : "";
+$pays = isset($_POST["pays_client"]) ? $_POST["pays_client"] : "";
+$ville = isset($_POST["ville_client"]) ? $_POST["ville_client"] : "";
+$cp = isset($_POST["cp_client"]) ? $_POST["cp_client"] : "";
+$phone = isset($_POST["phone_client"]) ? $_POST["phone_client"] : "";
+$carte_type = isset($_POST["type_carte"]) ? $_POST["type_carte"] : ""; /*ne pas confondre avec $type_carte qui permet de get la carte enregistrée dans le cookie*/
+$nom_carte = isset($_POST["paiement_nom"]) ? $_POST["paiement_nom"] : "";
+$num_carte = isset($_POST["paiement_num_carte"]) ? $_POST["paiement_num_carte"] : "";
+$date_carte = isset($_POST["paiement_date_expi"]) ? $_POST["paiement_date_expi"] : "";
+$code_carte = isset($_POST["paiement_code"]) ? $_POST["paiement_code"] : "";
+
+$temp2 = $date_carte . "-00";
+
+/**Connexion à la bdd */
+$database = "ebayece";
+$db_handle = mysqli_connect('localhost', 'root', '');
+$db_found = mysqli_select_db($db_handle, $database);
+
+#Cette fonction retourne les items de la collection demander
+# Faire un foreach pour parcourir les items un à un
+function items_dans_panier($id_collection, $db_handle)
+{
+	#Variable tempon
+	$recip = "id_item_";
+
+	#On cherche les id des items dans la collection
+	$sql = "SELECT * from lacollection where lacollection.id=$id_collection";
+
+	$result = mysqli_query($db_handle, $sql);
+
+	while ($data = mysqli_fetch_assoc($result)) {
+
+		for ($indice = 1; $indice <= 50; $indice++) {
+			#On evite les indice NULL
+			if ($data[$recip . strval($indice)]) {
+				#echo $data[$recip . strval($indice)];
+				$lesbonindices[] = $data[$recip . strval($indice)];
 			}
 		}
-		#Sinon, on le renvoit à la page principale
-		else {
-			header("location: connexion_client.php");
+	}
+
+	#Pour chaque indice d'item, on retrouve l'item en question
+	foreach ($lesbonindices as $var) {
+
+		$autresql = "SELECT * from les_items where les_items.id=$var";
+		$autreresult = mysqli_query($db_handle, $autresql);
+
+		while ($autredata = mysqli_fetch_assoc($autreresult)) {
+			#On met l'item dans le tableau
+			#Comme il y a N item, on utilise un tableau deux dimension
+			$lesitems[$var]["id"] = $autredata["id"];
+			$lesitems[$var]["id_prop"] = $autredata["id_prop"];
+			$lesitems[$var]["nom"] = $autredata["nom"];
+			$lesitems[$var]["description"] = $autredata["description"];
+			$lesitems[$var]["prix"] = $autredata["prix"];
+			$lesitems[$var]["prix_souh"] = $autredata["prix_souh"];
+			$lesitems[$var]["video"] = $autredata["video"];
+			$lesitems[$var]["categorie"] = $autredata["categorie"];
+			$lesitems[$var]["type"] = $autredata["type"];
+			$lesitems[$var]["date_debut"] = $autredata["date_debut"];
+			$lesitems[$var]["date_fin"] = $autredata["date_fin"];
 		}
+	}
+	return $lesitems;
+}
 
-		ini_set('display_error',1); /*Affichage erreur*/
+function chemins_dune_image($id_item, $db_handle)
+{
+	$sql =
+		"SELECT chemin from photo 
+	inner join les_items
+		on les_items.id = photo.id_item
+		where les_items.id=$id_item";
 
-		$type_carte=$_SESSION["type"]; /*Pour savoir cocher quel button radio lorsque le client accède à son compte*/
-		$session_pseudo=$_SESSION["pseudo"];
-		$temp="type";
+	$result = mysqli_query($db_handle, $sql);
 
+	while ($data = mysqli_fetch_assoc($result)) {
+		$leschemins[] = $data["chemin"];
+	}
+	return $leschemins;
+}
 
+function nom_du_vendeur($id_item, $db_handle)
+{
+	$sql =
+		"SELECT pseudo FROM user
+	INNER JOIN les_items
+	ON les_items.id='" . $id_item . "'
+	WHERE les_items.id_prop = user.id
+	";
 
-		/*Dans le form, l'id est caché avec display none*/
-		/*Manque modif date*/
-		$id = isset($_POST["id_client"])?$_POST["id_client"]:"";
-		
-		$nom = isset($_POST["nom_client"])?$_POST["nom_client"]:"";
-		$prenom = isset($_POST["prenom_client"])?$_POST["prenom_client"]:"";
-		$pseudo = isset($_POST["pseudo_client"])?$_POST["pseudo_client"]:"";
-		$email = isset($_POST["email_client"])?$_POST["email_client"]:"";
-		$mdp = isset($_POST["mdp_client"])?$_POST["mdp_client"]:"";
-		$adresse1 = isset($_POST["ad1_client"])?$_POST["ad1_client"]:"";
-		$adresse2 = isset($_POST["ad2_client"])?$_POST["ad2_client"]:"";
-		$pays = isset($_POST["pays_client"])?$_POST["pays_client"]:"";
-		$ville = isset($_POST["ville_client"])?$_POST["ville_client"]:"";
-		$cp = isset($_POST["cp_client"])?$_POST["cp_client"]:"";
-		$phone = isset($_POST["phone_client"])?$_POST["phone_client"]:"";
-		$carte_type = isset($_POST["type_carte"])?$_POST["type_carte"]:""; /*ne pas confondre avec $type_carte qui permet de get la carte enregistrée dans le cookie*/
-		$nom_carte = isset($_POST["paiement_nom"])?$_POST["paiement_nom"]:"";
-		$num_carte = isset($_POST["paiement_num_carte"])?$_POST["paiement_num_carte"]:"";
-		$date_carte = isset($_POST["paiement_date_expi"])?$_POST["paiement_date_expi"]:"";
-		$code_carte = isset($_POST["paiement_code"])?$_POST["paiement_code"]:"";
+	$result = mysqli_query($db_handle, $sql);
 
-		$temp2=$date_carte."-00";
+	while ($data = mysqli_fetch_assoc($result)) {
+		return $data["pseudo"];
+	}
 
-		/**Connexion à la bdd */
-		$database = "ebayece";
-		$db_handle = mysqli_connect('localhost', 'root', '');
-		$db_found = mysqli_select_db($db_handle, $database);
+	return false;
+}
 
-		if(isset($_POST['modifier_client']))
-		{
-			/*Pour pseudo on la compare avec SESSION càd le cookie car dans ses infos on n'a pas le id*/
-			if($db_found){
+if (isset($_POST['modifier_client'])) {
+	/*Pour pseudo on la compare avec SESSION càd le cookie car dans ses infos on n'a pas le id*/
+	if ($db_found) {
 
-				/**User */
-				$sql = " UPDATE user SET nom='$nom', prenom='$prenom', email='$email', /**On met à jour la donnée */
+		/**User */
+		$sql = " UPDATE user SET nom='$nom', prenom='$prenom', email='$email', /**On met à jour la donnée */
 				mdp='$mdp' WHERE pseudo = '$pseudo'  ";
-				$result = mysqli_query($db_handle,$sql);
+		$result = mysqli_query($db_handle, $sql);
 
-				$sql= " UPDATE user SET pseudo='$pseudo' WHERE pseudo= '$session_pseudo'";
-				$result = mysqli_query($db_handle,$sql);
+		$sql = " UPDATE user SET pseudo='$pseudo' WHERE pseudo= '$session_pseudo'";
+		$result = mysqli_query($db_handle, $sql);
 
-				/**Livraison */
+		/**Livraison */
 
-				$sql = "UPDATE  coord_livraison
+		$sql = "UPDATE  coord_livraison
 				INNER JOIN user  ON coord_livraison.id='$id'
 				SET adresse1='$adresse1', adresse2='$adresse2', pays='$pays',
 				ville='$ville', code_postal='$cp', num_tel='$phone'";
-				$result = mysqli_query($db_handle,$sql);
+		$result = mysqli_query($db_handle, $sql);
 
 
-				/**Transaction */ 
+		/**Transaction */
 
-				$sql = "UPDATE  info_bancaire
+		$sql = "UPDATE  info_bancaire
 				INNER JOIN user  ON info_bancaire.id='$id'
 				SET num_carte='$num_carte', type='$carte_type', nom_sur_carte='$nom_carte', 
 				code='$code_carte'";
-				$result = mysqli_query($db_handle,$sql);
-				echo $sql;
+		$result = mysqli_query($db_handle, $sql);
+		echo $sql;
 
-				
-				/*On met à jour le cookie*/
 
-				$_SESSION["nom"] = $nom;
-				$_SESSION["prenom"] = $prenom;
-				$_SESSION["pseudo"] = $pseudo;
-				$_SESSION["email"] = $email;
-				$_SESSION["mdp"] = $mdp;
-				$_SESSION["adresse1"] = $adresse1;
-				$_SESSION["adresse2"] = $adresse2;
-				$_SESSION["ville"] = $ville;
-				$_SESSION["code_postal"] = $cp;
-				$_SESSION["pays"] = $pays;
-				$_SESSION["num_tel"] = $phone;
-				$_SESSION["num_carte"] = $num_carte;
-				$_SESSION["type"] = $carte_type;
-				$_SESSION["nom_sur_carte"] = $nom_carte;
-				$_SESSION["date_expi"] = $date_carte;
-				$_SESSION["code"] = $code_carte;
+		/*On met à jour le cookie*/
 
-			}
-			else{
-				echo "BDD non trouvé";
-			}
-		}
-		
+		$_SESSION["nom"] = $nom;
+		$_SESSION["prenom"] = $prenom;
+		$_SESSION["pseudo"] = $pseudo;
+		$_SESSION["email"] = $email;
+		$_SESSION["mdp"] = $mdp;
+		$_SESSION["adresse1"] = $adresse1;
+		$_SESSION["adresse2"] = $adresse2;
+		$_SESSION["ville"] = $ville;
+		$_SESSION["code_postal"] = $cp;
+		$_SESSION["pays"] = $pays;
+		$_SESSION["num_tel"] = $phone;
+		$_SESSION["num_carte"] = $num_carte;
+		$_SESSION["type"] = $carte_type;
+		$_SESSION["nom_sur_carte"] = $nom_carte;
+		$_SESSION["date_expi"] = $date_carte;
+		$_SESSION["code"] = $code_carte;
+	} else {
+		echo "BDD non trouvé";
+	}
+}
+
 
 
 ?>
@@ -150,7 +229,7 @@
 					<ul class="navbar-nav">
 						<li class="nav-item"><a class="nav-link" href="compte_client.php"><?php echo $_SESSION["nom"] . ' ' . $_SESSION["prenom"] ?></a></li>
 						<li class="nav-item"><a class="nav-link" href="deco.php">Se déconnecter</a></li>
-						
+
 						<li><i class="fa fa-power-off mt-3" style="color: #fff;"></i></li>
 
 					</ul>
@@ -226,54 +305,43 @@
 							<div class="form-row mb-4">
 								<div class="col">
 
-								    <input type="text" name="id_client" style="display:none;" value="<?php echo $_SESSION["id_user"]?>">
+									<input type="text" name="id_client" style="display:none;" value="<?php echo $_SESSION["id_user"] ?>">
 
-									<input type="text" name="prenom_client" id="prenom_client" class="form-control" 
-									value="<?php echo $_SESSION["prenom"]?>">
+									<input type="text" name="prenom_client" id="prenom_client" class="form-control" value="<?php echo $_SESSION["prenom"] ?>">
 								</div>
 								<div class="col">
 
-									<input type="text" name="nom_client" id="nom_client" class="form-control"
-									value="<?php echo $_SESSION["nom"]?>">
+									<input type="text" name="nom_client" id="nom_client" class="form-control" value="<?php echo $_SESSION["nom"] ?>">
 								</div>
 							</div>
 
-							<input type="text" name="pseudo_client" id="pseudo_client" class="form-control mb-3" 
-							value="<?php echo $_SESSION["pseudo"]?>">
+							<input type="text" name="pseudo_client" id="pseudo_client" class="form-control mb-3" value="<?php echo $_SESSION["pseudo"] ?>">
 
 
-							<input type="email" name="email_client" id="email_client" class="form-control mb-3" 
-							value="<?php echo $_SESSION["email"]?>">
+							<input type="email" name="email_client" id="email_client" class="form-control mb-3" value="<?php echo $_SESSION["email"] ?>">
 
 
-							<input type="password" name="mdp_client" id="mdp_client" class="form-control" 
-							value="<?php echo $_SESSION["mdp"]?>" aria-describedby="defaultRegisterFormPasswordHelpBlock">
+							<input type="password" name="mdp_client" id="mdp_client" class="form-control" value="<?php echo $_SESSION["mdp"] ?>" aria-describedby="defaultRegisterFormPasswordHelpBlock">
 							<small id="mdp_client" class="form-text text-muted mb-4">
 								Au moins 8 caractères et un chiffre
 
 							</small>
-							<input type="text"  name="ad1_client" id="ad1_client" class="form-control mb-3"
-							value="<?php echo $_SESSION["adresse1"]?>">
-							<input type="text" name="ad2_client"  id="ad2_client" class="form-control mb-3" 
-							value="<?php echo $_SESSION["adresse2"]?>">
+							<input type="text" name="ad1_client" id="ad1_client" class="form-control mb-3" value="<?php echo $_SESSION["adresse1"] ?>">
+							<input type="text" name="ad2_client" id="ad2_client" class="form-control mb-3" value="<?php echo $_SESSION["adresse2"] ?>">
 
 							<div class="form-row mb-4">
 								<div class="col">
-									<input type="text" name="pays_client" id="pays_client" class="form-control mb-3"
-									value="<?php echo $_SESSION["pays"]?>">
+									<input type="text" name="pays_client" id="pays_client" class="form-control mb-3" value="<?php echo $_SESSION["pays"] ?>">
 								</div>
 								<div class="col">
-									<input type="text" name="ville_client" id="ville_client" class="form-control mb-3"
-									value="<?php echo $_SESSION["ville"]?>">
+									<input type="text" name="ville_client" id="ville_client" class="form-control mb-3" value="<?php echo $_SESSION["ville"] ?>">
 								</div>
 							</div>
 
-							<input type="number" name="cp_client" id="cp_client" class="form-control mb-3" 
-							value="<?php echo $_SESSION["code_postal"]?>">
+							<input type="number" name="cp_client" id="cp_client" class="form-control mb-3" value="<?php echo $_SESSION["code_postal"] ?>">
 
 
-							<input type="text" name="phone_client" id="phone_client" class="form-control" 
-							value="<?php echo $_SESSION["num_tel"]?>" aria-describedby="defaultRegisterFormPhoneHelpBlock">
+							<input type="text" name="phone_client" id="phone_client" class="form-control" value="<?php echo $_SESSION["num_tel"] ?>" aria-describedby="defaultRegisterFormPhoneHelpBlock">
 							<small id="phone_client" class="form-text text-muted mb-3">
 								Numéro en France
 							</small>
@@ -282,38 +350,34 @@
 
 							<div class="form-group">
 								<label for="type_carte">Type de carte :</label>
-								<select class="form-control" name="type_carte" id="type_carte" value="<?php echo $_SESSION["type"]?>" >
-									<option value="Visa" <?php if($type_carte === 'Visa') echo'selected'?>>Visa</option>
-									<option value="MasterCard" <?php if($type_carte === 'MasterCard') echo'selected'?>>MasterCard</option>
-									<option value="American Express" <?php if($type_carte === 'American Express') echo'selected'?>>American express</option>
-									<option value="Paypal" <?php if($type_carte === 'Paypal') echo'selected'?>>Paypal</option>
-	                            </select>
-	                        </div>
+								<select class="form-control" name="type_carte" id="type_carte" value="<?php echo $_SESSION["type"] ?>">
+									<option value="Visa" <?php if ($type_carte === 'Visa') echo 'selected' ?>>Visa</option>
+									<option value="MasterCard" <?php if ($type_carte === 'MasterCard') echo 'selected' ?>>MasterCard</option>
+									<option value="American Express" <?php if ($type_carte === 'American Express') echo 'selected' ?>>American express</option>
+									<option value="Paypal" <?php if ($type_carte === 'Paypal') echo 'selected' ?>>Paypal</option>
+								</select>
+							</div>
 
 
 							<div class="form-row my-2">
 								<div class="col">
 									<label for="paiement_nom">Nom sur la carte</label>
-									<input type="text" name="paiement_nom" id="paiement_nom" class="form-control"
-									value="<?php echo $_SESSION["nom_sur_carte"]?>">
+									<input type="text" name="paiement_nom" id="paiement_nom" class="form-control" value="<?php echo $_SESSION["nom_sur_carte"] ?>">
 								</div>
 								<div class="col">
 									<label for="paiement_num_carte">Numéro carte</label>
-									<input type="text" name="paiement_num_carte" id="paiement_num_carte" class="form-control"
-									value="<?php echo $_SESSION["num_carte"]?>">
+									<input type="text" name="paiement_num_carte" id="paiement_num_carte" class="form-control" value="<?php echo $_SESSION["num_carte"] ?>">
 								</div>
 							</div>
 
 							<div class="form-row my-2 ">
 								<div class="col">
 									<label for="paiement_date_expi">Date expiration</label>
-									<input type="month"  name="paiement_date_expi" id="paiement_date_expi" class="form-control"
-									value="<?php  $_SESSION["date_expi"]?>">
+									<input type="month" name="paiement_date_expi" id="paiement_date_expi" class="form-control" value="<?php $_SESSION["date_expi"] ?>">
 								</div>
 								<div class="col">
 									<label for="paiement_code">CVC</label>
-									<input type="number"  name="paiement_code" id="paiement_code" class="form-control"
-									value="<?php echo $_SESSION["code"]?>">
+									<input type="number" name="paiement_code" id="paiement_code" class="form-control" value="<?php echo $_SESSION["code"] ?>">
 								</div>
 							</div>
 
@@ -429,27 +493,44 @@
 										</tr>
 									</thead>
 									<tbody>
-										<tr>
-											<!-- mettre les classes pour PHP comme pr vendeur-->
-											<td>1</td>
-											<td>
-												<input type="file">
-											</td>
-											<td>Theo</td>
-											<td>En cours</td>
-											<td>VIP</td>
-											<td>390<sup>€</sup></td>
-											<td>560<sup>€</sup></td>
-											<td>
-												<input type="text" value="12min:33s">
-
-											</td>
-											<td>
-												<a href="enchere.php"><button class="btn btn-primary">Enchérir</button></a>
-											</td>
-
-
-										</tr>
+										<?php
+										foreach (items_dans_panier($_SESSION["id_user"], $db_handle) as $item) {
+											if ($item["type"] == 1) {
+												echo '<tr>';
+												echo '<td>' . $item["id"] . '</td>';
+												echo '<td><img src=' . chemins_dune_image($item["id"], $db_handle)[0] . ' width="90px" height="90px" /> </td>';
+												echo '</td>';
+												echo '<td>' . nom_du_vendeur($item["id"], $db_handle) . '</td>'; #Mettre vendeur
+												echo '<td>En cours</td>';
+												echo '<td>';
+												switch ($item["categorie"]) {
+													case 1:
+														echo "Ferraille ou Trésor";
+														break;
+													case 2:
+														echo "Bon pour le Musée";
+														break;
+													case 3:
+														echo "VIP";
+														break;
+												}
+												echo '</td>';
+												echo '<td>' . $item["prix"] . '<sup>€</sup></td>';
+												if ($item["prix_souh"]) {
+													echo '<td>' . $item["prix_souh"] . '<sup>€</sup></td>';
+												} else {
+													echo '<td>' . $item["prix"] . '<sup>€</sup></td>';
+												}
+												echo '<td>' . $item["date_fin"] . '</td>';
+												echo '<td>';
+												echo '<a href="enchere.php"><button class="btn btn-primary">Enchérir</button></a>';
+												echo '</td>';
+												echo '';
+												echo '';
+												echo '</tr>';
+											}
+										}
+										?>
 									</tbody>
 								</table>
 							</div>
