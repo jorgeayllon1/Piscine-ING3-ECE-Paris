@@ -30,6 +30,13 @@ if (isset($_POST['submit'])) {
 					$_SESSION["rang"] = $data['rang'];
 					$_SESSION["nom"] = $data['nom'];
 					$_SESSION["prenom"] = $data['prenom'];
+					/** */
+					$_SESSION["id_collection"] = $data["id_collection"];
+					$_SESSION["pseudo"] = $data["pseudo"];
+                    $_SESSION["email"] = $data["email"];
+					$_SESSION["mdp"] = $data["mdp"];
+					$_SESSION['photo_perso'] = $data['photo_perso'];
+					$_SESSION['photo_background'] = $data['photo_background'];
 
 					/*fwrite($fp, "<?php 
                             define('C_ID', '$c_ID'); 

@@ -70,6 +70,8 @@ if (isset($_POST['submit'])) {
                 }
             }
 
+            /*Récupération des infos de transaction pour les insérer dans le cookie*/
+
             $sql = "SELECT * FROM info_bancaire INNER JOIN user ON info_bancaire.id = user.id"; 
             $result = mysqli_query($db_handle, $sql);
             if (mysqli_num_rows($result) == 0) {
