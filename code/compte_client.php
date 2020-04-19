@@ -53,13 +53,17 @@
 				ville='$ville', code_postal='$cp', num_tel='$phone'";
 				$result = mysqli_query($db_handle,$sql);
 
+
 				/**Transaction marche pas, comprend pas pk*/ 
 
 				$sql = "UPDATE  info_bancaire
 				INNER JOIN user  ON info_bancaire.id='$id'
-				SET num_carte='$num_carte', nom_sur_carte='$nom_carte', 
-				date_expi = '$date_carte', code='$code_carte'";
+				SET num_carte='$num_carte', type='$carte_type', nom_sur_carte='$nom_carte', 
+				code='$code_carte'";
 				$result = mysqli_query($db_handle,$sql);
+				echo $sql;
+
+				
 
 
 

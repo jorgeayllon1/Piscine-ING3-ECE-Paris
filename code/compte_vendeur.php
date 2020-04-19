@@ -1,14 +1,59 @@
 <?php
 
-session_start();
+	session_start();
 
-if (isset($_POST['deco'])) {
-	if ($_POST['deco']) {
-		$fp = fopen('cookie.php', 'w');
-		fclose($fp);
-		header("location: accueil.php");
+	if (isset($_POST['deco'])) {
+		if ($_POST['deco']) {
+			$fp = fopen('cookie.php', 'w');
+			fclose($fp);
+			header("location: accueil.php");
+		}
 	}
-}
+
+	$session_pseudo=$_SESSION["pseudo"];
+
+	$nom = isset($_POST["nom_vendeur"])?$_POST["nom_vendeur"]:"";
+	$prenom = isset($_POST["prenom_vendeur"])?$_POST["prenom_vendeur"]:"";
+	$pseudo = isset($_POST["pseudo_vendeur"])?$_POST["pseudo_vendeur"]:"";
+	$email = isset($_POST["email_vendeur"])?$_POST["email_vendeur"]:"";
+	$mdp = isset($_POST["mdp_vendeur"])?$_POST["mdp_vendeur"]:"";
+
+	/**Connexion à la bdd */
+	$database = "ebayece";
+	$db_handle = mysqli_connect('localhost', 'root', '');
+	$db_found = mysqli_select_db($db_handle, $database);
+
+	if(isset($_POST['modifier_vendeur']))
+	{
+		/*Pour pseudo on la compare avec SESSION càd le cookie car dans ses infos on n'a pas le id*/
+		if($db_found){
+
+			/**User */
+			$sql = " UPDATE user SET nom='$nom', prenom='$prenom', email='$email', 
+			mdp='$mdp' WHERE pseudo = '$pseudo'  ";
+			$result = mysqli_query($db_handle,$sql);
+
+
+			$sql= " UPDATE user SET pseudo='$pseudo' WHERE pseudo= '$session_pseudo'";
+			$result = mysqli_query($db_handle,$sql);
+
+
+			/*On met à jour le cookie*/
+
+			$_SESSION["nom"] = $nom;
+			$_SESSION["prenom"] = $prenom;
+			$_SESSION["pseudo"] = $pseudo;
+			$_SESSION["email"] = $email;
+			$_SESSION["mdp"] = $mdp;
+
+
+		}
+		else{
+			echo "BDD non trouvé";
+		}
+	}
+
+
 ?>
 
 
@@ -112,7 +157,7 @@ if (isset($_POST['deco'])) {
 						<!--INFORMATIONS VENDEUR-->
 
 						<div class="tab-pane fade show active my-4 " id="info-vendeur">
-							<form class="text-center px-3 py-3  " style="background-color:#fff;" action="#!">
+							<form class="text-center px-3 py-3  " style="background-color:#fff;" action="compte_vendeur.php" method="post">
 								<!--PHP-->
 
 								<p class="h4 mb-4">Vos informations</p>
@@ -122,25 +167,30 @@ if (isset($_POST['deco'])) {
 									<input type="file" name="pdp_vendeur" class="form-control-file" id="pdp_vendeur">
 								</div>
 
-								<input type="text" name="pseudo_vendeur" class="form-control mb-3" id="pseudo_vendeur" placeholder="Pseudo">
+								<input type="text" name="pseudo_vendeur" class="form-control mb-3" id="pseudo_vendeur"
+								 value="<?php echo $_SESSION["pseudo"]?>">
 
 
 								<div class="form-row mb-4 mx-4 mt-4">
 									<div class="col">
 
-										<input type="text" name="prenom_vendeur" id="prenom_vendeur" class="form-control" placeholder="David">
+										<input type="text" name="prenom_vendeur" id="prenom_vendeur" class="form-control" 
+										value="<?php echo $_SESSION["prenom"]?>">
 									</div>
 									<div class="col">
 
-										<input type="text" name="nom_vendeur" id="nom_vendeur" class="form-control" placeholder="Wang">
+										<input type="text" name="nom_vendeur" id="nom_vendeur" class="form-control" 
+										value="<?php echo $_SESSION["nom"]?>">
 									</div>
 								</div>
 
 
-								<input type="email" name="email_vendeur" id="email_vendeur" class="form-control mb-3" placeholder="E-mail">
+								<input type="email" name="email_vendeur" id="email_vendeur" class="form-control mb-3" 
+								value="<?php echo $_SESSION["email"]?>">
 
 
-								<input type="password" name="mdp_vendeur" id="mdp_vendeur" class="form-control" placeholder="**********" aria-describedby="defaultRegisterFormPasswordHelpBlock">
+								<input type="password" name="mdp_vendeur" id="mdp_vendeur" class="form-control" 
+								value="<?php echo $_SESSION["mdp"]?>" aria-describedby="defaultRegisterFormPasswordHelpBlock">
 
 								<div class="form-group my-2">
 									<label for="back_vendeur">Choisissez une photo pour votre fond :</label>
