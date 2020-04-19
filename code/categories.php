@@ -154,7 +154,7 @@ session_start();
 						style="width: 150px; background-color: #31405F; border: solid #31405F 1px; ">
 						<div class="card  shadow  mx-2">
 
-							<a href="page_achat.php"><img class="card-img-top d-block" style="border-radius:5px;"
+							<a href="page_achat.php" onClick="auto_cocher(2)"><img class="card-img-top d-block" style="border-radius:5px;"
 							src="images/categorie/cat2.jpg" alt="" width="120px" height="290px"></a>
 							
 						</div>
@@ -196,6 +196,8 @@ session_start();
 			</div>
 
 		</div>
+
+		
 
 	</body>
 </html>

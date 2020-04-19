@@ -1,32 +1,103 @@
 <?php
-session_start();
+	session_start();
 
-$database = "ebayece";
-$db_handle = mysqli_connect('localhost', 'root', '');
-$db_found = mysqli_select_db($db_handle, $database);
+	/**Accès bdd */
 
-$sql = "SELECT * FROM les_items";
+	$database = "ebayece";
+	$db_handle = mysqli_connect('localhost', 'root', '');
+	$db_found = mysqli_select_db($db_handle, $database);
 
-#Cette fonction prend en paramètre l'id d'une image et le msqli_connect (db_handle)
-#Cette fonction va renvoyer toutes les images d'un items sous forme d'un tableau (array)
-function chemins_dune_image($id_item, $db_handle)
-{
-	$sql =
-		"SELECT chemin from photo 
-	inner join les_items
-		on les_items.id = photo.id_item
-		where les_items.id=$id_item";
+
+	$sql = "SELECT * FROM les_items";
+
+	#Cette fonction prend en paramètre l'id d'une image et le msqli_connect (db_handle)
+	#Cette fonction va renvoyer toutes les images d'un items sous forme d'un tableau (array)
+	function chemins_dune_image($id_item, $db_handle)
+	{
+		$sql =
+			"SELECT chemin from photo 
+		inner join les_items
+			on les_items.id = photo.id_item
+			where les_items.id=$id_item";
+
+		$result = mysqli_query($db_handle, $sql);
+
+		while ($data = mysqli_fetch_assoc($result)) {
+			$leschemins[] = $data["chemin"];
+		}
+		return $leschemins;
+	}
+
 
 	$result = mysqli_query($db_handle, $sql);
 
-	while ($data = mysqli_fetch_assoc($result)) {
-		$leschemins[] = $data["chemin"];
+	/**On récupère le choix de l'utilisateur dans des var  */
+
+	$categorie = isset($_POST["categorie"])?$_POST["categorie"]:"";
+	$type_achat = isset($_POST["type_achat"])?$_POST["type_achat"]:"";
+
+	if(isset($_POST['bouton_filtrer']))
+	{
+
+		if($db_found)
+		{
+			/**Boucle qui va parcourir toutes les combinaisaons de choix */
+			for($i=1 ; $i<4 ;$i++)
+			{
+				for($j=1 ; $j<4 ;$j++)
+				{
+					if($categorie==$i AND $type_achat==$j)
+					{
+						$sql = "SELECT * FROM les_items WHERE categorie = $categorie AND type ='$type_achat'";
+						$result = mysqli_query($db_handle,$sql);
+						
+					}
+					
+
+				}
+			}
+			/**Restes les choix vides d'und es deux selection */
+			if($categorie==1 AND $type_achat==4)
+			{
+				$sql = "SELECT * FROM les_items WHERE categorie = 1";
+				$result = mysqli_query($db_handle,$sql);
+				echo $sql;
+			}			
+			else if($categorie==2 AND $type_achat==4)
+			{
+				$sql = "SELECT * FROM les_items WHERE categorie = 2";
+				$result = mysqli_query($db_handle,$sql);
+				echo $sql;
+			}
+			else if($categorie==3 AND $type_achat==4)
+			{
+				$sql = "SELECT * FROM les_items WHERE categorie = 3";
+				$result = mysqli_query($db_handle,$sql);
+				echo $sql;
+			}
+			else if($categorie==4 AND $type_achat==1)
+			{
+				$sql = "SELECT * FROM les_items WHERE  type =1";
+				$result = mysqli_query($db_handle,$sql);
+				echo $sql;
+			}
+			else if($categorie==4 AND $type_achat==2)
+			{
+				$sql = "SELECT * FROM les_items WHERE  type =2";
+				$result = mysqli_query($db_handle,$sql);
+				echo $sql;
+			}
+			else if($categorie==4 AND $type_achat==3)
+			{
+				$sql = "SELECT * FROM les_items WHERE  type =3";
+				$result = mysqli_query($db_handle,$sql);
+				echo $sql;
+			}
+		}
+
 	}
-	return $leschemins;
-}
+	
 
-
-$result = mysqli_query($db_handle, $sql);
 ?>
 <!DOCTYPE html>
 <!--FICHIER TEST-->
@@ -107,51 +178,37 @@ $result = mysqli_query($db_handle, $sql);
 
 	<div class="container my-4">
 		<div class="row">
-			<!-- Non utilisation des radios mais des checkbox car on peut combiner deux type d'achats, 
-				faire javascript condition si enchère cochée alors disable meilleure offre-->
-			<!--La page va charger selon des conditions, qui va automatiquement cocher les checkbox-->
-			<h5>Filtrer selon le type d'achat et la catégorie:</h5>
 
-			<div class="custom-control custom-checkbox custom-control-inline ml-5">
-				<input type="checkbox" class="custom-control-input" id="enchere-check">
-				<label class="custom-control-label" for="enchere-check">Enchère</label>
+			<h5>Filtrer selon le type d'achat et la catégorie:  </h5>
+
+			<form action="page_achat.php" method="post">
+
+			<div class="form-group mx-2">
+				<select class="form-control" name="categorie" id="categorie">
+					<option value="1">Ferraille ou trésor</option>
+					<option value="2">Bon pour le musée</option>
+					<option value="3">Accessoire VIP</option>
+					<option value="4" selected><option>
+				</select>
 			</div>
 
-
-			<div class="custom-control custom-checkbox custom-control-inline">
-				<input type="checkbox" class="custom-control-input" id="achat-immediat-check">
-				<label class="custom-control-label" for="achat-immediat-check">Achat immédiat</label>
+			<div class="form-group mx-2 mt-2">
+				<select class="form-control" name="type_achat" id="type_achat">
+					<option value="1">Enchères</option>
+					<option value="2">Achat immédiat</option>
+					<option value="3">Meilleure offre</option>
+					<option value="4" selected><option>
+				</select>
 			</div>
 
-
-			<div class="custom-control custom-checkbox custom-control-inline">
-				<input type="checkbox" class="custom-control-input" id="offre-check">
-				<label class="custom-control-label" for="offre-check">Meilleure offre</label>
-			</div>
-
-			<div class="custom-control custom-checkbox custom-control-inline ml-5">
-				<input type="checkbox" class="custom-control-input" id="ferraille-check">
-				<label class="custom-control-label" for="ferraille-check">Ferraille ou trésor</label>
-			</div>
-
-
-			<div class="custom-control custom-checkbox custom-control-inline">
-				<input type="checkbox" class="custom-control-input" id="musee-check">
-				<label class="custom-control-label" for="musee-check">Bon pour le musée</label>
-			</div>
-
-
-			<div class="custom-control custom-checkbox custom-control-inline">
-				<input type="checkbox" class="custom-control-input" id="vip-check">
-				<label class="custom-control-label" for="vip-check">Accessoire VIP</label>
-			</div>
+			<button class="btn btn-primary" name="bouton_filtrer">Appliquer</button>
+			</form>
 
 
 		</div>
 	</div>
 
 	<div class="container">
-		<!--Donner nom aux class pr PHP-->
 		<div class="row">
 			<div class="table-responsive">
 				<table class="table table-produit">
@@ -208,6 +265,7 @@ $result = mysqli_query($db_handle, $sql);
 							echo '</tr>';
 						}
 						?>
+						<!--
 						<tr>
 							<th scope="row"><img src="images/item/item2.jpg" width="80px" height="80px"></th>
 							<td>Pièce</td>
@@ -220,18 +278,8 @@ $result = mysqli_query($db_handle, $sql);
 								Ajouter au panier<button class="btn ml-4" style="border-radius: 15px; background-color: #6AD51A;"> <i class="fa fa-shopping-basket"></i> </button>
 							</td>
 						</tr>
-						<tr>
-							<th scope="row"><img src="images/item/item3.jpg" width="80px" height="80px"></th>
-							<td>Bague</td>
-							<td><input type="textarea" value="bon état"></td>
-							<td>Ferraille ou trésor</td>
-							<td>Meilleure offre</td>
-							<td>0h 0min 0s</td>
-							<td>
-								<h4>56€</h4>
-								Ajouter au panier<button class="btn ml-4" style="border-radius: 15px; background-color: #6AD51A;"> <i class="fa fa-shopping-basket"></i> </button>
-							</td>
-						</tr>
+						<tr>-->
+
 					</tbody>
 				</table>
 
