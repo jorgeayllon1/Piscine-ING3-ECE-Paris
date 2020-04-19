@@ -482,7 +482,8 @@
 
 					<!--AJOUTER UN VENDEUR-->
 					<div class="tab-pane fade" id="ajouter-vendeur-admin">
-						<form class="text-center border border-light p-2 form-vendeur" action="#!" form="post" style="background-color: #fff; ">
+						<form class="text-center border border-light p-2 form-vendeur" action="redirect_inscription_vendeur_parAdmin" 
+						method="post" style="background-color: #fff; ">
 							<!--PHP-->
 
 							<p class="h4 mb-4">Inscription d'un vendeur par admin</p>
@@ -504,11 +505,23 @@
 							<input type="email" name="email_admin_inscription" id="email_admin_inscription" class="form-control mb-3" placeholder="E-mail">
 
 
-							<input type="text" name="pseudo_admin_inscription" id="pseudo_admin_inscription" class="form-control" placeholder="Pseudo" aria-describedby="defaultRegisterFormPasswordHelpBlock">
+							<input type="text" name="pseudo_admin_inscription" id="pseudo_admin_inscription" class="form-control" placeholder="Pseudo" >
 							<small id="pseudo_admin_inscription" class="form-text text-muted mb-4">
 
 
 							</small>
+
+							<input type="password" name="mdp_admin_inscription" id="mdp_admin_inscription" class="form-control" placeholder="Mot De Passe" >
+
+							<div class="form-group">
+									<label for="pdp_vendeur" style="font-weight:bold;">Choisissez une photo pour votre profil :</label>
+									<input type="file" name="vendeur_pdp" class="form-control-file" id="vendeur_pdp"  >
+								</div>
+
+							<div class="form-group my-2">
+									<label for="back_vendeur" style="font-weight:bold;">Choisissez une photo pour votre fond :</label>
+									<input type="file" name="vendeur_background" class="form-control-file" id="vendeur_background">
+							</div>
 
 
 

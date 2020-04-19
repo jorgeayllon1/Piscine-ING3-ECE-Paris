@@ -79,7 +79,7 @@ session_start();
 						<input type="email" name="email_vendeur_inscription" id="email_vendeur_inscription" class="form-control mb-3" placeholder="E-mail">
 
 
-						<input type="password" name="mdp_vendeur_inscription" id="mdp_vendeur_inscription" class="form-control" placeholder="Mot De Passe" aria-describedby="defaultRegisterFormPasswordHelpBlock">
+						<input type="password" name="mdp_vendeur_inscription" id="mdp_vendeur_inscription" class="form-control" placeholder="Mot De Passe" >
 						<small id="mdp_vendeur_inscription" class="form-text text-muted mb-4">
 							<em>Au moins 8 caractères et un chiffre</em>
 
