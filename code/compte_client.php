@@ -5,9 +5,12 @@
 
 		$type_carte=$_SESSION["type"]; /*Pour savoir cocher quel button radio lorsque le client accède à son compte*/
 		$session_pseudo=$_SESSION["pseudo"];
+		$temp="type";
 
 
-        /*Dans le form, l'id est caché avec display none*/
+
+		/*Dans le form, l'id est caché avec display none*/
+		/*Manque modif date*/
 		$id = isset($_POST["id_client"])?$_POST["id_client"]:"";
 		
 		$nom = isset($_POST["nom_client"])?$_POST["nom_client"]:"";
@@ -26,6 +29,8 @@
 		$num_carte = isset($_POST["paiement_num_carte"])?$_POST["paiement_num_carte"]:"";
 		$date_carte = isset($_POST["paiement_date_expi"])?$_POST["paiement_date_expi"]:"";
 		$code_carte = isset($_POST["paiement_code"])?$_POST["paiement_code"]:"";
+
+		$temp2=$date_carte."-00";
 
 		/**Connexion à la bdd */
 		$database = "ebayece";
@@ -54,7 +59,7 @@
 				$result = mysqli_query($db_handle,$sql);
 
 
-				/**Transaction marche pas, comprend pas pk*/ 
+				/**Transaction */ 
 
 				$sql = "UPDATE  info_bancaire
 				INNER JOIN user  ON info_bancaire.id='$id'
@@ -64,9 +69,6 @@
 				echo $sql;
 
 				
-
-
-
 				/*On met à jour le cookie*/
 
 				$_SESSION["nom"] = $nom;
@@ -268,30 +270,16 @@
 
 							<p class="h5 mb-4">Vos informations bancaires</p>
 
-							<div class="custom-control custom-radio">
-								<input  type="radio" id="visa" name="type_carte"  class="custom-control-input" 
-								<?php if($type_carte === 'Visa') echo 'checked="checked"';?> >
-								<label class="custom-control-label" for="visa">Visa</label>
-								<i class="fa fa-cc-visa"></i>
-								</div>
-								<div class="custom-control custom-radio">
-								<input  type="radio" id="master" name="type_carte"  class="custom-control-input"
-								<?php if($type_carte === 'MatserCard') echo 'checked="checked"';?>>
-								<label class="custom-control-label" for="master">MasterCard</label>
-								<i class="fa fa-cc-mastercard"></i>
-								</div>
-								<div class="custom-control custom-radio">
-								<input  type="radio"  id="express" name="type_carte" class="custom-control-input"
-								<?php if($type_carte === 'American Express') echo 'checked="checked"';?>>
-								<label class="custom-control-label" for="express">American express</label>
-								<i class="fa fa-cc-amex"></i>
-								</div>
-								<div class="custom-control custom-radio">
-								<input  type="radio" id="paypal" name="type_carte"  class="custom-control-input" 
-								<?php if($type_carte === 'Paypal') echo 'checked="checked"';?>>
-								<label class="custom-control-label" for="paypal">Paypal</label>
-								<i class="fa fa-cc-paypal"></i>
-							</div>
+							<div class="form-group">
+								<label for="type_carte">Type de carte :</label>
+								<select class="form-control" name="type_carte" id="type_carte" value="<?php echo $_SESSION["type"]?>" >
+									<option value="Visa" <?php if($type_carte === 'Visa') echo'selected'?>>Visa</option>
+									<option value="MasterCard" <?php if($type_carte === 'MasterCard') echo'selected'?>>MasterCard</option>
+									<option value="American Express" <?php if($type_carte === 'American Express') echo'selected'?>>American express</option>
+									<option value="Paypal" <?php if($type_carte === 'Paypal') echo'selected'?>>Paypal</option>
+	                            </select>
+	                        </div>
+
 
 							<div class="form-row my-2">
 								<div class="col">
@@ -310,7 +298,7 @@
 								<div class="col">
 									<label for="paiement_date_expi">Date expiration</label>
 									<input type="month"  name="paiement_date_expi" id="paiement_date_expi" class="form-control"
-									value="<?php echo $_SESSION["date_expi"]?>">
+									value="<?php  $_SESSION["date_expi"]?>">
 								</div>
 								<div class="col">
 									<label for="paiement_code">CVC</label>

@@ -10,6 +10,8 @@
 		}
 	}
 
+	/**Manque modification photo de profil et fond */
+
 	$session_pseudo=$_SESSION["pseudo"];
 
 	$nom = isset($_POST["nom_vendeur"])?$_POST["nom_vendeur"]:"";

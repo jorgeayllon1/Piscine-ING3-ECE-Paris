@@ -1,6 +1,58 @@
 <?php
-session_start();
+	session_start();
+
+	if (isset($_POST['deco'])) {
+		if ($_POST['deco']) {
+			$fp = fopen('cookie.php', 'w');
+			fclose($fp);
+			header("location: accueil.php");
+		}
+	}
+
+    /**Manque modification photo de profil */
+
+	$id = isset($_POST["id_admin"])?$_POST["id_admin"]:"";
+
+
+	$nom = isset($_POST["nom_admin"])?$_POST["nom_admin"]:"";
+	$prenom = isset($_POST["prenom_admin"])?$_POST["prenom_admin"]:"";
+	$email = isset($_POST["email_admin"])?$_POST["email_admin"]:"";
+	$mdp = isset($_POST["mdp_admin"])?$_POST["mdp_admin"]:"";
+
+	/**Connexion à la bdd */
+	$database = "ebayece";
+	$db_handle = mysqli_connect('localhost', 'root', '');
+	$db_found = mysqli_select_db($db_handle, $database);
+
+	if(isset($_POST['modifier_admin']))
+	{
+		/*Pour pseudo on la compare avec SESSION càd le cookie car dans ses infos on n'a pas le id*/
+		if($db_found){
+
+			/**User */
+			$sql = " UPDATE user SET nom='$nom', prenom='$prenom', email='$email', 
+			mdp='$mdp' WHERE id = '$id'  ";
+			$result = mysqli_query($db_handle,$sql);
+
+
+			/*On met à jour le cookie*/
+
+			$_SESSION["nom"] = $nom;
+			$_SESSION["prenom"] = $prenom;
+			$_SESSION["email"] = $email;
+			$_SESSION["mdp"] = $mdp;
+
+
+		}
+		else{
+			echo "BDD non trouvé";
+		}
+	}
+
+
+
 ?>
+
 <!DOCTYPE htmls>
 
 <head>
@@ -105,30 +157,35 @@ session_start();
 					<!--INFORMATIONS ADMIN-->
 
 					<div class="tab-pane fade show active " id="info-admin">
-						<form class="text-center border border-light " action="#!">
+						<form class="text-center border border-light " action="compte_admin.php" method="post">
 							<!--PHP-->
 
 							<p class="h4 mb-4">Vos informations</p>
+							<input type="text" name="id_admin" style="display:none;" value="<?php echo $_SESSION["id_user"]?>">
 
-							<input type="file" name="img_admin" id="img_admin" class="form-control"> (pdp)
+							<input type="file" name="img_admin" id="img_admin" class="form-control" > 
 
 
 							<div class="form-row mb-4 mx-4 mt-4">
 								<div class="col">
 
-									<input type="text" name="prenom_admin" id="prenom_admin" class="form-control" placeholder="David">
+									<input type="text" name="prenom_admin" id="prenom_admin" class="form-control" 
+									value="<?php echo $_SESSION["prenom"]?>">
 								</div>
 								<div class="col">
 
-									<input type="text" name="nom_admin" id="nom_admin" class="form-control" placeholder="Wang">
+									<input type="text" name="nom_admin" id="nom_admin" class="form-control" 
+									value="<?php echo $_SESSION["nom"]?>">
 								</div>
 							</div>
 
 
-							<input type="email" name="email_admin" id="email_admin" class="form-control mb-3" placeholder="E-mail">
+							<input type="email" name="email_admin" id="email_admin" class="form-control mb-3" 
+							value="<?php echo $_SESSION["email"]?>">
 
 
-							<input type="password" name="mdp_admin" id="mdp_admin" class="form-control" placeholder="**********" aria-describedby="defaultRegisterFormPasswordHelpBlock">
+							<input type="password" name="mdp_admin" id="mdp_admin" class="form-control"
+							 value="<?php echo $_SESSION["mdp"]?>" aria-describedby="defaultRegisterFormPasswordHelpBlock">
 
 
 
