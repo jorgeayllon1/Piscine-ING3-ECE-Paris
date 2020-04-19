@@ -40,8 +40,18 @@ session_start();
 
 						<div class="collapse navbar-collapse" id="main-navigation">
 							<ul class="navbar-nav">
-								<li class="nav-item"><a class="nav-link" href="inscription.php">S'inscrire</a></li>
-								<li class="nav-item"><a class="nav-link" href="connexion.php">Se connecter</a></li>
+								<!-- La suite de ce code php va soit afficher des boutons de connexion si l'utilisateur n'est pas connecter-->
+								<!-- Soit afficher son nom et prenom avec une redirection vers son compte -->
+								<?php
+								if (!isset($_SESSION["id_user"])) {
+									echo '<li class="nav-item"><a class="nav-link" href="inscription.php"><i class="fa fa-user-plus"></i> S\'inscrire</a></li>';
+									echo '<li class="nav-item"><a class="nav-link" href="connexion.php"><i class="fa fa-sign-in"></i> Se connecter</a></li>';
+								} else {
+									echo '<li class="nav-item"><a class="nav-link" href="redirect_moncompte.php">' . $_SESSION["nom"] . ' ' . $_SESSION["prenom"] . '</a></li>';
+									echo '<li class="nav-item"><a class="nav-link" href="deco.php">Se déconnecter</a></li>';
+								}
+								?>
+								
 								
 							</ul>
 						</div>

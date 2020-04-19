@@ -109,10 +109,8 @@
 				<div class="collapse navbar-collapse" id="main-navigation">
 					<ul class="navbar-nav">
 						<li class="nav-item"><a class="nav-link" href="compte_admin.php"><?php echo $_SESSION["nom"]." ".$_SESSION["prenom"] ?></a></li>
-						<!--<li class="nav-item"><a class="nav-link" href="accueil.php">Se déconnecter</a></li>-->
-						<form name="form" method="POST" action="compte_vendeur.php">
-							<input type="submit" name="deco" value="Déconnexion">
-						</form>
+						<li class="nav-item"><a class="nav-link" href="deco.php">Se déconnecter</a></li>
+						
 						<li><i class="fa fa-power-off mt-3" style="color: #fff;"></i></li>
 
 					</ul>

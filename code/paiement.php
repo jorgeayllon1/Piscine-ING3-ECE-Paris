@@ -130,8 +130,18 @@ function somme_tot_achat_immediat($id_user, $db_handle)
 
                 <div class="collapse navbar-collapse" id="main-navigation">
                     <ul class="navbar-nav">
-                        <li class="nav-item"><a class="nav-link" href="compte_client.php">WANG David</a></li>
-                        <li class="nav-item"><a class="nav-link" href="accueil.php">Se déconnecter</a></li>
+                        <!-- La suite de ce code php va soit afficher des boutons de connexion si l'utilisateur n'est pas connecter-->
+                                <!-- Soit afficher son nom et prenom avec une redirection vers son compte -->
+                                <?php
+                                if (!isset($_SESSION["id_user"])) {
+                                    echo '<li class="nav-item"><a class="nav-link" href="inscription.php"><i class="fa fa-user-plus"></i> S\'inscrire</a></li>';
+                                    echo '<li class="nav-item"><a class="nav-link" href="connexion.php"><i class="fa fa-sign-in"></i> Se connecter</a></li>';
+                                } else {
+                                    echo '<li class="nav-item"><a class="nav-link" href="redirect_moncompte.php">' . $_SESSION["nom"] . ' ' . $_SESSION["prenom"] . '</a></li>';
+                                    echo '<li class="nav-item"><a class="nav-link" href="deco.php">Se déconnecter</a></li>';
+                                }
+                                ?>
+
                         <li><i class="fa fa-power-off mt-3" style="color: #fff;"></i></li>
 
                     </ul>
