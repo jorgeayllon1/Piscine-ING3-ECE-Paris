@@ -36,7 +36,7 @@ if (isset($_POST['submit'])) {
                     $_SESSION["email"] = $data["email"];
 					$_SESSION["mdp"] = $data["mdp"];
 					$_SESSION['photo_perso'] = $data['photo_perso'];
-					$_SESSION['photo_background'] = $data['photo_background'];
+					$_SESSION["back_background"] = $data['photo_background'];
 
 					/*fwrite($fp, "<?php 
                             define('C_ID', '$c_ID'); 

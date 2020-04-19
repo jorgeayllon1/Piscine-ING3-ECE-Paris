@@ -12,6 +12,8 @@
 
 	/**Manque modification photo de profil et fond */
 
+
+
 	$session_pseudo=$_SESSION["pseudo"];
 
 	$nom = isset($_POST["nom_vendeur"])?$_POST["nom_vendeur"]:"";
@@ -19,6 +21,32 @@
 	$pseudo = isset($_POST["pseudo_vendeur"])?$_POST["pseudo_vendeur"]:"";
 	$email = isset($_POST["email_vendeur"])?$_POST["email_vendeur"]:"";
 	$mdp = isset($_POST["mdp_vendeur"])?$_POST["mdp_vendeur"]:"";
+	$photo_vendeur = isset($_POST["pdp_vendeur"])?$_POST["pdp_vendeur"]:"";
+	$hide_vendeur = isset($_POST["hide_vendeur"])?$_POST["hide_vendeur"]:"";
+	/**Condition pour déterminer si il y a déjà une photo avec une variable temporaire cachée car input file ne prend pas de value pour un path */
+
+	if($photo_vendeur =='')
+	{
+		$hide_vendeur = isset($_POST["hide_vendeur"])?$_POST["hide_vendeur"]:"";
+
+	}
+	else{
+		$hide_vendeur = $photo_vendeur;
+
+	}
+
+	$back_vendeur = isset($_POST["background_vendeur"])?$_POST["background_vendeur"]:"";
+	$hide2_vendeur = isset($_POST["hide2_vendeur"])?$_POST["hide2_vendeur"]:"";
+
+	if($back_vendeur =='')
+	{
+		$hide2_vendeur = isset($_POST["hide2_vendeur"])?$_POST["hide2_vendeur"]:"";
+
+	}
+	else{
+		$hide2_vendeur = $back_vendeur;
+
+	}
 
 	/**Connexion à la bdd */
 	$database = "ebayece";
@@ -32,8 +60,10 @@
 
 			/**User */
 			$sql = " UPDATE user SET nom='$nom', prenom='$prenom', email='$email', 
-			mdp='$mdp' WHERE pseudo = '$pseudo'  ";
+			mdp='$mdp', photo_perso ='$hide_vendeur', photo_background = '$hide2_vendeur'  WHERE pseudo = '$pseudo'  ";
 			$result = mysqli_query($db_handle,$sql);
+
+			echo $sql;
 
 
 
@@ -48,6 +78,8 @@
 			$_SESSION["pseudo"] = $pseudo;
 			$_SESSION["email"] = $email;
 			$_SESSION["mdp"] = $mdp;
+			$_SESSION["photo_perso"] = $hide_vendeur;
+			$_SESSION["back_background"] = $hide2_vendeur;
 
 
 		}
@@ -168,8 +200,12 @@
 
 								<div class="form-group">
 									<label for="pdp_vendeur">Choisissez une photo pour votre profil :</label>
-									<input type="file" name="pdp_vendeur" class="form-control-file" id="pdp_vendeur">
+									<input type="file" name="pdp_vendeur" class="form-control-file" id="pdp_vendeur"  >
 								</div>
+
+								<p>Votre photo de profil actuelle : <p><br>
+								<input type="text" name="hide_vendeur" style="display:none;" value="<?php echo $_SESSION["photo_perso"]?>">
+								<img src="<?php echo "images/".$_SESSION['photo_perso'] ?>" width="100px" height="100px" >
 
 								<input type="text" name="pseudo_vendeur" class="form-control mb-3" id="pseudo_vendeur"
 								 value="<?php echo $_SESSION["pseudo"]?>">
@@ -198,8 +234,10 @@
 
 								<div class="form-group my-2">
 									<label for="back_vendeur">Choisissez une photo pour votre fond :</label>
-									<input type="file" name="back_vendeur" class="form-control-file" id="back_vendeur">
+									<input type="file" name="background_vendeur" class="form-control-file" id="back_vendeur">
 								</div>
+								<input type="text" name="hide2_vendeur" style="display:none;" value="<?php echo $_SESSION["photo_background"]?>">
+								<img src="<?php echo "images/".$_SESSION['photo_background'] ?>" width="100px" height="100px" >
 
 
 

@@ -18,6 +18,22 @@
 	$prenom = isset($_POST["prenom_admin"])?$_POST["prenom_admin"]:"";
 	$email = isset($_POST["email_admin"])?$_POST["email_admin"]:"";
 	$mdp = isset($_POST["mdp_admin"])?$_POST["mdp_admin"]:"";
+	$photo_admin = isset($_POST["img_admin"])?$_POST["img_admin"]:"";
+	$hide_admin = isset($_POST["hide_admin"])?$_POST["hide_admin"]:"";
+
+	/**Condition pour déterminer si il y a déjà une photo avec une variable temporaire cachée car input file ne prend pas de value pour un path */
+
+	if($photo_admin =='')
+	{
+		$hide_admin = isset($_POST["hide_admin"])?$_POST["hide_admin"]:"";
+
+	}
+	else{
+		$hide_admin = $photo_admin;
+
+	}
+
+
 
 	/**Connexion à la bdd */
 	$database = "ebayece";
@@ -31,7 +47,7 @@
 
 			/**User */
 			$sql = " UPDATE user SET nom='$nom', prenom='$prenom', email='$email', 
-			mdp='$mdp' WHERE id = '$id'  ";
+			mdp='$mdp', photo_perso='$hide_admin' WHERE id = '$id'  ";
 			$result = mysqli_query($db_handle,$sql);
 
 
@@ -41,6 +57,7 @@
 			$_SESSION["prenom"] = $prenom;
 			$_SESSION["email"] = $email;
 			$_SESSION["mdp"] = $mdp;
+			$_SESSION['photo_perso']= $hide_admin;
 
 
 		}
@@ -163,7 +180,13 @@
 							<p class="h4 mb-4">Vos informations</p>
 							<input type="text" name="id_admin" style="display:none;" value="<?php echo $_SESSION["id_user"]?>">
 
-							<input type="file" name="img_admin" id="img_admin" class="form-control" > 
+							<!--Changement photo de profil-->
+
+							<input type="text" name="hide_admin" style="display:none;" value="<?php echo $_SESSION["photo_perso"]?>">
+
+							<input type="file" name="img_admin" id="img_admin" class="form-control"> 
+							<p>Votre photo de profil actuelle :<p><br>
+							<img src="<?php echo "images/".$_SESSION['photo_perso'] ?>" width="100px" height="100px" >
 
 
 							<div class="form-row mb-4 mx-4 mt-4">
