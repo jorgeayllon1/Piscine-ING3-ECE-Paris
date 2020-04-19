@@ -93,6 +93,36 @@ function somme_tot_achat_immediat($id_user, $db_handle)
 
     return $somme_tot;
 }
+/*
+function payer_achat_immediat($id_user, $db_handle)
+{
+
+    $indice = 0;
+
+    foreach (items_dans_panier($id_user, $db_handle) as $item) {
+        if ($item["type"] == 2) {
+            $transaction[$indice]["id_acheteur"] = $id_user;
+            $transaction[$indice]["id_vendeur"] = $item["id_prop"];
+            $transaction[$indice]["id_item"] = $item["id"];
+            $transaction[$indice]["montant"] = $item["prix"];
+            $transaction[$indice]["date_livraison"] = "2020-12-12";
+            $transaction[$indice]["date_transaction"] = date("d,m,Y");
+        }
+        $indice++;
+    }
+
+    foreach ($transaction as $latransaction) {
+        $sql_transaction =
+            "INSERT INTO 'transaction'
+            VALUES(NULL,'" . $latransaction["id_acheteur"] . "','" . $latransaction["id_vendeur"] . "',
+            '" . $latransaction["id_item"] . "','" . $latransaction["montant"] . "','" . $latransaction["date_livraison"] . "',
+            '" . $latransaction["date_transaction"] . "')";
+
+        echo $sql_transaction;
+
+        mysqli_query($db_handle, $sql_transaction);
+    }
+}*/
 
 ?>
 <!DOCTYPE html>
@@ -244,7 +274,12 @@ function somme_tot_achat_immediat($id_user, $db_handle)
                 <input type="checkbox" name="souvenir_cb" id="souvenir_cb"> Sauvegarder mes coordonnées pour la prochaine fois
 
                 <div class="row">
-                    <button class="btn btn-primary my-2 " name="payer" type="submit" style="margin: 0 auto; font-size: larger;">Finalisez mon paiment</button>
+                    <!-- J'ai rajoute <a> pour avoir un href, je sais pas rediriger vers une page sinon
+                    <from method="post" action="payer.php">
+                        <button class="btn btn-primary my-2 " name="payer" type="submit" style="margin: 0 auto; font-size: larger;" value=2>Finalisez mon paiment</button>
+                    </from>
+                    -->
+
                     <!--CREATION PUIS VERIFICATION DES DONNEES DANS LA BDD PUIS AFFICHAGE MESSAGE PAIEMENT REUSSI-->
                 </div>
 
@@ -338,8 +373,11 @@ function somme_tot_achat_immediat($id_user, $db_handle)
                     </div>
 
                 </div>
-                <div class="row">
-                    <button class="btn btn-primary my-2 " style="margin: 0 auto; font-size: larger;">Finalisez mon paiment</button>
+                <div class="row d-flex justify-content-center">
+                    <!-- J'ai rajoute <a> pour avoir un href, je sais pas rediriger vers une page sinon-->
+                    <form method="post" action="payer.php">
+                        <button class="btn btn-primary my-2 " name="payer" type="submit" style="margin: 0 auto; font-size: larger;" value=2>Finalisez mon paiment</button>
+                    </form>
 
                 </div>
                 <div class="row">

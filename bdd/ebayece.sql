@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.5
+-- version 4.9.2
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le :  sam. 18 avr. 2020 à 19:00
--- Version du serveur :  5.7.26
--- Version de PHP :  7.2.18
+-- Généré le :  Dim 19 avr. 2020 à 17:46
+-- Version du serveur :  8.0.18
+-- Version de PHP :  7.3.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -176,10 +176,13 @@ INSERT INTO `les_items` (`id`, `id_prop`, `nom`, `description`, `prix`, `prix_so
 (2, 3, 'Disque Dur', 'un disque tout dur', 15, NULL, 'video-item/disque-dur.mp4', 2, 2, '2020-06-05', '2020-06-29'),
 (3, 3, 'Caftière', 'Une machine pour faire du café', 35, NULL, NULL, 1, 3, '2020-05-19', '2020-05-22'),
 (4, 3, 'Clavier', 'un truc pour ecrire', 12, NULL, NULL, 2, 1, '2020-05-22', '2020-07-09');
+
 -- --------------------------------------------------------
+
 --
 -- Structure de la table `photo`
 --
+
 DROP TABLE IF EXISTS `photo`;
 CREATE TABLE IF NOT EXISTS `photo` (
   `id` int(50) NOT NULL AUTO_INCREMENT,
@@ -188,18 +191,23 @@ CREATE TABLE IF NOT EXISTS `photo` (
   PRIMARY KEY (`id`),
   KEY `id_item` (`id_item`)
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
+
 --
 -- Déchargement des données de la table `photo`
 --
+
 INSERT INTO `photo` (`id`, `id_item`, `chemin`) VALUES
 (1, 1, 'images/item/cheval.png'),
 (2, 2, 'images/item/disque-dur.png'),
 (3, 4, 'images/item/clavier.png'),
 (4, 3, 'images/item/caftiere.png');
+
 -- --------------------------------------------------------
+
 --
 -- Structure de la table `transaction`
 --
+
 DROP TABLE IF EXISTS `transaction`;
 CREATE TABLE IF NOT EXISTS `transaction` (
   `id` int(50) NOT NULL AUTO_INCREMENT,
@@ -209,15 +217,15 @@ CREATE TABLE IF NOT EXISTS `transaction` (
   `montant` float NOT NULL,
   `date_livraison` date NOT NULL,
   `date_transaction` date NOT NULL,
-  PRIMARY KEY (`id`),
-  KEY `id_acheteur` (`id_acheteur`,`id_vendeur`,`id_item`),
-  KEY `id_vendeur` (`id_vendeur`),
-  KEY `id_item` (`id_item`)
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
 -- --------------------------------------------------------
+
 --
 -- Structure de la table `user`
 --
+
 DROP TABLE IF EXISTS `user`;
 CREATE TABLE IF NOT EXISTS `user` (
   `id` int(50) NOT NULL AUTO_INCREMENT,
@@ -237,34 +245,33 @@ CREATE TABLE IF NOT EXISTS `user` (
   KEY `id_livraison` (`id_livraison`),
   KEY `id_collection` (`id_collection`)
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
+
 --
 -- Déchargement des données de la table `user`
 --
+
 INSERT INTO `user` (`id`, `id_livraison`, `id_carte`, `id_collection`, `email`, `mdp`, `pseudo`, `rang`, `nom`, `prenom`, `photo_perso`, `photo_background`) VALUES
 (1, NULL, NULL, NULL, 'admin@gmail.com', 'motdepasse', 'lebigboss', 3, 'ayllon', 'jorge', NULL, NULL),
 (2, 2, 2, 2, 'jjjjj@gmail.com', 'jebois', 'jjgold', 1, 'goldman', 'jean-jacques', NULL, NULL),
 (3, NULL, NULL, 3, 'jhonnn@gmail.com', 'jechante', 'holiday', 2, 'hallyday', 'johnny', 'images/vendeur/johnny-hallyday.png', 'images/vendeur/johnny-hallyday-back.png'),
 (4, 4, 4, 4, 'michel@gmail.com', 'jesaute', 'dd', 1, 'wang', 'Michel', NULL, NULL);
+
 --
 -- Contraintes pour les tables déchargées
 --
+
 --
 -- Contraintes pour la table `les_items`
 --
 ALTER TABLE `les_items`
   ADD CONSTRAINT `les_items_ibfk_1` FOREIGN KEY (`id_prop`) REFERENCES `user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
 --
 -- Contraintes pour la table `photo`
 --
 ALTER TABLE `photo`
   ADD CONSTRAINT `photo_ibfk_1` FOREIGN KEY (`id_item`) REFERENCES `les_items` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
---
--- Contraintes pour la table `transaction`
---
-ALTER TABLE `transaction`
-  ADD CONSTRAINT `transaction_ibfk_1` FOREIGN KEY (`id_acheteur`) REFERENCES `user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `transaction_ibfk_2` FOREIGN KEY (`id_vendeur`) REFERENCES `user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `transaction_ibfk_3` FOREIGN KEY (`id_item`) REFERENCES `les_items` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
 --
 -- Contraintes pour la table `user`
 --
@@ -273,6 +280,7 @@ ALTER TABLE `user`
   ADD CONSTRAINT `user_ibfk_4` FOREIGN KEY (`id_livraison`) REFERENCES `coord_livraison` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `user_ibfk_5` FOREIGN KEY (`id_collection`) REFERENCES `lacollection` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
+
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
