@@ -64,7 +64,7 @@
 			mdp='$mdp', photo_perso ='$hide_vendeur', photo_background = '$hide2_vendeur'  WHERE pseudo = '$pseudo'  ";
 			$result = mysqli_query($db_handle,$sql);
 
-			echo $sql;
+			
 
 
 
@@ -80,7 +80,7 @@
 			$_SESSION["email"] = $email;
 			$_SESSION["mdp"] = $mdp;
 			$_SESSION["photo_perso"] = $hide_vendeur;
-			$_SESSION["back_background"] = $hide2_vendeur;
+			$_SESSION["photo_background"] = $hide2_vendeur;
 
 
 		}
@@ -235,7 +235,7 @@
 									<input type="file" name="background_vendeur" class="form-control-file" id="back_vendeur">
 								</div>
 								<input type="text" name="hide2_vendeur" style="display:none;" value="<?php echo $_SESSION["photo_background"]?>">
-								<img src="<?php echo "images/".$_SESSION['photo_background'] ?>" width="100px" height="100px" >
+								<img src="<?php echo "images/".$_SESSION['photo_background'] ?>" width="100px" height="100px" ><br>
 
 
 
