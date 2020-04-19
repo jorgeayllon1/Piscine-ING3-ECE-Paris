@@ -12,7 +12,7 @@ function ajouter_item($id, $id_prop, $nom, $description, $prix, $video, $categor
     $sql =
         "INSERT INTO les_items
     VALUES('" . $id . "','" . $id_prop . "','" . $nom . "','" . $description . "',
-    '" . $prix . "',NULL,'" . $video . "','" . $categorie . "','" . $type . "','" . $date_debut . "','" . $date_fin . "')";
+    '" . $prix . "',NULL,'" . $video . "','" . $categorie . "','" . $type . "','" . $date_debut . "','" . $date_fin . "',NULL,5)";
 
     mysqli_query($db_handle, $sql);
 }
@@ -141,7 +141,9 @@ if (isset($_POST['ajouter_item_vendeur'])) {
         #Ajouter la photo de l'item
         ajouter_photo($litem["image"], $db_handle, $litem["id"]);
 
-        header("location: compte_vendeur.php");
+        #header("location: compte_vendeur.php");
+
+        echo "Salut aventurier";
     }
 } else {
     echo "ERROR";

@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.5
+-- version 4.9.2
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le :  Dim 19 avr. 2020 à 21:21
--- Version du serveur :  5.7.26
--- Version de PHP :  7.2.18
+-- Généré le :  Dim 19 avr. 2020 à 22:08
+-- Version du serveur :  8.0.18
+-- Version de PHP :  7.3.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -164,6 +164,8 @@ CREATE TABLE IF NOT EXISTS `les_items` (
   `type` int(50) NOT NULL,
   `date_debut` date NOT NULL,
   `date_fin` date NOT NULL,
+  `id_vainqueur` int(50) DEFAULT NULL,
+  `tentative` int(11) NOT NULL DEFAULT '5',
   PRIMARY KEY (`id`),
   KEY `id_prop` (`id_prop`)
 ) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=latin1;
@@ -172,16 +174,16 @@ CREATE TABLE IF NOT EXISTS `les_items` (
 -- Déchargement des données de la table `les_items`
 --
 
-INSERT INTO `les_items` (`id`, `id_prop`, `nom`, `description`, `prix`, `prix_souh`, `video`, `categorie`, `type`, `date_debut`, `date_fin`) VALUES
-(1, 3, 'Cheval', 'Le cheval, le cheval, le cheval c\'est trop génial', 5.5, NULL, 'video-item/cheval.mp4', 3, 1, '2020-05-21', '2020-05-28'),
-(2, 3, 'Disque Dur', 'un disque tout dur', 15, NULL, 'video-item/disque-dur.mp4', 2, 2, '2020-06-05', '2020-06-29'),
-(3, 3, 'Caftière', 'Une machine pour faire du café', 35, NULL, NULL, 1, 3, '2020-05-19', '2020-05-22'),
-(4, 3, 'Clavier', 'un truc pour ecrire', 12, NULL, NULL, 2, 1, '2020-05-22', '2020-07-09'),
-(5, 3, 'piece', 'piece de monnaie', 5.9, NULL, NULL, 1, 1, '2020-04-01', '2020-04-15'),
-(6, 3, 'montre', 'montre luxueuse', 250, NULL, NULL, 3, 2, '2020-04-30', '2020-05-14'),
-(7, 3, 'ordi', 'bon processeur', 450, NULL, NULL, 1, 2, '2020-04-01', '2020-04-02'),
-(8, 3, 'souris', 'souris sans fil', 30, NULL, NULL, 3, 3, '2020-04-07', '2020-04-15'),
-(9, 3, 'tableau', 'tableau paint par un peintre celebre', 200, NULL, NULL, 2, 3, '2020-04-15', '2020-04-24');
+INSERT INTO `les_items` (`id`, `id_prop`, `nom`, `description`, `prix`, `prix_souh`, `video`, `categorie`, `type`, `date_debut`, `date_fin`, `id_vainqueur`, `tentative`) VALUES
+(1, 3, 'Cheval', 'Le cheval, le cheval, le cheval c\'est trop génial', 5.5, NULL, 'video-item/cheval.mp4', 3, 1, '2020-05-21', '2020-05-28', NULL, 5),
+(2, 3, 'Disque Dur', 'un disque tout dur', 15, NULL, 'video-item/disque-dur.mp4', 2, 2, '2020-06-05', '2020-06-29', NULL, 5),
+(3, 3, 'Caftière', 'Une machine pour faire du café', 35, NULL, NULL, 1, 3, '2020-05-19', '2020-05-22', NULL, 5),
+(4, 3, 'Clavier', 'un truc pour ecrire', 12, NULL, NULL, 2, 1, '2020-05-22', '2020-07-09', NULL, 5),
+(5, 3, 'piece', 'piece de monnaie', 5.9, NULL, NULL, 1, 1, '2020-04-01', '2020-04-15', NULL, 5),
+(6, 3, 'montre', 'montre luxueuse', 250, NULL, NULL, 3, 2, '2020-04-30', '2020-05-14', NULL, 5),
+(7, 3, 'ordi', 'bon processeur', 450, NULL, NULL, 1, 2, '2020-04-01', '2020-04-02', NULL, 5),
+(8, 3, 'souris', 'souris sans fil', 30, NULL, NULL, 3, 3, '2020-04-07', '2020-04-15', NULL, 5),
+(9, 3, 'tableau', 'tableau paint par un peintre celebre', 200, NULL, NULL, 2, 3, '2020-04-15', '2020-04-24', NULL, 5);
 
 -- --------------------------------------------------------
 
