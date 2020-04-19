@@ -61,37 +61,37 @@
 			{
 				$sql = "SELECT * FROM les_items WHERE categorie = 1";
 				$result = mysqli_query($db_handle,$sql);
-				echo $sql;
+				
 			}			
 			else if($categorie==2 AND $type_achat==4)
 			{
 				$sql = "SELECT * FROM les_items WHERE categorie = 2";
 				$result = mysqli_query($db_handle,$sql);
-				echo $sql;
+				
 			}
 			else if($categorie==3 AND $type_achat==4)
 			{
 				$sql = "SELECT * FROM les_items WHERE categorie = 3";
 				$result = mysqli_query($db_handle,$sql);
-				echo $sql;
+				
 			}
 			else if($categorie==4 AND $type_achat==1)
 			{
 				$sql = "SELECT * FROM les_items WHERE  type =1";
 				$result = mysqli_query($db_handle,$sql);
-				echo $sql;
+				
 			}
 			else if($categorie==4 AND $type_achat==2)
 			{
 				$sql = "SELECT * FROM les_items WHERE  type =2";
 				$result = mysqli_query($db_handle,$sql);
-				echo $sql;
+				
 			}
 			else if($categorie==4 AND $type_achat==3)
 			{
 				$sql = "SELECT * FROM les_items WHERE  type =3";
 				$result = mysqli_query($db_handle,$sql);
-				echo $sql;
+				
 			}
 		}
 

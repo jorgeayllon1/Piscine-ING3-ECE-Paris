@@ -227,7 +227,7 @@ if (isset($_POST['payer'])) {
 
                     mysqli_query($db_handle, $sql);
                 }
-            } elseif ($leitem["prix_souh"] < $_POST["prix_souh"]) {
+            } else if ($leitem["prix_souh"] < $_POST["prix_souh"]) {
                 echo "2: je dis que " . $leitem["prix_souh"] . " est plus petit que " . $_POST["prix_souh"];
                 #faire le changement de prix
                 $sql =

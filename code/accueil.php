@@ -1,12 +1,35 @@
 <?php
-#Cette ligne va demarrer le cookie pour une session, dès que l'utilisateur quitte la page, ça efface le cookie
-session_start(); // On démarre la session AVANT toute chose
-#Si vous voulez demarrer une nouvelle session, vous pouvez utiliser un onglet de navigateur priver
-/*
-if(isset($_SESSION["id_user"])){
+	#Cette ligne va demarrer le cookie pour une session, dès que l'utilisateur quitte la page, ça efface le cookie
+	session_start(); // On démarre la session AVANT toute chose
+	#Si vous voulez demarrer une nouvelle session, vous pouvez utiliser un onglet de navigateur priver
+	/*
+	if(isset($_SESSION["id_user"])){
 
-}
-*/
+	}
+	*/
+	$database = "ebayece";
+	$db_handle = mysqli_connect('localhost', 'root', '');
+	$db_found = mysqli_select_db($db_handle, $database);
+
+	$sql = "SELECT * FROM les_items WHERE type=2";
+
+	function chemins_dune_image($id_item, $db_handle)
+	{
+		$sql =
+			"SELECT chemin from photo 
+		inner join les_items
+			on les_items.id = photo.id_item
+			where les_items.id=$id_item";
+
+		$result = mysqli_query($db_handle, $sql);
+
+		while ($data = mysqli_fetch_assoc($result)) {
+			$leschemins[] = $data["chemin"];
+		}
+		return $leschemins;
+	}
+	$result = mysqli_query($db_handle, $sql);
+
 
 ?>
 
@@ -136,10 +159,6 @@ if(isset($_SESSION["id_user"])){
 				</div>
 
 
-
-
-
-
 				<!-- RECHERCHE -->
 
 				<div class="container container-search">
@@ -233,8 +252,6 @@ if(isset($_SESSION["id_user"])){
 				<!-- Second Image Slider -->
 				<div class="row d-flex justify-content-center my-1">
 
-
-
 					<div id="multi" class="carousel slide carousel-multi-item my-2" data-ride="carousel">
 
 
@@ -247,28 +264,43 @@ if(isset($_SESSION["id_user"])){
 							<div class="carousel-inner" role="listbox">
 
 								<!--First slide-->
+
+								
+								
+
+								
+
+
 								<div class="carousel-item active">
 
 									<div class="row d-flex justify-content-center">
-										<div class="col-md-3">
-											<div class="card shadow p-3 mb-5 bg-white rounded">
-												<img class="card-img-top px-2 py-2" style="border-radius:15px;" src="images/item/item1.jpg" alt="img" width="120px" height="270px">
-												<div class="card-body" style="background-color: #EFEFF1;border-radius:15px;">
-													<h4 class="card-title">Lampe</h4>
-													<p class="card-text">25<sup>€</sup>.</p>
-													<p>Vendeur: Jorge<p>
-													<a href="panier.php" class="btn btn-primary buy-buton"><i class="fa fa-shopping-basket"></i></a>
-													<p class="ajout-panier"><em>Ajouter au panier</em></p>
-												</div>
-											</div>
+									<?php
+									    $data = mysqli_fetch_assoc($result);
+									
+
+										echo '<div class="col-md-3">';
+										echo '<div class="card shadow p-3 mb-5 bg-white rounded">';
+										echo '<img class="card-img-top px-2 py-2" style="border-radius:15px;"
+										src="'. chemins_dune_image($data["id"],$db_handle)[0] .'" alt="img" width="120px" height="270px">';
+										echo '<div class="card-body" style="background-color: #EFEFF1;border-radius:15px;">';
+										echo '<h4 class="card-title">'.$data["nom"].'</h4>';
+										echo '<p class="card-text">'.$data["prix"].'<sup>€</sup>.</p>';
+										echo '<p>ID Vendeur: '.$data["id_prop"].'</p>';
+										echo '<a href="panier.php" class="btn btn-primary buy-buton"><i class="fa fa-shopping-basket"></i></a>
+										<p class="ajout-panier"><em>Ajouter au panier</em></p>
+											   </div>
+											</div>';
+
+									
+								?>
 									</div>
 
 									<div class="col-md-3 clearfix d-none d-md-block">
 											<div class="card shadow p-3 mb-5 bg-white rounded">
-												<img class="card-img-top px-2 py-2" style="border-radius:15px;" src="images/item/item2.jpg" alt="img" width="120px" height="270px">
+												<img class="card-img-top px-2 py-2" style="border-radius:15px;" src="images/item/item5.jpg" alt="img" width="120px" height="270px">
 												<div class="card-body" style="background-color: #EFEFF1;border-radius:15px;">
-													<h4 class="card-title">Pièce</h4>
-													<p class="card-text">83<sup>€</sup>.</p>
+													<h4 class="card-title">Bague</h4>
+													<p class="card-text">985<sup>€</sup>.</p>
 													<p>Vendeur: Theo<p>
 													<a href="panier.php" class="btn btn-primary buy-buton"><i class="fa fa-shopping-basket"></i></a>
 													<p class="ajout-panier"><em>Ajouter au panier</em></p>
@@ -278,10 +310,10 @@ if(isset($_SESSION["id_user"])){
 
 									<div class="col-md-3 clearfix d-none d-md-block">
 											<div class="card shadow p-3 mb-5 bg-white rounded">
-												<img class="card-img-top px-2 py-2"style="border-radius:15px;"  src="images/item/item3.jpg" alt="img"width="120px" height="270px">
+												<img class="card-img-top px-2 py-2" style="border-radius:15px;" src="images/item/item6.jpg" alt="img" width="120px" height="270px">
 												<div class="card-body" style="background-color: #EFEFF1;border-radius:15px;">
-													<h4 class="card-title">Bague</h4>
-													<p class="card-text">35<sup>€</sup>.</p>
+													<h4 class="card-title">Bijou</h4>
+													<p class="card-text">25<sup>€</sup>.</p>
 													<p>Vendeur: Jorge<p>
 													<a href="panier.php" class="btn btn-primary buy-buton"><i class="fa fa-shopping-basket"></i></a>
 													<p class="ajout-panier"><em>Ajouter au panier</em></p>
@@ -291,8 +323,8 @@ if(isset($_SESSION["id_user"])){
 									</div>
 
 
-								</div><!--/.First slide-->
-								
+								</div><!--/Second slide-->
+																	
 
 								<!--Second slide-->
 								<!--On ajoute une carte à partir de la base de donnée avec random()-->
@@ -408,8 +440,6 @@ if(isset($_SESSION["id_user"])){
 				</div>
 				<br>
 				
-
-
 				<!--- Footer -->
 				<!--à modifier car template issu d'internet-->
 
