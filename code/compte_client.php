@@ -1,6 +1,18 @@
 <?php
 		session_start();
 
+
+		if (isset($_SESSION["id_user"])) {
+
+			if ($_SESSION["rang"] != 1) {
+				header("location: connexion_client.php");
+			}
+		}
+		#Sinon, on le renvoit à la page principale
+		else {
+			header("location: connexion_client.php");
+		}
+
 		ini_set('display_error',1); /*Affichage erreur*/
 
 		$type_carte=$_SESSION["type"]; /*Pour savoir cocher quel button radio lorsque le client accède à son compte*/

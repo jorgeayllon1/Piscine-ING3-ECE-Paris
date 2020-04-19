@@ -2,15 +2,16 @@
 
 	session_start();
 
-	if (isset($_POST['deco'])) {
-		if ($_POST['deco']) {
-			session_destroy();
-			/*$fp = fopen('cookie.php', 'w');
-			fclose($fp);*/
-			header("location: accueil.php");
+	if (isset($_SESSION["id_user"])) {
+
+		if ($_SESSION["rang"] != 2) {
+			header("location: connexion_vendeur.php");
 		}
 	}
-
+	#Sinon, on le renvoit à la page principale
+	else {
+		header("location: connexion_vendeur.php");
+	}
 	/**Manque modification photo de profil et fond */
 
 

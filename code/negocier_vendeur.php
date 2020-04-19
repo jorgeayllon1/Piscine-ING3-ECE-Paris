@@ -1,5 +1,15 @@
 <?php
-session_start();
+    session_start();
+    if (isset($_SESSION["id_user"])) {
+
+        if ($_SESSION["rang"] != 2) {
+            header("location: connexion_vendeur.php");
+        }
+    }
+    #Sinon, on le renvoit à la page principale
+    else {
+        header("location: connexion_vendeur.php");
+    }
 ?>
 <!DOCTYPE html>
 

@@ -1,5 +1,10 @@
 <?php
-session_start();
+    session_start();
+    if (isset($_SESSION["id_user"])) {
+    }
+    else {
+        header("location: connexion.php");
+    }
 
 $database = "ebayece";
 $db_handle = mysqli_connect('localhost', 'root', '');

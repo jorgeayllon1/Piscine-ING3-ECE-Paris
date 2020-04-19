@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-#Si le la valeur id_user existe dans le cookie, l'utilisateur s'est connecter
+#Si la valeur id_user existe dans le cookie, l'utilisateur s'est connecter
 #Et si il s'est connecter, on peut le rediriger quelque part
 if (isset($_SESSION["id_user"])) {
 
@@ -17,7 +17,7 @@ if (isset($_SESSION["id_user"])) {
 }
 #Sinon, on le renvoit à la page principale
 else {
-	header("location: accueil.php");
+	header("location: connexion.php");
 }
 
 

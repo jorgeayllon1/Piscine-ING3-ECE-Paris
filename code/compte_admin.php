@@ -1,13 +1,17 @@
 <?php
 	session_start();
 
-	if (isset($_POST['deco'])) {
-		if ($_POST['deco']) {
-			$fp = fopen('cookie.php', 'w');
-			fclose($fp);
-			header("location: accueil.php");
+	if (isset($_SESSION["id_user"])) {
+
+		if ($_SESSION["rang"] != 3) {
+			header("location: admin_connexion.php");
 		}
 	}
+	#Sinon, on le renvoit à la page principale
+	else {
+			header("location: admin_connexion.php");
+	}
+	
 
     /**Manque modification photo de profil */
 
