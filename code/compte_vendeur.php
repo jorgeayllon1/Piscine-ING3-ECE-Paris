@@ -325,9 +325,9 @@
 									<label for="ajout_categorie">Choisissez une catégorie</label>
 									<select class="form-control" name="ajout_categorie" id="ajout_categorie">
 										<option>Choisir</option>
-										<option>Ferraille ou trésor</option>
-										<option>Bon pour le musée</option>
-										<option>Accessoire VIP</option>
+										<option value="1">Ferraille ou trésor</option>
+										<option value="2">Bon pour le musée</option>
+										<option value="3">Accessoire VIP</option>
 									</select>
 								</div>
 
@@ -340,9 +340,9 @@
 									<label for="ajout_categorie">Choisissez un type d'achat</label>
 									<select class="form-control" name="ajout_type" id="ajout_type">
 										<option>Choisir</option>
-										<option>Enchère</option>
-										<option>Achat immédiat</option>
-										<option>Meilleure offre</option>
+										<option value="1">Enchère</option>
+										<option value="2">Achat immédiat</option>
+										<option value="3">Meilleure offre</option>
 									</select>
 								</div>
 
