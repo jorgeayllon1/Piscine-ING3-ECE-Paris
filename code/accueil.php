@@ -85,6 +85,7 @@ if(isset($_SESSION["id_user"])){
 									echo '<li class="nav-item"><a class="nav-link" href="connexion.php"><i class="fa fa-sign-in"></i> Se connecter</a></li>';
 								} else {
 									echo '<li class="nav-item"><a class="nav-link" href="redirect_moncompte.php">' . $_SESSION["nom"] . ' ' . $_SESSION["prenom"] . '</a></li>';
+									echo '<li class="nav-item"><a class="nav-link" href="deco.php">Se déconnecter</a></li>';
 								}
 								?>
 							</ul>

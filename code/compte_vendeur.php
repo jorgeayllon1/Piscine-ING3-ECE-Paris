@@ -4,8 +4,9 @@
 
 	if (isset($_POST['deco'])) {
 		if ($_POST['deco']) {
-			$fp = fopen('cookie.php', 'w');
-			fclose($fp);
+			session_destroy();
+			/*$fp = fopen('cookie.php', 'w');
+			fclose($fp);*/
 			header("location: accueil.php");
 		}
 	}
@@ -63,7 +64,7 @@
 			mdp='$mdp', photo_perso ='$hide_vendeur', photo_background = '$hide2_vendeur'  WHERE pseudo = '$pseudo'  ";
 			$result = mysqli_query($db_handle,$sql);
 
-			echo $sql;
+			
 
 
 
@@ -79,7 +80,7 @@
 			$_SESSION["email"] = $email;
 			$_SESSION["mdp"] = $mdp;
 			$_SESSION["photo_perso"] = $hide_vendeur;
-			$_SESSION["back_background"] = $hide2_vendeur;
+			$_SESSION["photo_background"] = $hide2_vendeur;
 
 
 		}
@@ -131,11 +132,8 @@
 
 				<div class="collapse navbar-collapse" id="main-navigation">
 					<ul class="navbar-nav">
-						<li class="nav-item"><a class="nav-link" href="compte_client.php"><?php echo $_SESSION["nom"] . " " . $_SESSION["prenom"] ?></a></li>
-						<!--<li class="nav-item"><a class="nav-link" href="accueil.php">Se déconnecter</a></li>-->
-						<form name="form" method="POST" action="compte_vendeur.php">
-							<input type="submit" name="deco" value="Déconnexion">
-						</form>
+						<li class="nav-item"><a class="nav-link" href="compte_vendeur.php"><?php echo $_SESSION["nom"] . " " . $_SESSION["prenom"] ?></a></li>
+						<li class="nav-item"><a class="nav-link" href="deco.php">Se déconnecter</a></li>
 						<li><i class="fa fa-power-off mt-3" style="color: #fff;"></i></li>
 
 					</ul>
@@ -237,7 +235,7 @@
 									<input type="file" name="background_vendeur" class="form-control-file" id="back_vendeur">
 								</div>
 								<input type="text" name="hide2_vendeur" style="display:none;" value="<?php echo $_SESSION["photo_background"]?>">
-								<img src="<?php echo "images/".$_SESSION['photo_background'] ?>" width="100px" height="100px" >
+								<img src="<?php echo "images/".$_SESSION['photo_background'] ?>" width="100px" height="100px" ><br>
 
 
 
