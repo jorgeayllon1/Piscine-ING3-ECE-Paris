@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le :  lun. 20 avr. 2020 à 21:30
+-- Généré le :  lun. 20 avr. 2020 à 16:28
 -- Version du serveur :  8.0.18
 -- Version de PHP :  7.3.12
 
@@ -46,8 +46,7 @@ CREATE TABLE IF NOT EXISTS `coord_livraison` (
 
 INSERT INTO `coord_livraison` (`id`, `num_tel`, `adresse1`, `adresse2`, `ville`, `code_postal`, `pays`) VALUES
 (2, '0754369465', '25 rue de la droite', 'rien', 'Marseille', 13000, 'France'),
-(4, '5095612976', '45 rue de la patisserie', 'a droite', 'Grenoble', 38000, 'France'),
-(6, '0865189464', '81 rue da coté', 'à gauche', 'Poissy', 78300, 'France');
+(4, '5095612976', '45 rue de la patisserie', 'a droite', 'Grenoble', 38000, 'France');
 
 -- --------------------------------------------------------
 
@@ -64,7 +63,7 @@ CREATE TABLE IF NOT EXISTS `info_bancaire` (
   `date_expi` date NOT NULL,
   `code` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
 
 --
 -- Déchargement des données de la table `info_bancaire`
@@ -72,8 +71,7 @@ CREATE TABLE IF NOT EXISTS `info_bancaire` (
 
 INSERT INTO `info_bancaire` (`id`, `num_carte`, `type`, `nom_sur_carte`, `date_expi`, `code`) VALUES
 (2, '68540654106', 'Visa', 'claude', '2024-12-12', '165'),
-(4, '468053210', 'Paypal', 'Sardouu', '2023-06-15', '684'),
-(6, '5684065106', 'MasterCard', 'Clovis', '2020-06-12', '638');
+(4, '468053210', 'Paypal', 'Sardouu', '2023-06-15', '684');
 
 -- --------------------------------------------------------
 
@@ -144,9 +142,8 @@ CREATE TABLE IF NOT EXISTS `lacollection` (
 INSERT INTO `lacollection` (`id`, `id_item_1`, `id_item_2`, `id_item_3`, `id_item_4`, `id_item_5`, `id_item_6`, `id_item_7`, `id_item_8`, `id_item_9`, `id_item_10`, `id_item_11`, `id_item_12`, `id_item_13`, `id_item_14`, `id_item_15`, `id_item_16`, `id_item_17`, `id_item_18`, `id_item_19`, `id_item_20`, `id_item_21`, `id_item_22`, `id_item_23`, `id_item_24`, `id_item_25`, `id_item_26`, `id_item_27`, `id_item_28`, `id_item_29`, `id_item_30`, `id_item_31`, `id_item_32`, `id_item_33`, `id_item_34`, `id_item_35`, `id_item_36`, `id_item_37`, `id_item_38`, `id_item_39`, `id_item_40`, `id_item_41`, `id_item_42`, `id_item_43`, `id_item_44`, `id_item_45`, `id_item_46`, `id_item_47`, `id_item_48`, `id_item_49`, `id_item_50`) VALUES
 (2, 1, 2, 3, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
 (3, 1, 4, 3, 2, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(4, 12, 8, 13, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(5, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(6, 10, 6, 1, 9, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
+(4, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(5, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -181,15 +178,15 @@ INSERT INTO `les_items` (`id`, `id_prop`, `nom`, `description`, `prix`, `prix_so
 (1, 3, 'Cheval', 'Le cheval, le cheval, le cheval c\'est trop génial', 5.5, NULL, 'video-item/cheval.mp4', 3, 1, '2020-05-21', '2020-05-28', NULL, 5),
 (2, 3, 'Disque Dur', 'un disque tout dur', 15, NULL, 'video-item/disque-dur.mp4', 2, 2, '2020-06-05', '2020-06-29', NULL, 5),
 (3, 3, 'Caftière', 'Une machine pour faire du café', 35, NULL, NULL, 1, 3, '2020-05-19', '2020-05-22', NULL, 5),
-(4, 5, 'Clavier', 'un truc pour ecrire', 12, NULL, NULL, 2, 1, '2020-05-22', '2020-07-09', NULL, 5),
+(4, 3, 'Clavier', 'un truc pour ecrire', 12, NULL, NULL, 2, 1, '2020-05-22', '2020-07-09', NULL, 5),
 (5, 3, 'piece', 'piece de monnaie', 5.9, NULL, NULL, 1, 1, '2020-04-01', '2020-04-15', NULL, 5),
 (6, 3, 'montre', 'montre luxueuse', 250, NULL, NULL, 3, 2, '2020-04-30', '2020-05-14', NULL, 5),
-(7, 5, 'ordi', 'bon processeur', 450, NULL, NULL, 1, 2, '2020-04-01', '2020-04-02', NULL, 5),
+(7, 3, 'ordi', 'bon processeur', 450, NULL, NULL, 1, 2, '2020-04-01', '2020-04-02', NULL, 5),
 (8, 3, 'souris', 'souris sans fil', 30, NULL, NULL, 3, 3, '2020-04-07', '2020-04-15', NULL, 5),
 (9, 3, 'tableau', 'tableau paint par un peintre celebre', 200, NULL, NULL, 2, 3, '2020-04-15', '2020-04-24', NULL, 5),
-(10, 5, 'bague', 'belle bague', 999, NULL, NULL, 3, 3, '2020-04-01', '2020-04-16', NULL, 5),
+(10, 3, 'bague', 'belle bague', 999, NULL, NULL, 3, 3, '2020-04-01', '2020-04-16', NULL, 5),
 (11, 3, 'collier_bague', 'beau collier avec bague', 388, NULL, NULL, 3, 2, '2020-04-22', '2020-04-29', NULL, 5),
-(12, 5, 'bague2', 'description de la bague 2', 560, NULL, NULL, 3, 1, '2020-04-22', '2020-04-24', NULL, 5),
+(12, 3, 'bague2', 'description de la bague 2', 560, NULL, NULL, 3, 1, '2020-04-22', '2020-04-24', NULL, 5),
 (13, 3, 'bague3', 'description bague3', 567, NULL, NULL, 3, 1, '2020-04-21', '2020-04-22', NULL, 5);
 
 -- --------------------------------------------------------
@@ -279,8 +276,7 @@ INSERT INTO `user` (`id`, `id_livraison`, `id_carte`, `id_collection`, `email`, 
 (2, 2, 2, 2, 'jjjjj@gmail.com', 'jebois', 'jjgold', 1, 'goldman', 'jean-jacques', NULL, NULL),
 (3, NULL, NULL, 3, 'jhonnn@gmail.com', 'jechante', 'holiday', 2, 'hallyday', 'johnny', 'johnny-hallyday.jpg', 'images/vendeur/johnny-hallyday-back.png'),
 (4, 4, 4, 4, 'michel@gmail.com', 'jesaute', 'dd', 1, 'wang', 'Michel', NULL, NULL),
-(5, NULL, NULL, NULL, 'jacky@gmail.com', 'jesuis', 'brellle', 2, 'Brel', 'Jacques', 'azeaze.png', 'idofnsdf.png'),
-(6, 6, 6, 6, 'claude@gmail.com', 'jepart', 'Clovis', 1, 'François', 'Claude', NULL, NULL);
+(5, NULL, NULL, 5, '', '', '', 2, '', '', '', '');
 
 --
 -- Contraintes pour les tables déchargées
