@@ -473,7 +473,7 @@ function chemins_dune_image($id_item, $db_handle)
 					<!--AJOUTER UNE VENTE-->
 					<div class="tab-pane fade" id="publier-admin">
 						<p class="h4 mb-4">Ajouter une vente</p>
-						<form method="POST" action="ajouter_vente_vendeur.php">
+						<form method="POST" >
 							<div class="form-group">
 								<label for="ajout_nom">Nom du produit</label>
 								<input type="text" required name="ajout_nom" id="ajout_nom" placeholder="Nom du produit">
