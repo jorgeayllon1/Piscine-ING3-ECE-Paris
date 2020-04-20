@@ -248,10 +248,6 @@ function chemins_dune_image($id_item, $db_handle)
 
 
 
-
-
-
-
 		</div>
 	</div>
 
@@ -477,7 +473,7 @@ function chemins_dune_image($id_item, $db_handle)
 					<!--AJOUTER UNE VENTE-->
 					<div class="tab-pane fade" id="publier-admin">
 						<p class="h4 mb-4">Ajouter une vente</p>
-						<form>
+						<form method="POST" action="ajouter_vente_vendeur.php">
 							<div class="form-group">
 								<label for="ajout_nom">Nom du produit</label>
 								<input type="text" required name="ajout_nom" id="ajout_nom" placeholder="Nom du produit">
@@ -497,17 +493,17 @@ function chemins_dune_image($id_item, $db_handle)
 
 							<div class="form-group">
 								<label for="ajout_video">Choisissez une vidéo pour le produit</label>
-								<input type="file" required name="ajout_video" class="form-control-file" id="ajout_video">
+								<input type="file"  name="ajout_video" class="form-control-file" id="ajout_video">
 							</div>
 
 							<div class="form-group">
-								<label for="ajout_categorie">Choisissez une catégorie</label>
-								<select class="form-control" name="ajout_catégorie" id="ajout_catégorie">
-									<option>Choisir</option>
-									<option>Ferraille ou trésor</option>
-									<option>Bon pour le musée</option>
-									<option>Accessoire VIP</option>
-								</select>
+									<label for="ajout_categorie">Choisissez une catégorie</label>
+									<select required  class="form-control" name="ajout_categorie"  id="ajout_categorie">
+										<option>Choisir</option>
+										<option value="1">Ferraille ou trésor</option>
+										<option value="2">Bon pour le musée</option>
+										<option value="3">Accessoire VIP</option>
+									</select>
 							</div>
 
 							<div class="form-group">
@@ -515,18 +511,20 @@ function chemins_dune_image($id_item, $db_handle)
 								<input type="number" required name="ajout-prix">
 							</div>
 
-							<div class="custom-control">
-								<label for="ajout_moyen">Moyen de vente :</label><br>
-								<input type="checkbox" name="ajout_moyen" id="ajout_enchere">
-								<label for="ajout_enchere">Enchère</label>
-								<input type="checkbox" name="ajout_moyen" id="ajout_immediat">
-								<label for="ajout_immediat">Achat immédiat</label>
-								<input type="checkbox" name="ajout_moyen" id="ajout_meilleure">
-								<label for="ajout_meilleure">Meilleure offre</label>
+							<div class="form-group">
+									<label for="ajout_type">Choisissez un type de vente</label>
+									<select required class="form-control" name="ajout_type"   id="ajout_type">
+										<option>Choisir</option>
+										<option value="1">Enchère</option>
+										<option value="2">Achat immédiat</option>
+										<option value="3">Meilleure offre</option>
+									</select>
 							</div>
 
+							
+
 							<div class="row d-flex justify-content-center">
-								<a href="#"><button class="btn btn-rounded my-2" style="background: #67E514; color: #fff;">Publier</button></a>
+								<a href="#"><button class="btn btn-rounded my-2"  name="ajouter_item_vendeur" style="background: #67E514; color: #fff;">Publier</button></a>
 
 							</div>
 
@@ -621,9 +619,6 @@ function chemins_dune_image($id_item, $db_handle)
 
 
 											?>
-
-
-
 
 										</tbody>
 									</table>

@@ -453,7 +453,7 @@ if (isset($_POST['modifier_vendeur'])) {
 
 								<div class="form-group">
 									<label for="ajout_video">Choisissez une vidéo pour le produit</label>
-									<input type="file" required name="ajout_video" class="form-control-file" id="ajout_video">
+									<input type="file"  name="ajout_video" class="form-control-file" id="ajout_video">
 								</div>
 
 								<div class="form-group">
