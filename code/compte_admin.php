@@ -1,6 +1,7 @@
 <?php
 session_start();
 
+
 if (isset($_SESSION["id_user"])) {
 
 	if ($_SESSION["rang"] != 3) {
@@ -479,24 +480,24 @@ function chemins_dune_image($id_item, $db_handle)
 						<form>
 							<div class="form-group">
 								<label for="ajout_nom">Nom du produit</label>
-								<input type="text" name="ajout_nom" id="ajout_nom" placeholder="Nom du produit">
+								<input type="text" required name="ajout_nom" id="ajout_nom" placeholder="Nom du produit">
 
 							</div>
 
 
 							<div class="form-group">
 								<label for="ajout_image">Choisissez une photo pour le produit</label>
-								<input type="file" name="ajout_image" class="form-control-file" id="ajout_image">
+								<input type="file"  required name="ajout_image" class="form-control-file" id="ajout_image">
 							</div>
 
 							<div class="form-group">
 								<label for="ajout_description">Description du produit</label>
-								<textarea class="form-control rounded-0" name="ajout_description" style="border: solid black 1px ;" id="ajout_description" rows="3"></textarea>
+								<textarea  required class="form-control rounded-0" name="ajout_description" style="border: solid black 1px ;" id="ajout_description" rows="3"></textarea>
 							</div>
 
 							<div class="form-group">
 								<label for="ajout_video">Choisissez une vidéo pour le produit</label>
-								<input type="file" name="ajout_video" class="form-control-file" id="ajout_video">
+								<input type="file" required name="ajout_video" class="form-control-file" id="ajout_video">
 							</div>
 
 							<div class="form-group">
@@ -511,7 +512,7 @@ function chemins_dune_image($id_item, $db_handle)
 
 							<div class="form-group">
 								<label for="ajout_prix">Prix</label>
-								<input type="number" name="ajout-prix">
+								<input type="number" required name="ajout-prix">
 							</div>
 
 							<div class="custom-control">
@@ -644,34 +645,34 @@ function chemins_dune_image($id_item, $db_handle)
 							<div class="form-row mb-4">
 								<div class="col">
 
-									<input type="text" name="prenom_admin_inscription" id="prenom_admin_inscription" class="form-control" placeholder="Prénom">
+									<input type="text" required name="prenom_admin_inscription" id="prenom_admin_inscription" class="form-control" placeholder="Prénom">
 								</div>
 								<div class="col">
 
-									<input type="text" name="nom_admin_inscriptio" id="nom_admin_inscription" class="form-control" placeholder="nom">
+									<input type="text" required name="nom_admin_inscription" id="nom_admin_inscription" class="form-control" placeholder="nom">
 								</div>
 							</div>
 
 
-							<input type="email" name="email_admin_inscription" id="email_admin_inscription" class="form-control mb-3" placeholder="E-mail">
+							<input type="email" required name="email_admin_inscription" id="email_admin_inscription" class="form-control mb-3" placeholder="E-mail">
 
 
-							<input type="text" name="pseudo_admin_inscription" id="pseudo_admin_inscription" class="form-control" placeholder="Pseudo">
+							<input type="text" required name="pseudo_admin_inscription" id="pseudo_admin_inscription" class="form-control" placeholder="Pseudo">
 							<small id="pseudo_admin_inscription" class="form-text text-muted mb-4">
 
 
 							</small>
 
-							<input type="password" name="mdp_admin_inscription" id="mdp_admin_inscription" class="form-control" placeholder="Mot De Passe">
+							<input type="password" required minlength="8" name="mdp_admin_inscription" id="mdp_admin_inscription" class="form-control" placeholder="Mot De Passe">
 
 							<div class="form-group">
 								<label for="pdp_vendeur" style="font-weight:bold;">Choisissez une photo pour votre profil :</label>
-								<input type="file" name="vendeur_pdp" class="form-control-file" id="vendeur_pdp">
+								<input type="file" required name="vendeur_pdp" class="form-control-file" id="vendeur_pdp">
 							</div>
 
 							<div class="form-group my-2">
 								<label for="back_vendeur" style="font-weight:bold;">Choisissez une photo pour votre fond :</label>
-								<input type="file" name="vendeur_background" class="form-control-file" id="vendeur_background">
+								<input type="file" required name="vendeur_background" class="form-control-file" id="vendeur_background">
 							</div>
 
 

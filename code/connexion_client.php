@@ -57,7 +57,7 @@ if (isset($_POST['submit'])) {
             if (mysqli_num_rows($result) == 0) {
                 //echo "Erreur, veuillez vérifier vos informations de connexion.";
             } else {
-                echo "trouvé";
+                #echo "trouvé";
                 while ($data = mysqli_fetch_assoc($result)) {
 
                     $_SESSION["adresse1"] = $data["adresse1"];
@@ -77,7 +77,7 @@ if (isset($_POST['submit'])) {
             if (mysqli_num_rows($result) == 0) {
                 //echo "Erreur, veuillez vérifier vos informations de connexion.";
             } else {
-                echo "trouvé";
+                #echo "trouvé";
                 while ($data = mysqli_fetch_assoc($result)) {
 
                     $_SESSION["num_carte"] = $data["num_carte"];
@@ -161,13 +161,13 @@ mysqli_close($db_handle);
 
                         <p class="h4 mb-4">Se connecter</p>
 
-                        <input type="text" name="pseudo_client_connexion" id="pseudo_client_connexion" class="form-control mb-3" placeholder="Pseudo">
+                        <input type="text" required name="pseudo_client_connexion" id="pseudo_client_connexion" class="form-control mb-3" placeholder="Pseudo">
 
 
-                        <input type="email" id="email_client_connexion" name="mail" class="form-control mb-3" placeholder="E-mail">
+                        <input type="email" required id="email_client_connexion" name="mail" class="form-control mb-3" placeholder="E-mail">
 
 
-                        <input type="password" id="mdp_client_connexion" name="mdp" class="form-control" placeholder="Mot De Passe" aria-describedby="defaultRegisterFormPasswordHelpBlock">
+                        <input type="password" required id="mdp_client_connexion" name="mdp" class="form-control" placeholder="Mot De Passe" aria-describedby="defaultRegisterFormPasswordHelpBlock">
                         <small id="mdp_client_connexion" class="form-text text-muted mb-4">
                             <em>Au moins 8 caractères et un chiffre</em>
 

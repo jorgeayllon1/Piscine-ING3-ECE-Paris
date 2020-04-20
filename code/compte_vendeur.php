@@ -436,29 +436,29 @@ if (isset($_POST['modifier_vendeur'])) {
 							<form style="background-color:#fff;" class="py-3 px-3" method="POST" action="ajouter_vente_vendeur.php">
 								<div class="form-group">
 									<label for="ajout_nom">Nom du produit</label>
-									<input type="text" name="ajout_nom" id="ajout_nom" placeholder="Nom du produit">
+									<input type="text" required name="ajout_nom" id="ajout_nom" placeholder="Nom du produit">
 
 								</div>
 
 
 								<div class="form-group">
 									<label for="ajout_image">Choisissez une photo pour le produit</label>
-									<input type="file" name="ajout_image" class="form-control-file" id="ajout_image">
+									<input type="file" required name="ajout_image" class="form-control-file" id="ajout_image">
 								</div>
 
 								<div class="form-group">
 									<label for="ajout_description">Description du produit</label>
-									<textarea class="form-control rounded-0" name="ajout_description" style="border: solid black 1px ;" id="ajout_description" rows="3"></textarea>
+									<textarea required class="form-control rounded-0" name="ajout_description" style="border: solid black 1px ;" id="ajout_description" rows="3"></textarea>
 								</div>
 
 								<div class="form-group">
 									<label for="ajout_video">Choisissez une vidéo pour le produit</label>
-									<input type="file" name="ajout_video" class="form-control-file" id="ajout_video">
+									<input type="file" required name="ajout_video" class="form-control-file" id="ajout_video">
 								</div>
 
 								<div class="form-group">
 									<label for="ajout_categorie">Choisissez une catégorie</label>
-									<select class="form-control" name="ajout_categorie" id="ajout_categorie">
+									<select class="form-control" required name="ajout_categorie" id="ajout_categorie">
 										<option>Choisir</option>
 										<option value="1">Ferraille ou trésor</option>
 										<option value="2">Bon pour le musée</option>
@@ -468,12 +468,12 @@ if (isset($_POST['modifier_vendeur'])) {
 
 								<div class="form-group">
 									<label for="ajout_prix">Prix</label>
-									<input type="number" name="ajout_prix">
+									<input type="number" required name="ajout_prix">
 								</div>
 								<!-- J'ai changé le type de div pour pouvoir retourner un ajout_type-->
 								<div class="form-group">
-									<label for="ajout_categorie">Choisissez un type d'achat</label>
-									<select class="form-control" name="ajout_type" id="ajout_type">
+									<label for="ajout_type">Choisissez un type d'achat</label>
+									<select class="form-control" required name="ajout_type" id="ajout_type">
 										<option>Choisir</option>
 										<option value="1">Enchère</option>
 										<option value="2">Achat immédiat</option>
@@ -481,17 +481,7 @@ if (isset($_POST['modifier_vendeur'])) {
 									</select>
 								</div>
 
-								<!--
-								<div class="custom-control">
-									<label for="ajout_moyen">Moyen de vente :</label><br>
-									<input type="checkbox" name="ajout_moyen" id="ajout_enchere">
-									<label for="ajout_enchere">Enchère</label>
-									<input type="checkbox" name="ajout_moyen" id="ajout_immediat">
-									<label for="ajout_immediat">Achat immédiat</label>
-									<input type="checkbox" name="ajout_moyen" id="ajout_meilleure">
-									<label for="ajout_meilleure">Meilleure offre</label>
-								</div> -->
-
+				
 								<div class="row d-flex justify-content-center">
 									<a href="#"><button class="btn btn-rounded my-2" style="background: #E52714; color: #fff;" name="ajouter_item_vendeur" type="submit">Publier</button></a>
 
