@@ -299,7 +299,7 @@ function chemins_dune_image($id_item, $db_handle)
 						<form class="text-center border border-light " action="compte_admin.php" method="post">
 							<!--PHP-->
 
-							<p class="h4 mb-4">Vos informations</p>
+							<p class="h4 mb-4">Vos informations <i class="fa fa-info-circle"></i></p>
 							<input type="text" name="id_admin" style="display:none;" value="<?php echo $_SESSION["id_user"] ?>">
 
 							<!--Changement photo de profil-->

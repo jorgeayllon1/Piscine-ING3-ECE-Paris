@@ -329,7 +329,7 @@ if (isset($_POST['modifier_client'])) {
 						<form class="text-center border border-light " action="compte_client.php" method="post">
 							<!--PHP-->
 
-							<p class="h4 mb-4">Vos informations</p>
+							<p class="h4 mb-4">Vos informations <i class="fa fa-info-circle"></i></p>
 
 
 							<div class="form-row mb-4">

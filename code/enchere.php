@@ -241,10 +241,6 @@ function nom_du_vendeur($id_item, $db_handle)
 
 
 
-
-
-
-
   <div class="container">
     <div class="row-width-max">
       <?php include('footer_client.php'); ?>

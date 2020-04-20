@@ -1,4 +1,4 @@
-<footer class="page-footer font-small blue-grey lighten-5">
+<footer class="page-footer ">
 
 	<div style="background-color: #31405F;">
 		<div class="container">
@@ -31,7 +31,7 @@
 
 
 	<div class="container text-center  mt-4">
-		<div class="row mt-3 dark-grey-text">
+		<div class="row mt-3 dark-grey-text" >
 
 			<div class="col-md-3 col-lg-4 col-xl-3 mb-3">
 				<img src="images/logo-footer.png" alt="logo ece ebay" width="80%">

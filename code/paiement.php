@@ -35,6 +35,30 @@ function taille_panier($id_user, $db_handle)
     }
 }
 
+function taille_panier_achat_immediat($id_user, $db_handle)
+{
+    $sql =
+        "SELECT * from lacollection
+    WHERE id = '" . $id_user . "'";
+
+    $result = mysqli_query($db_handle, $sql);
+
+    $compter = -1;
+
+    while ($data = mysqli_fetch_assoc($result)) {
+        foreach ($data as $elements) {
+            if ($elements)
+                $compter++;
+        }
+    }
+
+    if ($compter == 0) {
+        return false;
+    } else {
+        return $compter;
+    }
+}
+
 function items_dans_panier($id_collection, $db_handle)
 {
     #Variable tempon
@@ -155,9 +179,9 @@ function payer_achat_immediat($id_user, $db_handle)
 
 <body>
 
-    <div class="container">
+    <div class="container-fluid">
         <div class="row d-flex justify-content-center">
-            <nav class="navbar navbar-expand-md col-lg-12">
+            <nav class="navbar navbar-expand-md col-lg-12" style="border-bottom:solid #E7E7E7 ;">
                 <a class="navbar-brand" href="accueil.php"><img src="images/logo.png" width="20%"></a>
                 <button class="navbar-toggler navbar-dark" type="button" data-toggle="collapse" data-target="#main-navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -188,38 +212,40 @@ function payer_achat_immediat($id_user, $db_handle)
     </div>
 
     <!-- Main Livraison + Paiement-->
-    <div class="container">
-        <div class="row col-lg-12">
+    <div class="container-fluid">
+        <div class="row col-lg-12 d-flex justify-content-center">
 
             <div class="col-lg-7 my-3 shadow p-3 mb-5" style="border:solid black 1px">
 
                 <h4 class="horizontal-text-center  my-2" style="text-align: center ; "><span id="selection" style="border-radius:5px; ">Livraison <i class="fa fa-truck" style="font-size:20px;"></i></span></h4><br>
+                <p>Nom et prénom</p>
 
                 <div class="form-row ">
                     <div class="col">
+                        
 
-                        <input type="text" name="prenom_paiement" id="prenom_paiement" class="form-control" placeholder="Prénom">
+                        <input type="text" name="prenom_paiement" id="prenom_paiement" class="form-control" value="<?php echo $_SESSION["prenom"] ?>">
                     </div>
                     <div class="col">
 
-                        <input type="text" name="nom_paiement" id="nom_paiement" class="form-control" placeholder="nom">
+                        <input type="text" name="nom_paiement" id="nom_paiement" class="form-control" value="<?php echo $_SESSION["nom"] ?>">
                     </div>
                 </div>
 
                 <label for="adresse_paiement" class="">Adresse</label>
-                <input type="text" name="adresse_paiement" id="adresse_paiement" class="form-control " placeholder="5 rue...">
+                <input type="text" name="adresse_paiement" id="adresse_paiement" class="form-control " value="<?php echo $_SESSION["adresse1"] ?>">
 
                 <label for="adresse2_paiement" class="">Complément d'adresse</label>
-                <input type="text" name="adresse2_paiement" id="adresse2_paiement" class="form-control mb-4 " placeholder="Numéro étage, porte...">
+                <input type="text" name="adresse2_paiement" id="adresse2_paiement" class="form-control mb-4 " value="<?php echo $_SESSION["adresse2"] ?>">
                 <div class="form-row mb-4">
                     <div class="col">
-                        <input type="text" name="pays_paiement" id="pays_paiement" class="form-control " placeholder="Pays">
+                        <input type="text" name="pays_paiement" id="pays_paiement" class="form-control " value="<?php echo $_SESSION["pays"] ?>">
                     </div>
                     <div class="col">
-                        <input type="text" name="ville_paiement" id="ville_paiement" class="form-control" placeholder="Ville">
+                        <input type="text" name="ville_paiement" id="ville_paiement" class="form-control" value="<?php echo $_SESSION["ville"] ?>">
                     </div>
                 </div>
-                <input type="number" name="cp_client-inscription" id="cp_client-inscription" class="form-control mb-3" placeholder="Code Postal">
+                <input type="number" name="cp_client-inscription" id="cp_client-inscription" class="form-control mb-3" value="<?php echo $_SESSION["code_postal"] ?>">
 
                 <h4 class="horizontal-text-center" style="text-align: center ;"><span id="selection" style="border-radius:5px;">Paiement <i class="fa fa-credit-card" style="font-size:20px;"></i></span></h4><br>
 
@@ -250,22 +276,22 @@ function payer_achat_immediat($id_user, $db_handle)
                 <div class="form-row my-2">
                     <div class="col">
                         <label for="paiement_nom">Nom sur la carte :</label>
-                        <input type="text" name="paiement_nom" id="paiement_nom" class="form-control">
+                        <input type="text" name="paiement_nom" id="paiement_nom" class="form-control" value="<?php echo $_SESSION["nom_sur_carte"] ?>">
                     </div>
                     <div class="col">
                         <label for="paiement_num_carte">Numéro carte :</label>
-                        <input type="text" name="paiement_num_carte" id="paiement_num_carte" class="form-control">
+                        <input type="text" name="paiement_num_carte" id="paiement_num_carte" class="form-control" value="<?php echo $_SESSION["num_carte"] ?>" >
                     </div>
                 </div>
 
                 <div class="form-row my-2 ">
                     <div class="col">
                         <label for="paiement_date_expi">Date expiration :</label>
-                        <input type="month" name="paiement_date_expi" id="paiement_date_expi" class="form-control">
+                        <input type="month" name="paiement_date_expi" id="paiement_date_expi" class="form-control" value="<?php echo $_SESSION["date_expi"] ?>">
                     </div>
                     <div class="col">
                         <label for="paiement_code">CVC :</label>
-                        <input type="number" name="paiement_code" id="paiement_code" class="form-control">
+                        <input type="number" name="paiement_code" id="paiement_code" class="form-control" value="<?php echo $_SESSION["code"] ?>">
                     </div>
                 </div>
 
@@ -314,15 +340,17 @@ function payer_achat_immediat($id_user, $db_handle)
                         <hr style="border-top: dotted 1px;" />
 
                         <dl class="row">
-                            <dd class="col-sm-8">
+                            <dd class="col-sm-12">
                                 <!--<p>Panier (<span id="nb_item">2</span>)</p>-->
-                                <p>Panier (<?php echo taille_panier($_SESSION["id_user"], $db_handle) ?>)</p>
+                                <p >Panier (<?php echo taille_panier($_SESSION["id_user"], $db_handle)-1 ?>)</p><p style="font-size:12px;"> (Ce nombre indique tous les produits dans votre items_dans_panier
+                            peu importe enchère, achat immédiat ou meilleure offre</p>
                             </dd>
                         </dl>
                         <hr style="border-top: dotted 1px;" />
 
                         <dl class="row">
-                            <dd class="col-sm-8">
+                            <dd class="col-sm-12">
+                                <p style="font-size:13px;">Vos items à payer immédiatement :</p>
 
                                 <?php if (taille_panier($_SESSION["id_user"], $db_handle)) {
 

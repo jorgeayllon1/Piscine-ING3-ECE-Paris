@@ -161,6 +161,9 @@ if (isset($_POST['modifier_vendeur'])) {
 
 
 
+
+
+
 ?>
 
 
@@ -264,7 +267,7 @@ if (isset($_POST['modifier_vendeur'])) {
 							<form class="text-center px-3 py-3  " style="background-color:#fff;" action="compte_vendeur.php" method="post">
 								<!--PHP-->
 
-								<p class="h4 mb-4">Vos informations</p>
+								<p class="h4 mb-4">Vos informations <i class="fa fa-info-circle"></i></p>
 
 								<div class="form-group">
 									<label for="pdp_vendeur">Choisissez une photo pour votre profil :</label>

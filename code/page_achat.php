@@ -72,6 +72,8 @@ if (isset($_POST['bouton_filtrer'])) {
 }
 
 
+
+
 ?>
 <!DOCTYPE html>
 <!--FICHIER TEST-->
@@ -141,7 +143,7 @@ if (isset($_POST['bouton_filtrer'])) {
 						<a class="dropdown-item" href="#">Filtrer</a>
 					</div>
 
-					<input type="text" class="form-control" aria-label="Text input with dropdown button" placeholder="Rechercher..."><button> <i class="fa fa-search"></i></button>
+					<input type="text" class="form-control" placeholder="Rechercher..."><button class="btn btn-light border-dark"> <i class="fa fa-search"></i></button>
 				</div>
 			</div>
 			<div class="col-lg-1 my-1 text-md-right">
@@ -165,6 +167,7 @@ if (isset($_POST['bouton_filtrer'])) {
 						<option value="4" selected>
 						<option>
 					</select>
+					
 				</div>
 
 				<div class="form-group mx-2 mt-2">
@@ -181,7 +184,7 @@ if (isset($_POST['bouton_filtrer'])) {
 			</form>
 
 			<form method="post" action="ajouter_panier.php">
-				<h5>Indiquez quelle produit vous voulez ajouter à votre panier.</h5>
+				<h5>Indiquez quel produit vous voulez ajouter à votre panier en saisissant son id.</h5>
 				<input type="number" placeholder="ID" name="id_item">
 				<button class="btn btn-primary" name="ajouter_panier" type="submit" style="background: #31405F; border:none;">Ajouter</button>
 			</form>
@@ -190,13 +193,14 @@ if (isset($_POST['bouton_filtrer'])) {
 		</div>
 	</div>
 
-	<div class="container">
-		<div class="row">
+	<div class="container-fluid">
+		<div class="row mx-5 text-center">
 			<div class="table-responsive">
 				<table class="table table-produit">
 					<thead class="table-bordered font-weight-bold" style="background-color: aliceblue;">
 						<tr>
 							<th scope="col">Photo</th>
+							<th scope="col">ID</th>
 							<th scope="col">Produit</th>
 							<th scope="col">Description</th>
 							<th scope="col">Catégorie</th>
@@ -213,9 +217,10 @@ if (isset($_POST['bouton_filtrer'])) {
 
 						while ($elements = mysqli_fetch_assoc($result)) {
 							echo '<tr>';
-							echo '<th scope="row"><img src="' . chemins_dune_image($elements["id"], $db_handle)[0] . '" width="80px" height="80px" ></th>';
+							echo '<th scope="row"><img src="' . chemins_dune_image($elements["id"], $db_handle)[0] . '" style="border-radius:10px;" width="80px" height="80px" ></th>';
+							echo '<td scope="row">'.$elements["id"].'</td>';
 							echo '<td>' . $elements["nom"] . '</td>';
-							echo '<td>' . $elements["description"] . '</td>';
+							echo '<td><em>' . $elements["description"] . '</em></td>';
 							switch ($elements["categorie"]) {
 								case 1:
 									echo '<td>Ferraille ou trésor</td>';
@@ -242,25 +247,11 @@ if (isset($_POST['bouton_filtrer'])) {
 							echo '<td>' . $elements["date_fin"] . '</td>';
 							echo '<td>';
 							echo '<h4>' . $elements["prix"] . '€</h4>';
-							echo 'Ajouter au panier<button class="btn ml-4" style="border-radius: 15px; background-color: #6AD51A;"> <i class="fa fa-shopping-basket"></i> </button>';
+							echo '<em>Ajouter au panier</em><button class="btn ml-4" style="border-radius: 15px; background-color: #6AD51A;"> <i class="fa fa-shopping-basket"></i> </button>';
 							echo '</td>';
 							echo '</tr>';
 						}
 						?>
-						<!--
-						<tr>
-							<th scope="row"><img src="images/item/item2.jpg" width="80px" height="80px"></th>
-							<td>Pièce</td>
-							<td><input type="textarea" value="bon état"></td>
-							<td>Ferraille ou trésor</td>
-							<td>Enchère</td>
-							<td>0h 3min 14s</td>
-							<td>
-								<h4>56€</h4>
-								Ajouter au panier<button class="btn ml-4" style="border-radius: 15px; background-color: #6AD51A;"> <i class="fa fa-shopping-basket"></i> </button>
-							</td>
-						</tr>
-						<tr>-->
 
 					</tbody>
 				</table>
@@ -268,9 +259,6 @@ if (isset($_POST['bouton_filtrer'])) {
 			</div>
 		</div>
 	</div>
-
-
-
 
 	<div class="container">
 

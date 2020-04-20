@@ -1,8 +1,11 @@
 <?php
 session_start();
 if (isset($_SESSION["id_user"])) {
+    if ($_SESSION["rang"] != 1) {
+		header("location: connexion_client.php");
+	}
 } else {
-    header("location: connexion.php");
+    header("location: connexion_client.php");
 }
 
 $database = "ebayece";
@@ -60,6 +63,30 @@ function items_dans_panier($id_collection, $db_handle)
     return $lesitems;
 }
 
+function taille_panier($id_user, $db_handle)
+{
+    $sql =
+        "SELECT * from lacollection
+    WHERE id = '" . $id_user . "'";
+
+    $result = mysqli_query($db_handle, $sql);
+
+    $compter = -1;
+
+    while ($data = mysqli_fetch_assoc($result)) {
+        foreach ($data as $elements) {
+            if ($elements)
+                $compter++;
+        }
+    }
+
+    if ($compter == 0) {
+        return false;
+    } else {
+        return $compter;
+    }
+}
+
 function collection_vide($id_user, $db_handle)
 {
     $sql =
@@ -95,6 +122,19 @@ function chemins_dune_image($id_item, $db_handle)
         $leschemins[] = $data["chemin"];
     }
     return $leschemins;
+}
+
+function somme_tot_achat_immediat($id_user, $db_handle)
+{
+    $somme_tot = 0;
+
+    foreach (items_dans_panier($id_user, $db_handle) as $elements) {
+        if ($elements["type"] == 2) {
+            $somme_tot += $elements["prix"];
+        }
+    }
+
+    return $somme_tot;
 }
 
 ?>
@@ -179,6 +219,7 @@ function chemins_dune_image($id_item, $db_handle)
                             <thead>
                                 <tr class="text-center">
                                     <th scope="col">Produit</th>
+                                    <th scope ="id">ID</th>
                                     <th scope="col">Nom</th>
                                     <th scope="col">Qté</th>
                                     <th scope="col">Moyen achat</th>
@@ -202,6 +243,7 @@ function chemins_dune_image($id_item, $db_handle)
 
                                         echo '<tr class="text-center">';
                                         echo '<td><img src=' . chemins_dune_image($unitem["id"], $db_handle)[0] . ' width="90px" height="90px" /> </td>';
+                                        echo'<td>'.$unitem["id"].'</td>';
                                         echo '<td>' . $unitem["nom"] . '</td>';
                                         echo '<td>(1)</td>';
 
@@ -237,50 +279,18 @@ function chemins_dune_image($id_item, $db_handle)
                                     }
                                 }
                                 ?>
-                                <tr class="text-center">
-                                    <td><img src="images/item/item1.jpg" width="90px" height="90px" /> </td>
-                                    <td>Lampe</td>
-                                    <td>(1)</td>
-                                    <td>Achat immédiat</td>
-                                    <td>Ferraille</td>
-                                    <td>0min0s</td>
-                                    <td></td>
-                                    <td class="prix-article-1">56€</td>
-                                    <td class="text-right"><button class="btn btn-sm btn-danger"><i class="fa fa-trash"></i> </button> </td>
-                                </tr>
-                                <tr class="text-center">
-                                    <td><img src="images/item/item2.jpg" width="90px" height="90px" /> </td>
-                                    <td>Lampe</td>
-                                    <td>(1)</td>
-                                    <td>Enchère</td>
-                                    <td>Ferraille</td>
-                                    <td>0min30s</td>
-                                    <td></td>
-                                    <td prix-article-2>56€</td>
-                                    <!--Si on clique sur la poubelle, on remove l'article du panier-->
-                                    <td class="text-right"><button class="btn btn-sm btn-danger"><i class="fa fa-trash"></i> </button> </td>
-                                </tr>
-                                <tr class="text-center">
-                                    <td><img src="images/item/item3.jpg" width="90px" height="90px" /> </td>
-                                    <td>Lampe</td>
-                                    <td>(1)</td>
-                                    <td>Meilleure offre</td>
-                                    <td>Ferraille</td>
-                                    <td>0min0s</td>
-                                    <td><em>En cours</em></td>
-                                    <td prix-article-3>56€</td>
-                                    <td class="text-right"><button class="btn btn-sm btn-danger"><i class="fa fa-trash"></i> </button> </td>
-                                </tr>
+                                
                                 <tr class="text-center">
                                     <td></td>
                                     <td></td>
-                                    <td id="total_item_panier">(3)</td>
+                                    <td></td>
+                                    <td id="total_item_panier"><?php echo taille_panier($_SESSION["id_user"], $db_handle)-1 ?></td>
                                     <td></td>
                                     <td></td>
                                     <td></td>
                                     <td></td>
                                     <td>Sous-Total</td>
-                                    <td class="text-right">168 €</td>
+                                    <td class="text-right"><?php echo somme_tot_achat_immediat($_SESSION["id_user"], $db_handle) ?></td>
                                 </tr>
                                 <tr>
                                     <td></td>
@@ -302,7 +312,7 @@ function chemins_dune_image($id_item, $db_handle)
                                     <td></td>
                                     <td></td>
                                     <td><strong>Total</strong></td>
-                                    <td class="text-right "><strong>168 €</strong></td>
+                                    <td class="text-right "><strong><?php echo somme_tot_achat_immediat($_SESSION["id_user"], $db_handle) ?></strong></td>
                                 </tr>
                             </tbody>
                         </table>
@@ -322,7 +332,7 @@ function chemins_dune_image($id_item, $db_handle)
                                     Sous-total
                                 </dd>
                                 <dd class="col-sm-4">
-                                    168<sup>€</sup>
+                                <?php echo somme_tot_achat_immediat($_SESSION["id_user"], $db_handle) ?><sup>€</sup>
                                 </dd>
                             </dl>
 
@@ -344,7 +354,7 @@ function chemins_dune_image($id_item, $db_handle)
                                     Total €
                                 </dd>
                                 <dd class="col-sm-4">
-                                    168<sup>€</sup>
+                                <?php echo somme_tot_achat_immediat($_SESSION["id_user"], $db_handle) ?><sup>€</sup>
                                 </dd>
                             </dl>
                             <a href="paiement.php"><button class="btn btn-primary my-2">Paiement</button></a>
