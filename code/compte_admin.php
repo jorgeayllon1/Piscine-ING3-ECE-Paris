@@ -443,7 +443,7 @@ function chemins_dune_image($id_item, $db_handle)
 													echo '<td>' . $item["prix"] . '<sup>€</sup></td>';
 												}
 												echo '<td>';
-												echo '<a href="terminer_enchere.php"><button class="btn btn-primary">Terminer</button></a>';
+												echo '<a><button class="btn btn-primary">Terminer</button></a>';
 												echo '</td>';
 												echo '';
 												echo '';
