@@ -87,6 +87,40 @@ function transaction_vide($db_handle)
 	}
 }
 
+function nom_du_vendeur($id_item, $db_handle)
+{
+	$sql =
+		"SELECT pseudo FROM user
+	INNER JOIN les_items
+	ON les_items.id='" . $id_item . "'
+	WHERE les_items.id_prop = user.id
+	";
+
+	$result = mysqli_query($db_handle, $sql);
+
+	while ($data = mysqli_fetch_assoc($result)) {
+		return $data["pseudo"];
+	}
+
+	return false;
+}
+
+function enchere_disponible($db_handle)
+{
+	$sql = "SELECT * from les_items
+	WHERE type=1";
+
+	$result = mysqli_query($db_handle, $sql);
+
+	$data = mysqli_fetch_assoc($result);
+
+	if ($data) {
+		return false;
+	} else {
+		return true;
+	}
+}
+
 function lestransaction($db_handle)
 {
 	$sql = "SELECT * from transaction";
@@ -104,6 +138,38 @@ function lestransaction($db_handle)
 		$lestransaction[$indice]["montant"] = $data["montant"];
 		$lestransaction[$indice]["date_livraison"] = $data["date_livraison"];
 		$lestransaction[$indice]["date_transaction"] = $data["date_transaction"];
+
+		$indice++;
+	}
+
+	return $lestransaction;
+}
+
+function lesitems_en_echere($db_handle)
+{
+	$sql = "SELECT * from les_items
+	WHERE type = 1";
+
+	$result = mysqli_query($db_handle, $sql);
+
+	$indice = 0;
+
+	while ($data = mysqli_fetch_assoc($result)) {
+
+		#C'est pas des transaction mais des items mais j'ai fait un copier/coller
+		$lestransaction[$indice]["id"] = $data["id"];
+		$lestransaction[$indice]["id_prop"] = $data["id_prop"];
+		$lestransaction[$indice]["nom"] = $data["nom"];
+		$lestransaction[$indice]["description"] = $data["description"];
+		$lestransaction[$indice]["prix"] = $data["prix"];
+		$lestransaction[$indice]["prix_souh"] = $data["prix_souh"];
+		$lestransaction[$indice]["video"] = $data["video"];
+		$lestransaction[$indice]["categorie"] = $data["categorie"];
+		$lestransaction[$indice]["type"] = $data["type"];
+		$lestransaction[$indice]["date_debut"] = $data["date_debut"];
+		$lestransaction[$indice]["date_fin"] = $data["date_fin"];
+		$lestransaction[$indice]["id_vainqueur"] = $data["id_vainqueur"];
+		$lestransaction[$indice]["tentative"] = $data["tentative"];
 
 		$indice++;
 	}
@@ -212,7 +278,7 @@ function chemins_dune_image($id_item, $db_handle)
 						</li>
 
 						<li class="nav-item">
-							<a class="nav-link " style="background-color: #67E514;height: 80px; width: 120px;" data-toggle="tab" href="#nego-admin" role="tab" aria-selected="false">Mes négociations</a>
+							<a class="nav-link " style="background-color: #67E514;height: 80px; width: 120px;" data-toggle="tab" href="#nego-admin" role="tab" aria-selected="false">Gérer les enchères</a>
 						</li>
 						<li class="nav-item">
 							<a class="nav-link " style="background-color: #67E514;height: 80px; width: 120px;" data-toggle="tab" href="#retirer-vendeur-admin" role="tab" aria-selected="false">Retirer un vendeur</a>
@@ -319,10 +385,10 @@ function chemins_dune_image($id_item, $db_handle)
 											<td class="id-vente">1</td>
 											<td class="produit-vente">bijou</td>
 											<td class="prix-vente">56€</td>
-											<td class="description-vente">Neuf</td>
-											<td class="moyen-vente">Enchère</td>
-											<td>Theo</td>
-											<td>Jorge</td>
+											<td class="description-vente">Théo</td>
+											<td class="moyen-vente">Jorge</td>
+											<td>13-07-2020</td>
+											<td>20-04-2020</td>
 
 
 										</tr>
@@ -336,8 +402,13 @@ function chemins_dune_image($id_item, $db_handle)
 					<!--NEGOCIATIONS ADMIN-->
 
 					<div class="tab-pane fade" id="nego-admin">
-						<p class="h4 mb-4">Vos négociations</p>
+						<p class="h4 mb-4">Enchère en cours</p>
 
+						<form method="post" action="terminer_enchere.php">
+							<h5>Indiquez quelle Enchere vous voulez terminer.</h5>
+							<input type="number" placeholder="ID" name="id_item">
+							<button class="btn btn-primary" name="terminer" type="submit" value="1" style="background: #31405F; border:none;">Terminer</button>
+						</form>
 						<div class="table">
 
 							<div class="table-responsive">
@@ -346,7 +417,7 @@ function chemins_dune_image($id_item, $db_handle)
 										<tr>
 											<th>#</th>
 											<th>Produit</th>
-											<th>Client</th>
+											<th>Vendeur</th>
 											<th>Statut</th>
 											<th>Catégorie</th>
 											<th>Prix actuel</th>
@@ -355,8 +426,33 @@ function chemins_dune_image($id_item, $db_handle)
 										</tr>
 									</thead>
 									<tbody>
+
+										<?php
+
+										if (!enchere_disponible($db_handle)) {
+											foreach (lesitems_en_echere($db_handle) as $item) {
+												echo '<tr>';
+												echo '<td>' . $item["id"] . '</td>';
+												echo '<td><img src=' . chemins_dune_image($item["id"], $db_handle)[0] . ' width="90px" height="90px" /> </td>';
+												echo '<td>' . nom_du_vendeur($item["id"], $db_handle) . '</td>';
+												echo '<td>En cours</td>';
+												echo '<td>' . $item["categorie"] . '</td>';
+												if ($item["prix_souh"]) {
+													echo '<td>' . $item["prix_souh"] . '<sup>€</sup></td>';
+												} else {
+													echo '<td>' . $item["prix"] . '<sup>€</sup></td>';
+												}
+												echo '<td>';
+												echo '<a href="terminer_enchere.php"><button class="btn btn-primary">Terminer</button></a>';
+												echo '</td>';
+												echo '';
+												echo '';
+												echo '</tr>';
+											}
+										}
+										?>
+
 										<tr>
-											<!-- mettre les classes pour PHP comme pr vendeur-->
 											<td>1</td>
 											<td><input type="file"></td>
 											<td>Theo</td>
@@ -364,7 +460,7 @@ function chemins_dune_image($id_item, $db_handle)
 											<td>Bon musée</td>
 											<td>560<sup>€</sup></td>
 											<td>
-												<a href="negocier_vendeur.php"><button class="btn btn-primary">Négocier</button></a>
+												<a href="#faireenchère"><button class="btn btn-primary">Terminer</button></a>
 											</td>
 
 
