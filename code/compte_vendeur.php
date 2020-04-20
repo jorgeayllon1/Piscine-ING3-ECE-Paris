@@ -11,9 +11,7 @@
 	else {
 		header("location: connexion_vendeur.php");
 	}
-	/**Manque modification photo de profil et fond */
-
-
+	
 
 	$session_pseudo=$_SESSION["pseudo"];
 
