@@ -481,17 +481,7 @@ if (isset($_POST['modifier_vendeur'])) {
 									</select>
 								</div>
 
-								<!--
-								<div class="custom-control">
-									<label for="ajout_moyen">Moyen de vente :</label><br>
-									<input type="checkbox" name="ajout_moyen" id="ajout_enchere">
-									<label for="ajout_enchere">Enchère</label>
-									<input type="checkbox" name="ajout_moyen" id="ajout_immediat">
-									<label for="ajout_immediat">Achat immédiat</label>
-									<input type="checkbox" name="ajout_moyen" id="ajout_meilleure">
-									<label for="ajout_meilleure">Meilleure offre</label>
-								</div> -->
-
+				
 								<div class="row d-flex justify-content-center">
 									<a href="#"><button class="btn btn-rounded my-2" style="background: #E52714; color: #fff;" name="ajouter_item_vendeur" type="submit">Publier</button></a>
 

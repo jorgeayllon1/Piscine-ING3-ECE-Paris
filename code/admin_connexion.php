@@ -122,10 +122,10 @@ mysqli_close($db_handle);
 
 
 
-						<input type="email" id="email_admin_connexion" class="form-control mb-3" placeholder="E-mail" name="mail">
+						<input type="email" required id="email_admin_connexion" class="form-control mb-3" placeholder="E-mail" name="mail">
 
 						
-						<input type="password" id="mdp_admin_connexion" class="form-control" placeholder="Mot De Passe" aria-describedby="defaultRegisterFormPasswordHelpBlock" name="mdp">
+						<input type="password" required id="mdp_admin_connexion" class="form-control" placeholder="Mot De Passe" aria-describedby="defaultRegisterFormPasswordHelpBlock" name="mdp">
 						<small id="mdp_admin_connexion" class="form-text text-muted mb-4">
 						<em>Au moins 8 caractères et un chiffre</em>
 

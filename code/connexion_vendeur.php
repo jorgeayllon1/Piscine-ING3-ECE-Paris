@@ -118,12 +118,12 @@ mysqli_close($db_handle);
 						<p class="h4 mb-4">Se connecter</p>
 
 
-						<input type="email" id="email_vendeur_connexion" class="form-control mb-3" placeholder="E-mail" name="mail">
+						<input type="email" required id="email_vendeur_connexion" class="form-control mb-3" placeholder="E-mail" name="mail">
 						<p>ou</p>
-						<input type="text" id="pseudo_vendeur_connexion" class="form-control mb-3" placeholder="Pseudo" name="pseudo">
+						<input type="text" required id="pseudo_vendeur_connexion" class="form-control mb-3" placeholder="Pseudo" name="pseudo">
 
 
-						<input type="password" id="mdp_vendeur_connexion" class="form-control" placeholder="Mot De Passe" aria-describedby="defaultRegisterFormPasswordHelpBlock" name="mdp">
+						<input type="password" required id="mdp_vendeur_connexion" class="form-control" placeholder="Mot De Passe" aria-describedby="defaultRegisterFormPasswordHelpBlock" name="mdp">
 						<small id="mdp_vendeur_connexion" class="form-text text-muted mb-4">
 						<em>Au moins 8 caractères et un chiffre</em>
 
