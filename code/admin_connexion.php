@@ -117,12 +117,7 @@ mysqli_close($db_handle);
 
 						<p class="h4 mb-4">Se connecter</p>
 
-
-
-
-
-
-						<input type="email" required id="email_admin_connexion" class="form-control mb-3" placeholder="E-mail" name="mail">
+            			<input type="email" required id="email_admin_connexion" class="form-control mb-3" placeholder="E-mail" name="mail">
 
 						
 						<input type="password" required id="mdp_admin_connexion" class="form-control" placeholder="Mot De Passe" aria-describedby="defaultRegisterFormPasswordHelpBlock" name="mdp">
@@ -131,16 +126,7 @@ mysqli_close($db_handle);
 
 						</small>
 
-
-
-
-
-
-
-
-
-
-						
+	
 						<input name="submit" class="btn my-3 " style="background: #67E514; border:none; color:#fff;" type="submit" value="Se connecter">
 
 						

@@ -120,7 +120,7 @@ mysqli_close($db_handle);
 
 						<input type="email" required id="email_vendeur_connexion" class="form-control mb-3" placeholder="E-mail" name="mail">
 						<p>ou</p>
-						<input type="text" required id="pseudo_vendeur_connexion" class="form-control mb-3" placeholder="Pseudo" name="pseudo">
+						<input type="text"  id="pseudo_vendeur_connexion" class="form-control mb-3" placeholder="Pseudo" name="pseudo">
 
 
 						<input type="password" required id="mdp_vendeur_connexion" class="form-control" placeholder="Mot De Passe" aria-describedby="defaultRegisterFormPasswordHelpBlock" name="mdp">

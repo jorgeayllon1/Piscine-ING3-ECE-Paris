@@ -87,6 +87,7 @@ date_default_timezone_set('UTC');
 $date = date("d/m/Y");
 $date_apre = strtotime(date("d-m-Y", strtotime($date)) . " +1 day");
 
+
 if (isset($_POST['ajouter_item_vendeur'])) {
     if ($db_found) {
         #$litem["id"]=NULL;
