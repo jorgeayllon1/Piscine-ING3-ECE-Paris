@@ -239,7 +239,67 @@ if (isset($_POST['payer'])) {
             }
             header("location:enchere.php");
         } else if ($_POST["payer"] == 3) {
-            echo "Hello World !";
+
+            #echo "Tu veux mettre " . $_POST["nouveau_prix"] . " dans " . $_POST["id_item"] . " c'est ca ?";
+
+            $sql =
+                "SELECT * from les_items
+            WHERE id = '" . $_POST["id_item"] . "'";
+
+            $result = mysqli_query($db_handle, $sql);
+
+            while ($data = mysqli_fetch_assoc($result)) {
+
+                $latentative = $data["tentative"];
+            }
+
+            echo $latentative;
+
+            if ($latentative != 0) {
+
+                if ($_SESSION["id_user"] == 2) {
+
+                    echo "client ";
+
+                    $sql =
+                        "UPDATE les_items
+                SET prix_souh=" . $_POST["nouveau_prix"] . ",tentative = tentative - 1
+                WHERE id = '" . $_POST["id_item"] . "'";
+                    mysqli_query($db_handle, $sql);
+
+                    echo $sql;
+
+                    header("location: compte_client.php");
+                } else if ($_SESSION["id_user"] == 3) {
+
+                    echo "vendeur ";
+
+                    $sql =
+                        "UPDATE les_items
+                SET prix_souh=" . $_POST["nouveau_prix"] . "
+                WHERE id = '" . $_POST["id_item"] . "'";
+
+                    #enlever des autres collection
+
+                    echo $sql;
+                    mysqli_query($db_handle, $sql);
+
+                    header("location:compte_vendeur.php");
+                }
+            } else {
+                if ($_SESSION["id_user"] == 3) {
+
+                    $sql =
+                        "UPDATE les_items
+                    SET type=2, prix=prix_souh
+                    WHERE id = '" . $_POST["id_item"] . "'";
+
+                    mysqli_query($db_handle, $sql);
+
+                    header("location: compte_vendeur.php");
+                }
+                header("location: compte_client.php");
+            }
         }
     }
 }
