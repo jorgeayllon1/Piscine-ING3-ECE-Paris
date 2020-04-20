@@ -222,7 +222,7 @@ if (isset($_POST['payer'])) {
 
                     $sql =
                         "UPDATE les_items
-                SET prix_souh= '" . $_POST["prix_souh"] . "'
+                SET prix_souh= '" . $_POST["prix_souh"] . "', id_vainqueur = '" . $_SESSION["id_user"] . "'
                 WHERE id='" . $_POST["id_item"] . "'";
 
                     mysqli_query($db_handle, $sql);
@@ -232,7 +232,7 @@ if (isset($_POST['payer'])) {
                 #faire le changement de prix
                 $sql =
                     "UPDATE les_items
-                SET prix_souh= '" . $_POST["prix_souh"] . "'
+                SET prix_souh= '" . $_POST["prix_souh"] . "', id_vainqueur = '" . $_SESSION["id_user"] . "'
                 WHERE id='" . $_POST["id_item"] . "'";
 
                 mysqli_query($db_handle, $sql);

@@ -1,10 +1,9 @@
 <?php
-    session_start();
-    if (isset($_SESSION["id_user"])) {
-    }
-    else {
-        header("location: connexion.php");
-    }
+session_start();
+if (isset($_SESSION["id_user"])) {
+} else {
+    header("location: connexion.php");
+}
 
 $database = "ebayece";
 $db_handle = mysqli_connect('localhost', 'root', '');
@@ -69,10 +68,14 @@ function collection_vide($id_user, $db_handle)
 
     $result = mysqli_query($db_handle, $sql);
 
+    $recip = "id_item_";
+
     while ($data = mysqli_fetch_assoc($result)) {
-        if ($data["id_item_1"]) {
-            return true;
-        }
+
+        for ($indice = 1; $indice <= 50; $indice++)
+            if ($data[$recip . $indice]) {
+                return true;
+            }
     }
 
     return false;
@@ -135,17 +138,17 @@ function chemins_dune_image($id_item, $db_handle)
                     <div class="collapse navbar-collapse" id="main-navigation">
                         <ul class="navbar-nav">
                             <!-- La suite de ce code php va soit afficher des boutons de connexion si l'utilisateur n'est pas connecter-->
-                                <!-- Soit afficher son nom et prenom avec une redirection vers son compte -->
-                                <?php
-                                if (!isset($_SESSION["id_user"])) {
-                                    echo '<li class="nav-item"><a class="nav-link" href="inscription.php"><i class="fa fa-user-plus"></i> S\'inscrire</a></li>';
-                                    echo '<li class="nav-item"><a class="nav-link" href="connexion.php"><i class="fa fa-sign-in"></i> Se connecter</a></li>';
-                                } else {
-                                    echo '<li class="nav-item"><a class="nav-link" href="redirect_moncompte.php">' . $_SESSION["nom"] . ' ' . $_SESSION["prenom"] . '</a></li>';
-                                    echo '<li class="nav-item"><a class="nav-link" href="deco.php">Se déconnecter</a></li>';
-                                }
-                                ?>
-                            
+                            <!-- Soit afficher son nom et prenom avec une redirection vers son compte -->
+                            <?php
+                            if (!isset($_SESSION["id_user"])) {
+                                echo '<li class="nav-item"><a class="nav-link" href="inscription.php"><i class="fa fa-user-plus"></i> S\'inscrire</a></li>';
+                                echo '<li class="nav-item"><a class="nav-link" href="connexion.php"><i class="fa fa-sign-in"></i> Se connecter</a></li>';
+                            } else {
+                                echo '<li class="nav-item"><a class="nav-link" href="redirect_moncompte.php">' . $_SESSION["nom"] . ' ' . $_SESSION["prenom"] . '</a></li>';
+                                echo '<li class="nav-item"><a class="nav-link" href="deco.php">Se déconnecter</a></li>';
+                            }
+                            ?>
+
                             <li><i class="fa fa-power-off mt-3" style="color: #fff;"></i></li>
 
                         </ul>

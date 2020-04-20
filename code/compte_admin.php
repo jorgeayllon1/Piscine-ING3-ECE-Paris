@@ -1,89 +1,133 @@
 <?php
-	session_start();
+session_start();
 
-	if (isset($_SESSION["id_user"])) {
+if (isset($_SESSION["id_user"])) {
 
-		if ($_SESSION["rang"] != 3) {
-			header("location: admin_connexion.php");
-		}
+	if ($_SESSION["rang"] != 3) {
+		header("location: admin_connexion.php");
 	}
-	#Sinon, on le renvoit à la page principale
-	else {
-			header("location: admin_connexion.php");
-	}
-	
-
-    /**Manque modification photo de profil */
-
-	$id = isset($_POST["id_admin"])?$_POST["id_admin"]:"";
+}
+#Sinon, on le renvoit à la page principale
+else {
+	header("location: admin_connexion.php");
+}
 
 
-	$nom = isset($_POST["nom_admin"])?$_POST["nom_admin"]:"";
-	$prenom = isset($_POST["prenom_admin"])?$_POST["prenom_admin"]:"";
-	$email = isset($_POST["email_admin"])?$_POST["email_admin"]:"";
-	$mdp = isset($_POST["mdp_admin"])?$_POST["mdp_admin"]:"";
-	$photo_admin = isset($_POST["img_admin"])?$_POST["img_admin"]:"";
-	$hide_admin = isset($_POST["hide_admin"])?$_POST["hide_admin"]:"";
+/**Manque modification photo de profil */
 
-	/**Condition pour déterminer si il y a déjà une photo avec une variable temporaire cachée car input file ne prend pas de value pour un path */
+$id = isset($_POST["id_admin"]) ? $_POST["id_admin"] : "";
 
-	if($photo_admin =='')
-	{
-		$hide_admin = isset($_POST["hide_admin"])?$_POST["hide_admin"]:"";
 
-	}
-	else{
-		$hide_admin = $photo_admin;
+$nom = isset($_POST["nom_admin"]) ? $_POST["nom_admin"] : "";
+$prenom = isset($_POST["prenom_admin"]) ? $_POST["prenom_admin"] : "";
+$email = isset($_POST["email_admin"]) ? $_POST["email_admin"] : "";
+$mdp = isset($_POST["mdp_admin"]) ? $_POST["mdp_admin"] : "";
+$photo_admin = isset($_POST["img_admin"]) ? $_POST["img_admin"] : "";
+$hide_admin = isset($_POST["hide_admin"]) ? $_POST["hide_admin"] : "";
 
-	}
+/**Condition pour déterminer si il y a déjà une photo avec une variable temporaire cachée car input file ne prend pas de value pour un path */
+
+if ($photo_admin == '') {
+	$hide_admin = isset($_POST["hide_admin"]) ? $_POST["hide_admin"] : "";
+} else {
+	$hide_admin = $photo_admin;
+}
 
 
 
-	/**Connexion à la bdd */
-	$database = "ebayece";
-	$db_handle = mysqli_connect('localhost', 'root', '');
-	$db_found = mysqli_select_db($db_handle, $database);
+/**Connexion à la bdd */
+$database = "ebayece";
+$db_handle = mysqli_connect('localhost', 'root', '');
+$db_found = mysqli_select_db($db_handle, $database);
 
-	if(isset($_POST['modifier_admin']))
-	{
-		/*Pour pseudo on la compare avec SESSION càd le cookie car dans ses infos on n'a pas le id*/
-		if($db_found){
+if (isset($_POST['modifier_admin'])) {
+	/*Pour pseudo on la compare avec SESSION càd le cookie car dans ses infos on n'a pas le id*/
+	if ($db_found) {
 
-			/**User */
-			$sql = " UPDATE user SET nom='$nom', prenom='$prenom', email='$email', 
+		/**User */
+		$sql = " UPDATE user SET nom='$nom', prenom='$prenom', email='$email', 
 			mdp='$mdp', photo_perso='$hide_admin' WHERE id = '$id'  ";
-			$result = mysqli_query($db_handle,$sql);
+		$result = mysqli_query($db_handle, $sql);
 
 
-			/*On met à jour le cookie*/
+		/*On met à jour le cookie*/
 
-			$_SESSION["nom"] = $nom;
-			$_SESSION["prenom"] = $prenom;
-			$_SESSION["email"] = $email;
-			$_SESSION["mdp"] = $mdp;
-			$_SESSION['photo_perso']= $hide_admin;
-
-
-		}
-		else{
-			echo "BDD non trouvé";
-		}
+		$_SESSION["nom"] = $nom;
+		$_SESSION["prenom"] = $prenom;
+		$_SESSION["email"] = $email;
+		$_SESSION["mdp"] = $mdp;
+		$_SESSION['photo_perso'] = $hide_admin;
+	} else {
+		echo "BDD non trouvé";
 	}
-	
-	/**ON AFFICHE TOUT LES VENDEURS */
-	if($db_found)
-	{
-		$sql1 = "SELECT * FROM user WHERE rang like '2'";
-		$result1 = mysqli_query($db_handle,$sql1);
+}
 
-		if (mysqli_num_rows($result1) == 0) {
-			#echo "Erreur";
-		} 
+/**ON AFFICHE TOUT LES VENDEURS */
+if ($db_found) {
+	$sql1 = "SELECT * FROM user WHERE rang like '2'";
+	$result1 = mysqli_query($db_handle, $sql1);
+
+	if (mysqli_num_rows($result1) == 0) {
+		#echo "Erreur";
+	}
+}
+
+function transaction_vide($db_handle)
+{
+	$sql = "SELECT * from transaction";
+
+	$result = mysqli_query($db_handle, $sql);
+
+	$data = mysqli_fetch_assoc($result);
+
+	if ($data) {
+		return false;
+	} else {
+		return true;
+	}
+}
+
+function lestransaction($db_handle)
+{
+	$sql = "SELECT * from transaction";
+
+	$result = mysqli_query($db_handle, $sql);
+
+	$indice = 0;
+
+	while ($data = mysqli_fetch_assoc($result)) {
+
+		$lestransaction[$indice]["id"] = $data["id"];
+		$lestransaction[$indice]["id_acheteur"] = $data["id_acheteur"];
+		$lestransaction[$indice]["id_vendeur"] = $data["id_vendeur"];
+		$lestransaction[$indice]["id_item"] = $data["id_item"];
+		$lestransaction[$indice]["montant"] = $data["montant"];
+		$lestransaction[$indice]["date_livraison"] = $data["date_livraison"];
+		$lestransaction[$indice]["date_transaction"] = $data["date_transaction"];
+
+		$indice++;
 	}
 
+	return $lestransaction;
+}
+
+function chemins_dune_image($id_item, $db_handle)
+{
+	$sql =
+		"SELECT chemin from photo 
+		inner join les_items
+			on les_items.id = photo.id_item
+			where les_items.id=$id_item";
+
+	$result = mysqli_query($db_handle, $sql);
+
+	while ($data = mysqli_fetch_assoc($result)) {
+		$leschemins[] = $data["chemin"];
+	}
+	return $leschemins;
+}
 
 
-	
 
 ?>
 
@@ -125,9 +169,9 @@
 
 				<div class="collapse navbar-collapse" id="main-navigation">
 					<ul class="navbar-nav">
-						<li class="nav-item"><a class="nav-link" href="compte_admin.php"><?php echo $_SESSION["nom"]." ".$_SESSION["prenom"] ?></a></li>
+						<li class="nav-item"><a class="nav-link" href="compte_admin.php"><?php echo $_SESSION["nom"] . " " . $_SESSION["prenom"] ?></a></li>
 						<li class="nav-item"><a class="nav-link" href="deco.php">Se déconnecter</a></li>
-						
+
 						<li><i class="fa fa-power-off mt-3" style="color: #fff;"></i></li>
 
 					</ul>
@@ -157,7 +201,7 @@
 							<a class="nav-link active" style="background-color: #67E514;" data-toggle="tab" href="#info-admin" role="tab" aria-selected="true">Mes informations</a>
 						</li>
 						<li class="nav-item">
-							<a class="nav-link" style="background-color: #67E514;height: 80px; width: 120px;" data-toggle="tab" href="#historique-admin" role="tab" aria-selected="false">Historique des ventes</a>
+							<a class="nav-link" style="background-color: #67E514;height: 80px; width: 120px;" data-toggle="tab" href="#historique-admin" role="tab" aria-selected="false">Voir les transactions</a>
 						</li>
 						<li class="nav-item">
 							<a class="nav-link" style="background-color: #67E514;height: 80px; width: 120px;" data-toggle="tab" href="#publier-admin" role="tab" aria-selected="false">Publier une vente</a>
@@ -193,41 +237,37 @@
 							<!--PHP-->
 
 							<p class="h4 mb-4">Vos informations</p>
-							<input type="text" name="id_admin" style="display:none;" value="<?php echo $_SESSION["id_user"]?>">
+							<input type="text" name="id_admin" style="display:none;" value="<?php echo $_SESSION["id_user"] ?>">
 
 							<!--Changement photo de profil-->
 
-							<input type="text" name="hide_admin" style="display:none;" value="<?php echo $_SESSION["photo_perso"]?>">
+							<input type="text" name="hide_admin" style="display:none;" value="<?php echo $_SESSION["photo_perso"] ?>">
 
-							<input type="file" name="img_admin" id="img_admin" class="form-control"> 
+							<input type="file" name="img_admin" id="img_admin" class="form-control">
 							<p>Votre photo de profil actuelle :<p><br>
-							<img src="<?php echo "images/".$_SESSION['photo_perso'] ?>" width="100px" height="100px" >
+									<img src="<?php echo "images/" . $_SESSION['photo_perso'] ?>" width="100px" height="100px">
 
 
-							<div class="form-row mb-4 mx-4 mt-4">
-								<div class="col">
+									<div class="form-row mb-4 mx-4 mt-4">
+										<div class="col">
 
-									<input type="text" name="prenom_admin" id="prenom_admin" class="form-control" 
-									value="<?php echo $_SESSION["prenom"]?>">
-								</div>
-								<div class="col">
+											<input type="text" name="prenom_admin" id="prenom_admin" class="form-control" value="<?php echo $_SESSION["prenom"] ?>">
+										</div>
+										<div class="col">
 
-									<input type="text" name="nom_admin" id="nom_admin" class="form-control" 
-									value="<?php echo $_SESSION["nom"]?>">
-								</div>
-							</div>
+											<input type="text" name="nom_admin" id="nom_admin" class="form-control" value="<?php echo $_SESSION["nom"] ?>">
+										</div>
+									</div>
 
 
-							<input type="email" name="email_admin" id="email_admin" class="form-control mb-3" 
-							value="<?php echo $_SESSION["email"]?>">
+									<input type="email" name="email_admin" id="email_admin" class="form-control mb-3" value="<?php echo $_SESSION["email"] ?>">
 
 
-							<input type="password" name="mdp_admin" id="mdp_admin" class="form-control"
-							 value="<?php echo $_SESSION["mdp"]?>" aria-describedby="defaultRegisterFormPasswordHelpBlock">
+									<input type="password" name="mdp_admin" id="mdp_admin" class="form-control" value="<?php echo $_SESSION["mdp"] ?>" aria-describedby="defaultRegisterFormPasswordHelpBlock">
 
 
 
-							<button class="btn my-4 " style="background: #67E514; border:none; color:#fff;" name="modifier_admin" type="submit">Modifier</button>
+									<button class="btn my-4 " style="background: #67E514; border:none; color:#fff;" name="modifier_admin" type="submit">Modifier</button>
 
 						</form>
 
@@ -236,7 +276,7 @@
 					<!--HISTORIQUE ADMIN-->
 
 					<div class="tab-pane fade" id="historique-admin">
-						<p class="h4 mb-4">Votre historique des ventes</p>
+						<p class="h4 mb-4">Toutes les transaction de Ebaye ECE</p>
 						<div class="table">
 
 							<div class="table-responsive">
@@ -245,26 +285,44 @@
 										<tr>
 											<th>#</th>
 											<th>Produit</th>
-											<th>photo</th>
 											<th>Prix</th>
-											<th>Catégorie</th>
-											<th>Description</th>
-											<th>Moyen vente</th>
 											<th>Client</th>
+											<th>Vendeur</th>
+											<th>Date de livraison</th>
+											<th>Date de la transaction</th>
 
 
 										</tr>
 									</thead>
 									<tbody>
+
+										<?php
+
+										if (!transaction_vide($db_handle)) {
+
+											foreach (lestransaction($db_handle) as $unetransaction) {
+
+												echo '<tr>';
+												echo '<td class="id-vente">' . $unetransaction["id"] . '</td>';
+												echo '<td class="produit-vente">' . $unetransaction["id_item"] . '</td>';
+												echo '<td class="prix-vente">' . $unetransaction["montant"] . '€</td>';
+												echo '<td>' . $unetransaction["id_acheteur"] . '</td>';
+												echo '<td>' . $unetransaction["id_vendeur"] . '</td>';
+												echo '<td>' . $unetransaction["date_livraison"] . '</td>';
+												echo '<td>' . $unetransaction["date_transaction"] . '</td>';
+												echo '</tr>';
+											}
+										}
+										?>
+
 										<tr>
 											<td class="id-vente">1</td>
 											<td class="produit-vente">bijou</td>
-											<td class="photo-vente"><input type="file"></td>
 											<td class="prix-vente">56€</td>
-											<td class="categorie-vente">Ferraille</td>
 											<td class="description-vente">Neuf</td>
 											<td class="moyen-vente">Enchère</td>
 											<td>Theo</td>
+											<td>Jorge</td>
 
 
 										</tr>
@@ -435,7 +493,7 @@
 						<form action="compte_admin.php" method="post">
 							<p class="h4 mb-4">Liste complète des vendeurs</p>
 
-							
+
 
 							<div class="table">
 								<div class="table-responsive">
@@ -450,26 +508,24 @@
 										</thead>
 										<tbody>
 											<?php
-											
-											while($data=mysqli_fetch_assoc($result1))
-											{
 
-													echo '<tr>';
-													echo '<td value="'.$data['id'].'">'.$data['id'].'</td>';
-													echo '<td>' .$data['pseudo']. '</td>';
-													echo '<td>' .$data['nom']. '</td>';
-													echo '<td>' .$data['email']. '</td>';
-													echo  '<td>
+											while ($data = mysqli_fetch_assoc($result1)) {
+
+												echo '<tr>';
+												echo '<td value="' . $data['id'] . '">' . $data['id'] . '</td>';
+												echo '<td>' . $data['pseudo'] . '</td>';
+												echo '<td>' . $data['nom'] . '</td>';
+												echo '<td>' . $data['email'] . '</td>';
+												echo  '<td>
 													<button class="btn btn-primary"';
-													echo 'id="retirer_vendeur'.$data['id'].'">Retirer</button> </td> </tr>';
-
+												echo 'id="retirer_vendeur' . $data['id'] . '">Retirer</button> </td> </tr>';
 											}
 
-											
+
 
 											?>
 
-										
+
 
 
 										</tbody>
@@ -482,8 +538,7 @@
 
 					<!--AJOUTER UN VENDEUR-->
 					<div class="tab-pane fade" id="ajouter-vendeur-admin">
-						<form class="text-center border border-light p-2 form-vendeur" action="redirect_inscription_vendeur_parAdmin" 
-						method="post" style="background-color: #fff; ">
+						<form class="text-center border border-light p-2 form-vendeur" action="redirect_inscription_vendeur_parAdmin" method="post" style="background-color: #fff; ">
 							<!--PHP-->
 
 							<p class="h4 mb-4">Inscription d'un vendeur par admin</p>
@@ -505,22 +560,22 @@
 							<input type="email" name="email_admin_inscription" id="email_admin_inscription" class="form-control mb-3" placeholder="E-mail">
 
 
-							<input type="text" name="pseudo_admin_inscription" id="pseudo_admin_inscription" class="form-control" placeholder="Pseudo" >
+							<input type="text" name="pseudo_admin_inscription" id="pseudo_admin_inscription" class="form-control" placeholder="Pseudo">
 							<small id="pseudo_admin_inscription" class="form-text text-muted mb-4">
 
 
 							</small>
 
-							<input type="password" name="mdp_admin_inscription" id="mdp_admin_inscription" class="form-control" placeholder="Mot De Passe" >
+							<input type="password" name="mdp_admin_inscription" id="mdp_admin_inscription" class="form-control" placeholder="Mot De Passe">
 
 							<div class="form-group">
-									<label for="pdp_vendeur" style="font-weight:bold;">Choisissez une photo pour votre profil :</label>
-									<input type="file" name="vendeur_pdp" class="form-control-file" id="vendeur_pdp"  >
-								</div>
+								<label for="pdp_vendeur" style="font-weight:bold;">Choisissez une photo pour votre profil :</label>
+								<input type="file" name="vendeur_pdp" class="form-control-file" id="vendeur_pdp">
+							</div>
 
 							<div class="form-group my-2">
-									<label for="back_vendeur" style="font-weight:bold;">Choisissez une photo pour votre fond :</label>
-									<input type="file" name="vendeur_background" class="form-control-file" id="vendeur_background">
+								<label for="back_vendeur" style="font-weight:bold;">Choisissez une photo pour votre fond :</label>
+								<input type="file" name="vendeur_background" class="form-control-file" id="vendeur_background">
 							</div>
 
 
