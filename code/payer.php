@@ -238,6 +238,8 @@ if (isset($_POST['payer'])) {
                 mysqli_query($db_handle, $sql);
             }
             header("location:enchere.php");
+        } else if ($_POST["payer"] == 3) {
+            echo "Hello World !";
         }
     }
 }

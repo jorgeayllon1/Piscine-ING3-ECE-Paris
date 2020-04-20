@@ -92,6 +92,8 @@ function items_dans_panier($id_collection, $db_handle)
 			$lesitems[$var]["type"] = $autredata["type"];
 			$lesitems[$var]["date_debut"] = $autredata["date_debut"];
 			$lesitems[$var]["date_fin"] = $autredata["date_fin"];
+			$lesitems[$var]["tentative"] = $autredata["tentative"];
+			$lesitems[$var]["id_vainqueur"] = $autredata["id_vainqueur"];
 		}
 	}
 	return $lesitems;
@@ -128,6 +130,34 @@ function nom_du_vendeur($id_item, $db_handle)
 		return $data["pseudo"];
 	}
 
+	return false;
+}
+
+function negociation_disponible($id_user, $db_handle)
+{
+	$sql = "SELECT * from les_items
+	WHERE type=3";
+
+	$result = mysqli_query($db_handle, $sql);
+
+	while ($data = mysqli_fetch_assoc($result)) {
+		$lesbonid[] = $data["id"];
+	}
+
+	foreach ($lesbonid as $unid) {
+		for ($indice = 1; $indice <= 50; $indice++)
+			$sql_trouver =
+				"SELECT * from collection
+		WHERE collection.id = " . $id_user . " collection.id_item_" . $indice . "='" . $unid . "'";
+
+		$result = mysqli_query($db_handle, $sql_trouver);
+
+		while ($data = mysqli_fetch_assoc($result)) {
+			if ($data) {
+				return true;
+			}
+		}
+	}
 	return false;
 }
 
@@ -428,6 +458,13 @@ if (isset($_POST['modifier_client'])) {
 					<div class="tab-pane fade" id="nego-client">
 						<p class="h4 mb-4">Vos Négociations</p>
 
+						<form method="post" action="payer.php">
+							<h5>Indiquez quelle achat vous voulez negocier.</h5>
+							<input type="number" placeholder="ID" name="id_item">
+							<input type="number" placeholder="nouveau prix" name="nouveau_prix">
+							<button class="btn btn-primary" name="payer" type="submit" value="3" style="background: #31405F; border:none;">Terminer</button>
+						</form>
+
 						<div class="table">
 
 							<div class="table-responsive">
@@ -447,6 +484,44 @@ if (isset($_POST['modifier_client'])) {
 										</tr>
 									</thead>
 									<tbody>
+										<?php
+										foreach (items_dans_panier($_SESSION["id_user"], $db_handle) as $item) {
+											if ($item["type"] == 3) {
+												echo '<tr>';
+												echo '<td>' . $item["id"] . '</td>';
+												echo '<td><img src=' . chemins_dune_image($item["id"], $db_handle)[0] . ' width="90px" height="90px" /> </td>';
+												echo '<td>' . nom_du_vendeur($item["id"], $db_handle) . '</td>';
+												echo '<td>En cours</td>';
+												echo '<td>';
+												switch ($item["categorie"]) {
+													case 1:
+														echo "Ferraille ou Trésor";
+														break;
+													case 2:
+														echo "Bon pour le Musée";
+														break;
+													case 3:
+														echo "VIP";
+														break;
+												}
+												echo '</td>';
+												echo '<td>' . $item["prix"] . '<sup>€</sup></td>';
+												if ($item["prix_souh"]) {
+													echo '<td>' . $item["prix_souh"] . '<sup>€</sup></td>';
+												} else {
+													echo '<td>' . $item["prix"] . '<sup>€</sup></td>';
+												}
+												echo '<td>' . $item["tentative"] . '</td>';
+												echo '<td>';
+												echo '<a><button class="btn btn-primary">Négocier</button></a>';
+												echo '</td>';
+												echo '';
+												echo '';
+												echo '</tr>';
+											}
+										}
+										?>
+
 										<tr>
 											<!-- mettre les classes pour PHP comme pr vendeur-->
 											<td>1</td>
