@@ -11,7 +11,8 @@
 	$db_handle = mysqli_connect('localhost', 'root', '');
 	$db_found = mysqli_select_db($db_handle, $database);
 
-	$sql = "SELECT * FROM les_items ORDER BY RAND() LIMIT 3 "; /**Aléatoire */
+	$sql = "SELECT * FROM les_items ORDER BY RAND() LIMIT 3 "; /**Aléatoire 1er caroussel, on limite à 3 items pour le caroussel*/
+	$sql2 = "SELECT * FROM les_items ORDER BY RAND() LIMIT 3 "; /**Aléatoire 2eme caroussel */
 
 	function chemins_dune_image($id_item, $db_handle)
 	{
@@ -28,7 +29,9 @@
 		}
 		return $leschemins;
 	}
+	/**Deux variables différentes pour les 2 slides */
 	$result = mysqli_query($db_handle, $sql);
+	$result2 = mysqli_query($db_handle, $sql2);
 
 
 ?>
@@ -258,8 +261,6 @@
 
 						<div id="multi" class="carousel slide carousel-multi-item my-2" data-ride="carousel">
 
-
-
 							<ol class="carousel-indicators">
 								<li data-target="#multi" data-slide-to="0" class="active"></li>
 								<!--SLIDE active-->
@@ -270,11 +271,8 @@
 							<div class="carousel-inner" role="listbox">
 
 								<!--First slide-->
-
 								<div class="carousel-item active">
-
 									<div class="row d-flex justify-content-center">
-
 									<?php
 										while($data = mysqli_fetch_assoc($result))
 										{
@@ -301,70 +299,48 @@
 											<p class="ajout-panier"><em>Ajouter au panier</em></p>
 												</div>
 												</div> </div>';
-
 										}
-									
 								   ?>
 									
 									</div>
-
-
-
 								</div>
-																	
-
 
 								<!--Second slide-->
-								<!--On ajoute une carte à partir de la base de donnée avec random()-->
-								<div class="carousel-item">
 
+								<div class="carousel-item ">
 									<div class="row d-flex justify-content-center">
-										<div class="col-md-3">
-											<div class="card shadow p-3 mb-5 bg-white rounded ">
-												<img class="card-img-top px-2 py-2" style="border-radius:15px;" src="images/item/item4.jpg" alt="img" width="120px" height="270px">
-												<div class="card-body" style="background-color: #EFEFF1;border-radius:15px;">
-													<h4 class="card-title">Bague</h4>
-													<p class="card-text">355<sup>€</sup>.</p>
-													<p>Vendeur: Jorge<p>
-
-															<a href="panier.php" class="btn btn-primary buy-buton"><i class="fa fa-shopping-basket"></i></a>
-															<p class="ajout-panier"><em>Ajouter au panier</em></p>
+									<?php
+										while($data = mysqli_fetch_assoc($result2))
+										{
+											echo '<div class="col-md-3">';
+											echo '<div class="card shadow p-3 mb-5 bg-white rounded">';
+											echo '<img class="card-img-top px-2 py-2" style="border-radius:15px;"
+											src="'. chemins_dune_image($data["id"],$db_handle)[0] .'" alt="img" width="120px" height="270px">';
+											echo '<div class="card-body" style="background-color: #EFEFF1;border-radius:15px;">';
+											echo '<h4 class="card-title">'.$data["nom"].'</h4>';
+											echo '<p class="card-text">'.$data["prix"].'<sup>€</sup>.</p>';
+											echo '<p>ID Vendeur: '.$data["id_prop"].'  Type vente : ';
+											switch ($data["type"]) {
+												case 1:
+													echo 'Enchère </p>';
+													break;
+												case 2:
+													echo 'Achat immédiat </p>';
+													break;
+												case 3:
+													echo 'Meilleure offre </p>';
+													break;
+											}    ;
+											echo '<a href="panier.php" class="btn btn-primary buy-buton"><i class="fa fa-shopping-basket"></i></a>
+											<p class="ajout-panier"><em>Ajouter au panier</em></p>
 												</div>
-											</div>
-										</div>
-
-										<div class="col-md-3 clearfix d-none d-md-block">
-											<div class="card shadow p-3 mb-5 bg-white rounded">
-												<img class="card-img-top px-2 py-2" style="border-radius:15px;" src="images/item/item5.jpg" alt="img" width="120px" height="270px">
-												<div class="card-body" style="background-color: #EFEFF1;border-radius:15px;">
-													<h4 class="card-title">Bague</h4>
-													<p class="card-text">985<sup>€</sup>.</p>
-													<p>Vendeur: Theo<p>
-															<a href="panier.php" class="btn btn-primary buy-buton"><i class="fa fa-shopping-basket"></i></a>
-															<p class="ajout-panier"><em>Ajouter au panier</em></p>
-												</div>
-											</div>
-										</div>
-
-										<div class="col-md-3 clearfix d-none d-md-block">
-											<div class="card shadow p-3 mb-5 bg-white rounded">
-												<img class="card-img-top px-2 py-2" style="border-radius:15px;" src="images/item/item6.jpg" alt="img" width="120px" height="270px">
-												<div class="card-body" style="background-color: #EFEFF1;border-radius:15px;">
-													<h4 class="card-title">Bijou</h4>
-													<p class="card-text">25<sup>€</sup>.</p>
-													<p>Vendeur: Jorge<p>
-															<a href="panier.php" class="btn btn-primary buy-buton"><i class="fa fa-shopping-basket"></i></a>
-															<p class="ajout-panier"><em>Ajouter au panier</em></p>
-												</div>
-											</div>
-										</div>
+												</div> </div>';
+										}
+								   ?>
+									
 									</div>
-
-
 								</div>
-								<!--/Second slide-->
-
-
+																
 							</div>
 
 							<a class="carousel-control-prev" href="#multi" role="button" data-slide="prev">
