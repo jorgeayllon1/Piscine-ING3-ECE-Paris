@@ -284,7 +284,7 @@ function somme_tot_achat_immediat($id_user, $db_handle)
                                     <td></td>
                                     <td></td>
                                     <td></td>
-                                    <td id="total_item_panier"><?php echo taille_panier($_SESSION["id_user"], $db_handle)-1 ?></td>
+                                    <td id="total_item_panier"><?php echo taille_panier($_SESSION["id_user"], $db_handle) ?></td>
                                     <td></td>
                                     <td></td>
                                     <td></td>

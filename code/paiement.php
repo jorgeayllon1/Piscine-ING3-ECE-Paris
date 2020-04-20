@@ -342,7 +342,7 @@ function payer_achat_immediat($id_user, $db_handle)
                         <dl class="row">
                             <dd class="col-sm-12">
                                 <!--<p>Panier (<span id="nb_item">2</span>)</p>-->
-                                <p >Panier (<?php echo taille_panier($_SESSION["id_user"], $db_handle)-1 ?>)</p><p style="font-size:12px;"> (Ce nombre indique tous les produits dans votre items_dans_panier
+                                <p >Panier (<?php echo taille_panier($_SESSION["id_user"], $db_handle) ?>)</p><p style="font-size:12px;"> (Ce nombre indique tous les produits dans votre items_dans_panier
                             peu importe enchère, achat immédiat ou meilleure offre</p>
                             </dd>
                         </dl>
