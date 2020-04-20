@@ -2,6 +2,22 @@
 
 session_start();
 
+    $mail = $_POST["email_vendeur_inscription"];
+    $prenom= $_POST["prenom_vendeur_inscription"];
+    $nom = $_POST["nom_vendeur_inscription"];
+    $pseudo= $_POST["pseudo_vendeur_inscription"];
+    $rang = 2;
+    $mdp = $_POST["mdp_vendeur_inscription"];
+    $image = $_POST["file_pdp"];
+    $image_back = $_POST["file_back"];
+
+    if($mail=="" || $prenom=="" || $nom=="" || $pseudo=="" || $mdp=="" || $image=="" || $image_back=="")
+    {
+        echo'error mail';
+        header("location:inscription_vendeur.php");
+    }
+
+
 $database = "ebayece";
 $db_handle = mysqli_connect('localhost', 'root', '');
 $db_found = mysqli_select_db($db_handle, $database);
@@ -56,13 +72,8 @@ function ajouter_collection($id_user, $db_handle)
 
 if (isset($_POST["submit_vendeur_inscription"])) {
 
-    $mail = $_POST["email_vendeur_inscription"];
+    
 
-    /*if ($mail = "") {
-        header("location: inscription_client");
-    }*/
-
-    echo $mail;
 
     if ($db_found) {
         $sql = "SELECT * FROM `user` WHERE email LIKE '$mail'";
@@ -70,31 +81,13 @@ if (isset($_POST["submit_vendeur_inscription"])) {
 
         if (mysqli_num_rows($result) == 0) {
             #echo "Coder ici";
-
-            $info_client["prenom"] = $_POST["prenom_vendeur_inscription"];
-            $info_client["nom"] = $_POST["nom_vendeur_inscription"];
-            $info_client["pseudo"] = $_POST["pseudo_vendeur_inscription"];
-            $info_client["email"] = $mail;
-            $info_client["rang"] = 2;
-            $info_client["mdp"] = $_POST["mdp_vendeur_inscription"];
-            $info_client["image"] = $_POST["file_pdp"];
-            $info_client["image_back"] = $_POST["file_back"];
-
-            foreach ($info_client as $elements) {
-                if ($elements == "") {
-                    echo "error";
-                    #header("location: inscription_client.php");
-                } else {
-                    echo $elements;
-                }
-            }
-
-            $info_client["id"] = trouver_id_dispo($db_handle);
+       
+            $id = trouver_id_dispo($db_handle);
 
 
             #ajouter collection
             ajouter_collection(
-                $info_client["id"],
+                $id,
                 $db_handle
             );
 
@@ -105,34 +98,42 @@ if (isset($_POST["submit_vendeur_inscription"])) {
 
             #ajouter user
             ajouter_vendeur(
-                $info_client["id"],
-                $info_client["email"],
-                $info_client["mdp"],
-                $info_client["pseudo"],
-                $info_client["nom"],
-                $info_client["prenom"],
-                $info_client["image"],
-                $info_client["image_back"],
+                $id,
+                $mail,
+                $mdp,
+                $pseudo,
+                $nom,
+                $prenom,
+                $image,
+                $image_back,
                 $db_handle
             );
 
 
-            $_SESSION["id_user"] = $info_client['id'];
-            $_SESSION["rang"] = $info_client['rang'];
-            $_SESSION["nom"] = $info_client['nom'];
-            $_SESSION["prenom"] = $info_client['prenom'];
-            $_SESSION["id_collection"] = $info_client['id'];
+            $_SESSION["id_user"] = $id;
+            $_SESSION["rang"] = $rang;
+            $_SESSION["nom"] = $nom;
+            $_SESSION["prenom"] = $prenom;
+            $_SESSION["id_collection"] = $id;
+            $_SESSION["pseudo"] = $pseudo;
+            $_SESSION["email"] = $mail;
+            $_SESSION["photo_perso"] = $image;
+            $_SESSION["photo_background"] = $image_back;
+            $_SESSION["mdp"] = $mdp;
 
             #echo "arriver au session";
             header("location: accueil.php");
-        } else {
+        } 
+        else {
             echo "Vous êtes deja dans la bdd";
 
             #header("location: inscription_client");
         }
-    } else {
+    } 
+    else {
         echo "ERROR";
     }
-} else {
+}
+ else {
     echo "ERROR";
 }
