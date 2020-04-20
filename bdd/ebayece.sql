@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.9.2
+-- version 4.8.5
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le :  Dim 19 avr. 2020 à 22:08
--- Version du serveur :  8.0.18
--- Version de PHP :  7.3.12
+-- Généré le :  lun. 20 avr. 2020 à 14:32
+-- Version du serveur :  5.7.26
+-- Version de PHP :  7.2.18
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -38,7 +38,7 @@ CREATE TABLE IF NOT EXISTS `coord_livraison` (
   `code_postal` int(255) NOT NULL,
   `pays` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
 
 --
 -- Déchargement des données de la table `coord_livraison`
@@ -133,7 +133,7 @@ CREATE TABLE IF NOT EXISTS `lacollection` (
   `id_item_49` int(50) DEFAULT NULL,
   `id_item_50` int(50) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=latin1;
 
 --
 -- Déchargement des données de la table `lacollection`
@@ -168,7 +168,7 @@ CREATE TABLE IF NOT EXISTS `les_items` (
   `tentative` int(11) NOT NULL DEFAULT '5',
   PRIMARY KEY (`id`),
   KEY `id_prop` (`id_prop`)
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=latin1;
 
 --
 -- Déchargement des données de la table `les_items`
@@ -183,7 +183,11 @@ INSERT INTO `les_items` (`id`, `id_prop`, `nom`, `description`, `prix`, `prix_so
 (6, 3, 'montre', 'montre luxueuse', 250, NULL, NULL, 3, 2, '2020-04-30', '2020-05-14', NULL, 5),
 (7, 3, 'ordi', 'bon processeur', 450, NULL, NULL, 1, 2, '2020-04-01', '2020-04-02', NULL, 5),
 (8, 3, 'souris', 'souris sans fil', 30, NULL, NULL, 3, 3, '2020-04-07', '2020-04-15', NULL, 5),
-(9, 3, 'tableau', 'tableau paint par un peintre celebre', 200, NULL, NULL, 2, 3, '2020-04-15', '2020-04-24', NULL, 5);
+(9, 3, 'tableau', 'tableau paint par un peintre celebre', 200, NULL, NULL, 2, 3, '2020-04-15', '2020-04-24', NULL, 5),
+(10, 3, 'bague', 'belle bague', 999, NULL, NULL, 3, 3, '2020-04-01', '2020-04-16', NULL, 5),
+(11, 3, 'collier_bague', 'beau collier avec bague', 388, NULL, NULL, 3, 2, '2020-04-22', '2020-04-29', NULL, 5),
+(12, 3, 'bague2', 'description de la bague 2', 560, NULL, NULL, 3, 1, '2020-04-22', '2020-04-24', NULL, 5),
+(13, 3, 'bague3', 'description bague3', 567, NULL, NULL, 3, 1, '2020-04-21', '2020-04-22', NULL, 5);
 
 -- --------------------------------------------------------
 
@@ -198,7 +202,7 @@ CREATE TABLE IF NOT EXISTS `photo` (
   `chemin` varchar(255) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `id_item` (`id_item`)
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=latin1;
 
 --
 -- Déchargement des données de la table `photo`
@@ -213,7 +217,11 @@ INSERT INTO `photo` (`id`, `id_item`, `chemin`) VALUES
 (6, 6, 'images/item/montre.png'),
 (7, 7, 'images/item/ordi.png'),
 (8, 8, 'images/item/souris.png'),
-(9, 9, 'images/item/item1.jpg');
+(9, 9, 'images/item/item1.jpg'),
+(10, 10, 'images/item/item5.jpg'),
+(11, 11, 'images/item/item6.jpg'),
+(12, 12, 'images/item/item3.jpg'),
+(13, 13, 'images/item/item4.jpg');
 
 -- --------------------------------------------------------
 
@@ -257,7 +265,7 @@ CREATE TABLE IF NOT EXISTS `user` (
   KEY `id_carte` (`id_carte`),
   KEY `id_livraison` (`id_livraison`),
   KEY `id_collection` (`id_collection`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=latin1;
 
 --
 -- Déchargement des données de la table `user`
@@ -268,7 +276,7 @@ INSERT INTO `user` (`id`, `id_livraison`, `id_carte`, `id_collection`, `email`, 
 (2, 2, 2, 2, 'jjjjj@gmail.com', 'jebois', 'jjgold', 1, 'goldman', 'jean-jacques', NULL, NULL),
 (3, NULL, NULL, 3, 'jhonnn@gmail.com', 'jechante', 'holiday', 2, 'hallyday', 'johnny', 'images/vendeur/johnny-hallyday.png', 'images/vendeur/johnny-hallyday-back.png'),
 (4, 4, 4, 4, 'michel@gmail.com', 'jesaute', 'dd', 1, 'wang', 'Michel', NULL, NULL),
-(5, NULL, NULL, 5, 'admin@gmail.com', 'motdepasse', 'vendeurwang', 2, '', 'vendeur', 'vendeur.jpg', 'sell.jpg');
+(5, NULL, NULL, 5, '', '', '', 2, '', '', '', '');
 
 --
 -- Contraintes pour les tables déchargées
