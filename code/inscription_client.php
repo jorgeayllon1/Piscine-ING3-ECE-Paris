@@ -60,42 +60,43 @@ session_start();
 				<div class="form-row mb-4">
 					<div class="col">
 
-						<input type="text" name="prenom_client_inscription" id="prenom_client_inscription" class="form-control" placeholder="Prénom">
+						<input type="text" required name="prenom_client_inscription" id="prenom_client_inscription" class="form-control" placeholder="Prénom">
 					</div>
 					<div class="col">
 
-						<input type="text" name="nom_client_inscription" id="nom_client_inscription" class="form-control" placeholder="nom">
+						<input type="text" required name="nom_client_inscription" id="nom_client_inscription" class="form-control" placeholder="nom">
 					</div>
 				</div>
 
-				<input type="text" name="pseudo_client_inscription" id="pseudo_client_inscription" class="form-control mb-3" placeholder="Pseudo">
+				<input type="text" required name="pseudo_client_inscription" id="pseudo_client_inscription" class="form-control mb-3" placeholder="Pseudo">
 
 
-				<input type="email" name="email_client_inscription" id="email_client_inscription" class="form-control mb-3" placeholder="E-mail">
+				<input type="email" required name="email_client_inscription" id="email_client_inscription" class="form-control mb-3" placeholder="E-mail">
 
 
-				<input type="password" name="mdp_client_inscription" id="mdp_client_inscription" class="form-control" placeholder="Mot De Passe" aria-describedby="defaultRegisterFormPasswordHelpBlock">
-				<small id="mdp_client_inscription" class="form-text text-muted mb-4">
+				<input type="password" required minlength="8" name="mdp_client_inscription" id="mdp_client_inscription" class="form-control" placeholder="Mot De Passe" aria-describedby="defaultRegisterFormPasswordHelpBlock">
+				<small id="mdp_client_inscription" class="form-text text-muted mb-4"  >
 					<em>Au moins 8 caractères et un chiffre</em>
 
 				</small>
-				<input type="text" name="ad1_client_inscription" id="ad1_client_inscription" class="form-control mb-3" placeholder="Adresse">
-				<input type="text" name="ad2_client_inscription" id="ad2_client_inscription" class="form-control mb-3" placeholder="Complément adresse">
+				<input type="text" required name="ad1_client_inscription" id="ad1_client_inscription" class="form-control mb-3" placeholder="Adresse">
+				<input type="text" required name="ad2_client_inscription" id="ad2_client_inscription" class="form-control mb-3" placeholder="Complément adresse">
 
 				<div class="form-row mb-4">
 					<div class="col">
-						<input type="text" name="pays_client_inscription" id="pays_client_inscription" class="form-control mb-3" placeholder="Pays">
+						<input type="text" required name="pays_client_inscription" id="pays_client_inscription" class="form-control mb-3" placeholder="Pays">
 					</div>
 					<div class="col">
-						<input type="text" name="ville_client_inscription" id="ville_client_inscription" class="form-control mb-3" placeholder="Ville">
+						<input type="text" required name="ville_client_inscription" id="ville_client_inscription" class="form-control mb-3" placeholder="Ville">
 					</div>
 				</div>
 
-				<input type="number" name="cp_client_inscription" id="cp_client-inscription" class="form-control mb-3" placeholder="Code Postal">
+				<input type="number" required name="cp_client_inscription" id="cp_client-inscription" 
+				class="form-control mb-3" placeholder="Code Postal"min="1" max="99999">
 
 
-				<input type="text" name="phone_client_inscription" id="phone_client_inscription" class="form-control" placeholder="Téléphone" aria-describedby="defaultRegisterFormPhoneHelpBlock">
-				<small id="phone_client_inscription" class="form-text text-muted mb-3">
+				<input type="text" required name="phone_client_inscription" id="phone_client_inscription" class="form-control" placeholder="Téléphone" aria-describedby="defaultRegisterFormPhoneHelpBlock">
+				<small id="phone_client_inscription" class="form-text text-muted mb-3" min="1" max="9999999999">
 					Numéro en France
 				</small>
 
@@ -128,22 +129,22 @@ session_start();
 				<div class="form-row my-2">
 					<div class="col">
 						<label for="paiement_nom">Nom sur la carte :</label>
-						<input type="text" name="paiement_nom" id="paiement_nom" class="form-control">
+						<input type="text" required name="paiement_nom" id="paiement_nom" class="form-control">
 					</div>
 					<div class="col">
 						<label for="paiement_num_carte">Numéro carte :</label>
-						<input type="text" name="paiement_num_carte" id="paiement_num_carte" class="form-control">
+						<input type="text" required name="paiement_num_carte" id="paiement_num_carte" class="form-control" min="1" max="999999999999">
 					</div>
 				</div>
 
 				<div class="form-row my-2 ">
 					<div class="col">
 						<label for="paiement_date_expi">Date expiration :</label>
-						<input type="month" name="paiement_date_expi" id="paiement_date_expi" class="form-control">
+						<input type="month" required name="paiement_date_expi" id="paiement_date_expi" class="form-control">
 					</div>
 					<div class="col">
 						<label for="paiement_code">CVC :</label>
-						<input type="number" name="paiement_code" id="paiement_code" class="form-control">
+						<input type="number" required name="paiement_code" id="paiement_code" class="form-control" min="1" max="999" >
 					</div>
 				</div>
 

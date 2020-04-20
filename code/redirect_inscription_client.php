@@ -2,6 +2,33 @@
 
 session_start();
 
+            $prenom= $_POST["prenom_client_inscription"];
+            $nom = $_POST["nom_client_inscription"];
+            $pseudo = $_POST["pseudo_client_inscription"];
+            $mail = $_POST["email_client_inscription"];
+            $rang = 1;
+            $mdp= $_POST["mdp_client_inscription"];
+            $ad1= $_POST["ad1_client_inscription"];
+            $ad2= $_POST["ad2_client_inscription"];
+            $pays = $_POST["pays_client_inscription"];
+            $ville= $_POST["ville_client_inscription"];
+            $cp= $_POST["cp_client_inscription"];
+            $phone= $_POST["phone_client_inscription"];
+            $type_carte = $_POST["type_carte"];
+            $paiement_nom= $_POST["paiement_nom"];
+            $paiement_num_carte = $_POST["paiement_num_carte"];
+            $paiement_date_expi= $_POST["paiement_date_expi"];
+            $paiement_code= $_POST["paiement_code"];
+
+            if($mail=="" || $prenom=="" || $nom=="" || $pseudo=="" || $mdp=="" || $ad1=="" || $ad2=="" ||
+            $pays=="" || $ville=="" || $cp=="" || $phone=="" || $type_carte=="" || $paiement_nom=="" 
+            || $paiement_num_carte=="" || $paiement_date_expi=="" || $paiement_code=="")
+            {
+                echo'error ';
+                header("location:inscription_client.php");
+            }
+
+
 $database = "ebayece";
 $db_handle = mysqli_connect('localhost', 'root', '');
 $db_found = mysqli_select_db($db_handle, $database);
@@ -66,7 +93,7 @@ function ajouter_client($id_user, $email, $mdp, $pseudo, $nom, $prenom, $db_hand
 
 if (isset($_POST['submit_client_inscription'])) {
 
-    $mail = $_POST["email_client_inscription"];
+    
 
     /*if ($mail = "") {
         header("location: inscription_client");
@@ -79,82 +106,78 @@ if (isset($_POST['submit_client_inscription'])) {
         if (mysqli_num_rows($result) == 0) {
             #echo "Coder ici";
 
-            $info_client["prenom"] = $_POST["prenom_client_inscription"];
-            $info_client["nom"] = $_POST["nom_client_inscription"];
-            $info_client["pseudo"] = $_POST["pseudo_client_inscription"];
-            $info_client["email"] = $mail;
-            $info_client["rang"] = 1;
-            $info_client["mdp"] = $_POST["mdp_client_inscription"];
-            $info_client["ad1"] = $_POST["ad1_client_inscription"];
-            $info_client["ad2"] = $_POST["ad2_client_inscription"];
-            $info_client["pays"] = $_POST["pays_client_inscription"];
-            $info_client["ville"] = $_POST["ville_client_inscription"];
-            $info_client["cp"] = $_POST["cp_client_inscription"];
-            $info_client["phone"] = $_POST["phone_client_inscription"];
-            $info_client["type_carte"] = $_POST["type_carte"];
-            $info_client["paiement_nom"] = $_POST["paiement_nom"];
-            $info_client["paiement_num_carte"] = $_POST["paiement_num_carte"];
-            $info_client["paiement_date_expi"] = $_POST["paiement_date_expi"];
-            $info_client["paiement_code"] = $_POST["paiement_code"];
-
-            foreach ($info_client as $elements) {
-                if ($elements == "") {
-                    echo "error";
-                    header("location: inscription_client.php");
-                } else {
-                    #echo $elements;
-                }
-            }
-
-            $info_client["id"] = trouver_id_dispo($db_handle);
+            
+            $id = trouver_id_dispo($db_handle);
 
             #ajouter livraison
             ajouter_livraison(
-                $info_client["id"],
-                $info_client["phone"],
-                $info_client["ad1"],
-                $info_client["ad2"],
-                $info_client["ville"],
-                $info_client["cp"],
-                $info_client["pays"],
+                $id,
+                $phone,
+                $ad1,
+                $ad2,
+                $ville,
+                $cp,
+                $pays,
                 $db_handle
             );
             #ajouter bancaire
             ajouter_bancaire(
-                $info_client["id"],
-                $info_client["paiement_num_carte"],
-                $info_client["type_carte"],
-                $info_client["paiement_nom"],
-                $info_client["paiement_date_expi"],
-                $info_client["paiement_code"],
+                $id,
+                $paiement_num_carte,
+                $type_carte,
+                $paiement_nom,
+                $paiement_date_expi,
+                $paiement_code,
                 $db_handle
             );
             #ajouter collection
             ajouter_collection(
-                $info_client["id"],
+                $id,
                 $db_handle
             );
             #ajouter user
             ajouter_client(
-                $info_client["id"],
-                $info_client["email"],
-                $info_client["mdp"],
-                $info_client["pseudo"],
-                $info_client["nom"],
-                $info_client["prenom"],
+                $id,
+                $mail,
+                $mdp,
+                $pseudo,
+                $nom,
+                $prenom,
                 $db_handle
             );
 
-            $_SESSION["id_user"] = $info_client['id'];
-            $_SESSION["rang"] = $info_client['rang'];
-            $_SESSION["nom"] = $info_client['nom'];
-            $_SESSION["prenom"] = $info_client['prenom'];
-            $_SESSION["id_collection"] = $info_client["id_collection"];
+            /**Stocker dans la session pour récup les infos dans mon compte */
+
+            $_SESSION["id_user"] = $id;
+            $_SESSION["rang"] = $rang;
+            $_SESSION["nom"] = $nom;
+            $_SESSION["prenom"] = $prenom;
+            $_SESSION["id_collection"] = $id;
+            $_SESSION["email"] = $mail;
+            $_SESSION["pseudo"] = $pseudo;
+            $_SESSION["mdp"] = $mdp;
+            /** */
+            $_SESSION["adresse1"] = $ad1;
+            $_SESSION["adresse2"] = $ad2;
+            $_SESSION["ville"] = $ville;
+            $_SESSION["code_postal"] = $cp;
+            $_SESSION["pays"] = $pays;
+            $_SESSION["num_tel"] = $phone;
+            /** */
+            $_SESSION["num_carte"] = $paiement_num_carte;
+            $_SESSION["type"] = $type_carte;
+            $_SESSION["nom_sur_carte"] = $paiement_nom;
+            $_SESSION["date_expi"] = $paiement_date_expi;
+            $_SESSION["code"] = $paiement_code;
+
+
             header("location: accueil.php");
-        } else {
+        } 
+        else 
+        {
             echo "Vous êtes deja dans la bdd";
 
-            header("location: connexion_client");
+           
         }
     }
 }

@@ -67,22 +67,22 @@ session_start();
 						<div class="form-row mb-4">
 							<div class="col">
 
-								<input type="text" name="prenom_vendeur_inscription" id="prenom_vendeur_inscription" class="form-control" placeholder="Prénom">
+								<input type="text" required name="prenom_vendeur_inscription" id="prenom_vendeur_inscription" class="form-control" placeholder="Prénom">
 							</div>
 							<div class="col">
 
-								<input type="text" name="nom_vendeur_inscription" id="nom_vendeur_inscription" class="form-control" placeholder="nom">
+								<input type="text" required name="nom_vendeur_inscription" id="nom_vendeur_inscription" class="form-control" placeholder="nom">
 							</div>
 						</div>
 
-						<input type="text" name="pseudo_vendeur_inscription" id="pseudo_vendeur_inscription" class="form-control mb-3" placeholder="Pseudo">
+						<input type="text" required name="pseudo_vendeur_inscription" id="pseudo_vendeur_inscription" class="form-control mb-3" placeholder="Pseudo">
 
 
-						<input type="email" name="email_vendeur_inscription" id="email_vendeur_inscription" class="form-control mb-3" placeholder="E-mail">
+						<input type="email" required name="email_vendeur_inscription" id="email_vendeur_inscription" class="form-control mb-3" placeholder="E-mail">
 
 
-						<input type="password" name="mdp_vendeur_inscription" id="mdp_vendeur_inscription" class="form-control" placeholder="Mot De Passe" >
-						<small id="mdp_vendeur_inscription" class="form-text text-muted mb-4">
+						<input type="password" required minlength="8" name="mdp_vendeur_inscription" id="mdp_vendeur_inscription" class="form-control" placeholder="Mot De Passe" >
+						<small id="mdp_vendeur_inscription" class="form-text text-muted mb-4" >
 							<em>Au moins 8 caractères et un chiffre</em>
 
 						</small>
@@ -95,7 +95,7 @@ session_start();
 								<span class="input-group-text" id="ajout-photo">Ajouter</span>
 							</div>
 							<div class="custom-file">
-								<input type="file" name="file_pdp" class="custom-file-input" id="file_pdp" lang="fr">
+								<input type="file" required name="file_pdp" class="custom-file-input" id="file_pdp" lang="fr">
 								<label class="custom-file-label" for="file_pdp"> fichier </label>
 							</div>
 						</div>
@@ -108,7 +108,7 @@ session_start();
 								<span class="input-group-text"  id="ajout-photo">Ajouter</span>
 							</div>
 							<div class="custom-file">
-								<input type="file" class="custom-file-input" name="file_back" id="file_back" lang="fr">
+								<input type="file" required class="custom-file-input" name="file_back" id="file_back" lang="fr">
 								<label class="custom-file-label" for="file_back"> fichier </label>
 							</div>
 						</div>

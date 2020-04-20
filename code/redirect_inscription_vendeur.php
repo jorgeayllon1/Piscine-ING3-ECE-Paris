@@ -13,7 +13,7 @@ session_start();
 
     if($mail=="" || $prenom=="" || $nom=="" || $pseudo=="" || $mdp=="" || $image=="" || $image_back=="")
     {
-        echo'error mail';
+        echo'error ';
         header("location:inscription_vendeur.php");
     }
 
