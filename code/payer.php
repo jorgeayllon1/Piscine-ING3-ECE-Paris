@@ -257,7 +257,7 @@ if (isset($_POST['payer'])) {
 
             if ($latentative != 0) {
 
-                if ($_SESSION["id_user"] == 2) {
+                if ($_SESSION["rang"] == 1) {
 
                     echo "client ";
 
@@ -270,7 +270,7 @@ if (isset($_POST['payer'])) {
                     echo $sql;
 
                     header("location: compte_client.php");
-                } else if ($_SESSION["id_user"] == 3) {
+                } else if ($_SESSION["rang"] == 2) {
 
                     echo "vendeur ";
 
@@ -287,7 +287,7 @@ if (isset($_POST['payer'])) {
                     header("location:compte_vendeur.php");
                 }
             } else {
-                if ($_SESSION["id_user"] == 3) {
+                if ($_SESSION["rang"] == 2) {
 
                     $sql =
                         "UPDATE les_items
@@ -298,7 +298,7 @@ if (isset($_POST['payer'])) {
 
                     header("location: compte_vendeur.php");
                 }
-                header("location: compte_client.php");
+                header("location: accueil.php");
             }
         }
     }

@@ -1,102 +1,76 @@
 <?php
-	session_start();
+session_start();
 
-	/**Accès bdd */
+/**Accès bdd */
 
-	$database = "ebayece";
-	$db_handle = mysqli_connect('localhost', 'root', '');
-	$db_found = mysqli_select_db($db_handle, $database);
+$database = "ebayece";
+$db_handle = mysqli_connect('localhost', 'root', '');
+$db_found = mysqli_select_db($db_handle, $database);
 
 
-	$sql = "SELECT * FROM les_items";
+$sql = "SELECT * FROM les_items";
 
-	#Cette fonction prend en paramètre l'id d'une image et le msqli_connect (db_handle)
-	#Cette fonction va renvoyer toutes les images d'un items sous forme d'un tableau (array)
-	function chemins_dune_image($id_item, $db_handle)
-	{
-		$sql =
-			"SELECT chemin from photo 
+#Cette fonction prend en paramètre l'id d'une image et le msqli_connect (db_handle)
+#Cette fonction va renvoyer toutes les images d'un items sous forme d'un tableau (array)
+function chemins_dune_image($id_item, $db_handle)
+{
+	$sql =
+		"SELECT chemin from photo 
 		inner join les_items
 			on les_items.id = photo.id_item
 			where les_items.id=$id_item";
 
-		$result = mysqli_query($db_handle, $sql);
-
-		while ($data = mysqli_fetch_assoc($result)) {
-			$leschemins[] = $data["chemin"];
-		}
-		return $leschemins;
-	}
-
-
 	$result = mysqli_query($db_handle, $sql);
 
-	/**On récupère le choix de l'utilisateur dans des var  */
+	while ($data = mysqli_fetch_assoc($result)) {
+		$leschemins[] = $data["chemin"];
+	}
+	return $leschemins;
+}
 
-	$categorie = isset($_POST["categorie"])?$_POST["categorie"]:"";
-	$type_achat = isset($_POST["type_achat"])?$_POST["type_achat"]:"";
 
-	if(isset($_POST['bouton_filtrer']))
-	{
+$result = mysqli_query($db_handle, $sql);
 
-		if($db_found)
-		{
-			/**Boucle qui va parcourir toutes les combinaisaons de choix */
-			for($i=1 ; $i<4 ;$i++)
-			{
-				for($j=1 ; $j<4 ;$j++)
-				{
-					if($categorie==$i AND $type_achat==$j)
-					{
-						$sql = "SELECT * FROM les_items WHERE categorie = $categorie AND type ='$type_achat'";
-						$result = mysqli_query($db_handle,$sql);
-						
-					}
-					
+/**On récupère le choix de l'utilisateur dans des var  */
 
+$categorie = isset($_POST["categorie"]) ? $_POST["categorie"] : "";
+$type_achat = isset($_POST["type_achat"]) ? $_POST["type_achat"] : "";
+
+if (isset($_POST['bouton_filtrer'])) {
+
+	if ($db_found) {
+		/**Boucle qui va parcourir toutes les combinaisaons de choix */
+		for ($i = 1; $i < 4; $i++) {
+			for ($j = 1; $j < 4; $j++) {
+				if ($categorie == $i and $type_achat == $j) {
+					$sql = "SELECT * FROM les_items WHERE categorie = $categorie AND type ='$type_achat'";
+					$result = mysqli_query($db_handle, $sql);
 				}
 			}
-			/**Restes les choix vides d'und es deux selection */
-			if($categorie==1 AND $type_achat==4)
-			{
-				$sql = "SELECT * FROM les_items WHERE categorie = 1";
-				$result = mysqli_query($db_handle,$sql);
-				
-			}			
-			else if($categorie==2 AND $type_achat==4)
-			{
-				$sql = "SELECT * FROM les_items WHERE categorie = 2";
-				$result = mysqli_query($db_handle,$sql);
-				
-			}
-			else if($categorie==3 AND $type_achat==4)
-			{
-				$sql = "SELECT * FROM les_items WHERE categorie = 3";
-				$result = mysqli_query($db_handle,$sql);
-				
-			}
-			else if($categorie==4 AND $type_achat==1)
-			{
-				$sql = "SELECT * FROM les_items WHERE  type =1";
-				$result = mysqli_query($db_handle,$sql);
-				
-			}
-			else if($categorie==4 AND $type_achat==2)
-			{
-				$sql = "SELECT * FROM les_items WHERE  type =2";
-				$result = mysqli_query($db_handle,$sql);
-				
-			}
-			else if($categorie==4 AND $type_achat==3)
-			{
-				$sql = "SELECT * FROM les_items WHERE  type =3";
-				$result = mysqli_query($db_handle,$sql);
-				
-			}
 		}
-
+		/**Restes les choix vides d'und es deux selection */
+		if ($categorie == 1 and $type_achat == 4) {
+			$sql = "SELECT * FROM les_items WHERE categorie = 1";
+			$result = mysqli_query($db_handle, $sql);
+		} else if ($categorie == 2 and $type_achat == 4) {
+			$sql = "SELECT * FROM les_items WHERE categorie = 2";
+			$result = mysqli_query($db_handle, $sql);
+		} else if ($categorie == 3 and $type_achat == 4) {
+			$sql = "SELECT * FROM les_items WHERE categorie = 3";
+			$result = mysqli_query($db_handle, $sql);
+		} else if ($categorie == 4 and $type_achat == 1) {
+			$sql = "SELECT * FROM les_items WHERE  type =1";
+			$result = mysqli_query($db_handle, $sql);
+		} else if ($categorie == 4 and $type_achat == 2) {
+			$sql = "SELECT * FROM les_items WHERE  type =2";
+			$result = mysqli_query($db_handle, $sql);
+		} else if ($categorie == 4 and $type_achat == 3) {
+			$sql = "SELECT * FROM les_items WHERE  type =3";
+			$result = mysqli_query($db_handle, $sql);
+		}
 	}
-	
+}
+
 
 ?>
 <!DOCTYPE html>
@@ -179,29 +153,37 @@
 	<div class="container my-4">
 		<div class="row">
 
-			<h5>Filtrer selon le type d'achat et la catégorie:  </h5>
+			<h5>Filtrer selon le type d'achat et la catégorie: </h5>
 
 			<form action="page_achat.php" method="post">
 
-			<div class="form-group mx-2">
-				<select class="form-control" name="categorie" id="categorie">
-					<option value="1">Ferraille ou trésor</option>
-					<option value="2">Bon pour le musée</option>
-					<option value="3">Accessoire VIP</option>
-					<option value="4" selected><option>
-				</select>
-			</div>
+				<div class="form-group mx-2">
+					<select class="form-control" name="categorie" id="categorie">
+						<option value="1">Ferraille ou trésor</option>
+						<option value="2">Bon pour le musée</option>
+						<option value="3">Accessoire VIP</option>
+						<option value="4" selected>
+						<option>
+					</select>
+				</div>
 
-			<div class="form-group mx-2 mt-2">
-				<select class="form-control" name="type_achat" id="type_achat">
-					<option value="1">Enchères</option>
-					<option value="2">Achat immédiat</option>
-					<option value="3">Meilleure offre</option>
-					<option value="4" selected><option>
-				</select>
-			</div>
+				<div class="form-group mx-2 mt-2">
+					<select class="form-control" name="type_achat" id="type_achat">
+						<option value="1">Enchères</option>
+						<option value="2">Achat immédiat</option>
+						<option value="3">Meilleure offre</option>
+						<option value="4" selected>
+						<option>
+					</select>
+				</div>
 
-			<button class="btn btn-primary" name="bouton_filtrer">Appliquer</button>
+				<button class="btn btn-primary" name="bouton_filtrer">Appliquer</button>
+			</form>
+
+			<form method="post" action="ajouter_panier.php">
+				<h5>Indiquez quelle produit vous voulez ajouter à votre panier.</h5>
+				<input type="number" placeholder="ID" name="id_item">
+				<button class="btn btn-primary" name="ajouter_panier" type="submit" style="background: #31405F; border:none;">Ajouter</button>
 			</form>
 
 

@@ -77,6 +77,7 @@ if (isset($_POST["terminer"])) {
 
     echo "Tu parles de " . $_POST["id_item"] . " C'est ça ?";
     terminer_enchere($_POST["id_item"], $db_handle);
+    header("location:compte_admin.php");
 } else {
     echo "ERROR ";
 }

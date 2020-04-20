@@ -1,9 +1,9 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.5
+-- version 4.9.2
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le :  lun. 20 avr. 2020 à 15:40
+-- Généré le :  lun. 20 avr. 2020 à 16:28
 -- Version du serveur :  8.0.18
 -- Version de PHP :  7.3.12
 
@@ -274,7 +274,7 @@ CREATE TABLE IF NOT EXISTS `user` (
 INSERT INTO `user` (`id`, `id_livraison`, `id_carte`, `id_collection`, `email`, `mdp`, `pseudo`, `rang`, `nom`, `prenom`, `photo_perso`, `photo_background`) VALUES
 (1, NULL, NULL, NULL, 'admin@gmail.com', 'motdepasse', 'lebigboss', 3, 'ayllon', 'jorge', 'admin.png', NULL),
 (2, 2, 2, 2, 'jjjjj@gmail.com', 'jebois', 'jjgold', 1, 'goldman', 'jean-jacques', NULL, NULL),
-(3, NULL, NULL, 3, 'jhonnn@gmail.com', 'jechante', 'holiday', 2, 'hallyday', 'johnny', 'images/vendeur/johnny-hallyday.png', 'images/vendeur/johnny-hallyday-back.png'),
+(3, NULL, NULL, 3, 'jhonnn@gmail.com', 'jechante', 'holiday', 2, 'hallyday', 'johnny', 'johnny-hallyday.jpg', 'images/vendeur/johnny-hallyday-back.png'),
 (4, 4, 4, 4, 'michel@gmail.com', 'jesaute', 'dd', 1, 'wang', 'Michel', NULL, NULL),
 (5, NULL, NULL, 5, '', '', '', 2, '', '', '', '');
 

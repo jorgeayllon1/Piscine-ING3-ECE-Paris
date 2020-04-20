@@ -141,7 +141,7 @@ if (isset($_POST['ajouter_item_vendeur'])) {
         #Ajouter la photo de l'item
         ajouter_photo($litem["image"], $db_handle, $litem["id"]);
 
-        #header("location: compte_vendeur.php");
+        header("location: compte_vendeur.php");
 
         echo "Salut aventurier";
     }
